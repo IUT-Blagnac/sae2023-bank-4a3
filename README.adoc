@@ -56,7 +56,7 @@ Dans sa colonne il doit remplir la ligne correspondant à chaque partie qu'il a 
 |===
 | Date    | Nom         |  Lien                             | Retour
 | 12/05  | CDC V1      | https://github.com/IUT-Blagnac/sae2023-bank-4a3/blob/master/LV1/CahierDesCharges.adoc |           
-|         |Gantt V1 Prévu|                                  |
+|         |Gantt V1 Prévu|https://github.com/IUT-Blagnac/sae2023-bank-4a3/blob/master/LV1/GanttV1_4A3.pdf                                  |
 | 16/05  | CdC V2final|                                     |  
 |         | Gantt V1 Réalisé |                               |     
 |         | Gantt V2 Prevu|         |     
