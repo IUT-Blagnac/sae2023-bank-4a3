@@ -1,6 +1,7 @@
 package application.view;
 
 import java.util.ArrayList;
+import model.orm.Access_BD_Client;
 
 import application.DailyBankState;
 import application.control.ClientsManagement;
@@ -148,6 +149,7 @@ public class ClientsManagementController {
 
 	@FXML
 	private void doDesactiverClient() {
+		
 	}
 
 	@FXML
@@ -166,9 +168,11 @@ public class ClientsManagementController {
 		if (selectedIndice >= 0) {
 			this.btnModifClient.setDisable(false);
 			this.btnComptesClient.setDisable(false);
+			this.btnDesactClient.setDisable(false);
 		} else {
 			this.btnModifClient.setDisable(true);
 			this.btnComptesClient.setDisable(true);
+			this.btnDesactClient.setDisable(true);
 		}
 	}
 }

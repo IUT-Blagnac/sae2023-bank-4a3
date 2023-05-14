@@ -21,6 +21,9 @@ import model.orm.exception.ApplicationException;
 import model.orm.exception.Order;
 import model.orm.exception.Table;
 
+/**
+ * Contrôleur pour l'édition des informations client dans une fenêtre.
+ */
 public class ClientEditorPaneController {
 
 	// Etat courant de l'application
@@ -37,6 +40,11 @@ public class ClientEditorPaneController {
 
 	// Manipulation de la fenêtre
 
+	/**
+     * Initialise le contexte du contrôleur.
+     * @param _containingStage le stage contenant la scène
+     * @param _dbstate l'état courant de l'application
+     */
 	public void initContext(Stage _containingStage, DailyBankState _dbstate) {
 		this.primaryStage = _containingStage;
 		this.dailyBankState = _dbstate;
@@ -47,6 +55,12 @@ public class ClientEditorPaneController {
 		this.primaryStage.setOnCloseRequest(e -> this.closeWindow(e));
 	}
 
+	/**
+     * Affiche la boîte de dialogue d'édition des informations client.
+     * @param client le client à éditer (null pour une création)
+     * @param mode le mode d'édition (création, modification, suppression)
+     * @return le client résultat après l'édition, ou null si aucune édition n'a été effectuée
+     */
 	public Client displayDialog(Client client, EditionMode mode) {
 
 		this.editionMode = mode;
@@ -164,12 +178,18 @@ public class ClientEditorPaneController {
 	@FXML
 	private Button butCancel;
 
+	/**
+     * Action associée au bouton Annuler.
+     */
 	@FXML
 	private void doCancel() {
 		this.clientResultat = null;
 		this.primaryStage.close();
 	}
 
+	/**
+     * Action associée au bouton Ajouter/Modifier/Supprimer.
+     */
 	@FXML
 	private void doAjouter() {
 		switch (this.editionMode) {
@@ -193,6 +213,10 @@ public class ClientEditorPaneController {
 
 	}
 
+	/**
+     * Vérifie la validité de la saisie des informations client.
+     * @return true si la saisie est valide, false sinon
+     */
 	private boolean isSaisieValide() {
 		this.clientEdite.nom = this.txtNom.getText().trim();
 		this.clientEdite.prenom = this.txtPrenom.getText().trim();

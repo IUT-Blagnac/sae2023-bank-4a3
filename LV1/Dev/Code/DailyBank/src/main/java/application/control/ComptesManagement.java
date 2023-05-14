@@ -16,12 +16,16 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.data.Client;
 import model.data.CompteCourant;
+import model.orm.Access_BD_Client;
 import model.orm.Access_BD_CompteCourant;
 import model.orm.exception.ApplicationException;
 import model.orm.exception.DatabaseConnexionException;
 import model.orm.exception.Order;
 import model.orm.exception.Table;
 
+/**
+ * Classe responsable de la gestion de la fenêtre de gestion des comptes dans l'application DailyBank.
+ */
 public class ComptesManagement {
 
 	private Stage primaryStage;
@@ -29,6 +33,13 @@ public class ComptesManagement {
 	private DailyBankState dailyBankState;
 	private Client clientDesComptes;
 
+	/**
+     * Constructeur de la classe ComptesManagement.
+     *
+     * @param _parentStage Fenêtre parente
+     * @param _dbstate État courant de l'application
+     * @param client Client associé aux comptes
+     */
 	public ComptesManagement(Stage _parentStage, DailyBankState _dbstate, Client client) {
 
 		this.clientDesComptes = client;
@@ -56,35 +67,44 @@ public class ComptesManagement {
 		}
 	}
 
+	/**
+     * Affiche la fenêtre de gestion des comptes.
+     */
 	public void doComptesManagementDialog() {
 		this.cmcViewController.displayDialog();
 	}
 
+	/**
+     * Gère les opérations d'un compte spécifique.
+     *
+     * @param cpt Compte courant à gérer
+     */
 	public void gererOperationsDUnCompte(CompteCourant cpt) {
 		OperationsManagement om = new OperationsManagement(this.primaryStage, this.dailyBankState,
 				this.clientDesComptes, cpt);
 		om.doOperationsManagementDialog();
 	}
 
+	/**
+     * Crée un nouveau compte.
+     *
+     * @return Le compte courant créé
+     */
 	public CompteCourant creerNouveauCompte() {
 		CompteCourant compte;
 		CompteEditorPane cep = new CompteEditorPane(this.primaryStage, this.dailyBankState);
 		compte = cep.doCompteEditorDialog(this.clientDesComptes, null, EditionMode.CREATION);
 		if (compte != null) {
 			try {
-				// Temporaire jusqu'à implémentation
-				compte = null;
-				AlertUtilities.showAlert(this.primaryStage, "En cours de développement", "Non implémenté",
-						"Enregistrement réel en BDD du compe non effectué\nEn cours de développement", AlertType.ERROR);
+				Access_BD_CompteCourant ac = new Access_BD_CompteCourant();
 
-				// TODO : enregistrement du nouveau compte en BDD (la BDD donne de nouvel id
-				// dans "compte")
+				ac.insertCompte(compte);
 
 				// if JAMAIS vrai
 				// existe pour compiler les catchs dessous
-				if (Math.random() < -1) {
-					throw new ApplicationException(Table.CompteCourant, Order.INSERT, "todo : test exceptions", null);
-				}
+//				if (Math.random() < -1) {
+//					throw new ApplicationException(Table.CompteCourant, Order.INSERT, "todo : test exceptions", null);
+//				}
 			} catch (DatabaseConnexionException e) {
 				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
 				ed.doExceptionDialog();
@@ -97,6 +117,11 @@ public class ComptesManagement {
 		return compte;
 	}
 
+	/**
+     * Récupère les comptes d'un client.
+     *
+     * @return La liste des comptes courants du client
+     */
 	public ArrayList<CompteCourant> getComptesDunClient() {
 		ArrayList<CompteCourant> listeCpt = new ArrayList<>();
 
