@@ -5830,3 +5830,11 @@ org.eclipse.core.runtime.CoreException: Launch configuration Main references non
 =======
 >>>>>>> 854316635de9272f7867575bbb104aba41bd7b04
 >>>>>>> 7b5d1240fce5ed41327a8e467fceca7fc22fcdff
+2023-05-15 10:55:58,813 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2023-05-15 10:56:14,127 [Worker-3: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: sae-s2.01-2023:DailyBank:1.0 @ C:\Users\Maxence\OneDrive - etu.univ-tlse2.fr\Semestre 2\SAÉ\2.01 & 2.05 - Développement application\Wspce_SAE_BankUniv\LV1\Dev\Code\DailyBank\pom.xml.
+2023-05-15 10:56:14,325 [Worker-1: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: sae-s2.01-2023:DailyBank:1.0 @ C:\Users\Maxence\OneDrive - etu.univ-tlse2.fr\Semestre 2\SAÉ\2.01 & 2.05 - Développement application\Wspce_SAE_BankUniv\LV1\Dev\Code\DailyBank\pom.xml.
+2023-05-15 10:56:20,069 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2023-05-15 10:56:20,115 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 11 resources
+2023-05-15 10:56:20,725 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2023-05-15 10:56:20,726 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Maxence\OneDrive - etu.univ-tlse2.fr\Semestre 2\SAÉ\2.01 & 2.05 - Développement application\Wspce_SAE_BankUniv\LV1\Dev\Code\DailyBank\src\test\resources
+2023-05-15 10:56:43,402 [Worker-13: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: sae-s2.01-2023:DailyBank:1.0 @ C:\Users\Maxence\OneDrive - etu.univ-tlse2.fr\Semestre 2\SAÉ\2.01 & 2.05 - Développement application\Wspce_SAE_BankUniv\LV1\Dev\Code\DailyBank\pom.xml.
