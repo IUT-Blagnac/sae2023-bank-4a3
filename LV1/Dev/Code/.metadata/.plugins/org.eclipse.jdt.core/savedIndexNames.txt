@@ -1,3 +1,0 @@
-INDEX VERSION 1.132+C:\Users\Maxence\OneDrive - etu.univ-tlse2.fr\Semestre 2\SAÉ\2.01 & 2.05 - Développement application\Wspce_SAE_BankUniv\LV1\Dev\Code\.metadata\.plugins\org.eclipse.jdt.core
-3413725848.index
-324106095.index
