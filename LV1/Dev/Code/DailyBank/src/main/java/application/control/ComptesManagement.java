@@ -10,6 +10,7 @@ import application.tools.StageManagement;
 import application.view.ComptesManagementController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
@@ -143,20 +144,22 @@ public class ComptesManagement {
 	
 	public void cloturerCompte(CompteCourant compte) {
 		if(compte!=null) {
-			try {
-				Access_BD_CompteCourant ac = new Access_BD_CompteCourant();
-				ac.cloturerCompte(compte);
-				if(Math.random()<-1){
-					throw new ApplicationException(Table.CompteCourant, Order.INSERT, "todo : test exceptions", null);
+				try {
+					Access_BD_CompteCourant ac = new Access_BD_CompteCourant();
+					ac.cloturerCompte(compte);
+					if(Math.random()<-1){
+						throw new ApplicationException(Table.CompteCourant, Order.INSERT, "todo : test exceptions", null);
+					}
+				}catch (DatabaseConnexionException e) {
+					ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
+					ed.doExceptionDialog();
+					this.primaryStage.close();
+				} catch (ApplicationException ae) {
+					ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, ae);
+					ed.doExceptionDialog();
 				}
-			}catch (DatabaseConnexionException e) {
-				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
-				ed.doExceptionDialog();
-				this.primaryStage.close();
-			} catch (ApplicationException ae) {
-				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, ae);
-				ed.doExceptionDialog();
-			}
+				
 		}
 	}
-}
+	}
+

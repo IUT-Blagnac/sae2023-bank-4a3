@@ -7,10 +7,12 @@ import application.control.ComptesManagement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.data.Client;
@@ -108,7 +110,14 @@ public class ComptesManagementController {
 		int selectedIndice = this.lvComptes.getSelectionModel().getSelectedIndex();
 		if (selectedIndice >= 0) {
 			CompteCourant cpt = this.oListCompteCourant.get(selectedIndice);
+			if(cpt.solde==0) {
 			this.cmDialogController.cloturerCompte(cpt);
+			}
+			else {
+					Alert al = new Alert(AlertType.WARNING);
+					al.setHeaderText("Votre compte n'est pas vide");
+					al.show();
+			}
 		}
 		this.loadList();
 		this.validateComponentState();
