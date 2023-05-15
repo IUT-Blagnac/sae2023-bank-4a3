@@ -112,7 +112,9 @@ public class ComptesManagementController {
 		CompteCourant compte;
 		compte = this.cmDialogController.creerNouveauCompte();
 		if (compte != null) {
-			this.oListCompteCourant.add(compte);
+			oListCompteCourant.add(compte);
+			lvComptes.setItems(oListCompteCourant);
+			this.cmDialogController.creerNouveauCompte();
 		}
 	}
 

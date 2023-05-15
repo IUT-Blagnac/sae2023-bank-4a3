@@ -21,6 +21,9 @@ import model.orm.Access_BD_Operation;
 import model.orm.exception.ApplicationException;
 import model.orm.exception.DatabaseConnexionException;
 
+/**
+ * Classe de contrôleur pour la gestion des opérations.
+ */
 public class OperationsManagement {
 
 	private Stage primaryStage;
@@ -29,6 +32,13 @@ public class OperationsManagement {
 	private Client clientDuCompte;
 	private CompteCourant compteConcerne;
 
+	/**
+     * Constructeur de la classe OperationsManagement.
+     * @param _parentStage le stage parent
+     * @param _dbstate l'état courant de l'application
+     * @param client le client associé au compte
+     * @param compte le compte courant concerné
+     */
 	public OperationsManagement(Stage _parentStage, DailyBankState _dbstate, Client client, CompteCourant compte) {
 
 		this.clientDuCompte = client;
@@ -58,10 +68,17 @@ public class OperationsManagement {
 		}
 	}
 
+	/**
+     * Affiche la boîte de dialogue de gestion des opérations.
+     */
 	public void doOperationsManagementDialog() {
 		this.omcViewController.displayDialog();
 	}
 
+	/**
+     * Enregistre une opération de débit.
+     * @return l'opération enregistrée, ou null si aucune opération n'a été enregistrée
+     */
 	public Operation enregistrerDebit() {
 
 		OperationEditorPane oep = new OperationEditorPane(this.primaryStage, this.dailyBankState);
@@ -85,7 +102,35 @@ public class OperationsManagement {
 		}
 		return op;
 	}
+	
+	public Operation enregistrerCredit() {
 
+		OperationEditorPane oep = new OperationEditorPane(this.primaryStage, this.dailyBankState);
+		Operation op = oep.doOperationEditorDialog(this.compteConcerne, CategorieOperation.CREDIT);
+		if (op != null) {
+			try {
+				Access_BD_Operation ao = new Access_BD_Operation();
+
+				ao.insertCredit(this.compteConcerne.idNumCompte, op.montant, op.idTypeOp);
+
+			} catch (DatabaseConnexionException e) {
+				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
+				ed.doExceptionDialog();
+				this.primaryStage.close();
+				op = null;
+			} catch (ApplicationException ae) {
+				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, ae);
+				ed.doExceptionDialog();
+				op = null;
+			}
+		}
+		return op;
+	}
+
+	/**
+     * Récupère les opérations et le solde d'un compte.
+     * @return une paire contenant le compte courant et la liste des opérations associées
+     */
 	public PairsOfValue<CompteCourant, ArrayList<Operation>> operationsEtSoldeDunCompte() {
 		ArrayList<Operation> listeOP = new ArrayList<>();
 

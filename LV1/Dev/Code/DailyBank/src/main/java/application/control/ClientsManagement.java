@@ -17,12 +17,21 @@ import model.orm.Access_BD_Client;
 import model.orm.exception.ApplicationException;
 import model.orm.exception.DatabaseConnexionException;
 
+/**
+ * Classe responsable de la gestion de la fenêtre de gestion des clients dans l'application DailyBank.
+ */
 public class ClientsManagement {
 
 	private Stage primaryStage;
 	private DailyBankState dailyBankState;
 	private ClientsManagementController cmcViewController;
 
+	/**
+     * Constructeur de la classe ClientsManagement.
+     *
+     * @param _parentStage Fenêtre parente
+     * @param _dbstate État courant de l'application
+     */
 	public ClientsManagement(Stage _parentStage, DailyBankState _dbstate) {
 		this.dailyBankState = _dbstate;
 		try {
@@ -48,10 +57,19 @@ public class ClientsManagement {
 		}
 	}
 
+	/**
+     * Affiche la fenêtre de gestion des clients.
+     */
 	public void doClientManagementDialog() {
 		this.cmcViewController.displayDialog();
 	}
 
+	/**
+     * Modifie un client existant.
+     *
+     * @param c Le client à modifier
+     * @return Le client modifié
+     */
 	public Client modifierClient(Client c) {
 		ClientEditorPane cep = new ClientEditorPane(this.primaryStage, this.dailyBankState);
 		Client result = cep.doClientEditorDialog(c, EditionMode.MODIFICATION);
@@ -72,7 +90,15 @@ public class ClientsManagement {
 		}
 		return result;
 	}
+	
+	
+	
 
+	/**
+     * Crée un nouveau client.
+     *
+     * @return Le nouveau client créé
+     */
 	public Client nouveauClient() {
 		Client client;
 		ClientEditorPane cep = new ClientEditorPane(this.primaryStage, this.dailyBankState);
@@ -96,11 +122,24 @@ public class ClientsManagement {
 		return client;
 	}
 
+	/**
+     * Gère les comptes d'un client.
+     *
+     * @param c Le client dont les comptes doivent être gérés
+     */
 	public void gererComptesClient(Client c) {
 		ComptesManagement cm = new ComptesManagement(this.primaryStage, this.dailyBankState, c);
 		cm.doComptesManagementDialog();
 	}
 
+	/**
+     * Obtient la liste des clients en fonction des critères de recherche.
+     *
+     * @param _numCompte Le numéro de compte (ou -1 pour tous les clients)
+     * @param _debutNom Le début du nom du client
+     * @param _debutPrenom Le début du prénom du client
+     * @return La liste des clients correspondant aux critères de recherche
+     */
 	public ArrayList<Client> getlisteComptes(int _numCompte, String _debutNom, String _debutPrenom) {
 		ArrayList<Client> listeCli = new ArrayList<>();
 		try {
