@@ -35,7 +35,6 @@ public class OperationEditorPane {
 
 			Scene scene = new Scene(root, 500 + 20, 250 + 10);
 			scene.getStylesheets().add(DailyBankApp.class.getResource("application.css").toExternalForm());
-
 			this.primaryStage = new Stage();
 			this.primaryStage.initModality(Modality.WINDOW_MODAL);
 			this.primaryStage.initOwner(_parentStage);
@@ -60,5 +59,8 @@ public class OperationEditorPane {
      */
 	public Operation doOperationEditorDialog(CompteCourant cpte, CategorieOperation cm) {
 		return this.oepcViewController.displayDialog(cpte, cm);
+	}
+	public Operation doVirementEditorDialog(CompteCourant cpte) {
+		return this.oepcViewController.virementDialog(cpte);
 	}
 }

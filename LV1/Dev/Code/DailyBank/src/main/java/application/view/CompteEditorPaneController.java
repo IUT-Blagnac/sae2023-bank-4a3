@@ -109,9 +109,6 @@ public class CompteEditorPaneController {
 			try {
 				int val;
 				val = Integer.parseInt(this.txtDecAutorise.getText().trim());
-				if (val < 0) {
-					throw new NumberFormatException();
-				}
 				this.compteEdite.debitAutorise = val;
 			} catch (NumberFormatException nfe) {
 				this.txtDecAutorise.setText("" + this.compteEdite.debitAutorise);

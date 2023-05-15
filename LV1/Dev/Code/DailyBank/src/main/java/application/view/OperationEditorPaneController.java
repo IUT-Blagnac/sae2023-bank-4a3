@@ -2,6 +2,7 @@ package application.view;
 
 import java.util.Locale;
 
+
 import application.DailyBankState;
 import application.tools.AlertUtilities;
 import application.tools.CategorieOperation;
@@ -92,6 +93,24 @@ public class OperationEditorPaneController {
 		this.primaryStage.showAndWait();
 		return this.operationResultat;
 	}
+	
+	public Operation virementDialog(CompteCourant cpte) {
+		this.compteEdite = cpte;
+			String info = "Cpt. : " + this.compteEdite.idNumCompte + "  "
+					+ String.format(Locale.ENGLISH, "%12.02f", this.compteEdite.solde) + "  /  "
+					+ String.format(Locale.ENGLISH, "%8d", this.compteEdite.debitAutorise);
+			this.lblMessage.setText(info);
+			
+			this.btnOk.setText("Effectuer Virement");
+			this.btnCancel.setText("Annuler Virement");
+	
+		
+		this.operationResultat = null;
+		this.cbTypeOpe.requestFocus();
+
+		this.primaryStage.showAndWait();
+		return this.operationResultat;
+	}
 
 	// Gestion du stage
 	private Object closeWindow(WindowEvent e) {
@@ -114,6 +133,9 @@ public class OperationEditorPaneController {
 	private Button btnOk;
 	@FXML
 	private Button btnCancel;
+	@FXML
+	private Label lblNumCompte;
+
 
 	@FXML
 	private void doCancel() {
