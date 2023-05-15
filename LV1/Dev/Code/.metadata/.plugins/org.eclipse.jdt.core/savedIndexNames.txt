@@ -1,4 +1,22 @@
 <<<<<<< HEAD
+INDEX VERSION 1.131+C:\Users\Etudiant\SAE-1-5\LV1\Dev\Code\.metadata\.plugins\org.eclipse.jdt.core
+3646913897.index
+4103735538.index
+4293552499.index
+3360249292.index
+2882657552.index
+171150077.index
+1272107317.index
+1865797976.index
+2444515133.index
+1737415613.index
+2621503326.index
+404941143.index
+1070795962.index
+324106095.index
+1677067088.index
+=======
+<<<<<<< HEAD
 INDEX VERSION 1.132+C:\Users\Maxence\OneDrive - etu.univ-tlse2.fr\Semestre 2\SAÉ\2.01 & 2.05 - Développement application\Wspce_SAE_BankUniv\LV1\Dev\Code\.metadata\.plugins\org.eclipse.jdt.core
 1865797976.index
 324106095.index
@@ -22,3 +40,4 @@ INDEX VERSION 1.132+C:\Users\EVAN\Desktop\SAE1et5\LV1\Dev\Code\.metadata\.plugin
 1865797976.index
 1205963433.index
 >>>>>>> 854316635de9272f7867575bbb104aba41bd7b04
+>>>>>>> 7b5d1240fce5ed41327a8e467fceca7fc22fcdff
