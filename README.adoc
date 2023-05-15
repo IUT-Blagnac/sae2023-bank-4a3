@@ -60,7 +60,7 @@ affinez l'analyse de l'existant par rapport à ce qui vous a été fourni en ent
 analyse du besoin: détaillez les UC V0, utilisateurs logiques, idem pour la V1, en priorisant les devs planifiés
 ajouter les dates de livraison dans contraintes orga.
 reprendre les contraintes technique / orga en les ré-organisant par type (techni que / orga), identifier celles par encore identifées.       
-|         |Gantt V1 Prévu|https://github.com/IUT-Blagnac/sae2023-bank-4a3/blob/master/LV1/GanttV1_4A3.pdf                                  |affichage du graphe pas optimal, à reprendre (1 seule page). Reprendre liste des tâches pour être sûr de ne rien oublier.Focalisez vous sur V1. Ajoutez les jalons de livraison.
+|         |Gantt V1 Prévu|https://github.com/IUT-Blagnac/sae2023-bank-4a3/blob/master/LV1/GanttV1_PDF.pdf                                  |affichage du graphe pas optimal, à reprendre (1 seule page). Reprendre liste des tâches pour être sûr de ne rien oublier.Focalisez vous sur V1. Ajoutez les jalons de livraison.
 | 16/05  | CdC V2final|                                     |  
 |         | Gantt V1 Réalisé |                               |     
 |         | Gantt V2 Prevu|         |     

@@ -134,7 +134,7 @@ public class OperationEditorPaneController {
 	@FXML
 	private Button btnCancel;
 	@FXML
-	private Label lblNumCompte;
+	private TextField txtNumCompte;
 
 
 	@FXML

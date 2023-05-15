@@ -1,9 +1,0 @@
-content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="java.lang.Enum"><rhs name\="javafx.geometry.Pos"/><rhs name\="gestclub.model.EtatMembre"/><rhs name\="memory.om.Reponse"/></lhs><lhs name\="java.lang.constant.Constable"><rhs name\="javafx.geometry.Pos"/><rhs name\="gestclub.model.EtatMembre"/><rhs name\="memory.om.Reponse"/></lhs><lhs name\="gestclub.model.EtatMembre"><rhs name\="gestclub.model.EtatMembre"/></lhs><lhs name\="javafx.event.EventTarget"><rhs name\="javafx.scene.Scene"/></lhs><lhs name\="javafx.scene.Scene"><rhs name\="javafx.scene.Scene"/></lhs><lhs name\="memory.om.Reponse"><rhs name\="memory.om.Reponse"/></lhs><lhs name\="javafx.scene.paint.Paint"><rhs name\="javafx.scene.paint.Color"/></lhs></history>
-content_assist_number_of_computers=13
-eclipse.preferences.version=1
-markOccurrences=false
-org.eclipse.jdt.ui.formatterprofiles.version=23
-spelling_locale_initialized=true
-typefilter_migrated_2=true
-useAnnotationsPrefPage=true
-useQuickDiffPrefPage=true
