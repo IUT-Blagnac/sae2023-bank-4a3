@@ -121,6 +121,7 @@ public class ClientsManagement {
 		}
 		return client;
 	}
+	
 
 	/**
      * Gère les comptes d'un client.

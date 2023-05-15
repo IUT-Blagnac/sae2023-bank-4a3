@@ -108,7 +108,7 @@ public class OperationsManagementController {
 
 	@FXML
 	private void doAutre() {
-//		Operation op = this.omDialogController.effectuerVirement();
+		
 	}
 
 	private void validateComponentState() {

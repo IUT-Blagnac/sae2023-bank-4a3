@@ -171,6 +171,41 @@ public class Access_BD_CompteCourant {
 		}
 	}
 	
+	public void cloturerCompte(CompteCourant cc) throws RowNotFoundOrTooManyRowsException, DataAccessException,
+	DatabaseConnexionException, ManagementRuleViolation {
+try {
+
+	CompteCourant cAvant = this.getCompteCourant(cc.idNumCompte);
+	if (cc.debitAutorise > 0) {
+		cc.debitAutorise = -cc.debitAutorise;
+	}
+	if (cAvant.solde < cc.debitAutorise) {
+		throw new ManagementRuleViolation(Table.CompteCourant, Order.UPDATE,
+				"Erreur de règle de gestion : sole à découvert", null);
+	}
+	Connection con = LogToDatabase.getConnexion();
+
+	String query = "UPDATE CompteCourant SET ESTCLOTURE = 'O' WHERE idNumCompte = ?";
+
+	PreparedStatement pst = con.prepareStatement(query);
+	pst.setInt(1, cc.idNumCompte);
+	
+
+	System.err.println(query);
+
+	int result = pst.executeUpdate();
+	pst.close();
+	if (result != 1) {
+		con.rollback();
+		throw new RowNotFoundOrTooManyRowsException(Table.CompteCourant, Order.UPDATE,
+				"Update anormal (update de moins ou plus d'une ligne)", null, result);
+	}
+	con.commit();
+} catch (SQLException e) {
+	throw new DataAccessException(Table.CompteCourant, Order.UPDATE, "Erreur accès", e);
+}
+}
+	
 	public void insertCompte(CompteCourant compte)
 			throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException {
 		try {
@@ -213,4 +248,5 @@ public class Access_BD_CompteCourant {
 			throw new DataAccessException(Table.CompteCourant, Order.INSERT, "Erreur accès", e);
 		}
 	}
+	
 }

@@ -94,17 +94,24 @@ public class OperationEditorPaneController {
 		return this.operationResultat;
 	}
 	
-	public Operation virementDialog(CompteCourant cpte) {
-		this.compteEdite = cpte;
-			String info = "Cpt. : " + this.compteEdite.idNumCompte + "  "
-					+ String.format(Locale.ENGLISH, "%12.02f", this.compteEdite.solde) + "  /  "
-					+ String.format(Locale.ENGLISH, "%8d", this.compteEdite.debitAutorise);
-			this.lblMessage.setText(info);
-			
-			this.btnOk.setText("Effectuer Virement");
-			this.btnCancel.setText("Annuler Virement");
-	
-		
+	public Operation virementDialog(CompteCourant cpte,CategorieOperation cm) {
+		String info = "Cpt. : " + this.compteEdite.idNumCompte + "  "
+				+ String.format(Locale.ENGLISH, "%12.02f", this.compteEdite.solde) + "  /  "
+				+ String.format(Locale.ENGLISH, "%8d", this.compteEdite.debitAutorise);
+		this.lblMessage.setText(info);
+
+		this.btnOk.setText("Effectuer Débit");
+		this.btnCancel.setText("Annuler débit");
+
+		ObservableList<String> listTypesOpesPossibles = FXCollections.observableArrayList();
+		listTypesOpesPossibles.addAll(ConstantesIHM.OPERATIONS_DEBIT_GUICHET);
+
+		this.cbTypeOpe.setItems(listTypesOpesPossibles);
+		this.cbTypeOpe.getSelectionModel().select(0);
+		if (ConstantesIHM.isAdmin(this.dailyBankState.getEmployeActuel())) {
+			// rien pour l'instant
+		}
+
 		this.operationResultat = null;
 		this.cbTypeOpe.requestFocus();
 

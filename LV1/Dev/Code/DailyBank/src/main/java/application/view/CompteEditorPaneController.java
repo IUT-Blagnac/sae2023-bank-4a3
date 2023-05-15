@@ -70,12 +70,12 @@ public class CompteEditorPaneController {
 			AlertUtilities.showAlert(this.primaryStage, "Non implémenté", "Modif de compte n'est pas implémenté", null,
 					AlertType.ERROR);
 			return null;
-		// break;
+//		   break;
 		case SUPPRESSION:
 			AlertUtilities.showAlert(this.primaryStage, "Non implémenté", "Suppression de compte n'est pas implémenté",
 					null, AlertType.ERROR);
 			return null;
-		// break;
+//		   break;
 		}
 
 		// Paramétrages spécifiques pour les chefs d'agences
