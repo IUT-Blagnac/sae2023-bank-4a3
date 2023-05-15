@@ -1,12 +1,11 @@
-= Cahier des charges
+= Cahier des charges - BankUtil - Version 1
 
-== BankUtil - Version 1
-
-=== BankUtil par DIDENKO Andrii, LAMOUR Evan, KRILL Maxence, SHULHINA Daria
+BankUtil par DIDENKO Andrii, LAMOUR Evan, KRILL Maxence, SHULHINA Daria
 
 == Sommaire :
 
-:toc:
+:doctype: book
+:toc: auto
 
 == 1. Présentation du projet
 
