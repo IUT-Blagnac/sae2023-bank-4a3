@@ -6,10 +6,7 @@
 
 == Sommaire :
 
-1. Présentation du projet
-2. Application existante (Version 0)
-3. Prestations attendues
-4. Contraintes techniques et organisationnelles
+:toc:
 
 == 1. Présentation du projet
 
