@@ -5102,6 +5102,19 @@ org.eclipse.core.runtime.CoreException: Launch configuration Main references non
 2023-05-11 10:04:44,349 [Worker-11: Launching DailyBank-run] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B -Dstyle.color=always clean javafx:run
 2023-05-11 10:14:42,407 [Worker-2: Launching DailyBank-run] INFO  o.e.m.i.launch.MavenLaunchDelegate - Run build in "C:\Users\EVAN\Desktop\workspaceIHM - Copie\DailyBank":
 2023-05-11 10:14:42,407 [Worker-2: Launching DailyBank-run] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B -Dstyle.color=always clean javafx:run
+<<<<<<< HEAD
+2023-05-15 10:29:34,371 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2023-05-15 10:29:52,007 [Worker-2: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: sae-s2.01-2023:DailyBank:1.0 @ C:\Users\Maxence\OneDrive - etu.univ-tlse2.fr\Semestre 2\SAÉ\2.01 & 2.05 - Développement application\Wspce_SAE_BankUniv\LV1\Dev\Code\DailyBank\pom.xml.
+2023-05-15 10:29:55,945 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2023-05-15 10:29:55,969 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2023-05-15 10:29:56,001 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2023-05-15 10:29:56,001 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Maxence\OneDrive - etu.univ-tlse2.fr\Semestre 2\SAÉ\2.01 & 2.05 - Développement application\Wspce_SAE_BankUniv\LV1\Dev\Code\DailyBank\src\test\resources
+2023-05-15 10:30:17,965 [Worker-5: Build] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: sae-s2.01-2023:DailyBank:1.0 @ C:\Users\Maxence\OneDrive - etu.univ-tlse2.fr\Semestre 2\SAÉ\2.01 & 2.05 - Développement application\Wspce_SAE_BankUniv\LV1\Dev\Code\DailyBank\pom.xml.
+2023-05-15 10:30:19,992 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2023-05-15 10:30:20,000 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2023-05-15 10:30:20,016 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2023-05-15 10:30:20,016 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Maxence\OneDrive - etu.univ-tlse2.fr\Semestre 2\SAÉ\2.01 & 2.05 - Développement application\Wspce_SAE_BankUniv\LV1\Dev\Code\DailyBank\src\test\resources
+=======
 2023-05-11 10:32:18,395 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
 2023-05-11 10:32:29,877 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2023-05-11 10:32:29,881 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
@@ -5719,6 +5732,7 @@ org.eclipse.core.runtime.CoreException: Launch configuration Main references non
 2023-05-15 09:27:30,632 [Worker-7: Launching DailyBank-run] INFO  o.eclipse.m2e.core.internal.Bundles - 	Entry: C:\Users\EVAN\.p2\pool\plugins\org.eclipse.m2e.maven.runtime_3.8.701.20230209-1606\jars\org.eclipse.sisu.inject-0.3.5.jar
 2023-05-15 09:27:30,633 [Worker-7: Launching DailyBank-run] INFO  o.eclipse.m2e.core.internal.Bundles - 	Entry: C:\Users\EVAN\.p2\pool\plugins\org.eclipse.m2e.maven.runtime_3.8.701.20230209-1606\jars\org.eclipse.sisu.plexus-0.3.5.jar
 2023-05-15 09:27:30,633 [Worker-7: Launching DailyBank-run] INFO  o.eclipse.m2e.core.internal.Bundles - 	Entry: C:\Users\EVAN\.p2\pool\plugins\org.eclipse.m2e.maven.runtime_3.8.701.20230209-1606\jars\plexus-build-api-0.0.7.jar
+<<<<<<< HEAD
 2023-05-15 10:03:40,281 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
 2023-05-15 10:03:54,224 [Worker-16: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: sae-s2.01-2023:DailyBank:1.0 @ C:\Users\Etudiant\SAE-1-5\LV1\Dev\Code\DailyBank\pom.xml.
 2023-05-15 10:03:54,224 [Worker-13: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: sae-s2.01-2023:DailyBank:1.0 @ C:\Users\Etudiant\SAE-1-5\LV1\Dev\Code\DailyBank\pom.xml.
@@ -5813,3 +5827,6 @@ org.eclipse.core.runtime.CoreException: Launch configuration Main references non
 2023-05-15 10:10:24,423 [Worker-9: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
 2023-05-15 10:10:24,425 [Worker-9: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2023-05-15 10:10:24,427 [Worker-9: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Etudiant\SAE-1-5\LV1\Dev\Code\DailyBank\src\test\resources
+=======
+>>>>>>> 854316635de9272f7867575bbb104aba41bd7b04
+>>>>>>> 7b5d1240fce5ed41327a8e467fceca7fc22fcdff
