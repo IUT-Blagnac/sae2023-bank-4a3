@@ -82,7 +82,7 @@ Compléter et si on ne valide pas, ...
 
 |====
 
->|Cas de test 4+|Test-01-02-03
+>|Cas de test 4+|Test-01-02-01
 >|Titre 4+|Consultation d'un compte
 >|Objectif 4+| Vérifier qu'il est possible de consulter un compte
 
@@ -94,6 +94,32 @@ Compléter et si on ne valide pas, ...
 ...
 
 |====
+
+>|Cas de test 4+|Test-01-02-02
+>|Titre 4+|Ajout d'un compte
+>|Objectif 4+| Vérifier qu'il est possible d'ajouter un compte
+
+5+|
+
+^|ID ^|Action ^|Comportement attendu ^|Pré-conditions ^|Résultat
+^|All_G_CB.3 ^|Cliquer sur le bouton "Ajouter un compte". ^|La fenêtre d'ajout de client s'ouvre. ^| ^|OK
+^|All_G_CB.4 ^|Sélectionner le bouton "Valider". ^|Le compte est affiché dans la gestion de compte. ^|Les champs sont correctement renseigné ^|OK
+...
+
+
+|====
+
+|====
+
+>|Cas de test 4+|Test-01-02-03
+>|Titre 4+|Suppression d'un compte
+>|Objectif 4+| Vérifier qu'il est possible de cloturer un compte
+
+5+|
+
+^|ID ^|Action ^|Comportement attendu ^|Pré-conditions ^|Résultat
+^|All_G_CB.5 ^|Cliquer sur le bouton "Supprimer compte". ^|Le compte est "cloturé" ^|Un client actif est sélectionné ^|OK
+...
 
 
 ==== 1.3 Gestion des opérations :
