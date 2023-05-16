@@ -63,29 +63,38 @@ L'application existante est livrée avec :
 
 La version 2 de l'application comprend comme cas d'utilisation :
 
-* 
+=== Guichetier
+
+* Générer un relevé mensuel d’un compte en PDF
+* Gérer (faire le « CRUD ») les prélèvements automatiques
+
+=== Chef d'agence
+
+* Effectuer un débit exceptionnel
+* Simuler un emprunt
+* Simuler une assurance d’emprunt
+
+image::https://raw.githubusercontent.com/IUT-Blagnac/sae2023-bank-4a3/master/img/uc-initialv2.svg?token=GHSAT0AAAAAACCO3ON6UVWJ4IRMEB2KB2VMZDDRSEA["Diagramme des cas d'utilisation de la V1"]
+
+image::https://raw.githubusercontent.com/IUT-Blagnac/sae2023-bank-4a3/master/img/dc-initialv2.svg?token=GHSAT0AAAAAACCO3ON6HDPFSRRXSV74SGD6ZDDRSMQ["Diagramme de classe initiale de la V0"]
 
 == 4. Contraintes techniques et organisationnelles
 
-Des contraintes doivent être prises en compte lors de la réalisation du projet.
+Des contraintes doivent être prises en compte lors de la réalisation du projet :
 
-*Budget*
-Le budget alloué pour le projet doit être respecté, et les coûts doivent être maîtrisés pour ne pas dépasser les limites fixées.
+=== Contraintes techniques
 
-*Délais*
-Les délais de réalisation doivent être respectés, pour permettre un déploiement dans les délais impartis.
+* La version 2 reprend le programme de la version précédente (version 1)
+* Le logiciel doit fonctionner à l'aide d'une base de données Oracle créée au préalable (exécution de requêtes de création, modification, suppression)
+* L'interface graphique doit être produite grâce à JavaFX (et des fichiers FXML)
+* Certaines fonctionnalités doivent être disponibles uniquement pour certains rôles (guichetier / chef d'agence)
+* Le logiciel doit être développé en respectant les normes de sécurité en vigueur, afin de garantir la confidentialité et l'intégrité des données bancaires.
+* Le logiciel doit être conçu de manière à pouvoir être facilement mis à jour et évoluer en fonction des besoins futurs de la banque.
+* Le logiciel doit être facile à utiliser pour les utilisateurs, afin de garantir une adoption rapide et une utilisation régulière.
 
-*Ressources humaines*
-L'équipe de développement doit être suffisamment qualifiée pour mener à bien le projet, et les ressources doivent être disponibles aux moments clés du projet.
+=== Contraintes organisationnelles
 
-*Compatibilité avec le système existant*
-Le logiciel doit être compatible avec les systèmes déjà en place, afin de ne pas perturber le fonctionnement quotidien de la banque.
-
-*Sécurité*
-Le logiciel doit être développé en respectant les normes de sécurité en vigueur, afin de garantir la confidentialité et l'intégrité des données bancaires.
-
-*Facilité d'utilisation*
-Le logiciel doit être facile à utiliser pour les utilisateurs, afin de garantir une adoption rapide et une utilisation régulière.
-
-*Évolutivité*
-Le logiciel doit être conçu de manière à pouvoir être facilement mis à jour et évoluer en fonction des besoins futurs de la banque.
+* Le délai de réalisation est fixé au 26 mai. Ce délai doit être respecté pour permettre un déploiement dans en temps imparti
+* Le versionnage se fait à l'aide de Git (projet sur GitHub)
+* Les tâches doivent être répartieis dans l'équipe de manière équitable (afin d'éviter des retards)
+* Le budget alloué pour le projet doit être respecté, et les coûts doivent être maîtrisés pour ne pas dépasser les limites fixées.
