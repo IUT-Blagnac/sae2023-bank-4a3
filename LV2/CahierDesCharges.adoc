@@ -99,7 +99,7 @@ Des contraintes doivent être prises en compte lors de la réalisation du projet
 * Les tâches doivent être répartieis dans l'équipe de manière équitable (afin d'éviter des retards)
 * Le budget alloué pour le projet doit être respecté, et les coûts doivent être maîtrisés pour ne pas dépasser les limites fixées
 
-== Livrables attendues
+=== Livrables attendues
 
 * Fichier ``jar`` exécutable
 * Documentation technique pour permettre la maintenance de l'application par l'équipe de développement
