@@ -1,10 +1,9 @@
 package application.view;
 
 import java.util.ArrayList;
-import model.orm.Access_BD_Client;
+import model.orm.Access_BD_Employe;
 
 import application.DailyBankState;
-import application.control.ClientsManagement;
 import application.control.EmployesManagement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,21 +14,21 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import model.data.Client;
+import model.data.Employe;
 
 public class EmployesManagementController {
 
 	// Etat courant de l'application
 	private DailyBankState dailyBankState;
 
-	// Contrôleur de Dialogue associé à ClientsManagementController
-	private ClientsManagement cmDialogController;
+	// Contrôleur de Dialogue associé à EmployesManagementController
+	private EmployesManagement cmDialogController;
 
 	// Fenêtre physique ou est la scène contenant le fichier xml contrôlé par this
 	private Stage primaryStage;
 
 	// Données de la fenêtre
-	private ObservableList<Client> oListClients;
+	private ObservableList<Employe> oListEmployes;
 
 	// Manipulation de la fenêtre
 	public void initContext(Stage _containingStage, EmployesManagement _cm, DailyBankState _dbstate) {
@@ -42,11 +41,11 @@ public class EmployesManagementController {
 	private void configure() {
 		this.primaryStage.setOnCloseRequest(e -> this.closeWindow(e));
 
-		this.oListClients = FXCollections.observableArrayList();
-		this.lvClients.setItems(this.oListClients);
-		this.lvClients.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-		this.lvClients.getFocusModel().focus(-1);
-		this.lvClients.getSelectionModel().selectedItemProperty().addListener(e -> this.validateComponentState());
+		this.oListEmployes = FXCollections.observableArrayList();
+		this.lvEmployes.setItems(this.oListEmployes);
+		this.lvEmployes.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+		this.lvEmployes.getFocusModel().focus(-1);
+		this.lvEmployes.getSelectionModel().selectedItemProperty().addListener(e -> this.validateComponentState());
 		this.validateComponentState();
 	}
 
@@ -70,13 +69,11 @@ public class EmployesManagementController {
 	@FXML
 	private TextField txtPrenom;
 	@FXML
-	private ListView<Client> lvClients;
+	private ListView<Employe> lvEmployes;
 	@FXML
-	private Button btnDesactClient;
+	private Button btnDesactEmploye;
 	@FXML
-	private Button btnModifClient;
-	@FXML
-	private Button btnComptesClient;
+	private Button btnModifEmploye;
 
 	@FXML
 	private void doCancel() {
@@ -114,66 +111,55 @@ public class EmployesManagementController {
 			}
 		}
 
-		// Recherche des clients en BD. cf. AccessClient > getClients(.)
+		// Recherche des employés en BD. cf. AccessEmploye > getEmployes(.)
 		// numCompte != -1 => recherche sur numCompte
 		// numCompte != -1 et debutNom non vide => recherche nom/prenom
-		// numCompte != -1 et debutNom vide => recherche tous les clients
-		ArrayList<Client> listeCli;
+		// numCompte != -1 et debutNom vide => recherche tous les employés
+		ArrayList<Employe> listeCli;
 		listeCli = this.cmDialogController.getlisteComptes(numCompte, debutNom, debutPrenom);
 
-		this.oListClients.clear();
-		this.oListClients.addAll(listeCli);
+		this.oListEmployes.clear();
+		this.oListEmployes.addAll(listeCli);
 		this.validateComponentState();
 	}
 
 	@FXML
-	private void doComptesClient() {
-		int selectedIndice = this.lvClients.getSelectionModel().getSelectedIndex();
-		if (selectedIndice >= 0) {
-			Client client = this.oListClients.get(selectedIndice);
-			this.cmDialogController.gererComptesClient(client);
-		}
-	}
+	private void doModifierEmploye() {
 
-	@FXML
-	private void doModifierClient() {
-
-		int selectedIndice = this.lvClients.getSelectionModel().getSelectedIndex();
+		int selectedIndice = this.lvEmployes.getSelectionModel().getSelectedIndex();
 		if (selectedIndice >= 0) {
-			Client cliMod = this.oListClients.get(selectedIndice);
-			Client result = this.cmDialogController.modifierClient(cliMod);
+			Employe cliMod = this.oListEmployes.get(selectedIndice);
+			Employe result = this.cmDialogController.modifierEmploye(cliMod);
 			if (result != null) {
-				this.oListClients.set(selectedIndice, result);
+				this.oListEmployes.set(selectedIndice, result);
 			}
 		}
 	}
 
 	@FXML
-	private void doDesactiverClient() {
+	private void doDesactiverEmploye() {
 		
 	}
 
 	@FXML
-	private void doNouveauClient() {
-		Client client;
-		client = this.cmDialogController.nouveauClient();
-		if (client != null) {
-			this.oListClients.add(client);
+	private void doNouveauEmploye() {
+		Employe employe;
+		employe = this.cmDialogController.nouveauEmploye();
+		if (employe != null) {
+			this.oListEmployes.add(employe);
 		}
 	}
 
 	private void validateComponentState() {
 		// Non implémenté => désactivé
-		this.btnDesactClient.setDisable(true);
-		int selectedIndice = this.lvClients.getSelectionModel().getSelectedIndex();
+		this.btnDesactEmploye.setDisable(true);
+		int selectedIndice = this.lvEmployes.getSelectionModel().getSelectedIndex();
 		if (selectedIndice >= 0) {
-			this.btnModifClient.setDisable(false);
-			this.btnComptesClient.setDisable(false);
-			this.btnDesactClient.setDisable(false);
+			this.btnModifEmploye.setDisable(false);
+			this.btnDesactEmploye.setDisable(false);
 		} else {
-			this.btnModifClient.setDisable(true);
-			this.btnComptesClient.setDisable(true);
-			this.btnDesactClient.setDisable(true);
+			this.btnModifEmploye.setDisable(true);
+			this.btnDesactEmploye.setDisable(true);
 		}
 	}
 }

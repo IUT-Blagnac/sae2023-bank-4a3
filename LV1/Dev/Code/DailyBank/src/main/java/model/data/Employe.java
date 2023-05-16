@@ -34,9 +34,11 @@ public class Employe {
 
 	@Override
 	public String toString() {
-		return "Employe [idEmploye=" + this.idEmploye + ", nom=" + this.nom + ", prenom=" + this.prenom
-				+ ", droitsAccess=" + this.droitsAccess + ", login=" + this.login + ", motPasse=" + this.motPasse
-				+ ", idAg=" + this.idAg + "]";
+		String display = "[" + this.idEmploye + "] " + this.nom.toUpperCase() + " " + this.prenom + " - ";
+		if(this.droitsAccess == "chefAgence") {
+			return display + "Chef d'agence";
+		} else {
+			return display + "Guichetier";			
+		}
 	}
-
 }

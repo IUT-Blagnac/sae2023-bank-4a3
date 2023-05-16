@@ -72,11 +72,11 @@ public class EmployesManagement {
      */
 	public Employe modifierEmploye(Employe c) {
 		EmployeEditorPane cep = new EmployeEditorPane(this.primaryStage, this.dailyBankState);
-		Employe result = cep.doClientEditorDialog(c, EditionMode.MODIFICATION);
+		Employe result = cep.doEmployeEditorDialog(c, EditionMode.MODIFICATION);
 		if (result != null) {
 			try {
 				Access_BD_Employe ae = new Access_BD_Employe();
-				ae.updateClient(result);
+				ae.updateEmploye(result);
 			} catch (DatabaseConnexionException e) {
 				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
 				ed.doExceptionDialog();
@@ -105,7 +105,7 @@ public class EmployesManagement {
 		client = cep.doEmployeEditorDialog(null, EditionMode.CREATION);
 		if (client != null) {
 			try {
-				Access_BD_Client ae = new Access_BD_Employe();
+				Access_BD_Employe ae = new Access_BD_Employe();
 				ae.insertEmploye(client);
 			} catch (DatabaseConnexionException e) {
 				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
@@ -122,16 +122,6 @@ public class EmployesManagement {
 	}
 
 	/**
-     * Gère les comptes d'un client.
-     *
-     * @param c Le client dont les comptes doivent être gérés
-     */
-	public void gererComptesClient(Client c) {
-		ComptesManagement cm = new ComptesManagement(this.primaryStage, this.dailyBankState, c);
-		cm.doComptesManagementDialog();
-	}
-
-	/**
      * Obtient la liste des employés en fonction des critères de recherche.
      *
      * @param _numCompte Le numéro de compte (ou -1 pour tous les employés)
@@ -139,16 +129,16 @@ public class EmployesManagement {
      * @param _debutPrenom Le début du prénom du client
      * @return La liste des employés correspondant aux critères de recherche
      */
-	public ArrayList<Client> getlisteComptes(int _numCompte, String _debutNom, String _debutPrenom) {
-		ArrayList<Client> listeCli = new ArrayList<>();
+	public ArrayList<Employe> getlisteComptes(int _numCompte, String _debutNom, String _debutPrenom) {
+		ArrayList<Employe> listeCli = new ArrayList<>();
 		try {
 			// Recherche des employés en BD. cf. AccessClient > getEmployes(.)
 			// numCompte != -1 => recherche sur numCompte
 			// numCompte == -1 et debutNom non vide => recherche nom/prenom
 			// numCompte == -1 et debutNom vide => recherche tous les employés
 
-			Access_BD_Client ac = new Access_BD_Client();
-			listeCli = ac.getEmployes(this.dailyBankState.getEmployeActuel().idAg, _numCompte, _debutNom, _debutPrenom);
+			Access_BD_Employe ac = new Access_BD_Employe();
+			listeCli = ac.getEmploye(this.dailyBankState.getEmployeActuel().idAg, _numCompte, _debutNom, _debutPrenom);
 
 		} catch (DatabaseConnexionException e) {
 			ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
