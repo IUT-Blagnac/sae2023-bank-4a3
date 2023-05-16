@@ -89,7 +89,7 @@ image::../img/userDoc/gererCompte.png["Page de gestion comptes"]
 
 Depuis l'écran précédent, cliquez sur ``Nouveau compte``.
 
-image::../img/userDoc/nouveauCompte.png["Page de création de compte"]
+image::../img/userDoc/creerCompte.png["Page de création de compte"]
 
 Renseignez les informations du compte, puis cliquez sur ``Ajouter`` ou ``Annuler``.
 
