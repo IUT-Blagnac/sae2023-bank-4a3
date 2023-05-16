@@ -63,7 +63,7 @@ reprendre les contraintes technique / orga en les ré-organisant par type (techn
 |         |Gantt V1 Prévu|https://github.com/IUT-Blagnac/sae2023-bank-4a3/blob/master/LV1/GanttV1_PDF.pdf                                  |affichage du graphe pas optimal, à reprendre (1 seule page). Reprendre liste des tâches pour être sûr de ne rien oublier.Focalisez vous sur V1. Ajoutez les jalons de livraison.
 | 16/05  | CdC V2final|                                     |  
 |         | Gantt V1 Réalisé |                               |     
-|         | Gantt V2 Prevu|         |     
+|         | Gantt V2 Prevu|https://github.com/IUT-Blagnac/sae2023-bank-4a3/blob/master/LV2/GanttV2.pdf         |     
 |         | Doc. Tec. V1 |        |    
 |         | Doc User V1    |        |
 |         | Recette V1  |                      | 
