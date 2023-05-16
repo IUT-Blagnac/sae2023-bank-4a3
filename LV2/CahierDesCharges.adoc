@@ -42,13 +42,13 @@ L'application demande dans un premier temps à l'aide d'une interface graphique 
 * Rendre inactif un client
 * Gérer (faire le « CRUD ») les employés (guichetier et chef d’agence)
 
-image::https://raw.githubusercontent.com/IUT-Blagnac/sae2023-bank-4a3/master/img/uc-initialv0.svg?token=GHSAT0AAAAAACCO3ON73W3M2INDNQWUKJ56ZDDOQEQ["Diagramme des cas d'utilisation de la V0"]
+image::https://raw.githubusercontent.com/IUT-Blagnac/sae2023-bank-4a3/master/img/uc-initialv0.svg?token=GHSAT0AAAAAACCO3ON7MMASOYQACIYUV3R6ZDDSK4Q["Diagramme des cas d'utilisation de la V0"]
 
-image::https://raw.githubusercontent.com/IUT-Blagnac/sae2023-bank-4a3/master/img/uc-initialv1.svg?token=GHSAT0AAAAAACCO3ON6VY3W7WJDGZEJOQQEZDDORNA["Diagramme des cas d'utilisation de la V1"]
+image::https://raw.githubusercontent.com/IUT-Blagnac/sae2023-bank-4a3/master/img/uc-initialv1.svg?token=GHSAT0AAAAAACCO3ON6LZ5MDUWZPJD5KO6EZDDSK7Q["Diagramme des cas d'utilisation de la V1"]
 
-image::https://raw.githubusercontent.com/IUT-Blagnac/sae2023-bank-4a3/master/img/dc-initialv0.svg?token=GHSAT0AAAAAACCO3ON6JL7RXAUMGO2B4U32ZDDOSCQ["Diagramme de classe initiale de la V0"]
+image::https://raw.githubusercontent.com/IUT-Blagnac/sae2023-bank-4a3/master/img/dc-initialv0.svg?token=GHSAT0AAAAAACCO3ON7HQASVC7FGAISYHXGZDDSJIA["Diagramme de classe initiale de la V0"]
 
-image::https://raw.githubusercontent.com/IUT-Blagnac/sae2023-bank-4a3/master/img/dc-initialv1.svg?token=GHSAT0AAAAAACCO3ON7ZOBEX62XDHSRCR7MZDDOSDQ["Diagramme de classe initiale de la V1"]
+image::https://raw.githubusercontent.com/IUT-Blagnac/sae2023-bank-4a3/master/img/dc-initialv1.svg?token=GHSAT0AAAAAACCO3ON6SV7OOZ2MRV4X6QYOZDDSJVQ["Diagramme de classe initiale de la V1"]
 
 === Outils de développement
 
@@ -74,9 +74,9 @@ La version 2 de l'application comprend comme cas d'utilisation :
 * Simuler un emprunt
 * Simuler une assurance d’emprunt
 
-image::https://raw.githubusercontent.com/IUT-Blagnac/sae2023-bank-4a3/master/img/uc-initialv2.svg?token=GHSAT0AAAAAACCO3ON6UVWJ4IRMEB2KB2VMZDDRSEA["Diagramme des cas d'utilisation de la V1"]
+image::https://raw.githubusercontent.com/IUT-Blagnac/sae2023-bank-4a3/master/img/uc-initialv2.svg?token=GHSAT0AAAAAACCO3ON62APHPBVCUILOGYISZDDSLAA["Diagramme des cas d'utilisation de la V1"]
 
-image::https://raw.githubusercontent.com/IUT-Blagnac/sae2023-bank-4a3/master/img/dc-initialv2.svg?token=GHSAT0AAAAAACCO3ON6HDPFSRRXSV74SGD6ZDDRSMQ["Diagramme de classe initiale de la V0"]
+image::https://raw.githubusercontent.com/IUT-Blagnac/sae2023-bank-4a3/master/img/dc-initialv2.svg?token=GHSAT0AAAAAACCO3ON6HMFGC3LPWLFZBMVEZDDSJ7A["Diagramme de classe initiale de la V0"]
 
 == 4. Contraintes techniques et organisationnelles
 
@@ -88,13 +88,20 @@ Des contraintes doivent être prises en compte lors de la réalisation du projet
 * Le logiciel doit fonctionner à l'aide d'une base de données Oracle créée au préalable (exécution de requêtes de création, modification, suppression)
 * L'interface graphique doit être produite grâce à JavaFX (et des fichiers FXML)
 * Certaines fonctionnalités doivent être disponibles uniquement pour certains rôles (guichetier / chef d'agence)
-* Le logiciel doit être développé en respectant les normes de sécurité en vigueur, afin de garantir la confidentialité et l'intégrité des données bancaires.
+* Le logiciel doit être développé en respectant les normes de sécurité en vigueur, afin de garantir la confidentialité et l'intégrité des données bancaires
 * Le logiciel doit être conçu de manière à pouvoir être facilement mis à jour et évoluer en fonction des besoins futurs de la banque.
-* Le logiciel doit être facile à utiliser pour les utilisateurs, afin de garantir une adoption rapide et une utilisation régulière.
+* Le logiciel doit être facile à utiliser pour les utilisateurs, afin de garantir une adoption rapide et une utilisation régulière
 
 === Contraintes organisationnelles
 
 * Le délai de réalisation est fixé au 26 mai. Ce délai doit être respecté pour permettre un déploiement dans en temps imparti
 * Le versionnage se fait à l'aide de Git (projet sur GitHub)
 * Les tâches doivent être répartieis dans l'équipe de manière équitable (afin d'éviter des retards)
-* Le budget alloué pour le projet doit être respecté, et les coûts doivent être maîtrisés pour ne pas dépasser les limites fixées.
+* Le budget alloué pour le projet doit être respecté, et les coûts doivent être maîtrisés pour ne pas dépasser les limites fixées
+
+== Livrables attendues
+
+* Fichier ``jar`` exécutable
+* Documentation technique pour permettre la maintenance de l'application par l'équipe de développement
+* Documentation utilisateur à destination des utilisateurs afin d'utiliser correctement et sans difficultées l'application
+* Cahier de tests
