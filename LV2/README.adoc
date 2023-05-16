@@ -1,1 +1,89 @@
+= Cahier des charges - BankUtil - Version 2
+:icons: font
+:models: models
+:experimental:
+:incremental:
+:toc: macro
+:window: _blank
+:correction!:
+:asciidoc: http://www.methods.co.nz/asciidoc[AsciiDoc]
+:icongit: icon:git[]
+:git: http://git-scm.com/[{icongit}]
+:plantuml: https://plantuml.com/fr/[plantUML]
+:vscode: https://code.visualstudio.com/[VS Code]
+ifndef::env-github[:icons: font]
+ifdef::env-github[]
+:correction:
+:caution-caption: :fire:
+:important-caption: :exclamation:
+:note-caption: :paperclip:
+:tip-caption: :bulb:
+:warning-caption: :warning:
+:icongit: Git
+endif::[]
+=
+:toc-title: Sommaire
+:toc: auto
+:toclevels: 1
+:showtitle:
 
+*Date :* 16/05/2023 +
+*Par :* Équipe 4A3 : _DIDENKO Andrii, LAMOUR Evan, KRILL Maxence, SHULHINA Daria_ +
+*A destination de :* DailyBank
+
+== 1. Présentation du projet
+
+Pour s’adapter aux exigences d’instantanéité de leurs clients, les banques françaises ont accentué leurs efforts de restructuration et leurs investissements dans le digital. Par exemple, la Banque Postale a annoncé que sa banque mobile baptisée Ma French Bank sera disponible dans les bureaux de Poste au printemps 2019. Mais les banques ne se contentent pas de créer des offres alternatives : elles rénovent aussi en profondeur leurs services de banque au quotidien.
+
+Les banques de détail investissent dans la modernisation des outils de bureautique et la robotisation pour automatiser les tâches. BNP Paribas révolutionne son modèle hiérarchique vers une approche transversale basée sur des parcours clients. Des professionnels de différentes disciplines collaborent pour développer les parcours de chaque client en temps réel, nécessitant des changements culturels et organisationnels ainsi qu'une nouvelle architecture IT.
+
+== 2. Application existante (Version 1)
+
+Ce projet aura comme base la "version 1" de l'application BankUtil.
+
+Cette version comprend notamment une interface graphique et des fonctionnalités comme :
+
+=== Guichetier
+
+* Modifier informations client (adresse, téléphone, …)
+* Créer un nouveau client
+* Consulter un compte
+* Créditer/débiter un compte (java et BD avec procédure stockée)
+* Créer un compte
+* Effectuer un virement de compte à compte
+* Clôturer un compte
+
+=== Chef d'agence
+
+* Débiter un compte (BD)
+* Rendre inactif un client
+* Gérer (faire le « CRUD ») les employés (guichetier et chef d’agence)
+
+== 3. Prestations attendues
+
+A rédiger
+
+== 4. Contraintes techniques et organisationnelles
+
+Des contraintes doivent être prises en compte lors de la réalisation du projet.
+
+==== Budget
+Le budget alloué pour le projet doit être respecté, et les coûts doivent être maîtrisés pour ne pas dépasser les limites fixées.
+
+==== Délais
+Les délais de réalisation doivent être respectés, pour permettre un déploiement dans les délais impartis.
+
+==== Ressources humaines
+L'équipe de développement doit être suffisamment qualifiée pour mener à bien le projet, et les ressources doivent être disponibles aux moments clés du projet.
+
+==== Compatibilité avec le système existant
+Le logiciel doit être compatible avec les systèmes déjà en place, afin de ne pas perturber le fonctionnement quotidien de la banque.
+
+==== Sécurité
+Le logiciel doit être développé en respectant les normes de sécurité en vigueur, afin de garantir la confidentialité et l'intégrité des données bancaires.
+
+==== Facilité d'utilisation
+Le logiciel doit être facile à utiliser pour les utilisateurs, afin de garantir une adoption rapide et une utilisation régulière.
+
+==== Évolutivité
+Le logiciel doit être conçu de manière à pouvoir être facilement mis à jour et évoluer en fonction des besoins futurs de la banque.
