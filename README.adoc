@@ -63,7 +63,7 @@ reprendre les contraintes technique / orga en les ré-organisant par type (techn
 | 16/05     | CDC V2             | https://github.com/IUT-Blagnac/sae2023-bank-4a3/blob/master/LV2/CahierDesCharges.adoc[Lien] | 
 |           | Gantt V1 Réalisé   | https://github.com/IUT-Blagnac/sae2023-bank-4a3/blob/master/LV1/GanttV1-R%C3%A9alis%C3%A9.pdf[Lien] | 
 |           | Gantt V2 Prévu     | https://github.com/IUT-Blagnac/sae2023-bank-4a3/blob/master/LV2/GanttV2.pdf[Lien] | 
-|           | Doc User V1        | https://github.com/IUT-Blagnac/sae2023-bank-4a3/blob/master/LV1/DocumentationUtilisateur.adoc | 
+|           | Doc User V1        | https://github.com/IUT-Blagnac/sae2023-bank-4a3/blob/master/LV1/DocumentationUtilisateur.adoc[Lien] | 
 | 17/05     | Doc Tec V1         |                   | 
 |           | Recette V1         |                   | 
 |           | `jar` V1           |                   | 
