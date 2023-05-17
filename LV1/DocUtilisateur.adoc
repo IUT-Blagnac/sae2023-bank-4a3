@@ -1,0 +1,130 @@
+= Documentation utilisateur - BankUtil - Version 1
+=
+:toc-title: Sommaire
+:toc: auto
+:toclevels: 3
+
+*Date :* 16/05/2023 +
+*Par :* Équipe 4A3 : _DIDENKO Andrii, LAMOUR Evan, KRILL Maxence, SHULHINA Daria_
+
+== I. Présentation
+
+Bienvenue dans le guide utilisateur de l'application BankUtil à destination des employés de DailyBank.
+
+Ce guide vous servira à connaître dans les détails les différentes fonctionna=
+
+== II. Usages
+
+=== Connexion
+
+Lors de l'ouverture de l'application, vous tomberez sur cette interface :
+
+image::https://images-ext-1.discordapp.net/external/OaaMXj3MBoikwJIiQwQ5ftjja-aRDiy6L8Kjycqq4sA/%3Ftoken%3DGHSAT0AAAAAACCPA5AZI7D4UYGJIT2FRAREZDDSN5A/https/raw.githubusercontent.com/IUT-Blagnac/sae2023-bank-4a3/master/LV1/image_docutilV2/1.png["Page de connexion"]
+
+Appuyez sur le bouton ``Connexion`` ou sur ``Utilisateur > Connexion`` pour vous connecter à votre compte.
+
+Renseignez ici votre identifiant et votre mot de passe pour accéder à votre compte :
+
+image::https://images-ext-1.discordapp.net/external/WLTzfCF_BYzFGYOmt6A8Wpi8m9hWdIRSce7t1LdsLgo/%3Ftoken%3DGHSAT0AAAAAACCPA5AZKOVMJYWRWEWZCXF4ZDDSQEA/https/raw.githubusercontent.com/IUT-Blagnac/sae2023-bank-4a3/master/LV1/image_docutilV2/2.png["Identifiant et mot de passe"]
+
+=== Page d'accueil
+
+Une fois connecté, vous arriverez sur cette fenêtre. Vous verrez les informations de votre agence, ainsi que les informations de l'utilisateur connecté.
+
+image::https://images-ext-1.discordapp.net/external/52xK4OrScsYMtjrLDAbVEbwf-ts6PTSx5tcszl8JBQ4/%3Ftoken%3DGHSAT0AAAAAACCPA5AYYVX3VHSRAME3MTYUZDDSRMA/https/raw.githubusercontent.com/IUT-Blagnac/sae2023-bank-4a3/master/LV1/image_docutilV2/3.png["Page d'accueil"]
+
+=== Déconnexion
+
+Depuis la page d'accueil, appuyez sur ``Deconnexion``, sinon, appuyez sur ``Deconnexion`` depuis le menu ``Utilisateur``.
+
+=== Gérer les clients
+
+Dans le menu, cliquez sur ``Gestion > Clients``.
+
+Une fenêtre va s'ouvrir :
+
+image::https://raw.githubusercontent.com/IUT-Blagnac/sae2023-bank-4a3/master/LV1/image_docutilV2/5.png?token=GHSAT0AAAAAACCO3ON646QUQB57G6RLZLE6ZDDTWLQ["Page de gestion client"]
+
+Sur cette fenêtre, renseignez le Numéro du client cherché, son nom ou son prénom puis cliquez sur ``Rechercher``,
+Si vous souhaiter afficher tout les clients, ne renseignez aucun champ et appuyez directement sur ``Rechercher``.
+
+==== Créer un client
+
+Depuis l'écran de gestion de clients, cliquez sur ``Nouveau client``.
+
+image::https://images-ext-1.discordapp.net/external/mJF5ynAaz9Kr-WEsK2ArLNJNeg9vx4NkcLVrY-hapOE/%3Ftoken%3DGHSAT0AAAAAACCPA5AZ5A3ZSMOOVLQONT2YZDDSWOA/https/raw.githubusercontent.com/IUT-Blagnac/sae2023-bank-4a3/master/LV1/image_docutilV2/7.png?width=590&height=468["Page de gestion client"]
+
+Vous pouvez ici créer un nouveau client en saisissant ces données.
+
+Cliquez sur ``Modifier`` pour valider ou sur ``Annuler`` pour revenir en arrière.
+
+==== Modifier un client
+
+Depuis l'écran de gestion de clients, cliquez sur ``Modifier client``.
+
+image::https://raw.githubusercontent.com/IUT-Blagnac/sae2023-bank-4a3/master/LV1/image_docutilV2/6.png?token=GHSAT0AAAAAACCO3ON6ODUXYAFR35TNAV24ZDDTURA["Page de modification client"]
+
+Vous pouvez ici changer les données d’un client. +
+A noter que seul un chef d’agence peut modifier l’activité du client.
+
+Cliquez sur ``Modifier`` pour valider ou sur ``Annuler`` pour revenir en arrière.
+
+==== Rendre "inactif" un client
+
+Pour rendre "inactif" un client, assurez vous d'être connecté en tant que chef d’agence.
+
+image::https://images-ext-2.discordapp.net/external/NM7INifJQMlUtwAxMPNY51C8xcHSNPjXbwYY70jBsgE/%3Ftoken%3DGHSAT0AAAAAACCPA5AYIOOR266NWENXJDQUZDDSW5Q/https/raw.githubusercontent.com/IUT-Blagnac/sae2023-bank-4a3/master/LV1/image_docutilV2/8.png?width=1025&height=246["Page de suppresion client"]
+
+Sélectionnez un client (assurez vous qu'il soit affiché en gris) puis cliquez  sur ``Désactiver client``.
+
+=== Gérer comptes bancaires
+
+Depuis l'écran de gestion client, cliquez sur ``Comptes clients``.
+
+Vous arrivez sur cet écran
+
+image::https://images-ext-1.discordapp.net/external/PfCATtjaH7A5iVBgu_H8RSshqRlQzwER_YfBB5cej08/%3Ftoken%3DGHSAT0AAAAAACCPA5AZ3WTNYGIW3KKB3JAEZDDSYIQ/https/raw.githubusercontent.com/IUT-Blagnac/sae2023-bank-4a3/master/LV1/image_docutilV2/9.png?width=1025&height=391["Page de gestion comptes"]
+
+==== Nouveau compte
+
+Depuis l'écran précédent, cliquez sur ``Nouveau compte``.
+
+image::https://raw.githubusercontent.com/IUT-Blagnac/sae2023-bank-4a3/master/LV1/image_docutilV2/11.png?token=GHSAT0AAAAAACCO3ON6K4T2VK4UJ4SSBVHWZDDTSHA["Page de création de compte"]
+
+Renseignez les informations du compte, puis cliquez sur ``Ajouter`` ou ``Annuler``.
+
+==== Supprimer compte
+
+Sélectionnez un compte puis cliquez sur ``Supprimer`` pour clôturer le compte.
+
+image::https://images-ext-2.discordapp.net/external/yF6aI0tvhQZSyrfDExxU0ueDiu1piPnHHl8hd5MxH2o/%3Ftoken%3DGHSAT0AAAAAACCPA5AZDAIZXQXPNEYLL5PSZDDSY4A/https/raw.githubusercontent.com/IUT-Blagnac/sae2023-bank-4a3/master/LV1/image_docutilV2/10.png["Erreur suppression compte"]
+
+*A noter que le solde du compte doit être égal à 0*
+
+=== Gérer les opérations
+
+Depuis la page de gestion des comptes, sélectionnez un compte et cliquez sur ``Voir opérations``.
+
+image::https://images-ext-1.discordapp.net/external/KQFbQD6zPWn-_bmcMuUcaX81CoJ6bzNHwz26IWZUHFI/%3Ftoken%3DGHSAT0AAAAAACCO3UGZNHIFDGU6LELRATCEZDDSZEA/https/raw.githubusercontent.com/IUT-Blagnac/sae2023-bank-4a3/master/LV1/image_docutilV2/12.png?width=1025&height=396["Gestion des opérations"]
+
+A noter que l'interface de crédit et débit ont la même interface graphique. De ce fait, les procédures pour les deux opérations sont identiques.
+
+==== Enregistrer débit/crédit
+
+Vous avez la possibilité de choisir le type d’opération et d'indiquer le montant.
+
+image::https://images-ext-2.discordapp.net/external/Dl5XGkeOEWSSUCd7JD-Z5kgbgUxPnz3bXZXkOMxox64/%3Ftoken%3DGHSAT0AAAAAACCO3UGYSXFJA5UX6VDV2E7YZDDSYZQ/https/raw.githubusercontent.com/IUT-Blagnac/sae2023-bank-4a3/master/LV1/image_docutilV2/13.png["Page d'enregistrement de débit/crédit"]
+
+Une fois fait, cliquez sur ``Effectuer débit/crédit`` ou ``Annuler débit/crédit``.
+
+==== Enregistrer virement
+
+Dans l’onglet prélèvement, indiquez le numéro de compte destinataire ainsi que le montant de la transaction.
+
+image::https://images-ext-1.discordapp.net/external/cQrky8xh1r8aIpXDFfBb3BZI_O7mMzUmGAmwphoWF_c/%3Ftoken%3DGHSAT0AAAAAACCO3UGZABHL3C6JZBC36QWGZDDSYMQ/https/raw.githubusercontent.com/IUT-Blagnac/sae2023-bank-4a3/master/LV1/image_docutilV2/14.png["Page de virement"]
+
+=== Gérer les employés
+
+De la même manière que l’onglet de gestion des clients, vous pouvez gérer les employés en tant que chef d'agence.
+
+image::https://images-ext-1.discordapp.net/external/M3V6E0EtwFgCLRlpwkf32QJgMMsmWlWmf_Q6tDZBy-Y/%3Ftoken%3DGHSAT0AAAAAACCO3UGZFZXCOVBDLDYEUEW2ZDDSX7Q/https/raw.githubusercontent.com/IUT-Blagnac/sae2023-bank-4a3/master/LV1/image_docutilV2/16.png["Page de gestion des employés"]
