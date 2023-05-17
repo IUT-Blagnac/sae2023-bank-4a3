@@ -114,7 +114,7 @@ public class Access_BD_Employe {
 			String query;
 			if (idNumEmp != -1) {
 				query = "SELECT * FROM Employe where idAg = ?";
-				query += " AND idNumCli = ?";
+				query += " AND idEmploye = ?";
 				query += " ORDER BY nom";
 				pst = con.prepareStatement(query);
 				pst.setInt(1, idAg);
@@ -232,14 +232,14 @@ public class Access_BD_Employe {
 			Connection con = LogToDatabase.getConnexion();
 
 			String query = "INSERT INTO EMPLOYE VALUES (" + "seq_id_employe.NEXTVAL" + ", " + "?" + ", " + "?" + ", "
-					+ "?" + ", " + "?" + ", " + "?" + ", " + "?" + ", " + "?" + ")";
+					+ "?" + ", " + "?" + ", " + "?" + ", " + "?" + ")";
 			PreparedStatement pst = con.prepareStatement(query);
 			pst.setString(1, employe.nom);
 			pst.setString(2, employe.prenom);
 			pst.setString(3, employe.droitsAccess);
 			pst.setString(4, employe.login);
 			pst.setString(5, employe.motPasse);
-			pst.setInt(7, employe.idAg);
+			pst.setInt(6, employe.idAg);
 
 			System.err.println(query);
 
@@ -300,7 +300,8 @@ public class Access_BD_Employe {
 			pst.setString(3, employe.droitsAccess);
 			pst.setString(4, employe.login);
 			pst.setString(5, employe.motPasse);
-			pst.setInt(7, employe.idAg);
+			pst.setInt(6, employe.idAg);
+			pst.setInt(7, employe.idEmploye);
 
 			System.err.println(query);
 
@@ -314,6 +315,43 @@ public class Access_BD_Employe {
 			con.commit();
 		} catch (SQLException e) {
 			throw new DataAccessException(Table.Employe, Order.UPDATE, "Erreur accès", e);
+		}
+	}
+	
+	/**
+	 * Suppression d'un employé.
+	 *
+	 * Permet de supprimer un employé
+	 *
+	 * @param employe IN employe.idNumEmp (clé primaire) doit exister
+	 * @throws RowNotFoundOrTooManyRowsException La requête modifie 0 ou plus de 1
+	 *                                           ligne
+	 * @throws DataAccessException               Erreur d'accès aux données (requête
+	 *                                           mal formée ou autre)
+	 * @throws DatabaseConnexionException        Erreur de connexion
+	 */
+	public void deleteEmploye(Employe employe)
+			throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException {
+		try {
+			Connection con = LogToDatabase.getConnexion();
+
+			String query = "DELETE FROM EMPLOYE WHERE idEmploye = ?";
+
+			PreparedStatement pst = con.prepareStatement(query);
+			pst.setInt(1, employe.idEmploye);
+
+			System.err.println(query);
+
+			int result = pst.executeUpdate();
+			pst.close();
+			if (result != 1) {
+				con.rollback();
+				throw new RowNotFoundOrTooManyRowsException(Table.Employe, Order.UPDATE,
+						"Suppresion anormale (suppresion de moins ou plus d'une ligne)", null, result);
+			}
+			con.commit();
+		} catch (SQLException e) {
+			throw new DataAccessException(Table.Employe, Order.DELETE, "Erreur accès", e);
 		}
 	}
 }

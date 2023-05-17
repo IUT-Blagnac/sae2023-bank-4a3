@@ -139,9 +139,9 @@ public class EmployeEditorPaneController {
 	@FXML
 	private RadioButton rbChefAgence;
 	@FXML
-	private RadioButton développement;
+	private RadioButton rbGuichetier;
 	@FXML
-	private ToggleGroup role;
+	private ToggleGroup actifInactif;
 	@FXML
 	private Button butOk;
 	@FXML
@@ -189,6 +189,14 @@ public class EmployeEditorPaneController {
 	private boolean isSaisieValide() {
 		this.employeEdite.nom = this.txtNom.getText().trim();
 		this.employeEdite.prenom = this.txtPrenom.getText().trim();
+		this.employeEdite.login = this.txtLogin.getText().trim();
+		this.employeEdite.motPasse = this.txtMdp.getText().trim();
+		
+		if (this.rbChefAgence.isSelected()) {
+			this.employeEdite.droitsAccess = ConstantesIHM.AGENCE_CHEF;
+		} else {
+			this.employeEdite.droitsAccess = ConstantesIHM.AGENCE_GUICHETIER;
+		}
 
 		if (this.employeEdite.nom.isEmpty()) {
 			AlertUtilities.showAlert(this.primaryStage, "Erreur de saisie", null, "Le nom ne doit pas être vide",
@@ -200,6 +208,18 @@ public class EmployeEditorPaneController {
 			AlertUtilities.showAlert(this.primaryStage, "Erreur de saisie", null, "Le prénom ne doit pas être vide",
 					AlertType.WARNING);
 			this.txtPrenom.requestFocus();
+			return false;
+		}
+		if (this.employeEdite.login.isEmpty()) {
+			AlertUtilities.showAlert(this.primaryStage, "Erreur de saisie", null, "L'identifiant ne doit pas être vide",
+					AlertType.WARNING);
+			this.txtLogin.requestFocus();
+			return false;
+		}
+		if (this.employeEdite.motPasse.isEmpty()) {
+			AlertUtilities.showAlert(this.primaryStage, "Erreur de saisie", null, "Le mot de passe ne doit pas être vide",
+					AlertType.WARNING);
+			this.txtMdp.requestFocus();
 			return false;
 		}
 

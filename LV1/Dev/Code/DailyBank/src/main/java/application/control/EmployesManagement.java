@@ -67,8 +67,8 @@ public class EmployesManagement {
 	/**
      * Modifie un employé existant.
      *
-     * @param c Le client à modifier
-     * @return Le client modifié
+     * @param c L'employé à modifier
+     * @return L'employé modifié
      */
 	public Employe modifierEmploye(Employe c) {
 		EmployeEditorPane cep = new EmployeEditorPane(this.primaryStage, this.dailyBankState);
@@ -91,7 +91,29 @@ public class EmployesManagement {
 		return result;
 	}
 	
-	
+	/**
+     * Supprime un employé existant.
+     *
+     * @param c L'employé à supprimer
+     * @return L'employé modifié
+     */
+	public void supprimerEmploye(Employe e) {
+		if (e != null) {
+			try {
+				Access_BD_Employe ae = new Access_BD_Employe();
+				ae.deleteEmploye(e);
+			} catch (DatabaseConnexionException f) {
+				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, f);
+				ed.doExceptionDialog();
+				e = null;
+				this.primaryStage.close();
+			} catch (ApplicationException ae) {
+				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, ae);
+				ed.doExceptionDialog();
+				e = null;
+			}
+		}
+	}
 	
 
 	/**
