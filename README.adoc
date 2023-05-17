@@ -1,48 +1,40 @@
 = BankUniv
 
-== Présentation de l'équipe et rôles respectifs
+|===
+⚠️ | *Message aux professeurs : Nous avons décidé avec l'ensemble du groupe d'avoir un fonctionnement particulier* +
+Andrii et Daria travaillent ensemble. Ne comprenant pas tout au français, il est plus simple pour nous de devoir expliquer la même chose aux 2 en même temps plutôt qu'expliquer plusieurs fois la même chose à chacun d'entre eux. De ce fait, ils peuvent s'entraider en Ukrainien, leur langue natale. C'est pour cela que Andrii et Daria ont les mêmes tâches, qu'Andrii fait les tâches de Daria et inversement que Daria fait les tâches d'Andrii.
+|===
 
-=== Andrii
+== Présentation de l'équipe
 
-Text
-
-=== Daria
-
-Text
-
-=== Evan
-
-Text
-
-=== Maxence
-
-Text
+https://github.com/Andrii4A[Andrii] +
+https://github.com/madblurryface[Daria] +
+https://github.com/evanl44730[Evan] +
+https://github.com/Maxeuh[Maxence]
 
 == Répartition des tâches et état d'avancement
 [options="header,footer"]
-|=======================
-|Version|Rôle     |Use case   |Cas                    |   Andrii | Daria  |   Evan | Maxence
-|1    |Chef d’Agence    |CRUD employé  |C| | | |
-|1    |Chef d’Agence    |CRUD employé  |R| | | |
-|1    |Chef d’Agence |CRUD employé  |U| | | |
-|1    |Chef d’Agence   |CRUD employé  |D| | | |
-|1    |Guichetier     | Compte | Créer|| |F | 
-|1    |Guichetier     | Compte | Créditer/Débiter|| |F | 
-|1    |Guichetier     | Compte | Effectuer un virement|| |D | 
-|1    |Guichetier     | Compte | Clôturer|| |F | 
-|2    |Chef d’Agence     | Compte | Débit exceptionnel|| | | 
-|2    |Chef d’Agence     | Emprunt | Simuler emprunt|| | | 
-|2    |Chef d’Agence     | Emprunt | Simuler assurance|| | | 
-|2    |Guichetier     | Compte | Relevé PDF|| | | 
-|2    |Guichetier     | CRUD Prélèvement | C|| | | 
-|2    |Guichetier     | CRUD Prélèvement | R|| | | 
-|2    |Guichetier     | CRUD Prélèvement | U|| | | 
-|2    |Guichetier     | CRUD Prélèvement | D|| | | 
-|2    |Batch     | Prélèvements automatiques | || | | 
-|2    |Batch     | Reléves mensuels | || | | 
-
-|=======================
-
+|===
+| Version | Rôle          | Use Case                  | Cas                   | Andrii | Daria | Evan | Maxence
+| 1       | Chef d’Agence | CRUD employé              | C                     |        |       |      | D
+| 1       | Chef d’Agence | CRUD employé              | R                     |        |       |      | D
+| 1       | Chef d’Agence | CRUD employé              | U                     |        |       |      | D
+| 1       | Chef d’Agence | CRUD employé              | D                     |    D    |    D   |      | 
+| 1       | Guichetier    | Compte                    | Créer                 |        |       | F    | 
+| 1       | Guichetier    | Compte                    | Créditer/Débiter      |        |       | F    | 
+| 1       | Guichetier    | Compte                    | Effectuer un virement |        |       | D    | 
+| 1       | Guichetier    | Compte                    | Clôturer              |        |       | F    | 
+| 2       | Chef d’Agence | Compte                    | Débit exceptionnel    |        |       |      | 
+| 2       | Chef d’Agence | Emprunt                   | Simuler emprunt       |        |       |      | 
+| 2       | Chef d’Agence | Emprunt                   | Simuler assurance     |        |       |      | 
+| 2       | Guichetier    | Compte                    | Relevé PDF            |        |       |      | 
+| 2       | Guichetier    | CRUD Prélèvement          | C                     |        |       |      | 
+| 2       | Guichetier    | CRUD Prélèvement          | R                     |        |       |      | 
+| 2       | Guichetier    | CRUD Prélèvement          | U                     |        |       |      | 
+| 2       | Guichetier    | CRUD Prélèvement          | D                     |        |       |      | 
+| 2       | Batch         | Prélèvements automatiques |                       |        |       |      |  
+| 2       | Batch         | Reléves mensuels          |                       |        |       |      | 
+|===
 
 Chaque étudiant doit mettre son nom sur une des colonnes étudiant.
 Dans sa colonne il doit remplir la ligne correspondant à chaque partie qu'il a développé en indiquant
@@ -54,25 +46,26 @@ Dans sa colonne il doit remplir la ligne correspondant à chaque partie qu'il a 
 
 [cols="1,2,2,5",options=header]
 |===
-| Date    | Nom         |  Lien                             | Retour
-| 12/05  | CDC V1      | https://github.com/IUT-Blagnac/sae2023-bank-4a3/blob/master/LV1/CahierDesCharges.adoc |    page de garde à reprendre. Manque sommaire avec liens. Manque contexte, objectifs, problématique.
+|Date       |Nom                 |Lien               |Retour
+|12/05      |CDC V1              | link:LV1/CahierDesCharges.adoc[Lien] | page de garde à reprendre. Manque sommaire avec liens. Manque contexte, objectifs, problématique.
 affinez l'analyse de l'existant par rapport à ce qui vous a été fourni en entrant (documentation, executable ...)
 analyse du besoin: détaillez les UC V0, utilisateurs logiques, idem pour la V1, en priorisant les devs planifiés
 ajouter les dates de livraison dans contraintes orga.
-reprendre les contraintes technique / orga en les ré-organisant par type (techni que / orga), identifier celles par encore identifées.       
-|         |Gantt V1 Prévu|https://github.com/IUT-Blagnac/sae2023-bank-4a3/blob/master/LV1/GanttV1_PDF.pdf                                  |affichage du graphe pas optimal, à reprendre (1 seule page). Reprendre liste des tâches pour être sûr de ne rien oublier.Focalisez vous sur V1. Ajoutez les jalons de livraison.
-| 16/05  | CdC V2final|                                     |  
-|         | Gantt V1 Réalisé |                               |     
-|         | Gantt V2 Prevu|         |     
-|         | Doc. Tec. V1 |        |    
-|         | Doc User V1    |        |
-|         | Recette V1  |                      | 
-|         | Suivi projet V1|   | 
-| 26/05   | Gantt V2  réalisé    |       | 
-|         | Doc. Util. V2 |         |         
-|         | Doc. Tec. V2 |                |     
-|         | Code V2    |                     | 
-|         | Recette V2 |                      | 
-|         | `jar` projet |    | 
-
+reprendre les contraintes technique / orga en les ré-organisant par type (techni que / orga), identifier celles par encore identifées.  
+|           | Gantt V1 Prévu     | link:LV1/GanttV1_PDF.pdf[Lien] | affichage du graphe pas optimal, à reprendre (1 seule page). Reprendre liste des tâches pour être sûr de ne rien oublier.Focalisez vous sur V1. Ajoutez les jalons de livraison.
+| 16/05     | CDC V2             | link:LV2/CahierDesCharges.adoc[Lien] | 
+|           | Gantt V1 Réalisé   | link:LV1/GanttV1-R%C3%A9alis%C3%A9.pdf[Lien] | 
+|           | Gantt V2 Prévu     | link:LV2/GanttV2.pdf[Lien] | 
+|           | Doc User V1        | link:LV1/DocumentationUtilisateur.adoc[Lien] | 
+| 17/05     | Doc Tec V1         |                   | 
+|           | Recette V1         |                   | 
+|           | `jar` V1           |                   | 
+|           | javadoc V1         |                   | 
+| 26/05     | Gantt V2 Réalisé   |                   | 
+|           | Doc User V2        |                   | 
+|           | Doc Tec V2         |                   | 
+|           | Chiffrage projet   |                   | 
+|           | Recette V2         |                   | 
+|           | `jar` V2           |                   | 
+|           | javadoc V2         |                   | 
 |===

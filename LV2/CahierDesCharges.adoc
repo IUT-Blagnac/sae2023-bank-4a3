@@ -1,0 +1,107 @@
+= Cahier des charges - BankUtil - Version 2
+=
+:toc-title: Sommaire
+:toc: auto
+
+*Date :* 16/05/2023 +
+*Par :* Équipe 4A3 : _DIDENKO Andrii, LAMOUR Evan, KRILL Maxence, SHULHINA Daria_ +
+*A destination de :* DailyBank
+
+== I. Présentation
+
+=== 1. Contexte
+
+Pour s’adapter aux exigences d’instantanéité de leurs clients, les banques françaises ont accentué leurs efforts de restructuration et leurs investissements dans le digital. Par exemple, la Banque Postale a annoncé que sa banque mobile baptisée Ma French Bank sera disponible dans les bureaux de Poste au printemps 2019. Mais les banques ne se contentent pas de créer des offres alternatives : elles rénovent aussi en profondeur leurs services de banque au quotidien.
+
+Les banques de détail investissent dans la modernisation des outils de bureautique et la robotisation pour automatiser les tâches. BNP Paribas révolutionne son modèle hiérarchique vers une approche transversale basée sur des parcours clients. Des professionnels de différentes disciplines collaborent pour développer les parcours de chaque client en temps réel, nécessitant des changements culturels et organisationnels ainsi qu'une nouvelle architecture IT.
+
+=== 2. Objectifs
+
+La banque DailyBank souhaite donc actualiser son application Java BankUtil, devenue obselète, afin de la déployer dans son réseau de 100 agences dans le cadre du plan de restructuration.
+Elle devra permettre de gérer totalement les comptes des clients (créditer, débiter, virement, ouvrir, clotûrer, ...) et d'autres fonctionnalitées telles que la gestion des employés par le chef d'agence.
+
+== II. Analyse de l'existant (Version 1)
+
+Ce projet aura comme base la "version 1" de l'application BankUtil, développée en Java.
+
+L'application demande dans un premier temps à l'aide d'une interface graphique de se connecter, et en fonction de son rôle (guichetier ou chef d'agence), l'utilisateur pourra accéder à différentes fonctionnalités :
+
+=== Guichetier
+
+* Modifier informations client (adresse, téléphone, …)
+* Créer un nouveau client
+* Consulter un compte
+* Créditer/débiter un compte (java et BD avec procédure stockée)
+* Créer un compte
+* Effectuer un virement de compte à compte
+* Clôturer un compte
+
+=== Chef d'agence
+
+* Débiter un compte (BD)
+* Rendre inactif un client
+* Gérer (faire le « CRUD ») les employés (guichetier et chef d’agence)
+
+image::https://raw.githubusercontent.com/IUT-Blagnac/sae2023-bank-4a3/master/img/uc-initialv0.svg?token=GHSAT0AAAAAACCO3ON7MMASOYQACIYUV3R6ZDDSK4Q["Diagramme des cas d'utilisation de la V0"]
+
+image::https://raw.githubusercontent.com/IUT-Blagnac/sae2023-bank-4a3/master/img/uc-initialv1.svg?token=GHSAT0AAAAAACCO3ON6LZ5MDUWZPJD5KO6EZDDSK7Q["Diagramme des cas d'utilisation de la V1"]
+
+image::https://raw.githubusercontent.com/IUT-Blagnac/sae2023-bank-4a3/master/img/dc-initialv0.svg?token=GHSAT0AAAAAACCO3ON7HQASVC7FGAISYHXGZDDSJIA["Diagramme de classe initiale de la V0"]
+
+image::https://raw.githubusercontent.com/IUT-Blagnac/sae2023-bank-4a3/master/img/dc-initialv1.svg?token=GHSAT0AAAAAACCO3ON6SV7OOZ2MRV4X6QYOZDDSJVQ["Diagramme de classe initiale de la V1"]
+
+=== Outils de développement
+
+L'application existante est livrée avec :
+
+* Classes de base définissant une agence bancaire, un client, un compte, un employé et une opération
+* Scripts de connexion et de récupération d'informations auprès de la base de données (agence bancaire, clients, comptes, employés, opérations)
+* Fichiers FXML des différentes fenêtres de l'application
+* Fichiers dit "Controller" des fenêtres de l'appllication
+
+== 3. Prestations attendues
+
+La version 2 de l'application comprend comme cas d'utilisation :
+
+=== Guichetier
+
+* Générer un relevé mensuel d’un compte en PDF
+* Gérer (faire le « CRUD ») les prélèvements automatiques
+
+=== Chef d'agence
+
+* Effectuer un débit exceptionnel
+* Simuler un emprunt
+* Simuler une assurance d’emprunt
+
+image::https://raw.githubusercontent.com/IUT-Blagnac/sae2023-bank-4a3/master/img/uc-initialv2.svg?token=GHSAT0AAAAAACCO3ON62APHPBVCUILOGYISZDDSLAA["Diagramme des cas d'utilisation de la V1"]
+
+image::https://raw.githubusercontent.com/IUT-Blagnac/sae2023-bank-4a3/master/img/dc-initialv2.svg?token=GHSAT0AAAAAACCO3ON6HMFGC3LPWLFZBMVEZDDSJ7A["Diagramme de classe initiale de la V0"]
+
+== 4. Contraintes techniques et organisationnelles
+
+Des contraintes doivent être prises en compte lors de la réalisation du projet :
+
+=== Contraintes techniques
+
+* La version 2 reprend le programme de la version précédente (version 1)
+* Le logiciel doit fonctionner à l'aide d'une base de données Oracle créée au préalable (exécution de requêtes de création, modification, suppression)
+* L'interface graphique doit être produite grâce à JavaFX (et des fichiers FXML)
+* Certaines fonctionnalités doivent être disponibles uniquement pour certains rôles (guichetier / chef d'agence)
+* Le logiciel doit être développé en respectant les normes de sécurité en vigueur, afin de garantir la confidentialité et l'intégrité des données bancaires
+* Le logiciel doit être conçu de manière à pouvoir être facilement mis à jour et évoluer en fonction des besoins futurs de la banque.
+* Le logiciel doit être facile à utiliser pour les utilisateurs, afin de garantir une adoption rapide et une utilisation régulière
+
+=== Contraintes organisationnelles
+
+* Le délai de réalisation est fixé au 26 mai. Ce délai doit être respecté pour permettre un déploiement dans en temps imparti
+* Le versionnage se fait à l'aide de Git (projet sur GitHub)
+* Les tâches doivent être répartieis dans l'équipe de manière équitable (afin d'éviter des retards)
+* Le budget alloué pour le projet doit être respecté, et les coûts doivent être maîtrisés pour ne pas dépasser les limites fixées
+
+=== Livrables attendues
+
+* Fichier ``jar`` exécutable
+* Documentation technique pour permettre la maintenance de l'application par l'équipe de développement
+* Documentation utilisateur à destination des utilisateurs afin d'utiliser correctement et sans difficultées l'application
+* Cahier de tests

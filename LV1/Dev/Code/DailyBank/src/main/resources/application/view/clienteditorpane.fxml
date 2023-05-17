@@ -88,7 +88,7 @@
             <TextField fx:id="txtMail" layoutX="171.0" layoutY="163.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <children>
-                  <RadioButton fx:id="rbActif" mnemonicParsing="false" text="Actif">
+                  <RadioButton fx:id="rbActif" mnemonicParsing="false" selected="true" text="Actif">
                      <toggleGroup>
                         <ToggleGroup fx:id="actifInactif" />
                      </toggleGroup>
@@ -105,7 +105,7 @@
    <bottom>
       <HBox alignment="CENTER_RIGHT" BorderPane.alignment="CENTER_RIGHT">
          <children>
-            <Button fx:id="butOk" mnemonicParsing="false" onAction="#doAjouter" text="Valider">
+            <Button fx:id="butOk" defaultButton="true" mnemonicParsing="false" onAction="#doAjouter" text="Valider">
                <HBox.margin>
                   <Insets right="20.0" />
                </HBox.margin>
