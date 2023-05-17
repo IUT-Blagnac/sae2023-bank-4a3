@@ -67,6 +67,8 @@ public class OperationsManagement {
 			e.printStackTrace();
 		}
 	}
+	
+	
 
 	/**
      * Affiche la boîte de dialogue de gestion des opérations.
@@ -106,12 +108,13 @@ public class OperationsManagement {
 	public Operation enregistrerVirement() {
 
 		OperationEditorPane oep = new OperationEditorPane(this.primaryStage, this.dailyBankState);
-		Operation op = oep.doOperationEditorDialog(this.compteConcerne, CategorieOperation.DEBIT);
+		Operation op = oep.doOperationEditorDialog(this.compteConcerne,CategorieOperation.VIREMENT);
+
 		if (op != null) {
 			try {
 				Access_BD_Operation ao = new Access_BD_Operation();
 
-				ao.insertDebit(this.compteConcerne.idNumCompte, op.montant, op.idTypeOp);
+				ao.virement(this.compteConcerne.idNumCompte,op.idNumCompte, op.montant);
 
 			} catch (DatabaseConnexionException e) {
 				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);

@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.data.CompteCourant;
@@ -32,6 +33,12 @@ public class OperationEditorPaneController {
 	private CategorieOperation categorieOperation;
 	private CompteCourant compteEdite;
 	private Operation operationResultat;
+	@FXML
+	private TextField comptecrediteur;
+	@FXML
+	private GridPane gp;
+	@FXML
+	private Label txtcomptecrediteur;
 
 	// Manipulation de la fenêtre
 	public void initContext(Stage _containingStage, DailyBankState _dbstate) {
@@ -80,6 +87,27 @@ public class OperationEditorPaneController {
 			this.cbTypeOpe.setItems(listTypesOpesPossiblesC);
 			this.cbTypeOpe.getSelectionModel().select(0);
 			break;
+		case VIREMENT:
+			this.compteEdite = cpte;
+			String infov = "Cpt. : " + this.compteEdite.idNumCompte + "  "
+					+ String.format(Locale.ENGLISH, "%12.02f", this.compteEdite.solde) + "  /  "
+					+ String.format(Locale.ENGLISH, "%8d", this.compteEdite.debitAutorise);
+			this.txtcomptecrediteur = new Label("N° Compte créditeur");
+			this.comptecrediteur = new TextField();
+			this.lblMessage.setText(infov);
+			this.txtcomptecrediteur.setText("N° Compte créditeur");
+			this.btnOk.setText("Effectuer Virement");
+			this.btnCancel.setText("Annuler Virement");
+			this.cbTypeOpe.setDisable(true);
+			this.gp.add(this.txtcomptecrediteur, 0, 1);
+			this.gp.add(this.comptecrediteur, 1, 1);
+			if (ConstantesIHM.isAdmin(this.dailyBankState.getEmployeActuel())) {
+				// rien pour l'instant
+			}
+
+			this.primaryStage.showAndWait();
+			this.operationResultat.idNumCompte=Integer.parseInt(this.comptecrediteur.getText());
+			return this.operationResultat;
 		}
 
 		// Paramétrages spécifiques pour les chefs d'agences
@@ -94,30 +122,24 @@ public class OperationEditorPaneController {
 		return this.operationResultat;
 	}
 	
-	public Operation virementDialog(CompteCourant cpte,CategorieOperation cm) {
-		String info = "Cpt. : " + this.compteEdite.idNumCompte + "  "
-				+ String.format(Locale.ENGLISH, "%12.02f", this.compteEdite.solde) + "  /  "
-				+ String.format(Locale.ENGLISH, "%8d", this.compteEdite.debitAutorise);
-		this.lblMessage.setText(info);
-
-		this.btnOk.setText("Effectuer Débit");
-		this.btnCancel.setText("Annuler débit");
-
-		ObservableList<String> listTypesOpesPossibles = FXCollections.observableArrayList();
-		listTypesOpesPossibles.addAll(ConstantesIHM.OPERATIONS_DEBIT_GUICHET);
-
-		this.cbTypeOpe.setItems(listTypesOpesPossibles);
-		this.cbTypeOpe.getSelectionModel().select(0);
-		if (ConstantesIHM.isAdmin(this.dailyBankState.getEmployeActuel())) {
-			// rien pour l'instant
-		}
-
-		this.operationResultat = null;
-		this.cbTypeOpe.requestFocus();
-
-		this.primaryStage.showAndWait();
-		return this.operationResultat;
-	}
+//	public Operation virementDialog(CompteCourant cpte) {
+//		this.compteEdite = cpte;
+//		String info = "Cpt. : " + this.compteEdite.idNumCompte + "  "
+//				+ String.format(Locale.ENGLISH, "%12.02f", this.compteEdite.solde) + "  /  "
+//				+ String.format(Locale.ENGLISH, "%8d", this.compteEdite.debitAutorise);
+//		this.lblMessage.setText(info);
+//
+//		this.btnOk.setText("Effectuer Virement");
+//		this.btnCancel.setText("Annuler Virement");
+//		
+//		if (ConstantesIHM.isAdmin(this.dailyBankState.getEmployeActuel())) {
+//			// rien pour l'instant
+//		}
+//
+//		this.primaryStage.showAndWait();
+//		this.operationResultat.idNumCompte=Integer.parseInt(this.txtNumCompte.getText());
+//		return this.operationResultat;
+//	}
 
 	// Gestion du stage
 	private Object closeWindow(WindowEvent e) {
@@ -219,6 +241,33 @@ public class OperationEditorPaneController {
 			this.operationResultat = new Operation(-1, montantC, null, null, this.compteEdite.idNumCli, typeOpC);
 			this.primaryStage.close();
 			break;
+		case VIREMENT:
+			double montantV;
+
+			this.txtMontant.getStyleClass().remove("borderred");
+			this.lblMontant.getStyleClass().remove("borderred");
+			this.lblMessage.getStyleClass().remove("borderred");
+			String infoV = "Cpt. : " + this.compteEdite.idNumCompte + "  "
+					+ String.format(Locale.ENGLISH, "%12.02f", this.compteEdite.solde) + "  /  "
+					+ String.format(Locale.ENGLISH, "%8d", this.compteEdite.debitAutorise);
+			this.lblMessage.setText(infoV);
+
+			try {
+				montantV = Double.parseDouble(this.txtMontant.getText().trim());
+				if (montantV <= 0)
+					throw new NumberFormatException();
+			} catch (NumberFormatException nfe) {
+				this.txtMontant.getStyleClass().add("borderred");
+				this.lblMontant.getStyleClass().add("borderred");
+				this.txtMontant.requestFocus();
+				return;
+			}
+			
+			String typeOpV = this.cbTypeOpe.getValue();
+			this.operationResultat = new Operation(-1, montantV, null, null, this.compteEdite.idNumCli, typeOpV);
+			this.primaryStage.close();
+			break;
+			
 		}
 	}
 }
