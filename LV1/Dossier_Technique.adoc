@@ -30,14 +30,14 @@ La V1 de l'application va permettre au *guichetier* de réaliser de nouvelles ac
 
 Le *Chef d'Agence* aura la possibilité de réaliser toutes les actions d'un guichetier et aura désormais la possibilité de gérer les employés et les autres chefs d'agence *(CRUD)*.
 
-*image UC*
+image::../img/docTech/UC.png[]
 
 === 2. Diagramme de classe
 [.text-justify]
 
 Voici le diagramme de classe de la base de données de la banque DailyBank
 
-*Image DC*
+image::../img/docTech/DC.png[]
 
 * *AgenceBancaire* : represente une agence constitué du nom de l'agence, de son adresse, d'un id et d'un chef d'agence représenté par une ID.
 * *Employé* : représente les employés de la banque, qui ont des login et des droits d'accès différents selon si ils sont chef d'agence ou pas .
@@ -177,7 +177,7 @@ A part :
 == III. Fonctionnalités de l'application
 === 1. Créer compte
 ==== A. Use Case
-*image useCase*
+image::../img/docTech/UC_create.png[]
 
  
 Création de la fonctionnalité créer compte pour les guichetier et les chefs d’agence
@@ -186,7 +186,9 @@ Création de la fonctionnalité créer compte pour les guichetier et les chefs d
 
 Les deux classe utilisé dans la base de donnée sont Client et CompteCourant , Client est utilisé en tant que lecture, CompteCourant est modifié.
 
-*image dc*
+image::../img/docTech/DC_create_compte.png[]
+image::../img/docTech/DC_create_client.png[]
+
 
 
 ==== C. Classes impliquées Créer compte
@@ -199,7 +201,7 @@ Les deux classe utilisé dans la base de donnée sont Client et CompteCourant , 
 
 * Application.control.CompteManagement/ creerNouveauCompte : Créer un nouveau compte avec des paramètre entrée et modifie la list view pour qu’il soit visible dans la liste de compte, puis elle envoie ceci à l’acces_BD pour modifier les donnée cette fois ci dans la base de donnée
 
-*Image ds*
+image::../img/docTech/DS_create.png[]
 
 
 
