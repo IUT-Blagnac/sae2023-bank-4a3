@@ -1,25 +1,18 @@
-= Document technique de la V1 : Projet DailyBank V1
+= Documentation technique - BankUtil - Version 1
 :toc:
 :toc-title: Sommaire
 
 :Entreprise: DailyBank
 :Equipe: 4A03
 
-.Groupe 4A03, Auteur : Evan Lamour, publié le 17/05/2023
-Créé pour : Détailler chaques fonctionnalités de la V1 de l'application DailyBank
-
- 
-
-
+*Date :* 17/05/2023 +
+*Par :* Équipe 4A3 : _DIDENKO Andrii, LAMOUR Evan, KRILL Maxence, SHULHINA Daria_ler chaques fonctionnalités de la V1 de l'application DailyBank
 
 == I. Présentation de l'application
-[.text-justify]
 
 L’application Daily Bank est l’outil de gestion de la banque . Nous allons adapter cette application aux besoin de la banque pour developper les versions suivantes.
 
-
 === 1. Cas d'utilisation global
-[.text-justify]
 
 La V1 de l'application va permettre au *guichetier* de réaliser de nouvelles actions tel que :
 
@@ -33,7 +26,6 @@ Le *Chef d'Agence* aura la possibilité de réaliser toutes les actions d'un gui
 image::../img/docTech/UC.png[]
 
 === 2. Diagramme de classe
-[.text-justify]
 
 Voici le diagramme de classe de la base de données de la banque DailyBank
 
@@ -51,7 +43,6 @@ image::../img/docTech/DC.png[]
 == II. Architecture de l'application
 
 === 1. Structuration des packages
-[.text-justify]
 
 Les packages : dans src/main/java
 
@@ -175,11 +166,13 @@ A part :
 
 
 == III. Fonctionnalités de l'application
+
 === 1. Créer compte Evan
+
 ==== A. Use Case
+
 image::../img/docTech/UC_create.png[]
 
- 
 Création de la fonctionnalité créer compte pour les guichetier et les chefs d’agence
 
 ==== B. Diagramme de classe
@@ -188,8 +181,6 @@ Les deux classe utilisé dans la base de donnée sont Client et CompteCourant , 
 
 image::../img/docTech/DC_create_compte.png[]
 image::../img/docTech/DC_create_client.png[]
-
-
 
 ==== C. Classes impliquées Créer compte
 
@@ -202,7 +193,3 @@ image::../img/docTech/DC_create_client.png[]
 * Application.control.CompteManagement/ creerNouveauCompte : Créer un nouveau compte avec des paramètre entrée et modifie la list view pour qu’il soit visible dans la liste de compte, puis elle envoie ceci à l’acces_BD pour modifier les donnée cette fois ci dans la base de donnée
 
 image::../img/docTech/DS_create.png[]
-
-
-
-
