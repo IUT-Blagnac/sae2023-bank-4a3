@@ -57,8 +57,8 @@ reprendre les contraintes technique / orga en les ré-organisant par type (techn
 |           | Gantt V1 Réalisé   | link:LV1/GanttV1-R%C3%A9alis%C3%A9.pdf[Lien] | 
 |           | Gantt V2 Prévu     | link:LV2/GanttV2.pdf[Lien] | 
 |           | Doc User V1        | link:LV1/DocumentationUtilisateur.adoc[Lien] | 
-| 17/05     | Doc Tec V1         |                   | 
-|           | Recette V1         |                   | 
+| 17/05     | Doc Tec V1         | link:LV1/Dossier_Technique.adoc[Lien]                  | 
+|           | Recette V1         | link:LV1/CahierDeRecette.adoc[Lien]                  | 
 |           | `jar` V1           |                   | 
 |           | javadoc V1         |                   | 
 | 26/05     | Gantt V2 Réalisé   |                   | 
