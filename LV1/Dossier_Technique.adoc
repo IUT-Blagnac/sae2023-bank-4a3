@@ -175,7 +175,7 @@ A part :
 
 
 == III. Fonctionnalités de l'application
-=== 1. Créer compte
+=== 1. Créer compte Evan
 ==== A. Use Case
 image::../img/docTech/UC_create.png[]
 
