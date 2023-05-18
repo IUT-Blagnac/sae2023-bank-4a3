@@ -58,7 +58,7 @@ reprendre les contraintes technique / orga en les ré-organisant par type (techn
 | 16/05     | CDC V2             | link:LV2/CahierDesCharges.adoc[Lien] | 12/20. commits pas commentés, issues dans le board à compléter avec milestone / labels, mais semble à jour. readme OK, arbo OK, attention aux GANTTs
 |           | Gantt V1 Réalisé   | link:LV1/GanttV1-R%C3%A9alis%C3%A9.pdf[Lien] | découpage taches semble OK, mais GANTT trop petit, illisible. à reprendre. 
 |           | Gantt V2 Prévu     | link:LV2/GanttV2.pdf[Lien] | idem ci-dessus
-|           | Doc User V1        | link:LV1/DocumentationUtilisateur.adoc[Lien] | 
+|           | Doc User V1        | link:LV1/DocumentationUtilisateur.adoc[Lien] | erreurs de frappe, manque présentation générale, role de l'application, présentation utilisateurs logiques, crdential de connexion, initiales du developpeur pour chaque fonction. Pas de jeu de données
 | 17/05     | Doc Tec V1         | link:LV1/Dossier_Technique.adoc[Lien]                  | 
 |           | Recette V1         | link:LV1/CahierDeRecette.adoc[Lien]                  | 
 |           | `jar` V1           |                   | 
