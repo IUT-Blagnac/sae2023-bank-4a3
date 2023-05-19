@@ -35,7 +35,7 @@ public class Employe {
 	@Override
 	public String toString() {
 		String display = "[" + this.idEmploye + "] " + this.nom.toUpperCase() + " " + this.prenom + " - ";
-		if(this.droitsAccess == "chefAgence") {
+		if(this.droitsAccess.startsWith("chefAgence")) {
 			return display + "Chef d'agence";
 		} else {
 			return display + "Guichetier";			
