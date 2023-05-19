@@ -11,7 +11,7 @@
 
 Bienvenue dans le guide utilisateur de l'application BankUtil à destination des employés de DailyBank.
 
-Ce guide vous servira à connaître dans les détails les différentes fonctionna=
+Ce guide vous servira à connaître dans les détails les différentes fonctions de l'application.
 
 == II. Usages
 

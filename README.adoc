@@ -1,8 +1,10 @@
 = BankUniv
 
 |===
-⚠️ | *Message aux professeurs : Nous avons décidé avec l'ensemble du groupe d'avoir un fonctionnement particulier* +
-Andrii et Daria travaillent ensemble. Ne comprenant pas tout au français, il est plus simple pour nous de devoir expliquer la même chose aux 2 en même temps plutôt qu'expliquer plusieurs fois la même chose à chacun d'entre eux. De ce fait, ils peuvent s'entraider en Ukrainien, leur langue natale. C'est pour cela que Andrii et Daria ont les mêmes tâches, qu'Andrii fait les tâches de Daria et inversement que Daria fait les tâches d'Andrii.
+⚠️ | *Message aux professeurs : Nous avons décidé avec l'ensemble du groupe d'avoir un fonctionnement particulier*
+
+Andrii et Daria travaillent ensemble. Ne comprenant pas tout au français, il est plus simple pour nous de devoir expliquer la même chose aux 2 en même temps plutôt qu'expliquer plusieurs fois la même chose à chacun d'entre eux. De ce fait, ils peuvent s'entraider en Ukrainien, leur langue natale. +
+C'est pour cela que Andrii et Daria ont les mêmes tâches, qu'Andrii fait les tâches de Daria et inversement que Daria fait les tâches d'Andrii.
 |===
 
 == Présentation de l'équipe
@@ -16,10 +18,10 @@ https://github.com/Maxeuh[Maxence]
 [options="header,footer"]
 |===
 | Version | Rôle          | Use Case                  | Cas                   | Andrii | Daria | Evan | Maxence
-| 1       | Chef d’Agence | CRUD employé              | C                     |        |       |      | F
+| 1       | Chef d’Agence | CRUD employé              | C                     | F      | F     |      | 
 | 1       | Chef d’Agence | CRUD employé              | R                     |        |       |      | F
 | 1       | Chef d’Agence | CRUD employé              | U                     |        |       |      | F
-| 1       | Chef d’Agence | CRUD employé              | D                     |    F    |    F   |      | 
+| 1       | Chef d’Agence | CRUD employé              | D                     | F      | F     |      | 
 | 1       | Guichetier    | Compte                    | Créer                 |        |       | F    | 
 | 1       | Guichetier    | Compte                    | Créditer/Débiter      |        |       | F    | 
 | 1       | Guichetier    | Compte                    | Effectuer un virement |        |       | F    | 
@@ -53,12 +55,12 @@ analyse du besoin: détaillez les UC V0, utilisateurs logiques, idem pour la V1,
 ajouter les dates de livraison dans contraintes orga.
 reprendre les contraintes technique / orga en les ré-organisant par type (techni que / orga), identifier celles par encore identifées.  
 |           | Gantt V1 Prévu     | link:LV1/GanttV1_PDF.pdf[Lien] | affichage du graphe pas optimal, à reprendre (1 seule page). Reprendre liste des tâches pour être sûr de ne rien oublier.Focalisez vous sur V1. Ajoutez les jalons de livraison.
-| 16/05     | CDC V2             | link:LV2/CahierDesCharges.adoc[Lien] | 
-|           | Gantt V1 Réalisé   | link:LV1/GanttV1-R%C3%A9alis%C3%A9.pdf[Lien] | 
-|           | Gantt V2 Prévu     | link:LV2/GanttV2.pdf[Lien] | 
-|           | Doc User V1        | link:LV1/DocumentationUtilisateur.adoc[Lien] | 
-| 17/05     | Doc Tec V1         |                   | 
-|           | Recette V1         |                   | 
+| 16/05     | CDC V2             | link:LV2/CahierDesCharges.adoc[Lien] | 12/20. commits pas commentés, issues dans le board à compléter avec milestone / labels, mais semble à jour. readme OK, arbo OK, attention aux GANTTs
+|           | Gantt V1 Réalisé   | link:LV1/GanttV1-R%C3%A9alis%C3%A9.pdf[Lien] | découpage taches semble OK, mais GANTT trop petit, illisible. à reprendre. 
+|           | Gantt V2 Prévu     | link:LV2/GanttV2.pdf[Lien] | idem ci-dessus
+|           | Doc User V1        | link:LV1/DocumentationUtilisateur.adoc[Lien] | erreurs de frappe, manque présentation générale, role de l'application, présentation utilisateurs logiques, crdential de connexion, initiales du developpeur pour chaque fonction. Pas de jeu de données. ajouter ligne dans le readme pour gestion projet V1 avec ces commentaires: issues pas présentées sous la forme d'un board, manque les milestones, la liste ne semble pas correspondre aux GANTTS. readme OK, arbo OK, commits globalement OK
+| 17/05     | Doc Tec V1         | link:LV1/Dossier_Technique.adoc[Lien]                  | 
+|           | Recette V1         | link:LV1/CahierDeRecette.adoc[Lien]                  | 
 |           | `jar` V1           |                   | 
 |           | javadoc V1         |                   | 
 | 26/05     | Gantt V2 Réalisé   |                   | 
