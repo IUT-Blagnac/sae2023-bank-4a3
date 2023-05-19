@@ -5,6 +5,7 @@ import java.util.Locale;
 
 import application.DailyBankState;
 import application.control.OperationsManagement;
+import application.tools.ConstantesIHM;
 import application.tools.NoSelectionModel;
 import application.tools.PairsOfValue;
 import javafx.collections.FXCollections;
@@ -117,9 +118,15 @@ public class OperationsManagementController {
 
 	private void validateComponentState() {
 		// Non implémenté => désactivé
+		if(ConstantesIHM.estCloture(compteConcerne)|| ConstantesIHM.estInactif(clientDuCompte)) {
+			this.btnCredit.setDisable(true);
+			this.btnDebit.setDisable(true);
+			this.btnVirement.setDisable(true);
+		}else {
 		this.btnCredit.setDisable(false);
 		this.btnDebit.setDisable(false);
 		this.btnVirement.setDisable(false);
+			}
 	}
 
 	private void updateInfoCompteClient() {

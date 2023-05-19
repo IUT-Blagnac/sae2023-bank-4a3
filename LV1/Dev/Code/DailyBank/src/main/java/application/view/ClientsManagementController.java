@@ -5,6 +5,7 @@ import model.orm.Access_BD_Client;
 
 import application.DailyBankState;
 import application.control.ClientsManagement;
+import application.tools.ConstantesIHM;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -29,6 +30,7 @@ public class ClientsManagementController {
 
 	// Données de la fenêtre
 	private ObservableList<Client> oListClients;
+	
 
 	// Manipulation de la fenêtre
 	public void initContext(Stage _containingStage, ClientsManagement _cm, DailyBankState _dbstate) {
@@ -149,6 +151,7 @@ public class ClientsManagementController {
 
 	@FXML
 	private void doDesactiverClient() {
+	
 		
 	}
 
@@ -165,11 +168,18 @@ public class ClientsManagementController {
 		// Non implémenté => désactivé
 		this.btnDesactClient.setDisable(true);
 		int selectedIndice = this.lvClients.getSelectionModel().getSelectedIndex();
-		if (selectedIndice >= 0) {
+		Client client = this.oListClients.get(selectedIndice);
+		
+		if (selectedIndice >= 0 && ConstantesIHM.estActif(client)) {
 			this.btnModifClient.setDisable(false);
 			this.btnComptesClient.setDisable(false);
+			if(ConstantesIHM.isAdmin(this.dailyBankState.getEmployeActuel())) {
 			this.btnDesactClient.setDisable(false);
-		} else {
+			}
+		}else if(ConstantesIHM.estInactif(client)){
+			this.btnModifClient.setDisable(true);
+		} 
+		else {
 			this.btnModifClient.setDisable(true);
 			this.btnComptesClient.setDisable(true);
 			this.btnDesactClient.setDisable(true);
