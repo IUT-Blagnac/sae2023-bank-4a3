@@ -101,6 +101,8 @@ public class DailyBankMainFrameController {
 	@FXML
 	private MenuItem mitemQuitter;
 	@FXML
+	private MenuItem mitememprunt;
+	@FXML
 	private Button btnConn;
 	@FXML
 	private Button btnDeconn;
@@ -140,6 +142,11 @@ public class DailyBankMainFrameController {
 		this.dbmfDialogController.loginDunEmploye();
 		this.validateComponentState();
 	}
+	@FXML
+	private void doSimulerEmprunt() {
+		this.dbmfDialogController.simulerEmprunt();
+		this.validateComponentState();
+	}
 
 	/*
 	 * Action déconnexion. Demande au contrôleur de dialogue de réaliser la
@@ -168,8 +175,10 @@ public class DailyBankMainFrameController {
 			this.lblEmpPrenom.setText(e.prenom);
 			if (this.dailyBankState.isChefDAgence()) {
 				this.mitemEmploye.setDisable(false);
+				this.mitememprunt.setDisable(false);
 			} else {
 				this.mitemEmploye.setDisable(true);
+				this.mitememprunt.setDisable(true);
 			}
 			this.mitemClient.setDisable(false);
 			this.mitemConnexion.setDisable(true);
@@ -186,6 +195,7 @@ public class DailyBankMainFrameController {
 			this.mitemEmploye.setDisable(true);
 			this.mitemConnexion.setDisable(false);
 			this.mitemDeConnexion.setDisable(true);
+			this.mitememprunt.setDisable(true);
 			this.btnConn.setVisible(true);
 			this.btnDeconn.setVisible(false);
 		}
