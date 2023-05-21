@@ -77,7 +77,19 @@ Si je change de base comment je fais le lien avec l’application java ?
 
 Créer compte Evan
 Bien tu peux ajouter pour chaque fichier les méthodes introduites ou modifiées.
-|           | Recette V1         | link:LV1/CahierDeRecette.adoc[Lien]                  | 
+|           | Recette V1         | link:LV1/CahierDeRecette.adoc[Lien]                  | Suppression d’un compte →
+Attention on ne peut pas supprimer mais juste clôturer un compte.
+On ne peut clôture qu’un compte dont le solde est nul.
+Vous devez donc créer un test pour voir si quand on demande à clôturer un compte dont le solde n’est pas nul il y a une erreur .
+Quand un compte est clôturé un ne peut plus faire d’opération dessus vous devez faire des tests dans ce sens.
+
+
+Vous devez aussi tester les différents cas pour annuler (voir nos tests).
+
+Il manque les tests pour créditer compte.
+
+
+Pas de tests pour le CRUD des employers...
 |           | `jar` V1           |                   | 
 |           | javadoc V1         |                   | 
 | 26/05     | Gantt V2 Réalisé   |                   | 
