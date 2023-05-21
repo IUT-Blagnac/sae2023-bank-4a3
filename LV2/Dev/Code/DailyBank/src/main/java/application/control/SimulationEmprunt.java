@@ -3,6 +3,7 @@ package application.control;
 import application.DailyBankApp;
 import application.DailyBankState;
 import application.tools.StageManagement;
+import application.tools.TypeEmprunt;
 import application.view.ClientsManagementController;
 import application.view.SimulerEmpruntController;
 import javafx.fxml.FXMLLoader;
@@ -25,7 +26,7 @@ public class SimulationEmprunt {
 	public SimulationEmprunt(Stage _parentStage, DailyBankState _dbstate) {
 		this.dailyBankState = _dbstate;
 		try {
-			FXMLLoader loader = new FXMLLoader(ClientsManagementController.class.getResource("simulerEmprunt.fxml"));
+			FXMLLoader loader = new FXMLLoader(SimulerEmpruntController.class.getResource("simulerEmprunt.fxml"));
 			BorderPane root = loader.load();
 
 			Scene scene = new Scene(root, root.getPrefWidth() + 50, root.getPrefHeight() + 10);
@@ -54,9 +55,9 @@ public class SimulationEmprunt {
 		this.secViewController.displayDialog();
 	}
 	
-	public void simulation(int montant,double taux,int duree) {
+	public void simulation(int montant,double taux,int duree,TypeEmprunt te) {
 		System.out.println(montant + " " + taux + " " + duree);
-		TableauAmortissement ta = new TableauAmortissement(this.primaryStage, this.dailyBankState, montant, taux, duree);
+		TableauAmortissement ta = new TableauAmortissement(this.primaryStage, this.dailyBankState, montant, taux, duree,te);
 		ta.doTableauDialog();
 	}
 

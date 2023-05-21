@@ -1,8 +1,10 @@
 package application.control;
 
 import application.DailyBankApp;
+
 import application.DailyBankState;
 import application.tools.StageManagement;
+import application.tools.TypeEmprunt;
 import application.view.EmployesManagementController;
 import application.view.TableauAmortissementController;
 import javafx.fxml.FXMLLoader;
@@ -18,10 +20,10 @@ public class TableauAmortissement {
 	private TableauAmortissementController tacViewController;
 	
 	
-	public TableauAmortissement(Stage _parentStage, DailyBankState _dbstate,int montant,double taux,int duree) {
+	public TableauAmortissement(Stage _parentStage, DailyBankState _dbstate,int montant,double taux,int duree,TypeEmprunt te) {
 		this.dailyBankState = _dbstate;
 		try {
-			FXMLLoader loader = new FXMLLoader(EmployesManagementController.class.getResource("tableauAmortissement.fxml"));
+			FXMLLoader loader = new FXMLLoader(TableauAmortissementController.class.getResource("tableauAmortissement.fxml"));
 			BorderPane root = loader.load();
 
 			Scene scene = new Scene(root, root.getPrefWidth() + 50, root.getPrefHeight() + 10);
@@ -36,7 +38,7 @@ public class TableauAmortissement {
 			this.primaryStage.setResizable(true);
 
 			this.tacViewController = loader.getController();
-			this.tacViewController.initContext(this.primaryStage, this, _dbstate,montant,taux,duree);
+			this.tacViewController.initContext(this.primaryStage, this, _dbstate,montant,taux,duree,te);
 
 		} catch (Exception e) {
 			e.printStackTrace();

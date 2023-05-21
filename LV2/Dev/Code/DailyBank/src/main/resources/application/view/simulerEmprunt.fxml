@@ -3,6 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -49,6 +51,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label alignment="CENTER" contentDisplay="RIGHT" text="Montant emprunt :" textAlignment="CENTER" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
@@ -67,7 +70,7 @@
                   <Insets right="20.0" />
                </GridPane.margin>
             </Label>
-            <Label text="Durée (mois) :" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+            <Label text="Durée :" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                <font>
                   <Font size="20.0" />
                </font>
@@ -85,11 +88,25 @@
                   <Insets right="25.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="tfduree" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TextField fx:id="tfduree" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets right="25.0" />
                </GridPane.margin>
             </TextField>
+            <Label text="Type durée" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets right="20.0" />
+               </GridPane.margin>
+            </Label>
+            <SplitMenuButton mnemonicParsing="false" text="Mois ou Année" GridPane.columnIndex="1" GridPane.rowIndex="2">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#doMois" text="Mois" />
+                <MenuItem mnemonicParsing="false" onAction="#doAnnee" text="Année" />
+              </items>
+            </SplitMenuButton>
          </children>
       </GridPane>
    </center>
