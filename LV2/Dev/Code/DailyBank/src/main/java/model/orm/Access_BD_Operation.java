@@ -172,7 +172,7 @@ public class Access_BD_Operation {
 			Connection con = LogToDatabase.getConnexion();
 			CallableStatement call;
 
-			String q = "{call CREDITER (?, ?, ?, ?)}";
+			String q = "INSERT INTO PRELEVEMENTAUTOMATIQUE VALUES(";
 			// les ? correspondent aux paramètres : cf. déf procédure (4 paramètres)
 			call = con.prepareCall(q);
 			// Paramètres in
@@ -196,6 +196,8 @@ public class Access_BD_Operation {
 			throw new DataAccessException(Table.Operation, Order.INSERT, "Erreur accès", e);
 		}
 	}
+	
+	
 	
 	public void virement(int idCompteDebiteur, int idCompteCrediteur, double montant)
 			throws DatabaseConnexionException, ManagementRuleViolation, DataAccessException {
