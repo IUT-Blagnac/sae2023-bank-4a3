@@ -1,7 +1,15 @@
 package application.view;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Locale;
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 
 import application.DailyBankState;
 import application.control.OperationsManagement;
@@ -79,6 +87,8 @@ public class OperationsManagementController {
 	@FXML
 	private Button btnDebit;
 	@FXML
+	private Button btnReleve;
+	@FXML
 	private Button btnCredit;
 	@FXML
 	private Button btnVirement;
@@ -117,19 +127,27 @@ public class OperationsManagementController {
 	}
 	
 	@FXML
-	private void doReleve() {
-		
+	private void doReleve() throws FileNotFoundException, DocumentException {
+		System.out.println("Test");
+        Document document = new Document(PageSize.A4, 50, 50, 50, 50);
+        PdfWriter.getInstance(document, new FileOutputStream("result.pdf"));
+        document.open();
+        document.add(new Paragraph("Create Pdf Document with iText in Java"));
+        document.close();
 	}
+	
 
 	private void validateComponentState() {
 		// Non implémenté => désactivé
 		if(ConstantesIHM.estCloture(compteConcerne)|| ConstantesIHM.estInactif(clientDuCompte)) {
 			this.btnCredit.setDisable(true);
 			this.btnDebit.setDisable(true);
+			this.btnReleve.setDisable(true);
 			this.btnVirement.setDisable(true);
 		}else {
 		this.btnCredit.setDisable(false);
 		this.btnDebit.setDisable(false);
+		this.btnReleve.setDisable(false);
 		this.btnVirement.setDisable(false);
 			}
 	}
