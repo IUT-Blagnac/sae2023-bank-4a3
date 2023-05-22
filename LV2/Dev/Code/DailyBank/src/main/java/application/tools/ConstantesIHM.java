@@ -41,22 +41,23 @@ public class ConstantesIHM {
 	/*
 	 * Libellés (en BD) des différents types d'opérations existants.
 	 */
-	public static final String TYPE_OP_1 = "Dépôt Espèces";
-	public static final String TYPE_OP_2 = "Retrait Espèces";
-	public static final String TYPE_OP_3 = "Dépôt Chèque";
-	public static final String TYPE_OP_4 = "Paiement Chèque";
-	public static final String TYPE_OP_5 = "Retrait Carte Bleue";
-	public static final String TYPE_OP_6 = "Paiement Carte Bleue";
-	public static final String TYPE_OP_7 = "Virement Compte à Compte";
+	public static final String TYPE_OP_1 = "Dépôt espèces";
+	public static final String TYPE_OP_2 = "Retrait espèces";
+	public static final String TYPE_OP_3 = "Dépôt chèque";
+	public static final String TYPE_OP_4 = "Paiement chèque";
+	public static final String TYPE_OP_5 = "Retrait carte Bleue";
+	public static final String TYPE_OP_6 = "Paiement carte Bleue";
+	public static final String TYPE_OP_7 = "Virement compte à Compte";
 	public static final String TYPE_OP_8 = "Prélèvement automatique";
 	public static final String TYPE_OP_9 = "Prélèvement agios";
+	public static final String TYPE_OP_10 = "Retrait exceptionnel";
 
 	// Listes d'opérations
 
 	/**
 	 * Liste des opérations de débit possible en agence
 	 */
-	public static final String[] OPERATIONS_DEBIT_GUICHET = { ConstantesIHM.TYPE_OP_2, ConstantesIHM.TYPE_OP_5 };
+	public static final String[] OPERATIONS_DEBIT_GUICHET = { ConstantesIHM.TYPE_OP_2, ConstantesIHM.TYPE_OP_5, ConstantesIHM.TYPE_OP_10 };
 	/**
 	 * Liste des opérations de crédit possible en agence
 	 */

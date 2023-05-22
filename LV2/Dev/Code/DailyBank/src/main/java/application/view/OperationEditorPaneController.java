@@ -63,7 +63,7 @@ public class OperationEditorPaneController {
 					+ String.format(Locale.ENGLISH, "%8d", this.compteEdite.debitAutorise);
 			this.lblMessage.setText(info);
 
-			this.btnOk.setText("Effectuer Débit");
+			this.btnOk.setText("Effectuer débit");
 			this.btnCancel.setText("Annuler débit");
 
 			ObservableList<String> listTypesOpesPossibles = FXCollections.observableArrayList();
@@ -78,8 +78,8 @@ public class OperationEditorPaneController {
 					+ String.format(Locale.ENGLISH, "%8d", this.compteEdite.debitAutorise);
 			this.lblMessage.setText(infoc);
 
-			this.btnOk.setText("Effectuer Crédit");
-			this.btnCancel.setText("Annuler Crédit");
+			this.btnOk.setText("Effectuer crédit");
+			this.btnCancel.setText("Annuler crédit");
 
 			ObservableList<String> listTypesOpesPossiblesC = FXCollections.observableArrayList();
 			listTypesOpesPossiblesC.addAll(ConstantesIHM.OPERATIONS_CREDIT_GUICHET);
@@ -225,7 +225,8 @@ public class OperationEditorPaneController {
 				this.txtMontant.requestFocus();
 				return;
 			}
-			if (this.compteEdite.solde - montant < this.compteEdite.debitAutorise) {
+			String typeOp = this.cbTypeOpe.getValue();
+			if (typeOp != "Retrait exceptionnel" && this.compteEdite.solde - montant < this.compteEdite.debitAutorise) {
 				info = "Dépassement du découvert ! - Cpt. : " + this.compteEdite.idNumCompte + "  "
 						+ String.format(Locale.ENGLISH, "%12.02f", this.compteEdite.solde) + "  /  "
 						+ String.format(Locale.ENGLISH, "%8d", this.compteEdite.debitAutorise);
@@ -236,7 +237,6 @@ public class OperationEditorPaneController {
 				this.txtMontant.requestFocus();
 				return;
 			}
-			String typeOp = this.cbTypeOpe.getValue();
 			this.operationResultat = new Operation(-1, montant, null, null, this.compteEdite.idNumCli, typeOp);
 			this.primaryStage.close();
 			break;
