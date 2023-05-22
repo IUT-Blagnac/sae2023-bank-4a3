@@ -1,9 +1,11 @@
 package application.control;
 
 import application.DailyBankApp;
+
 import application.DailyBankState;
 import application.tools.StageManagement;
 import application.tools.TypeEmprunt;
+import application.tools.TypeSimu;
 import application.view.ClientsManagementController;
 import application.view.SimulerEmpruntController;
 import javafx.fxml.FXMLLoader;
@@ -55,11 +57,12 @@ public class SimulationEmprunt {
 		this.secViewController.displayDialog();
 	}
 	
-	public void simulation(int montant,double taux,int duree,TypeEmprunt te) {
+	public void simulation(int montant,double taux,double tauxA,int duree,TypeEmprunt te,TypeSimu ts) {
 		System.out.println(montant + " " + taux + " " + duree);
-		TableauAmortissement ta = new TableauAmortissement(this.primaryStage, this.dailyBankState, montant, taux, duree,te);
+		TableauAmortissement ta = new TableauAmortissement(this.primaryStage, this.dailyBankState, montant, taux,tauxA, duree,te,ts);
 		ta.doTableauDialog();
 	}
+	
 
 
 }

@@ -2,9 +2,11 @@ package application.control;
 
 import application.DailyBankApp;
 
+
 import application.DailyBankState;
 import application.tools.StageManagement;
 import application.tools.TypeEmprunt;
+import application.tools.TypeSimu;
 import application.view.EmployesManagementController;
 import application.view.TableauAmortissementController;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +22,7 @@ public class TableauAmortissement {
 	private TableauAmortissementController tacViewController;
 	
 	
-	public TableauAmortissement(Stage _parentStage, DailyBankState _dbstate,int montant,double taux,int duree,TypeEmprunt te) {
+	public TableauAmortissement(Stage _parentStage, DailyBankState _dbstate,int montant,double taux,double tauxA,int duree,TypeEmprunt te,TypeSimu ts) {
 		this.dailyBankState = _dbstate;
 		try {
 			FXMLLoader loader = new FXMLLoader(TableauAmortissementController.class.getResource("tableauAmortissement.fxml"));
@@ -38,7 +40,7 @@ public class TableauAmortissement {
 			this.primaryStage.setResizable(true);
 
 			this.tacViewController = loader.getController();
-			this.tacViewController.initContext(this.primaryStage, this, _dbstate,montant,taux,duree,te);
+			this.tacViewController.initContext(this.primaryStage, this, _dbstate,montant,taux,tauxA,duree,te,ts);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -49,13 +51,6 @@ public class TableauAmortissement {
 		this.tacViewController.displayDialog();
 	}
 	
-	public void dateSuivante(int a,int m) {
-		if(m==12) {
-			m=0;
-			a++;
-		}else {
-			m++;
-		}
-	}
+
 
 }
