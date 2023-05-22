@@ -27,8 +27,8 @@ https://github.com/Maxeuh[Maxence]
 | 1       | Guichetier    | Compte                    | Effectuer un virement |        |       | F    | 
 | 1       | Guichetier    | Compte                    | Clôturer              |        |       | F    | 
 | 2       | Chef d’Agence | Compte                    | Débit exceptionnel    |        |       |      | 
-| 2       | Chef d’Agence | Emprunt                   | Simuler emprunt       |        |       |  D    | 
-| 2       | Chef d’Agence | Emprunt                   | Simuler assurance     |        |       |      | 
+| 2       | Chef d’Agence | Emprunt                   | Simuler emprunt       |        |       | F    | 
+| 2       | Chef d’Agence | Emprunt                   | Simuler assurance     |        |       |  F    | 
 | 2       | Guichetier    | Compte                    | Relevé PDF            |        |       |      | 
 | 2       | Guichetier    | CRUD Prélèvement          | C                     |        |       |      | 
 | 2       | Guichetier    | CRUD Prélèvement          | R                     |        |       |      | 
@@ -59,7 +59,7 @@ reprendre les contraintes technique / orga en les ré-organisant par type (techn
 |           | Gantt V1 Réalisé   | link:LV1/GanttV1-R%C3%A9alis%C3%A9.pdf[Lien] | découpage taches semble OK, mais GANTT trop petit, illisible. à reprendre. 
 |           | Gantt V2 Prévu     | link:LV2/GanttV2.pdf[Lien] | idem ci-dessus
 |           | Doc User V1        | link:LV1/DocumentationUtilisateur.adoc[Lien] | erreurs de frappe, manque présentation générale, role de l'application, présentation utilisateurs logiques, crdential de connexion, initiales du developpeur pour chaque fonction. Pas de jeu de données. ajouter ligne dans le readme pour gestion projet V1 avec ces commentaires: issues pas présentées sous la forme d'un board, manque les milestones, la liste ne semble pas correspondre aux GANTTS. readme OK, arbo OK, commits globalement OK
-| 17/05     | Doc Tec V1         | link:LV1/Dossier_Technique.adoc[Lien]                  | Quelques éléments de structure de la documentation technique :
+| 17/05     | Doc Tec V1         | link:LV1/Dossier_Technique.adoc[Lien] | Quelques éléments de structure de la documentation technique :
     • Page de garde 
     • Sommaire 
     • Présentation rapide de l’application 
@@ -77,7 +77,7 @@ Si je change de base comment je fais le lien avec l’application java ?
 
 Créer compte Evan
 Bien tu peux ajouter pour chaque fichier les méthodes introduites ou modifiées.
-|           | Recette V1         | link:LV1/CahierDeRecette.adoc[Lien]                  | Suppression d’un compte →
+|           | Recette V1         | link:LV1/CahierDeRecette.adoc[Lien] | Suppression d’un compte →
 Attention on ne peut pas supprimer mais juste clôturer un compte.
 On ne peut clôture qu’un compte dont le solde est nul.
 Vous devez donc créer un test pour voir si quand on demande à clôturer un compte dont le solde n’est pas nul il y a une erreur .
@@ -90,8 +90,8 @@ Il manque les tests pour créditer compte.
 
 
 Pas de tests pour le CRUD des employers...
-|           | `jar` V1           |                   | 
-|           | javadoc V1         |                   | 
+|           | `jar` V1           | link:https://github.com/IUT-Blagnac/sae2023-bank-4a3/releases/tag/v1[Lien] | Pour les virement afficher la liste des comptes sélectionnables plutôt que demander le numéro de compte
+|           | javadoc V1         | link:https://github.com/IUT-Blagnac/sae2023-bank-4a3/tree/master/LV1/Dev/Code/DailyBank/doc[Lien] | 
 | 26/05     | Gantt V2 Réalisé   |                   | 
 |           | Doc User V2        |                   | 
 |           | Doc Tec V2         |                   | 
