@@ -138,7 +138,6 @@ public class OperationsManagementController {
 	}
 
 	@FXML
-<<<<<<< HEAD
 	private void doReleve() throws FileNotFoundException, DocumentException {
 		System.out.println("Test");
         Document document = new Document(PageSize.A4, 50, 50, 50, 50);
@@ -146,11 +145,6 @@ public class OperationsManagementController {
         document.open();
         document.add(new Paragraph("Create Pdf Document with iText in Java"));
         document.close();
-=======
-	private void doReleve() {
-		
-
->>>>>>> e02deebc5b47adaf0122ad264b0abffe242da14a
 	}
 	
 
@@ -162,13 +156,13 @@ public class OperationsManagementController {
 			this.btnReleve.setDisable(true);
 			this.btnVirement.setDisable(true);
 			this.btnPrelevement.setDisable(true);
-		}else {
-		this.btnCredit.setDisable(false);
-		this.btnDebit.setDisable(false);
-		this.btnReleve.setDisable(false);
-		this.btnVirement.setDisable(false);
-		this.btnPrelevement.setDefaultButton(false);
-			}
+		} else {
+			this.btnCredit.setDisable(false);
+			this.btnDebit.setDisable(false);
+			this.btnReleve.setDisable(false);
+			this.btnVirement.setDisable(false);
+			this.btnPrelevement.setDefaultButton(false);
+		}
 	}
 
 	private void updateInfoCompteClient() {
