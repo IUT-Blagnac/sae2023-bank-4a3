@@ -115,6 +115,11 @@ public class OperationsManagementController {
 			this.validateComponentState();
 		}
 	}
+	
+	@FXML
+	private void doReleve() {
+		
+	}
 
 	private void validateComponentState() {
 		// Non implémenté => désactivé
