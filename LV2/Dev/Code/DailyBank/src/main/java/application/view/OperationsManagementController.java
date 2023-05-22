@@ -117,6 +117,7 @@ public class OperationsManagementController {
 			this.validateComponentState();
 		}
 	}
+
 	@FXML
 	private void doPrelevement() {
 		Operation op = this.omDialogController.enregistrerPrelevement();
@@ -124,6 +125,12 @@ public class OperationsManagementController {
 			this.updateInfoCompteClient();
 			this.validateComponentState();
 		}
+	}
+
+	@FXML
+	private void doReleve() {
+		
+
 	}
 
 	private void validateComponentState() {
