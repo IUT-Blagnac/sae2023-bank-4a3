@@ -9,6 +9,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import application.DailyBankState;
@@ -139,11 +140,12 @@ public class OperationsManagementController {
 
 	@FXML
 	private void doReleve() throws FileNotFoundException, DocumentException {
-		System.out.println("Test");
         Document document = new Document(PageSize.A4, 50, 50, 50, 50);
         PdfWriter.getInstance(document, new FileOutputStream("result.pdf"));
         document.open();
-        document.add(new Paragraph("Create Pdf Document with iText in Java"));
+        document.add(new Paragraph("DailyBank"));
+        document.add(new Paragraph ("Le relevé de " + this.clientDuCompte.nom + " " + this.clientDuCompte.prenom + "\n"
+        		+ "NUMERO DE COMPTE : " + this.compteConcerne.idNumCompte + "\n"));
         document.close();
 	}
 	
