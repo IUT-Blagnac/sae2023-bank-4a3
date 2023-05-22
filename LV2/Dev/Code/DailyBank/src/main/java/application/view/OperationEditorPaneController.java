@@ -104,11 +104,35 @@ public class OperationEditorPaneController {
 			if (ConstantesIHM.isAdmin(this.dailyBankState.getEmployeActuel())) {
 				// rien pour l'instant
 			}
-
 			this.primaryStage.showAndWait();
 			this.operationResultat.idNumCompte=Integer.parseInt(this.comptecrediteur.getText());
-			return this.operationResultat;
+			break;
+		case PRELEVEMENT:
+			String infoP = "Cpt. : " + this.compteEdite.idNumCompte + "  "
+					+ String.format(Locale.ENGLISH, "%12.02f", this.compteEdite.solde) + "  /  "
+					+ String.format(Locale.ENGLISH, "%8d", this.compteEdite.debitAutorise);
+			this.lblMessage.setText(infoP);
+
+			this.btnOk.setText("Effectuer Prélevement");
+			this.btnCancel.setText("Annuler Prélevement");
+
+			ObservableList<String> listTypesOpesPossiblesP = FXCollections.observableArrayList();
+			listTypesOpesPossiblesP.addAll(ConstantesIHM.OPERATION_PRELEVEMENT);
+
+			this.cbTypeOpe.setItems(listTypesOpesPossiblesP);
+			this.cbTypeOpe.getSelectionModel().select(0);
+			Label jour = new Label("Jour de prélèvement");
+			Label Beneficiaire = new Label("Bénéficiaire");
+			TextField tfBenef = new TextField();
+			TextField tfJour = new TextField();
+			gp.add(jour, 0, 1);
+			gp.add(tfJour, 1, 1);
+			gp.add(Beneficiaire, 0, 3);
+			gp.add(tfBenef, 1, 3);
+		
+			break;
 		}
+		
 
 		// Paramétrages spécifiques pour les chefs d'agences
 		if (ConstantesIHM.isAdmin(this.dailyBankState.getEmployeActuel())) {
@@ -120,6 +144,7 @@ public class OperationEditorPaneController {
 
 		this.primaryStage.showAndWait();
 		return this.operationResultat;
+			
 	}
 	
 //	public Operation virementDialog(CompteCourant cpte) {
@@ -267,7 +292,34 @@ public class OperationEditorPaneController {
 			this.operationResultat = new Operation(-1, montantV, null, null, this.compteEdite.idNumCli, typeOpV);
 			this.primaryStage.close();
 			break;
+		case PRELEVEMENT:
+			double montantP;
+
+			this.txtMontant.getStyleClass().remove("borderred");
+			this.lblMontant.getStyleClass().remove("borderred");
+			this.lblMessage.getStyleClass().remove("borderred");
+			String infoP = "Cpt. : " + this.compteEdite.idNumCompte + "  "
+					+ String.format(Locale.ENGLISH, "%12.02f", this.compteEdite.solde) + "  /  "
+					+ String.format(Locale.ENGLISH, "%8d", this.compteEdite.debitAutorise);
+			this.lblMessage.setText(infoP);
+
+			try {
+				montantP = Double.parseDouble(this.txtMontant.getText().trim());
+				if (montantP <= 0)
+					throw new NumberFormatException();
+			} catch (NumberFormatException nfe) {
+				this.txtMontant.getStyleClass().add("borderred");
+				this.lblMontant.getStyleClass().add("borderred");
+				this.txtMontant.requestFocus();
+				return;
+			}
 			
+			String typeOpP = this.cbTypeOpe.getValue();
+			this.operationResultat = new Operation(-1, montantP, null, null, this.compteEdite.idNumCli, typeOpP);
+			this.primaryStage.close();
+			break;
 		}
+		
+			
 	}
 }
