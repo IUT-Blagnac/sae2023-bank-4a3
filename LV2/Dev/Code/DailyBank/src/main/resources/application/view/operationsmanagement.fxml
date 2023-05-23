@@ -50,13 +50,10 @@
                               <Insets bottom="10.0" top="10.0" />
                            </GridPane.margin>
                         </Button>
-                        <Button fx:id="btnPrelevement" mnemonicParsing="false" onAction="#doPrelevement" prefHeight="25.0" prefWidth="207.0" text="Prélèvement" GridPane.rowIndex="3">
-                           <GridPane.margin>
-                              <Insets bottom="10.0" top="10.0" />
-                           </GridPane.margin>
-                        </Button>
+                        <Button disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doReleve" text="--- Bouton prélévement ---" textFill="RED" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
+                  <Button fx:id="btnPrelevement" mnemonicParsing="false" onAction="#doPrelevement" prefHeight="25.0" prefWidth="207.0" text="Prélèvement" />
                </children>
                <BorderPane.margin>
                   <Insets right="10.0" />
