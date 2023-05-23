@@ -45,7 +45,7 @@
                               <Insets bottom="10.0" top="10.0" />
                            </GridPane.margin>
                         </Button>
-                        <Button fx:id="btnReleve" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doReleve" text="Générer relevé PDF" GridPane.rowIndex="4">
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doReleve" text="Générer relevé PDF" GridPane.rowIndex="4">
                            <GridPane.margin>
                               <Insets bottom="10.0" top="10.0" />
                            </GridPane.margin>
