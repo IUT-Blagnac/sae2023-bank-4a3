@@ -62,7 +62,6 @@ public class ConstantesIHM {
 	 */
 	public static final String[] OPERATIONS_CREDIT_GUICHET = { ConstantesIHM.TYPE_OP_1, ConstantesIHM.TYPE_OP_3 };
 
-	public static final String[] OPERATION_PRELEVEMENT = { ConstantesIHM.TYPE_OP_8, ConstantesIHM.TYPE_OP_9};
 	// Méthodes utilitaires
 
 	/**

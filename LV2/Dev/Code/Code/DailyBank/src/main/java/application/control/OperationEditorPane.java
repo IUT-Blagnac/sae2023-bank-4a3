@@ -33,7 +33,7 @@ public class OperationEditorPane {
 					OperationEditorPaneController.class.getResource("operationeditorpane.fxml"));
 			BorderPane root = loader.load();
 
-			Scene scene = new Scene(root, 656 + 20, 347 + 10);
+			Scene scene = new Scene(root, 500 + 20, 250 + 10);
 			scene.getStylesheets().add(DailyBankApp.class.getResource("application.css").toExternalForm());
 			this.primaryStage = new Stage();
 			this.primaryStage.initModality(Modality.WINDOW_MODAL);
@@ -41,7 +41,7 @@ public class OperationEditorPane {
 			StageManagement.manageCenteringStage(_parentStage, this.primaryStage);
 			this.primaryStage.setScene(scene);
 			this.primaryStage.setTitle("Enregistrement d'une opération");
-			this.primaryStage.setResizable(true);
+			this.primaryStage.setResizable(false);
 
 			this.oepcViewController = loader.getController();
 			this.oepcViewController.initContext(this.primaryStage, _dbstate);
