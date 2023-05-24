@@ -1,7 +1,22 @@
 package application.view;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
+
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Font.FontFamily;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfDocument;
+import com.itextpdf.text.pdf.PdfWriter;
 
 import application.DailyBankState;
 import application.control.OperationsManagement;
@@ -79,6 +94,8 @@ public class OperationsManagementController {
 	@FXML
 	private Button btnDebit;
 	@FXML
+	private Button btnReleve;
+	@FXML
 	private Button btnCredit;
 	@FXML
 	private Button btnVirement;
@@ -95,6 +112,43 @@ public class OperationsManagementController {
 		if (op != null) {
 			this.updateInfoCompteClient();
 			this.validateComponentState();
+		}
+	}
+	
+	@FXML
+	private void doReleve() {
+		Document doc = new Document();
+		try {
+			PdfWriter.getInstance(doc, new FileOutputStream("result.pdf"));
+			doc.open();
+			Font f = new Font(FontFamily.TIMES_ROMAN,25.0f,Font.BOLD,BaseColor.RED);
+			Paragraph par1 = new Paragraph("DailyBank",f);
+			doc.add(par1);
+			doc.add(new Paragraph(""));
+			Paragraph par2 = new Paragraph("Le relevé de " + this.clientDuCompte.nom + "  " + this.clientDuCompte.prenom + "\n"
+											+ "Le numéro du compte : " + this.compteConcerne.idNumCompte);
+			doc.add(par2);
+			PairsOfValue<CompteCourant, ArrayList<Operation>> opesEtCompte;
+			opesEtCompte = this.omDialogController.operationsEtSoldeDunCompte();
+			ArrayList<Operation> listeOP;
+			listeOP = opesEtCompte.getRight();
+			doc.add(new Paragraph(""));
+			doc.add(new Paragraph("--------------------------------------------------------------------------------------"));
+			doc.add(new Paragraph(""));
+			for(int i=0;i<listeOP.size();i++) {
+				doc.add(new Paragraph(listeOP.get(i).toString()));
+			}
+			
+			
+			doc.close();
+			Desktop.getDesktop().open(new File("result.pdf"));
+			
+		}catch(FileNotFoundException e) {
+			e.printStackTrace();
+		}catch(DocumentException e) {
+			e.printStackTrace();
+		}catch(IOException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -121,10 +175,12 @@ public class OperationsManagementController {
 		if(ConstantesIHM.estCloture(compteConcerne)|| ConstantesIHM.estInactif(clientDuCompte)) {
 			this.btnCredit.setDisable(true);
 			this.btnDebit.setDisable(true);
+			this.btnReleve.setDisable(true);
 			this.btnVirement.setDisable(true);
 		}else {
 		this.btnCredit.setDisable(false);
 		this.btnDebit.setDisable(false);
+		this.btnReleve.setDisable(false);
 		this.btnVirement.setDisable(false);
 			}
 	}

@@ -39,13 +39,21 @@
                               <Insets bottom="10.0" top="10.0" />
                            </GridPane.margin>
                         </Button>
-                        <Button fx:id="btnVirement" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doAutre" text="Effectuer Virement" GridPane.rowIndex="3">
+                        <Button fx:id="btnVirement" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doAutre" text="Effectuer Virement" GridPane.rowIndex="3">
                            <GridPane.margin>
                               <Insets bottom="10.0" top="10.0" />
                            </GridPane.margin>
                         </Button>
                      </children>
                   </GridPane>
+                  <Button fx:id="btnDebit1" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doReleve" text="Générer relevé PDF">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Button>
                </children>
                <BorderPane.margin>
                   <Insets right="10.0" />
