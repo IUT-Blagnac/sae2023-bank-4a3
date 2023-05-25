@@ -35,6 +35,8 @@
                     <MenuItem fx:id="mitemClient" disable="true" mnemonicParsing="false" onAction="#doClientOption" text="Clients" />
                         <SeparatorMenuItem mnemonicParsing="false" />
                         <MenuItem fx:id="mitemEmploye" disable="true" mnemonicParsing="false" onAction="#doEmployeOption" text="Employés" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="mitemPrelevement" mnemonicParsing="false" onAction="#doPrelevementOption" text="Prélèvement" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Simulation">

@@ -9,13 +9,19 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfDocument;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import application.DailyBankState;
@@ -119,12 +125,16 @@ public class OperationsManagementController {
 	private void doReleve() {
 		Document doc = new Document();
 		try {
-			PdfWriter.getInstance(doc, new FileOutputStream("result.pdf"));
+			PdfWriter.getInstance(doc, new FileOutputStream(""+this.clientDuCompte.nom+this.clientDuCompte.prenom+this.compteConcerne.idNumCompte+".pdf"));
 			doc.open();
 			Font f = new Font(FontFamily.TIMES_ROMAN,25.0f,Font.BOLD,BaseColor.RED);
 			Paragraph par1 = new Paragraph("DailyBank",f);
+			par1.setAlignment(Element.ALIGN_CENTER);
 			doc.add(par1);
 			doc.add(new Paragraph(""));
+			
+	        
+			//Font a = new Font(FontFamily.HELVETICA, 15.0f, Font.BOLD, BaseColor.BLACK);
 			Paragraph par2 = new Paragraph("Le relevé de " + this.clientDuCompte.nom + "  " + this.clientDuCompte.prenom + "\n"
 											+ "Le numéro du compte : " + this.compteConcerne.idNumCompte);
 			doc.add(par2);
@@ -141,7 +151,7 @@ public class OperationsManagementController {
 			
 			
 			doc.close();
-			Desktop.getDesktop().open(new File("result.pdf"));
+			Desktop.getDesktop().open(new File(""+this.clientDuCompte.nom+this.clientDuCompte.prenom+this.compteConcerne.idNumCompte+".pdf"));
 			
 		}catch(FileNotFoundException e) {
 			e.printStackTrace();
