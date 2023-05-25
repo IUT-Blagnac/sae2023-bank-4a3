@@ -24,7 +24,7 @@ public class EmployesManagement {
 
 	private Stage primaryStage;
 	private DailyBankState dailyBankState;
-	private EmployesManagementController cmcViewController;
+	private EmployesManagementController emcViewController;
 
 	/**
      * Constructeur de la classe EmployesManagement.
@@ -49,8 +49,8 @@ public class EmployesManagement {
 			this.primaryStage.setTitle("Gestion des employés");
 			this.primaryStage.setResizable(false);
 
-			this.cmcViewController = loader.getController();
-			this.cmcViewController.initContext(this.primaryStage, this, _dbstate);
+			this.emcViewController = loader.getController();
+			this.emcViewController.initContext(this.primaryStage, this, _dbstate);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -61,7 +61,7 @@ public class EmployesManagement {
      * Affiche la fenêtre de gestion des employés.
      */
 	public void doEmployeManagementDialog() {
-		this.cmcViewController.displayDialog();
+		this.emcViewController.displayDialog();
 	}
 
 	/**

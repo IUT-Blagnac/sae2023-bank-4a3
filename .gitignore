@@ -1,6 +1,6 @@
 **/.metadata/**
 **/.settings/**
 **/target/**
-/*.class
+**/*.class
 .DS_Store
 Thumbs.db

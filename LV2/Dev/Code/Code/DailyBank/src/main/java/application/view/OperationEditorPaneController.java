@@ -184,18 +184,22 @@ public class OperationEditorPaneController {
 				this.txtMontant.requestFocus();
 				return;
 			}
-			if (this.compteEdite.solde - montant < this.compteEdite.debitAutorise) {
-				info = "Dépassement du découvert ! - Cpt. : " + this.compteEdite.idNumCompte + "  "
-						+ String.format(Locale.ENGLISH, "%12.02f", this.compteEdite.solde) + "  /  "
-						+ String.format(Locale.ENGLISH, "%8d", this.compteEdite.debitAutorise);
-				this.lblMessage.setText(info);
-				this.txtMontant.getStyleClass().add("borderred");
-				this.lblMontant.getStyleClass().add("borderred");
-				this.lblMessage.getStyleClass().add("borderred");
-				this.txtMontant.requestFocus();
-				return;
-			}
 			String typeOp = this.cbTypeOpe.getValue();
+			if (this.compteEdite.solde - montant < this.compteEdite.debitAutorise) {
+				if(!ConstantesIHM.isAdmin(this.dailyBankState.getEmployeActuel())) {
+					info = "Permission chef agence requise ! - Cpt. : " + this.compteEdite.idNumCompte + "  "
+							+ String.format(Locale.ENGLISH, "%12.02f", this.compteEdite.solde) + "  /  "
+							+ String.format(Locale.ENGLISH, "%8d", this.compteEdite.debitAutorise);
+					this.lblMessage.setText(info);
+					this.txtMontant.getStyleClass().add("borderred");
+					this.lblMontant.getStyleClass().add("borderred");
+					this.lblMessage.getStyleClass().add("borderred");
+					this.txtMontant.requestFocus();
+					return;
+				} else {
+					if(!AlertUtilities.confirmYesCancel(this.primaryStage, "Débit exceptionnel", "Êtes-vous sûr de vouloir réaliser cette opération ?", "Débit de " + montant + " €\nSolde actuel : " + this.compteEdite.solde + " €\nDécouvert autorisé : " + this.compteEdite.debitAutorise + " €\nDépassement : " + (0 - this.compteEdite.debitAutorise + this.compteEdite.solde - montant) + " €\nSolde après opération : " + (this.compteEdite.solde - montant) + " €", AlertType.CONFIRMATION)) return;
+				}
+			}
 			this.operationResultat = new Operation(-1, montant, null, null, this.compteEdite.idNumCli, typeOp);
 			this.primaryStage.close();
 			break;

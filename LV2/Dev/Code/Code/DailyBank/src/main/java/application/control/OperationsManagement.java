@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import application.DailyBankApp;
 import application.DailyBankState;
 import application.tools.CategorieOperation;
+import application.tools.ConstantesIHM;
 import application.tools.PairsOfValue;
 import application.tools.StageManagement;
 import application.view.OperationsManagementController;
@@ -82,15 +83,16 @@ public class OperationsManagement {
      * @return l'opération enregistrée, ou null si aucune opération n'a été enregistrée
      */
 	public Operation enregistrerDebit() {
-
 		OperationEditorPane oep = new OperationEditorPane(this.primaryStage, this.dailyBankState);
 		Operation op = oep.doOperationEditorDialog(this.compteConcerne, CategorieOperation.DEBIT);
 		if (op != null) {
 			try {
 				Access_BD_Operation ao = new Access_BD_Operation();
-
-				ao.insertDebit(this.compteConcerne.idNumCompte, op.montant, op.idTypeOp);
-
+				if(ConstantesIHM.isAdmin(this.dailyBankState.getEmployeActuel())) {					
+					ao.insertDebitExceptionnel(this.compteConcerne.idNumCompte, op.montant, op.idTypeOp);
+				} else {					
+					ao.insertDebit(this.compteConcerne.idNumCompte, op.montant, op.idTypeOp);
+				}
 			} catch (DatabaseConnexionException e) {
 				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
 				ed.doExceptionDialog();
