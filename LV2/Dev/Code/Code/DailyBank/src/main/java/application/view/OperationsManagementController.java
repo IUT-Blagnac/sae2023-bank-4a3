@@ -125,7 +125,7 @@ public class OperationsManagementController {
 	private void doReleve() {
 		Document doc = new Document();
 		try {
-			PdfWriter.getInstance(doc, new FileOutputStream("result.pdf"));
+			PdfWriter.getInstance(doc, new FileOutputStream(""+this.clientDuCompte.nom+this.clientDuCompte.prenom+this.compteConcerne.idNumCompte+".pdf"));
 			doc.open();
 			Font f = new Font(FontFamily.TIMES_ROMAN,25.0f,Font.BOLD,BaseColor.RED);
 			Paragraph par1 = new Paragraph("DailyBank",f);
@@ -151,7 +151,7 @@ public class OperationsManagementController {
 			
 			
 			doc.close();
-			Desktop.getDesktop().open(new File("result.pdf"));
+			Desktop.getDesktop().open(new File(""+this.clientDuCompte.nom+this.clientDuCompte.prenom+this.compteConcerne.idNumCompte+".pdf"));
 			
 		}catch(FileNotFoundException e) {
 			e.printStackTrace();

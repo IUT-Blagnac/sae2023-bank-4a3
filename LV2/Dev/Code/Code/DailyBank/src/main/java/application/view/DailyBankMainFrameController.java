@@ -102,6 +102,8 @@ public class DailyBankMainFrameController {
 	private MenuItem mitemQuitter;
 	@FXML
 	private MenuItem mitememprunt;
+	@FXML 
+	private MenuItem mitemPrelevement;
 	@FXML
 	private Button btnConn;
 	@FXML
@@ -181,6 +183,7 @@ public class DailyBankMainFrameController {
 			this.mitemClient.setDisable(false);
 			this.mitemConnexion.setDisable(true);
 			this.mitemDeConnexion.setDisable(false);
+			this.mitemPrelevement.setDisable(false);
 			this.btnConn.setVisible(false);
 			this.btnDeconn.setVisible(true);
 		} else {
@@ -193,6 +196,7 @@ public class DailyBankMainFrameController {
 			this.mitemEmploye.setDisable(true);
 			this.mitemConnexion.setDisable(false);
 			this.mitemDeConnexion.setDisable(true);
+			this.mitemPrelevement.setDisable(true);
 			this.btnConn.setVisible(true);
 			this.btnDeconn.setVisible(false);
 		}
@@ -214,6 +218,10 @@ public class DailyBankMainFrameController {
 	@FXML
 	private void doEmployeOption() {
 		this.dbmfDialogController.gestionEmployes();
+	}
+	@FXML
+	private void doPrelevementOption() {
+		this.dbmfDialogController.gestionPrelevement();
 	}
 
 	/*

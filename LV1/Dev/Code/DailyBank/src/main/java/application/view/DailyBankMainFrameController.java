@@ -101,6 +101,8 @@ public class DailyBankMainFrameController {
 	@FXML
 	private MenuItem mitemQuitter;
 	@FXML
+	private MenuItem mitememprunt;
+	@FXML
 	private Button btnConn;
 	@FXML
 	private Button btnDeconn;
@@ -148,6 +150,11 @@ public class DailyBankMainFrameController {
 	@FXML
 	private void doDisconnect() {
 		this.dbmfDialogController.deconnexionEmploye();
+		this.validateComponentState();
+	}
+	@FXML
+	private void doSimulerEmprunt() {
+		this.dbmfDialogController.simulerEmprunt();
 		this.validateComponentState();
 	}
 
