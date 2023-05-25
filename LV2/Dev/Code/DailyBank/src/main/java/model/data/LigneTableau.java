@@ -64,7 +64,4 @@ public class LigneTableau {
 	public void setCapf(String capf) {
 		this.capf = capf;
 	}
-
-
 }
-

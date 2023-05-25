@@ -218,8 +218,6 @@ public class Access_BD_Client {
 		}
 	}
 
-
-
 	/**
 	 * Mise à jour d'un Client.
 	 *

@@ -181,11 +181,9 @@ public class CompteEditorPaneController {
 			this.primaryStage.close();
 			break;
 		}
-
 	}
-
+	
 	private boolean isSaisieValide() {
-
 		return true;
 	}
 }

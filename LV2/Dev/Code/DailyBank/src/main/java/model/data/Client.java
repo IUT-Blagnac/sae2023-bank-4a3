@@ -38,5 +38,4 @@ public class Client {
 		return "[" + this.idNumCli + "]  " + this.nom.toUpperCase() + " " + this.prenom + " (" + this.email + ") {"
 				+ this.telephone + "}";
 	}
-
 }

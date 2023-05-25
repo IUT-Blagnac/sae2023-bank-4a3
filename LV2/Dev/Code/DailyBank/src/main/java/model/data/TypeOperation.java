@@ -25,5 +25,4 @@ public class TypeOperation {
 	public String toString() {
 		return "TypeOperation [idTypeOp=" + this.idTypeOp + "]";
 	}
-
 }

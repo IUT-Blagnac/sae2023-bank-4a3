@@ -335,5 +335,4 @@ public class TableauAmortissementController {
 	private void doCancel() {
 		this.primaryStage.close();
 	}
-
 }

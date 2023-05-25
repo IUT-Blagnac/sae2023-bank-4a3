@@ -47,7 +47,4 @@ public class TableauAmortissement {
 	public void doTableauDialog() {
 		this.tacViewController.displayDialog();
 	}
-
-
-
 }

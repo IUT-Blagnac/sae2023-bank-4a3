@@ -61,5 +61,3 @@ public class PrelevementEditorPane {
 		return this.pecViewController.displayDialog(pm, em);
 	}
 }
-
-

@@ -106,7 +106,6 @@ public class OperationsManagementController {
 
 	@FXML
 	private void doDebit() {
-
 		Operation op = this.omDialogController.enregistrerDebit();
 		if (op != null) {
 			this.updateInfoCompteClient();
@@ -126,7 +125,6 @@ public class OperationsManagementController {
 			doc.add(par1);
 			doc.add(new Paragraph(""));
 
-
 			//Font a = new Font(FontFamily.HELVETICA, 15.0f, Font.BOLD, BaseColor.BLACK);
 			Paragraph par2 = new Paragraph("Le relevé de " + this.clientDuCompte.nom + "  " + this.clientDuCompte.prenom + "\n"
 											+ "Le numéro du compte : " + this.compteConcerne.idNumCompte);
@@ -142,15 +140,14 @@ public class OperationsManagementController {
 				doc.add(new Paragraph(element.toString()));
 			}
 
-
 			doc.close();
 			Desktop.getDesktop().open(new File(""+this.clientDuCompte.nom+this.clientDuCompte.prenom+this.compteConcerne.idNumCompte+".pdf"));
 
-		}catch(FileNotFoundException e) {
+		} catch(FileNotFoundException e) {
 			e.printStackTrace();
-		}catch(DocumentException e) {
+		} catch(DocumentException e) {
 			e.printStackTrace();
-		}catch(IOException e) {
+		} catch(IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -175,21 +172,20 @@ public class OperationsManagementController {
 
 	private void validateComponentState() {
 		// Non implémenté => désactivé
-		if(ConstantesIHM.estCloture(compteConcerne)|| ConstantesIHM.estInactif(clientDuCompte)) {
+		if (ConstantesIHM.estCloture(compteConcerne)|| ConstantesIHM.estInactif(clientDuCompte)) {
 			this.btnCredit.setDisable(true);
 			this.btnDebit.setDisable(true);
 			this.btnReleve.setDisable(true);
 			this.btnVirement.setDisable(true);
-		}else {
-		this.btnCredit.setDisable(false);
-		this.btnDebit.setDisable(false);
-		this.btnReleve.setDisable(false);
-		this.btnVirement.setDisable(false);
-			}
+		} else {
+			this.btnCredit.setDisable(false);
+			this.btnDebit.setDisable(false);
+			this.btnReleve.setDisable(false);
+			this.btnVirement.setDisable(false);
+		}
 	}
 
 	private void updateInfoCompteClient() {
-
 		PairsOfValue<CompteCourant, ArrayList<Operation>> opesEtCompte;
 
 		opesEtCompte = this.omDialogController.operationsEtSoldeDunCompte();

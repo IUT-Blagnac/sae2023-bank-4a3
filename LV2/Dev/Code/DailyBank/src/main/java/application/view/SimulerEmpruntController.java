@@ -1,8 +1,5 @@
 package application.view;
 
-
-
-
 import application.DailyBankState;
 import application.control.SimulationEmprunt;
 import application.tools.TypeEmprunt;
@@ -12,8 +9,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-
-
 
 public class SimulerEmpruntController {
 
@@ -60,14 +55,17 @@ public class SimulerEmpruntController {
 		e.consume();
 		return null;
 	}
+	
 	@FXML
 	private void doMois() {
 		this.te = TypeEmprunt.MOIS;
 	}
+	
 	@FXML
 	private void doAnnee() {
 		this.te = TypeEmprunt.ANNEE;
 	}
+	
 	@FXML
 	private void doAssurance() {
 		this.Assurance.setVisible(true);
@@ -78,9 +76,10 @@ public class SimulerEmpruntController {
 	private void doCancel() {
 		this.primaryStage.close();
 	}
+	
 	@FXML
 	private void Valider() {
-		if(this.ts == TypeSimu.ASSURANCE) {
+		if (this.ts == TypeSimu.ASSURANCE) {
 			this.tauxA = Double.parseDouble(this.Assurance.getText());
 		} else {
 			this.tauxA=0;
@@ -89,7 +88,5 @@ public class SimulerEmpruntController {
 		this.duree = Integer.parseInt(this.tfduree.getText());
 		this.taux = Double.parseDouble(this.tftaux.getText());
 		this.seDialogController.simulation(this.montant, this.taux,this.tauxA,this.duree,this.te,this.ts);
-
-
 	}
 }

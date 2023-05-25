@@ -96,21 +96,18 @@ public class PrelevementEditorController {
 	@FXML
 	private void doAjouter() {
 		switch (this.editionMode) {
-		case CREATION:
-			if (this.isSaisieValide()) {
-				this.prelevementResultat = this.prelevementEdite;
-				this.primaryStage.close();
-			}
-			break;
-		case MODIFICATION:
-
-			break;
-		case SUPPRESSION:
-			break;
-
-			}
-
+			case CREATION:
+				if (this.isSaisieValide()) {
+					this.prelevementResultat = this.prelevementEdite;
+					this.primaryStage.close();
+				}
+				break;
+			case MODIFICATION:
+				break;
+			case SUPPRESSION:
+				break;
 		}
+	}
 
 	private boolean isSaisieValide() {
 		this.prelevementEdite.montant = Integer.parseInt(this.txtmontant.getText().trim());
@@ -120,11 +117,6 @@ public class PrelevementEditorController {
 
 		return true;
 	}
-
-
-
-
-
 
 	@FXML
 	private Label lblMessage;
@@ -142,5 +134,4 @@ public class PrelevementEditorController {
 	private Button butOk;
 	@FXML
 	private Button butCancel;
-
 }

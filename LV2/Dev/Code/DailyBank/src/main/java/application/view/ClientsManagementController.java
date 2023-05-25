@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import application.DailyBankState;
 import application.control.ClientsManagement;
+import application.tools.AlertUtilities;
 import application.tools.ConstantesIHM;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.data.Client;
@@ -162,6 +164,7 @@ public class ClientsManagementController {
 		int selectedIndice = this.lvClients.getSelectionModel().getSelectedIndex();
 		if (selectedIndice >= 0) {
 			Client cliMod = this.oListClients.get(selectedIndice);
+			if(!AlertUtilities.confirmYesCancel(this.primaryStage, "Désactiver client", "Êtes-vous sûr de vouloir désactiver ce client ?", "Tout client désactivé ne peut pas être réactivé.\n\nClient :\nID : " + cliMod.idNumCli + "\nNom : " + cliMod.nom + "\nPrénom : " + cliMod.prenom + "\nAdresse postale : " + cliMod.adressePostale + "\nEmail : " + cliMod.email + "\nTéléphone : " + cliMod.telephone, AlertType.CONFIRMATION)) return;
 			Client result = this.cmDialogController.clientInactif(cliMod);
 			if (result != null) {
 				this.oListClients.set(selectedIndice, result);

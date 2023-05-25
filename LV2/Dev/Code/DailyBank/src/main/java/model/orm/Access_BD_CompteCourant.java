@@ -135,8 +135,8 @@ public class Access_BD_CompteCourant {
 	 *                                           rapport au débitAutorisé (solde <
 	 *                                           débitAutorisé)
 	 */
-	public void updateCompteCourant(CompteCourant cc) throws RowNotFoundOrTooManyRowsException, DataAccessException,
-			DatabaseConnexionException, ManagementRuleViolation {
+	public void updateCompteCourant(CompteCourant cc)
+			throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException, ManagementRuleViolation {
 		try {
 
 			CompteCourant cAvant = this.getCompteCourant(cc.idNumCompte);
@@ -170,9 +170,9 @@ public class Access_BD_CompteCourant {
 		}
 	}
 
-	public void cloturerCompte(CompteCourant cc) throws RowNotFoundOrTooManyRowsException, DataAccessException,
-	DatabaseConnexionException, ManagementRuleViolation {
-try {
+	public void cloturerCompte(CompteCourant cc)
+		throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException, ManagementRuleViolation {
+		try {
 
 	CompteCourant cAvant = this.getCompteCourant(cc.idNumCompte);
 	if (cc.debitAutorise > 0) {
@@ -247,5 +247,4 @@ try {
 			throw new DataAccessException(Table.CompteCourant, Order.INSERT, "Erreur accès", e);
 		}
 	}
-
 }

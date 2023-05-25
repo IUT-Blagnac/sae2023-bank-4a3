@@ -59,7 +59,4 @@ public class SimulationEmprunt {
 		TableauAmortissement ta = new TableauAmortissement(this.primaryStage, this.dailyBankState, montant, taux,tauxA, duree,te,ts);
 		ta.doTableauDialog();
 	}
-
-
-
 }

@@ -10,15 +10,13 @@ import model.data.Prelevement;
 public class PrelevementManagementController {
 
 	// Etat courant de l'application
-		private DailyBankState dailyBankState;
+	private DailyBankState dailyBankState;
+	
+	// Contrôleur de Dialogue associé à ClientsManagementController
+	private PrelevementManagement pmDialogController;
 
-		// Contrôleur de Dialogue associé à ClientsManagementController
-		private PrelevementManagement pmDialogController;
-
-		// Fenêtre physique ou est la scène contenant le fichier xml contrôlé par this
-		private Stage primaryStage;
-
-
+	// Fenêtre physique ou est la scène contenant le fichier xml contrôlé par this
+	private Stage primaryStage;
 
 	public void initContext(Stage _containingStage, PrelevementManagement _pm, DailyBankState _dbstate) {
 		this.pmDialogController = _pm;
@@ -29,8 +27,6 @@ public class PrelevementManagementController {
 
 	private void configure() {
 		this.primaryStage.setOnCloseRequest(e -> this.closeWindow(e));
-
-
 		this.validateComponentState();
 	}
 
@@ -49,6 +45,7 @@ public class PrelevementManagementController {
 	private void doCancel() {
 		this.primaryStage.close();
 	}
+	
 	@FXML
 	private void doNouveauPrelevement() {
 		Prelevement pm;

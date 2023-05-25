@@ -15,11 +15,4 @@ public class Prelevement {
 		this.beneficiaire = beneficiaire;
 		this.idNumCompte = idNumCompte;
 	}
-
-	public Prelevement(Prelevement pm) {
-		// TODO Auto-generated constructor stub
-	}
-
-
-
 }

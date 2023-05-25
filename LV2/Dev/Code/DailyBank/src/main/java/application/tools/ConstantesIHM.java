@@ -113,5 +113,4 @@ public class ConstantesIHM {
 	public static boolean estInactif(Client c) {
 		return c.estInactif.equals(ConstantesIHM.CLIENT_INACTIF);
 	}
-
 }
