@@ -21,7 +21,7 @@ public class EmployeEditorPane {
 	private Stage primaryStage;
 	private EmployeEditorPaneController cepcViewController;
 	private DailyBankState dailyBankState;
-	
+
 	/**
      * Constructeur de la classe EmployeEditorPane.
      *

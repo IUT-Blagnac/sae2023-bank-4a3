@@ -2,7 +2,6 @@ package application.view;
 
 import java.util.Locale;
 
-
 import application.DailyBankState;
 import application.tools.AlertUtilities;
 import application.tools.CategorieOperation;
@@ -57,7 +56,6 @@ public class OperationEditorPaneController {
 
 		switch (mode) {
 		case DEBIT:
-
 			String info = "Cpt. : " + this.compteEdite.idNumCompte + "  "
 					+ String.format(Locale.ENGLISH, "%12.02f", this.compteEdite.solde) + "  /  "
 					+ String.format(Locale.ENGLISH, "%8d", this.compteEdite.debitAutorise);
@@ -121,7 +119,7 @@ public class OperationEditorPaneController {
 		this.primaryStage.showAndWait();
 		return this.operationResultat;
 	}
-	
+
 
 
 
@@ -224,7 +222,7 @@ public class OperationEditorPaneController {
 				this.txtMontant.requestFocus();
 				return;
 			}
-			
+
 			String typeOpC = this.cbTypeOpe.getValue();
 			this.operationResultat = new Operation(-1, montantC, null, null, this.compteEdite.idNumCli, typeOpC);
 			this.primaryStage.close();
@@ -250,12 +248,12 @@ public class OperationEditorPaneController {
 				this.txtMontant.requestFocus();
 				return;
 			}
-			
+
 			String typeOpV = this.cbTypeOpe.getValue();
 			this.operationResultat = new Operation(-1, montantV, null, null, this.compteEdite.idNumCli, typeOpV);
 			this.primaryStage.close();
 			break;
-			
+
 		}
 	}
 }

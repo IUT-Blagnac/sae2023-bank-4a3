@@ -28,7 +28,8 @@ public class Access_BD_TypeOperation {
 	 *                                    formée ou autre)
 	 * @throws DatabaseConnexionException Erreur de connexion
 	 */
-	public ArrayList<TypeOperation> getTypeOperations() throws DataAccessException, DatabaseConnexionException {
+	public ArrayList<TypeOperation> getTypeOperations()
+			throws DataAccessException, DatabaseConnexionException {
 
 		ArrayList<TypeOperation> alResult = new ArrayList<>();
 

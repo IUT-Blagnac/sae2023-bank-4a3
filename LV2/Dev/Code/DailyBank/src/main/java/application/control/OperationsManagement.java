@@ -68,8 +68,8 @@ public class OperationsManagement {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
+
 
 	/**
      * Affiche la boîte de dialogue de gestion des opérations.
@@ -88,9 +88,9 @@ public class OperationsManagement {
 		if (op != null) {
 			try {
 				Access_BD_Operation ao = new Access_BD_Operation();
-				if(ConstantesIHM.isAdmin(this.dailyBankState.getEmployeActuel())) {					
+				if(ConstantesIHM.isAdmin(this.dailyBankState.getEmployeActuel())) {
 					ao.insertDebitExceptionnel(this.compteConcerne.idNumCompte, op.montant, op.idTypeOp);
-				} else {					
+				} else {
 					ao.insertDebit(this.compteConcerne.idNumCompte, op.montant, op.idTypeOp);
 				}
 			} catch (DatabaseConnexionException e) {
@@ -106,7 +106,7 @@ public class OperationsManagement {
 		}
 		return op;
 	}
-	
+
 	public Operation enregistrerVirement() {
 
 		OperationEditorPane oep = new OperationEditorPane(this.primaryStage, this.dailyBankState);
@@ -131,7 +131,7 @@ public class OperationsManagement {
 		}
 		return op;
 	}
-	
+
 	public Operation enregistrerCredit() {
 
 		OperationEditorPane oep = new OperationEditorPane(this.primaryStage, this.dailyBankState);
@@ -155,8 +155,8 @@ public class OperationsManagement {
 		}
 		return op;
 	}
-	
-	
+
+
 
 	/**
      * Récupère les opérations et le solde d'un compte.
@@ -184,7 +184,6 @@ public class OperationsManagement {
 			ed.doExceptionDialog();
 			listeOP = new ArrayList<>();
 		}
-		System.out.println(this.compteConcerne.solde);
 		return new PairsOfValue<>(this.compteConcerne, listeOP);
 	}
 }

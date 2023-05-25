@@ -9,19 +9,12 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Font.FontFamily;
-import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
-import com.itextpdf.text.Rectangle;
-import com.itextpdf.text.pdf.PdfDocument;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import application.DailyBankState;
@@ -113,14 +106,13 @@ public class OperationsManagementController {
 
 	@FXML
 	private void doDebit() {
-
 		Operation op = this.omDialogController.enregistrerDebit();
 		if (op != null) {
 			this.updateInfoCompteClient();
 			this.validateComponentState();
 		}
 	}
-	
+
 	@FXML
 	private void doReleve() {
 		Document doc = new Document();
@@ -132,8 +124,7 @@ public class OperationsManagementController {
 			par1.setAlignment(Element.ALIGN_CENTER);
 			doc.add(par1);
 			doc.add(new Paragraph(""));
-			
-	        
+
 			//Font a = new Font(FontFamily.HELVETICA, 15.0f, Font.BOLD, BaseColor.BLACK);
 			Paragraph par2 = new Paragraph("Le relevé de " + this.clientDuCompte.nom + "  " + this.clientDuCompte.prenom + "\n"
 											+ "Le numéro du compte : " + this.compteConcerne.idNumCompte);
@@ -145,19 +136,18 @@ public class OperationsManagementController {
 			doc.add(new Paragraph(""));
 			doc.add(new Paragraph("--------------------------------------------------------------------------------------"));
 			doc.add(new Paragraph(""));
-			for(int i=0;i<listeOP.size();i++) {
-				doc.add(new Paragraph(listeOP.get(i).toString()));
+			for (Operation element : listeOP) {
+				doc.add(new Paragraph(element.toString()));
 			}
-			
-			
+
 			doc.close();
 			Desktop.getDesktop().open(new File(""+this.clientDuCompte.nom+this.clientDuCompte.prenom+this.compteConcerne.idNumCompte+".pdf"));
-			
-		}catch(FileNotFoundException e) {
+
+		} catch(FileNotFoundException e) {
 			e.printStackTrace();
-		}catch(DocumentException e) {
+		} catch(DocumentException e) {
 			e.printStackTrace();
-		}catch(IOException e) {
+		} catch(IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -182,21 +172,20 @@ public class OperationsManagementController {
 
 	private void validateComponentState() {
 		// Non implémenté => désactivé
-		if(ConstantesIHM.estCloture(compteConcerne)|| ConstantesIHM.estInactif(clientDuCompte)) {
+		if (ConstantesIHM.estCloture(compteConcerne)|| ConstantesIHM.estInactif(clientDuCompte)) {
 			this.btnCredit.setDisable(true);
 			this.btnDebit.setDisable(true);
 			this.btnReleve.setDisable(true);
 			this.btnVirement.setDisable(true);
-		}else {
-		this.btnCredit.setDisable(false);
-		this.btnDebit.setDisable(false);
-		this.btnReleve.setDisable(false);
-		this.btnVirement.setDisable(false);
-			}
+		} else {
+			this.btnCredit.setDisable(false);
+			this.btnDebit.setDisable(false);
+			this.btnReleve.setDisable(false);
+			this.btnVirement.setDisable(false);
+		}
 	}
 
 	private void updateInfoCompteClient() {
-
 		PairsOfValue<CompteCourant, ArrayList<Operation>> opesEtCompte;
 
 		opesEtCompte = this.omDialogController.operationsEtSoldeDunCompte();

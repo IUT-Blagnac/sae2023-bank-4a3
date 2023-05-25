@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import model.data.Client;
 import model.data.CompteCourant;
 import model.orm.exception.DataAccessException;
 import model.orm.exception.DatabaseConnexionException;
@@ -136,8 +135,8 @@ public class Access_BD_CompteCourant {
 	 *                                           rapport au débitAutorisé (solde <
 	 *                                           débitAutorisé)
 	 */
-	public void updateCompteCourant(CompteCourant cc) throws RowNotFoundOrTooManyRowsException, DataAccessException,
-			DatabaseConnexionException, ManagementRuleViolation {
+	public void updateCompteCourant(CompteCourant cc)
+			throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException, ManagementRuleViolation {
 		try {
 
 			CompteCourant cAvant = this.getCompteCourant(cc.idNumCompte);
@@ -170,10 +169,10 @@ public class Access_BD_CompteCourant {
 			throw new DataAccessException(Table.CompteCourant, Order.UPDATE, "Erreur accès", e);
 		}
 	}
-	
-	public void cloturerCompte(CompteCourant cc) throws RowNotFoundOrTooManyRowsException, DataAccessException,
-	DatabaseConnexionException, ManagementRuleViolation {
-try {
+
+	public void cloturerCompte(CompteCourant cc)
+		throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException, ManagementRuleViolation {
+		try {
 
 	CompteCourant cAvant = this.getCompteCourant(cc.idNumCompte);
 	if (cc.debitAutorise > 0) {
@@ -189,7 +188,7 @@ try {
 
 	PreparedStatement pst = con.prepareStatement(query);
 	pst.setInt(1, cc.idNumCompte);
-	
+
 
 	System.err.println(query);
 
@@ -205,7 +204,7 @@ try {
 	throw new DataAccessException(Table.CompteCourant, Order.UPDATE, "Erreur accès", e);
 }
 }
-	
+
 	public void insertCompte(CompteCourant compte)
 			throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException {
 		try {
@@ -248,5 +247,4 @@ try {
 			throw new DataAccessException(Table.CompteCourant, Order.INSERT, "Erreur accès", e);
 		}
 	}
-	
 }

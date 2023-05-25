@@ -1,22 +1,18 @@
 package application.view;
 
 import java.util.ArrayList;
-import model.orm.Access_BD_Employe;
 
 import application.DailyBankState;
 import application.control.EmployesManagement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import model.data.CompteCourant;
 import model.data.Employe;
 
 public class EmployesManagementController {

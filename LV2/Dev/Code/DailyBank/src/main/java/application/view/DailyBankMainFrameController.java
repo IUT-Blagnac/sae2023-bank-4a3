@@ -1,7 +1,5 @@
 package application.view;
 
-import java.time.LocalDate;
-
 import application.DailyBankState;
 import application.control.DailyBankMainFrame;
 import application.tools.AlertUtilities;
@@ -102,7 +100,7 @@ public class DailyBankMainFrameController {
 	private MenuItem mitemQuitter;
 	@FXML
 	private MenuItem mitememprunt;
-	@FXML 
+	@FXML
 	private MenuItem mitemPrelevement;
 	@FXML
 	private Button btnConn;
@@ -181,7 +179,6 @@ public class DailyBankMainFrameController {
 			} else {
 				this.mitemEmploye.setDisable(true);
 				this.mitememprunt.setDisable(true);
-				
 			}
 			this.mitemClient.setDisable(false);
 			this.mitemConnexion.setDisable(true);

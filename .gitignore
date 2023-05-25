@@ -1,8 +1,10 @@
 **/.metadata/**
 **/.settings/**
 **/target/**
-**/*.class
+**/.metadata/**
 /*.pdf
-**/.classpath
+*.class
+.classpath
+.project
 .DS_Store
 Thumbs.db

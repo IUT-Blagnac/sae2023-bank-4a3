@@ -1,10 +1,10 @@
 package application.view;
 
 import java.util.ArrayList;
-import model.orm.Access_BD_Client;
 
 import application.DailyBankState;
 import application.control.ClientsManagement;
+import application.tools.AlertUtilities;
 import application.tools.ConstantesIHM;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.data.Client;
@@ -30,7 +31,6 @@ public class ClientsManagementController {
 
 	// Données de la fenêtre
 	private ObservableList<Client> oListClients;
-	
 
 	// Manipulation de la fenêtre
 	public void initContext(Stage _containingStage, ClientsManagement _cm, DailyBankState _dbstate) {
@@ -49,6 +49,7 @@ public class ClientsManagementController {
 		this.lvClients.getFocusModel().focus(-1);
 		this.lvClients.getSelectionModel().selectedItemProperty().addListener(e -> this.validateComponentState());
 		this.validateComponentState();
+		this.doRechercher();
 	}
 
 	public void displayDialog() {
@@ -135,10 +136,18 @@ public class ClientsManagementController {
 			this.cmDialogController.gererComptesClient(client);
 		}
 	}
+	
+	@FXML
+	private void doNouveauClient() {
+		Client client;
+		client = this.cmDialogController.nouveauClient();
+		if (client != null) {
+			this.oListClients.add(client);
+		}
+	}
 
 	@FXML
 	private void doModifierClient() {
-
 		int selectedIndice = this.lvClients.getSelectionModel().getSelectedIndex();
 		if (selectedIndice >= 0) {
 			Client cliMod = this.oListClients.get(selectedIndice);
@@ -151,16 +160,15 @@ public class ClientsManagementController {
 
 	@FXML
 	private void doDesactiverClient() {
-	
-		
-	}
-
-	@FXML
-	private void doNouveauClient() {
-		Client client;
-		client = this.cmDialogController.nouveauClient();
-		if (client != null) {
-			this.oListClients.add(client);
+		if(!ConstantesIHM.isAdmin(this.dailyBankState.getEmployeActuel())) return;
+		int selectedIndice = this.lvClients.getSelectionModel().getSelectedIndex();
+		if (selectedIndice >= 0) {
+			Client cliMod = this.oListClients.get(selectedIndice);
+			if(!AlertUtilities.confirmYesCancel(this.primaryStage, "Désactiver client", "Êtes-vous sûr de vouloir désactiver ce client ?", "Tout client désactivé ne peut pas être réactivé.\n\nClient :\nID : " + cliMod.idNumCli + "\nNom : " + cliMod.nom + "\nPrénom : " + cliMod.prenom + "\nAdresse postale : " + cliMod.adressePostale + "\nEmail : " + cliMod.email + "\nTéléphone : " + cliMod.telephone, AlertType.CONFIRMATION)) return;
+			Client result = this.cmDialogController.clientInactif(cliMod);
+			if (result != null) {
+				this.oListClients.set(selectedIndice, result);
+			}
 		}
 	}
 
@@ -168,18 +176,18 @@ public class ClientsManagementController {
 		// Non implémenté => désactivé
 		this.btnDesactClient.setDisable(true);
 		int selectedIndice = this.lvClients.getSelectionModel().getSelectedIndex();
-		Client client = this.oListClients.get(selectedIndice);
-		
-		if (selectedIndice >= 0 && ConstantesIHM.estActif(client)) {
-			this.btnModifClient.setDisable(false);
-			this.btnComptesClient.setDisable(false);
-			if(ConstantesIHM.isAdmin(this.dailyBankState.getEmployeActuel())) {
-			this.btnDesactClient.setDisable(false);
+
+		if (selectedIndice >= 0) {
+			if(ConstantesIHM.estActif(this.oListClients.get(selectedIndice))) {
+				this.btnModifClient.setDisable(false);
+				this.btnComptesClient.setDisable(false);
+				if(ConstantesIHM.isAdmin(this.dailyBankState.getEmployeActuel())) {
+					this.btnDesactClient.setDisable(false);
+				}
+			} else {
+				this.btnModifClient.setDisable(true);
 			}
-		}else if(ConstantesIHM.estInactif(client)){
-			this.btnModifClient.setDisable(true);
-		} 
-		else {
+		} else {
 			this.btnModifClient.setDisable(true);
 			this.btnComptesClient.setDisable(true);
 			this.btnDesactClient.setDisable(true);

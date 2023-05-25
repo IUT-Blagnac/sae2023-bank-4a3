@@ -9,10 +9,10 @@ C'est pour cela que Andrii et Daria ont les mêmes tâches, qu'Andrii fait les t
 
 == Présentation de l'équipe
 
-https://github.com/Andrii4A[Andrii] +
-https://github.com/madblurryface[Daria] +
-https://github.com/evanl44730[Evan] +
-https://github.com/Maxeuh[Maxence]
+https://github.com/Andrii4A[DIDENKO Andrii] +
+https://github.com/evanl44730[LAMOUR Evan] +
+https://github.com/Maxeuh[KRILL Maxence] +
+https://github.com/madblurryface[SHULHINA Daria]
 
 == Répartition des tâches et état d'avancement
 [options="header,footer"]

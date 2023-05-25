@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import model.data.Client;
 import model.data.Employe;
 import model.orm.exception.DataAccessException;
 import model.orm.exception.DatabaseConnexionException;
@@ -82,7 +81,7 @@ public class Access_BD_Employe {
 			throw new DataAccessException(Table.Employe, Order.SELECT, "Erreur accès", e);
 		}
 	}
-	
+
 	/**
 	 * Recherche des employés paramétrée (tous/un seul par id/par nom-prénom).
 	 *
@@ -159,7 +158,7 @@ public class Access_BD_Employe {
 
 		return alResult;
 	}
-	
+
 	/**
 	 * Recherche de employe par son id.
 	 *
@@ -317,7 +316,7 @@ public class Access_BD_Employe {
 			throw new DataAccessException(Table.Employe, Order.UPDATE, "Erreur accès", e);
 		}
 	}
-	
+
 	/**
 	 * Suppression d'un employé.
 	 *

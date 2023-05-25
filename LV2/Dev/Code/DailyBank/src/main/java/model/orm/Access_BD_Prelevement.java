@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import model.data.Client;
 import model.data.Prelevement;
 import model.orm.exception.DataAccessException;
 import model.orm.exception.DatabaseConnexionException;
@@ -14,9 +13,9 @@ import model.orm.exception.RowNotFoundOrTooManyRowsException;
 import model.orm.exception.Table;
 
 public class Access_BD_Prelevement {
-	
+
 	public Access_BD_Prelevement(){
-		
+
 	}
 
 	public void insertPrelevement(Prelevement pre)

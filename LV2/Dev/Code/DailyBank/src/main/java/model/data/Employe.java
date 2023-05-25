@@ -38,7 +38,7 @@ public class Employe {
 		if(this.droitsAccess.startsWith("chefAgence")) {
 			return display + "Chef d'agence";
 		} else {
-			return display + "Guichetier";			
+			return display + "Guichetier";
 		}
 	}
 }
