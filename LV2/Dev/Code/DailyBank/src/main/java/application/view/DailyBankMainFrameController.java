@@ -175,8 +175,10 @@ public class DailyBankMainFrameController {
 			this.lblEmpPrenom.setText(e.prenom);
 			if (this.dailyBankState.isChefDAgence()) {
 				this.mitemEmploye.setDisable(false);
+				this.mitememprunt.setDisable(false);
 			} else {
 				this.mitemEmploye.setDisable(true);
+				this.mitememprunt.setDisable(true);
 			}
 			this.mitemClient.setDisable(false);
 			this.mitemConnexion.setDisable(true);
@@ -192,6 +194,7 @@ public class DailyBankMainFrameController {
 
 			this.mitemClient.setDisable(true);
 			this.mitemEmploye.setDisable(true);
+			this.mitememprunt.setDisable(true);
 			this.mitemConnexion.setDisable(false);
 			this.mitemDeConnexion.setDisable(true);
 			this.mitemPrelevement.setDisable(true);
