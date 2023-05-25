@@ -145,7 +145,7 @@ public class Access_BD_CompteCourant {
 			}
 			if (cAvant.solde < cc.debitAutorise) {
 				throw new ManagementRuleViolation(Table.CompteCourant, Order.UPDATE,
-						"Erreur de règle de gestion : sole à découvert", null);
+						"Erreur de règle de gestion : solde à découvert", null);
 			}
 			Connection con = LogToDatabase.getConnexion();
 
@@ -180,7 +180,7 @@ public class Access_BD_CompteCourant {
 	}
 	if (cAvant.solde < cc.debitAutorise) {
 		throw new ManagementRuleViolation(Table.CompteCourant, Order.UPDATE,
-				"Erreur de règle de gestion : sole à découvert", null);
+				"Erreur de règle de gestion : solde à découvert", null);
 	}
 	Connection con = LogToDatabase.getConnexion();
 

@@ -49,7 +49,7 @@ public class CompteEditorPaneController {
 		this.clientDuCompte = client;
 		this.editionMode = mode;
 		if (cpte == null) {
-			this.compteEdite = new CompteCourant(0, 200, 0, "N", this.clientDuCompte.idNumCli);
+			this.compteEdite = new CompteCourant(0, 100, 0, "N", this.clientDuCompte.idNumCli);
 		} else {
 			this.compteEdite = new CompteCourant(cpte);
 		}
@@ -67,13 +67,16 @@ public class CompteEditorPaneController {
 			this.btnCancel.setText("Annuler");
 			break;
 		case MODIFICATION:
-			AlertUtilities.showAlert(this.primaryStage, "Non implémenté", "Modif de compte n'est pas implémenté", null,
-					AlertType.ERROR);
-			return null;
-//		   break;
+			this.txtDecAutorise.setDisable(false);
+			this.txtSolde.setDisable(false);
+			this.lblMessage.setText("Informations sur le compte à modifier");
+			this.lblSolde.setText("Solde");
+			this.txtSolde.setDisable(true);
+			this.btnOk.setText("Modifier");
+			this.btnCancel.setText("Annuler");
+			break;
 		case SUPPRESSION:
-			AlertUtilities.showAlert(this.primaryStage, "Non implémenté", "Suppression de compte n'est pas implémenté",
-					null, AlertType.ERROR);
+			AlertUtilities.showAlert(this.primaryStage, "Non implémenté", "Suppression de compte n'est pas implémenté", null, AlertType.ERROR);
 			return null;
 //		   break;
 		}
@@ -86,9 +89,12 @@ public class CompteEditorPaneController {
 		// initialisation du contenu des champs
 		this.txtIdclient.setText("" + this.compteEdite.idNumCli);
 		this.txtIdNumCompte.setText("" + this.compteEdite.idNumCompte);
+		if(mode == EditionMode.CREATION) {
+			this.txtIdNumCompte.setText("");
+		}
 		this.txtIdAgence.setText("" + this.dailyBankState.getEmployeActuel().idAg);
 		this.txtDecAutorise.setText("" + this.compteEdite.debitAutorise);
-		this.txtSolde.setText(String.format(Locale.ENGLISH, "%10.02f", this.compteEdite.solde));
+		this.txtSolde.setText("" + this.compteEdite.solde);
 
 		this.compteResultat = null;
 
@@ -128,10 +134,10 @@ public class CompteEditorPaneController {
 				}
 				this.compteEdite.solde = val;
 			} catch (NumberFormatException nfe) {
-				this.txtSolde.setText(String.format(Locale.ENGLISH, "%10.02f", this.compteEdite.solde));
+				this.txtSolde.setText("" + this.compteEdite.solde);
 			}
 		}
-		this.txtSolde.setText(String.format(Locale.ENGLISH, "%10.02f", this.compteEdite.solde));
+		this.txtSolde.setText("" + this.compteEdite.solde);
 		return null;
 	}
 
@@ -184,6 +190,10 @@ public class CompteEditorPaneController {
 	}
 	
 	private boolean isSaisieValide() {
+		if(this.compteEdite.solde < this.compteEdite.debitAutorise) {
+			AlertUtilities.showAlert(this.primaryStage, "Erreur de saisie", "Le solde du compte est inférieur au découvert autorisé", "Un compte ne peut pas être créé/édité si le solde est inférieur au découvert.\n\nSolde : " + this.compteEdite.solde + " €\nDécouvert autorisé : -" + this.compteEdite.debitAutorise + " €\n\nDifférence : -" + (0 - this.compteEdite.debitAutorise - this.compteEdite.solde) + " €", AlertType.WARNING);
+			return false;
+		}
 		return true;
 	}
 }

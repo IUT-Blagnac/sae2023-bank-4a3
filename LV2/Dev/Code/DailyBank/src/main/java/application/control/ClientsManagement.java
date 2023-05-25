@@ -119,6 +119,31 @@ public class ClientsManagement {
 		}
 		return result;
 	}
+
+	/**
+     * Vérifie si les comptes d'un client sont tous clôturés
+     *
+     * @return Le nombre de comptes ouverts du client
+     */
+	public int verifierCloturer(Client cliMod) {
+		int comptesOuverts = -1;
+		if (cliMod != null) {
+			try {
+				Access_BD_Client ac = new Access_BD_Client();
+				comptesOuverts = ac.verifierCloturer(cliMod.idNumCli);
+			} catch (DatabaseConnexionException e) {
+				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
+				ed.doExceptionDialog();
+				cliMod = null;
+				this.primaryStage.close();
+			} catch (ApplicationException ae) {
+				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, ae);
+				ed.doExceptionDialog();
+				cliMod = null;
+			}
+		}
+		return comptesOuverts;
+    }
 	
 	/**
      * Désactive un client.

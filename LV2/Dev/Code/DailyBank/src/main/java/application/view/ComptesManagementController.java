@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import application.DailyBankState;
 import application.control.ComptesManagement;
+import application.tools.AlertUtilities;
 import application.tools.ConstantesIHM;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -105,28 +106,6 @@ public class ComptesManagementController {
 	}
 
 	@FXML
-	private void doModifierCompte() {
-	}
-
-	@FXML
-	private void doSupprimerCompte() {
-		int selectedIndice = this.lvComptes.getSelectionModel().getSelectedIndex();
-		if (selectedIndice >= 0) {
-			CompteCourant cpt = this.oListCompteCourant.get(selectedIndice);
-			if(cpt.solde==0) {
-			this.cmDialogController.cloturerCompte(cpt);
-			}
-			else {
-					Alert al = new Alert(AlertType.WARNING);
-					al.setHeaderText("Votre compte n'est pas vide");
-					al.show();
-			}
-		}
-		this.loadList();
-		this.validateComponentState();
-	}
-
-	@FXML
 	private void doNouveauCompte() {
 		CompteCourant compte;
 		compte = this.cmDialogController.creerNouveauCompte();
@@ -135,6 +114,36 @@ public class ComptesManagementController {
 			lvComptes.setItems(oListCompteCourant);
 			this.cmDialogController.creerNouveauCompte();
 		}
+	}
+
+	@FXML
+	private void doModifierCompte() {
+		int selectedIndice = this.lvComptes.getSelectionModel().getSelectedIndex();
+		if (selectedIndice >= 0) {
+			CompteCourant cptMod = this.oListCompteCourant.get(selectedIndice);
+			CompteCourant result = this.cmDialogController.modifierCompte(cptMod);
+			if (result != null) {
+				this.oListCompteCourant.set(selectedIndice, result);
+			}
+		}
+		this.loadList();
+		this.validateComponentState();
+	}
+
+	@FXML
+	private void doSupprimerCompte() {
+		int selectedIndice = this.lvComptes.getSelectionModel().getSelectedIndex();
+		if (selectedIndice >= 0) {
+			CompteCourant cpt = this.oListCompteCourant.get(selectedIndice);
+			if (cpt.solde == 0) {
+				if(!AlertUtilities.confirmYesCancel(this.primaryStage, "Clôturer compte", "Êtes-vous sûr de vouloir clôturer ce compte ?", "Il ne sera pas possible de rouvrir ce compte.", AlertType.CONFIRMATION)) return;
+				this.cmDialogController.cloturerCompte(cpt);
+			} else {
+				AlertUtilities.showAlert(this.primaryStage, "Clôturer compte", "Impossible de clôturer ce compte", "Afin de clôturer ce compte, merci de vous assurer que le solde soit bien égal à 0.\n\nSolde actuel : " + cpt.solde + " €", AlertType.WARNING);
+			}
+		}
+		this.loadList();
+		this.validateComponentState();
 	}
 
 	private void loadList() {
@@ -146,8 +155,9 @@ public class ComptesManagementController {
 
 	private void validateComponentState() {
 		// Non implémenté => désactivé
+		this.btnVoirOpes.setDisable(true);
 		this.btnModifierCompte.setDisable(true);
-		this.btnSupprCompte.setDisable(false);
+		this.btnSupprCompte.setDisable(true);
 		if(ConstantesIHM.estInactif(clientDesComptes)) {
 			this.btnAjouterCompte.setDisable(true);
 		}
@@ -157,11 +167,10 @@ public class ComptesManagementController {
 
 		if (selectedIndice >= 0) {
 			this.btnVoirOpes.setDisable(false);
-			if(ConstantesIHM.estCloture(compte)) {
-				this.btnSupprCompte.setDisable(true);
+			if(!ConstantesIHM.estCloture(compte) && !ConstantesIHM.estInactif(clientDesComptes)) {
+				this.btnModifierCompte.setDisable(false);
+				this.btnSupprCompte.setDisable(false);
 			}
-		} else {
-			this.btnVoirOpes.setDisable(true);
 		}
 	}
 }

@@ -71,6 +71,29 @@ public class ComptesManagement {
 	}
 
 	/**
+     * Récupère les comptes d'un client.
+     *
+     * @return La liste des comptes courants du client
+     */
+	public ArrayList<CompteCourant> getComptesDunClient() {
+		ArrayList<CompteCourant> listeCpt = new ArrayList<>();
+		try {
+			Access_BD_CompteCourant acc = new Access_BD_CompteCourant();
+			listeCpt = acc.getCompteCourants(this.clientDesComptes.idNumCli);
+		} catch (DatabaseConnexionException e) {
+			ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
+			ed.doExceptionDialog();
+			this.primaryStage.close();
+			listeCpt = new ArrayList<>();
+		} catch (ApplicationException ae) {
+			ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, ae);
+			ed.doExceptionDialog();
+			listeCpt = new ArrayList<>();
+		}
+		return listeCpt;
+	}
+
+	/**
      * Gère les opérations d'un compte spécifique.
      *
      * @param cpt Compte courant à gérer
@@ -113,28 +136,26 @@ public class ComptesManagement {
 		return compte;
 	}
 
-	/**
-     * Récupère les comptes d'un client.
-     *
-     * @return La liste des comptes courants du client
-     */
-	public ArrayList<CompteCourant> getComptesDunClient() {
-		ArrayList<CompteCourant> listeCpt = new ArrayList<>();
-		try {
-			Access_BD_CompteCourant acc = new Access_BD_CompteCourant();
-			listeCpt = acc.getCompteCourants(this.clientDesComptes.idNumCli);
-		} catch (DatabaseConnexionException e) {
-			ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
-			ed.doExceptionDialog();
-			this.primaryStage.close();
-			listeCpt = new ArrayList<>();
-		} catch (ApplicationException ae) {
-			ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, ae);
-			ed.doExceptionDialog();
-			listeCpt = new ArrayList<>();
+	public CompteCourant modifierCompte(CompteCourant c) {
+		CompteEditorPane cep = new CompteEditorPane(this.primaryStage, this.dailyBankState);
+		CompteCourant result = cep.doCompteEditorDialog(clientDesComptes, c, EditionMode.MODIFICATION);
+		if (result != null) {
+			try {
+				Access_BD_CompteCourant ac = new Access_BD_CompteCourant();
+				ac.updateCompteCourant(result);
+			} catch (DatabaseConnexionException e) {
+				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
+				ed.doExceptionDialog();
+				result = null;
+				this.primaryStage.close();
+			} catch (ApplicationException ae) {
+				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, ae);
+				ed.doExceptionDialog();
+				result = null;
+			}
 		}
-		return listeCpt;
-	}
+		return result;
+    }
 
 	public void cloturerCompte(CompteCourant compte) {
 		if(compte != null) {

@@ -1,5 +1,7 @@
 package application.view;
 
+import java.util.regex.Pattern;
+
 import application.DailyBankState;
 import application.control.ExceptionDialog;
 import application.tools.AlertUtilities;
@@ -93,7 +95,6 @@ public class EmployeEditorPaneController {
 			ApplicationException ae = new ApplicationException(Table.NONE, Order.OTHER, "SUPPRESSION EMPLOYE NON PREVUE", null);
 			ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, ae);
 			ed.doExceptionDialog();
-
 			break;
 		}
 		// Paramétrages spécifiques pour les chefs d'agences
@@ -102,6 +103,9 @@ public class EmployeEditorPaneController {
 		}
 		// initialisation du contenu des champs
 		this.txtIdemp.setText("" + this.employeEdite.idEmploye);
+		if(mode == EditionMode.CREATION) {
+			this.txtIdemp.setText("");
+		}
 		this.txtNom.setText(this.employeEdite.nom);
 		this.txtPrenom.setText(this.employeEdite.prenom);
 		this.txtLogin.setText(this.employeEdite.login);
@@ -177,7 +181,6 @@ public class EmployeEditorPaneController {
 			this.primaryStage.close();
 			break;
 		}
-
 	}
 
 	/**
@@ -208,15 +211,15 @@ public class EmployeEditorPaneController {
 			this.txtPrenom.requestFocus();
 			return false;
 		}
-		if (this.employeEdite.login.isEmpty()) {
-			AlertUtilities.showAlert(this.primaryStage, "Erreur de saisie", null, "L'identifiant ne doit pas être vide",
-					AlertType.WARNING);
-			this.txtLogin.requestFocus();
+		String regex = "^[a-zA-Z0-9!@#$%^&*()-_=+{}\\[\\]:\";'<>?,./]*$";
+		if (!Pattern.matches(regex, this.employeEdite.motPasse) || this.employeEdite.motPasse.length() < 2) {
+			AlertUtilities.showAlert(this.primaryStage, "Erreur de saisie", "Login invalide", "Le login doit :\n- Contenir au moins 2 caractères\n- Uniquement des lettres majuscules, minuscules, ou des caractères spéciaux parmis : !, @, #, $, %, ^, &, *, (, ), -, _, =, +, {, }, [, ], :, \", ;, ', <, >, ?, ,, ., /", AlertType.WARNING);
+			this.txtMdp.requestFocus();
 			return false;
 		}
-		if (this.employeEdite.motPasse.isEmpty()) {
-			AlertUtilities.showAlert(this.primaryStage, "Erreur de saisie", null, "Le mot de passe ne doit pas être vide",
-					AlertType.WARNING);
+		regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()\\-_=+{}\\[\\]:\";'<>?,./])[a-zA-Z0-9!@#$%^&*()\\-_=+{}\\[\\]:\";'<>?,./]+$";
+		if (!Pattern.matches(regex, this.employeEdite.motPasse) || this.employeEdite.motPasse.length() < 6) {
+			AlertUtilities.showAlert(this.primaryStage, "Erreur de saisie", "Mot de passe invalide", "Le mot de passe doit :\n- Contenir au moins 8 caractères\n- Au moins une lettre majuscule\n- Au moins une lettre minuscule\n- Au moins un caractère spécial : !, @, #, $, %, ^, &, *, (, ), -, _, =, +, {, }, [, ], :, \", ;, ', <, >, ?, ,, ., /", AlertType.WARNING);
 			this.txtMdp.requestFocus();
 			return false;
 		}

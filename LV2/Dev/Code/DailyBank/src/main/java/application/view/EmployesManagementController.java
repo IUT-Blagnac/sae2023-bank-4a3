@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import application.DailyBankState;
 import application.control.EmployesManagement;
+import application.tools.AlertUtilities;
+import application.tools.ConstantesIHM;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.data.Employe;
@@ -46,6 +49,7 @@ public class EmployesManagementController {
 		this.lvEmployes.getFocusModel().focus(-1);
 		this.lvEmployes.getSelectionModel().selectedItemProperty().addListener(e -> this.validateComponentState());
 		this.validateComponentState();
+		this.doRechercher();
 	}
 
 	public void displayDialog() {
@@ -81,6 +85,7 @@ public class EmployesManagementController {
 
 	@FXML
 	private void doRechercher() {
+		if(!ConstantesIHM.isAdmin(this.dailyBankState.getEmployeActuel())) return;
 		int numCompte;
 		try {
 			String nc = this.txtNum.getText();
@@ -123,8 +128,18 @@ public class EmployesManagementController {
 	}
 
 	@FXML
-	private void doModifierEmploye() {
+	private void doNouveauEmploye() {
+		if(!ConstantesIHM.isAdmin(this.dailyBankState.getEmployeActuel())) return;
+		Employe employe;
+		employe = this.cmDialogController.nouveauEmploye();
+		if (employe != null) {
+			this.oListEmployes.add(employe);
+		}
+	}
 
+	@FXML
+	private void doModifierEmploye() {
+		if(!ConstantesIHM.isAdmin(this.dailyBankState.getEmployeActuel())) return;
 		int selectedIndice = this.lvEmployes.getSelectionModel().getSelectedIndex();
 		if (selectedIndice >= 0) {
 			Employe cliMod = this.oListEmployes.get(selectedIndice);
@@ -137,22 +152,21 @@ public class EmployesManagementController {
 
 	@FXML
 	private void doSupprimerEmploye() {
+		if(!ConstantesIHM.isAdmin(this.dailyBankState.getEmployeActuel())) return;
 		int selectedIndice = this.lvEmployes.getSelectionModel().getSelectedIndex();
 		if (selectedIndice >= 0) {
-			Employe cliMod = this.oListEmployes.get(selectedIndice);
-			this.cmDialogController.supprimerEmploye(cliMod);
+			Employe empMod = this.oListEmployes.get(selectedIndice);
+			String permission;
+			if(empMod.droitsAccess == ConstantesIHM.AGENCE_CHEF) {
+				permission = "Chef d'agence";
+			} else {
+				permission = "Guichetier";
+			}
+			if(!AlertUtilities.confirmYesCancel(this.primaryStage, "Supprimer employé", "Êtes-vous sûr de vouloir supprimer cet employé ?", "Il ne sera pas possible de restaurer cet employé, cependant, vous pourrez le recréer.\n\nEmployé :\nID : " + empMod.idEmploye + "\nNom : " + empMod.nom + "\nPrénom : " + empMod.prenom + "\nDroits : " + permission, AlertType.CONFIRMATION)) return;
+			this.cmDialogController.supprimerEmploye(empMod);
 			this.oListEmployes.remove(selectedIndice);
 		}
 		this.validateComponentState();
-	}
-
-	@FXML
-	private void doNouveauEmploye() {
-		Employe employe;
-		employe = this.cmDialogController.nouveauEmploye();
-		if (employe != null) {
-			this.oListEmployes.add(employe);
-		}
 	}
 
 	private void validateComponentState() {
