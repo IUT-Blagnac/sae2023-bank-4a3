@@ -30,7 +30,7 @@ https://github.com/Maxeuh[Maxence]
 | 2       | Chef d’Agence | Emprunt                   | Simuler emprunt       |        |       | F    | 
 | 2       | Chef d’Agence | Emprunt                   | Simuler assurance     |        |       |  F    | 
 | 2       | Guichetier    | Compte                    | Relevé PDF            |     F   |   F    |      | 
-| 2       | Guichetier    | CRUD Prélèvement          | C                     |        |       | D     | 
+| 2       | Guichetier    | CRUD Prélèvement          | C                     |        |       | F     | 
 | 2       | Guichetier    | CRUD Prélèvement          | R                     |        |       |      | 
 | 2       | Guichetier    | CRUD Prélèvement          | U                     |        |       |      | 
 | 2       | Guichetier    | CRUD Prélèvement          | D                     |        |       |      | 
