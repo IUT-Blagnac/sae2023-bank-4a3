@@ -2,6 +2,7 @@
 **/.settings/**
 **/target/**
 **/*.class
-**/result.pdf
+/*.pdf
+**/.classpath
 .DS_Store
 Thumbs.db
