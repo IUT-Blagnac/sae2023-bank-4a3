@@ -20,9 +20,9 @@ public class ConstantesIHM {
 	 * Code client actif.
 	 */
 	public static final String CLIENT_ACTIF = "N";
-	
+
 	public static final String COMPTE_INACTIF = "O";
-	
+
 	public static final String COMPTE_ACTIF = "N";
 
 	// Employés
@@ -95,11 +95,11 @@ public class ConstantesIHM {
 	public static boolean estActif(Client c) {
 		return c.estInactif.equals(ConstantesIHM.CLIENT_ACTIF);
 	}
-	
+
 	public static boolean estOuvert(CompteCourant cc) {
 		return cc.estCloture.equals(ConstantesIHM.COMPTE_ACTIF);
 	}
-	
+
 	public static boolean estCloture(CompteCourant cc) {
 		return cc.estCloture.equals(ConstantesIHM.COMPTE_INACTIF);
 	}

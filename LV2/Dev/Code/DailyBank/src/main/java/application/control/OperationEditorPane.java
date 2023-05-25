@@ -60,5 +60,5 @@ public class OperationEditorPane {
 	public Operation doOperationEditorDialog(CompteCourant cpte, CategorieOperation cm) {
 		return this.oepcViewController.displayDialog(cpte, cm);
 	}
-	
+
 }

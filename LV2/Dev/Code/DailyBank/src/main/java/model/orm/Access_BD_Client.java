@@ -217,8 +217,8 @@ public class Access_BD_Client {
 			throw new DataAccessException(Table.Client, Order.INSERT, "Erreur accès", e);
 		}
 	}
-	
-	
+
+
 
 	/**
 	 * Mise à jour d'un Client.

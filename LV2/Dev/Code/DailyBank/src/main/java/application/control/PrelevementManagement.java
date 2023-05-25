@@ -4,22 +4,19 @@ import application.DailyBankApp;
 import application.DailyBankState;
 import application.tools.EditionMode;
 import application.tools.StageManagement;
-import application.view.ClientsManagementController;
 import application.view.PrelevementManagementController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.data.Client;
 import model.data.Prelevement;
-import model.orm.Access_BD_Client;
 import model.orm.Access_BD_Prelevement;
 import model.orm.exception.ApplicationException;
 import model.orm.exception.DatabaseConnexionException;
 
 public class PrelevementManagement {
-	
+
 	private Stage primaryStage;
 	private DailyBankState dailyBankState;
 	private PrelevementManagementController pmcViewController;
@@ -54,11 +51,11 @@ public class PrelevementManagement {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void doPrelevementManagementDialog() {
 		this.pmcViewController.displayDialog();
 	}
-	
+
 	public Prelevement nouveauPrelevement() {
 		Prelevement pm;
 		PrelevementEditorPane pep = new PrelevementEditorPane(this.primaryStage, this.dailyBankState);

@@ -21,7 +21,7 @@ public class ClientEditorPane {
 	private Stage primaryStage;
 	private ClientEditorPaneController cepcViewController;
 	private DailyBankState dailyBankState;
-	
+
 	/**
      * Constructeur de la classe ClientEditorPane.
      *

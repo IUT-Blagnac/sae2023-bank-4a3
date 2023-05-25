@@ -90,7 +90,7 @@ public class EmployesManagement {
 		}
 		return result;
 	}
-	
+
 	/**
      * Supprime un employé existant.
      *
@@ -114,7 +114,7 @@ public class EmployesManagement {
 			}
 		}
 	}
-	
+
 
 	/**
      * Crée un nouveau client.

@@ -4,8 +4,6 @@ import application.DailyBankApp;
 import application.DailyBankState;
 import application.tools.EditionMode;
 import application.tools.StageManagement;
-import application.view.ClientEditorPaneController;
-import application.view.ClientsManagementController;
 import application.view.PrelevementEditorController;
 import application.view.PrelevementManagementController;
 import javafx.fxml.FXMLLoader;
@@ -13,15 +11,14 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.data.Client;
 import model.data.Prelevement;
 
 public class PrelevementEditorPane {
-	
+
 	private Stage primaryStage;
 	private PrelevementEditorController pecViewController;
 	private DailyBankState dailyBankState;
-	
+
 	/**
      * Constructeur de la classe ClientEditorPane.
      *

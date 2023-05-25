@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import application.DailyBankApp;
 import application.DailyBankState;
+import application.tools.ConstantesIHM;
 import application.tools.EditionMode;
 import application.tools.StageManagement;
 import application.view.ClientsManagementController;
@@ -63,6 +64,34 @@ public class ClientsManagement {
 	public void doClientManagementDialog() {
 		this.cmcViewController.displayDialog();
 	}
+	
+	/**
+     * Crée un nouveau client.
+     *
+     * @return Le nouveau client créé
+     */
+	public Client nouveauClient() {
+		Client client;
+		ClientEditorPane cep = new ClientEditorPane(this.primaryStage, this.dailyBankState);
+		client = cep.doClientEditorDialog(null, EditionMode.CREATION);
+		if (client != null) {
+			try {
+				Access_BD_Client ac = new Access_BD_Client();
+
+				ac.insertClient(client);
+			} catch (DatabaseConnexionException e) {
+				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
+				ed.doExceptionDialog();
+				this.primaryStage.close();
+				client = null;
+			} catch (ApplicationException ae) {
+				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, ae);
+				ed.doExceptionDialog();
+				client = null;
+			}
+		}
+		return client;
+	}
 
 	/**
      * Modifie un client existant.
@@ -91,39 +120,30 @@ public class ClientsManagement {
 		return result;
 	}
 	
-	
-	
-
 	/**
-     * Crée un nouveau client.
+     * Désactive un client.
      *
-     * @return Le nouveau client créé
+     * @return Le client à désactiver.
      */
-	public Client nouveauClient() {
-		Client client;
-		ClientEditorPane cep = new ClientEditorPane(this.primaryStage, this.dailyBankState);
-		client = cep.doClientEditorDialog(null, EditionMode.CREATION);
-		if (client != null) {
+	public Client clientInactif(Client cliMod) {
+		cliMod.estInactif = ConstantesIHM.CLIENT_INACTIF;
+		if (cliMod != null) {
 			try {
 				Access_BD_Client ac = new Access_BD_Client();
-
-				ac.insertClient(client);
+				ac.updateClient(cliMod);
 			} catch (DatabaseConnexionException e) {
 				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
 				ed.doExceptionDialog();
+				cliMod = null;
 				this.primaryStage.close();
-				client = null;
 			} catch (ApplicationException ae) {
 				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, ae);
 				ed.doExceptionDialog();
-				client = null;
+				cliMod = null;
 			}
 		}
-		return client;
+		return cliMod;
 	}
-	
-	
-	
 
 	/**
      * Gère les comptes d'un client.

@@ -7,7 +7,7 @@ public class LigneTableau {
 	public String montantpri;
 	public String montantrem;
 	public String capf;
-	
+
 	public LigneTableau(int periode, String capd, String interet, String montantpri, String montantrem, String capf) {
 		this.periode = periode;
 		this.capd = capd;
@@ -64,8 +64,7 @@ public class LigneTableau {
 	public void setCapf(String capf) {
 		this.capf = capf;
 	}
-	
-	
+
+
 }
-	
-	
+

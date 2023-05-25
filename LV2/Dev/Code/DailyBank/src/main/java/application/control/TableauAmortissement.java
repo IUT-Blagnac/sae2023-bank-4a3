@@ -1,13 +1,10 @@
 package application.control;
 
 import application.DailyBankApp;
-
-
 import application.DailyBankState;
 import application.tools.StageManagement;
 import application.tools.TypeEmprunt;
 import application.tools.TypeSimu;
-import application.view.EmployesManagementController;
 import application.view.TableauAmortissementController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,12 +13,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class TableauAmortissement {
-	
+
 	private Stage primaryStage;
 	private DailyBankState dailyBankState;
 	private TableauAmortissementController tacViewController;
-	
-	
+
+
 	public TableauAmortissement(Stage _parentStage, DailyBankState _dbstate,int montant,double taux,double tauxA,int duree,TypeEmprunt te,TypeSimu ts) {
 		this.dailyBankState = _dbstate;
 		try {
@@ -46,11 +43,11 @@ public class TableauAmortissement {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void doTableauDialog() {
 		this.tacViewController.displayDialog();
 	}
-	
+
 
 
 }

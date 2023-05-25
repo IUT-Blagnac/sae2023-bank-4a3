@@ -1,7 +1,5 @@
 package application.view;
 
-import java.util.regex.Pattern;
-
 import application.DailyBankState;
 import application.control.ExceptionDialog;
 import application.tools.AlertUtilities;
@@ -191,7 +189,7 @@ public class EmployeEditorPaneController {
 		this.employeEdite.prenom = this.txtPrenom.getText().trim();
 		this.employeEdite.login = this.txtLogin.getText().trim();
 		this.employeEdite.motPasse = this.txtMdp.getText().trim();
-		
+
 		if (this.rbChefAgence.isSelected()) {
 			this.employeEdite.droitsAccess = ConstantesIHM.AGENCE_CHEF;
 		} else {

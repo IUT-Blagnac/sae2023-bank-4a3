@@ -4,5 +4,7 @@
 **/*.class
 /*.pdf
 **/.classpath
+**/.project
 .DS_Store
 Thumbs.db
+/.metadata/

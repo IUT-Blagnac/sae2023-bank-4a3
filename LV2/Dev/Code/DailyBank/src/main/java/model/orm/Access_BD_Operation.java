@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import application.tools.ConstantesIHM;
 import model.data.Operation;
 import model.orm.exception.DataAccessException;
 import model.orm.exception.DatabaseConnexionException;
@@ -166,11 +165,11 @@ public class Access_BD_Operation {
 			throw new DataAccessException(Table.Operation, Order.INSERT, "Erreur accès", e);
 		}
 	}
-	
+
 	/**
-	 * Enregistrement d'un débit.
+	 * Enregistrement d'un débit exceptionnel.
 	 *
-	 * Se fait par procédure stockée : - Vérifie que le débitAutorisé n'est pas
+	 * - Ne vérifie pas que le débitAutorisé n'est pas
 	 * dépassé <BR />
 	 * - Enregistre l'opération <BR />
 	 * - Met à jour le solde du compte. <BR />
@@ -213,7 +212,7 @@ public class Access_BD_Operation {
 			throw new DataAccessException(Table.Operation, Order.INSERT, "Erreur accès", e);
 		}
 	}
-	
+
 	public void insertCredit(int idNumCompte, double montant, String typeOp)
 			throws DatabaseConnexionException, ManagementRuleViolation, DataAccessException {
 		try {
@@ -244,7 +243,7 @@ public class Access_BD_Operation {
 			throw new DataAccessException(Table.Operation, Order.INSERT, "Erreur accès", e);
 		}
 	}
-	
+
 	public void virement(int idCompteDebiteur, int idCompteCrediteur, double montant)
 			throws DatabaseConnexionException, ManagementRuleViolation, DataAccessException {
 		try {
@@ -275,8 +274,8 @@ public class Access_BD_Operation {
 			throw new DataAccessException(Table.Operation, Order.INSERT, "Erreur accès", e);
 		}
 	}
-	
-	
+
+
 
 	/*
 	 * Fonction utilitaire qui retourne un ordre sql "to_date" pour mettre une date
