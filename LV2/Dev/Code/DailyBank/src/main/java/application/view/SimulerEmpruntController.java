@@ -68,8 +68,14 @@ public class SimulerEmpruntController {
 	
 	@FXML
 	private void doAssurance() {
+		if(this.Assurance.isVisible()) {
+			this.Assurance.setText("");
+			this.Assurance.setVisible(false);
+			this.ts = TypeSimu.EMPRUNT;
+		}else {
 		this.Assurance.setVisible(true);
 		this.ts = TypeSimu.ASSURANCE;
+		}
 	}
 
 	@FXML
