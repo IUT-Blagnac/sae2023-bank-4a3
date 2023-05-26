@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import application.DailyBankState;
 import application.control.ClientsManagement;
+import application.control.ComptesManagement;
 import application.tools.AlertUtilities;
 import application.tools.ConstantesIHM;
 import javafx.collections.FXCollections;
@@ -17,6 +18,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.data.Client;
+import model.data.CompteCourant;
 
 public class ClientsManagementController {
 
@@ -25,12 +27,15 @@ public class ClientsManagementController {
 
 	// Contrôleur de Dialogue associé à ClientsManagementController
 	private ClientsManagement cmDialogController;
+	
 
 	// Fenêtre physique ou est la scène contenant le fichier xml contrôlé par this
 	private Stage primaryStage;
 
 	// Données de la fenêtre
 	private ObservableList<Client> oListClients;
+
+
 
 	// Manipulation de la fenêtre
 	public void initContext(Stage _containingStage, ClientsManagement _cm, DailyBankState _dbstate) {
@@ -44,12 +49,14 @@ public class ClientsManagementController {
 		this.primaryStage.setOnCloseRequest(e -> this.closeWindow(e));
 
 		this.oListClients = FXCollections.observableArrayList();
+		
 		this.lvClients.setItems(this.oListClients);
 		this.lvClients.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 		this.lvClients.getFocusModel().focus(-1);
 		this.lvClients.getSelectionModel().selectedItemProperty().addListener(e -> this.validateComponentState());
 		this.validateComponentState();
 		this.doRechercher();
+		
 	}
 
 	public void displayDialog() {
@@ -84,6 +91,8 @@ public class ClientsManagementController {
 	private void doCancel() {
 		this.primaryStage.close();
 	}
+	
+	
 
 	@FXML
 	private void doRechercher() {
