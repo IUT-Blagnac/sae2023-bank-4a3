@@ -1,9 +1,11 @@
 package application.view;
 
 import application.DailyBankState;
+import application.tools.AlertUtilities;
 import application.tools.ConstantesIHM;
 import application.tools.EditionMode;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -114,6 +116,22 @@ public class PrelevementEditorController {
 		this.prelevementEdite.date = Integer.parseInt(this.txtdate.getText().trim());
 		this.prelevementEdite.beneficiaire = this.txtbeneficiaire.getText().trim();
 		this.prelevementEdite.idNumCompte = Integer.parseInt(this.txtIdCompte.getText().trim());
+		
+		if(this.txtbeneficiaire.getText().isEmpty() ) {
+			AlertUtilities.showAlert(this.primaryStage, "Erreur saisie", "beneficiaire n'est pas remplis", "Veuillez remplir le champs", AlertType.ERROR);
+			this.txtbeneficiaire.requestFocus();
+			return false;
+		}
+		if(this.prelevementEdite.date<1 || this.prelevementEdite.date>28) {
+			AlertUtilities.showAlert(this.primaryStage,"Erreur date" , "La date est non valide", "Veuillez rentrer une date entre 1 et 28", AlertType.ERROR);
+			this.txtdate.requestFocus();
+			return false;
+		}
+		if(this.prelevementEdite.montant<1) {
+			AlertUtilities.showAlert(this.primaryStage, "Erreur montant","Le montant n'est pas valide", "Veuillez entrez un montant positif", AlertType.ERROR);
+			this.txtmontant.requestFocus();
+			return false;
+		}
 
 		return true;
 	}
