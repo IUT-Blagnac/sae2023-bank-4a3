@@ -102,12 +102,12 @@ public class LoginDialogController {
 		String login = this.txtLogin.getText().trim();
 		String password = new String(this.txtPassword.getText().trim());
 		if (login.length() == 0 || password.length() == 0) {
-			this.afficheErreur("Identifiants incorrects :");
+			this.afficheErreur("Identifiants incorrects");
 		} else {
 			Employe e;
 			e = this.ldDialogController.chercherEmployeParLogin(login, password);
 			if (e == null) {
-				this.afficheErreur("Identifiants incorrects :");
+				this.afficheErreur("Identifiants incorrects");
 			} else {
 				this.primaryStage.close();
 			}

@@ -2,6 +2,7 @@
 **/.settings/**
 **/target/**
 **/.metadata/**
+**/.vscode/**
 /*.pdf
 *.class
 .classpath

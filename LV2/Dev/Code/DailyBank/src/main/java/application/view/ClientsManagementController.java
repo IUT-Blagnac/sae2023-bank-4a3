@@ -144,6 +144,7 @@ public class ClientsManagementController {
 			Client client = this.oListClients.get(selectedIndice);
 			this.cmDialogController.gererComptesClient(client);
 		}
+		this.validateComponentState();
 	}
 	
 	@FXML
@@ -153,6 +154,7 @@ public class ClientsManagementController {
 		if (client != null) {
 			this.oListClients.add(client);
 		}
+		this.validateComponentState();
 	}
 
 	@FXML
@@ -165,6 +167,7 @@ public class ClientsManagementController {
 				this.oListClients.set(selectedIndice, result);
 			}
 		}
+		this.validateComponentState();
 	}
 
 	@FXML
@@ -173,23 +176,32 @@ public class ClientsManagementController {
 		int selectedIndice = this.lvClients.getSelectionModel().getSelectedIndex();
 		if (selectedIndice >= 0) {
 			Client cliMod = this.oListClients.get(selectedIndice);
+			int comptesOuverts = this.cmDialogController.verifierCloturer(cliMod);
+			if (comptesOuverts == -1) {
+				AlertUtilities.showAlert(this.primaryStage, "Client inactif - Erreur", "Une erreur est survenue", "Impossible d'obtenir le nombre de comptes ouverts du client.", AlertType.WARNING);
+				return;
+			} else if(comptesOuverts != 0) {
+				AlertUtilities.showAlert(this.primaryStage, "Client inactif - Erreur", "Impossible de rendre inactif ce client", "Merci de vous assurer que tout les comptes de ce client soient clôturés avant de le rendre inactif.\nCe client a actuellement " + comptesOuverts + " compte(s) ouverts.", AlertType.WARNING);
+				return;
+			}
 			if(!AlertUtilities.confirmYesCancel(this.primaryStage, "Désactiver client", "Êtes-vous sûr de vouloir désactiver ce client ?", "Tout client désactivé ne peut pas être réactivé.\n\nClient :\nID : " + cliMod.idNumCli + "\nNom : " + cliMod.nom + "\nPrénom : " + cliMod.prenom + "\nAdresse postale : " + cliMod.adressePostale + "\nEmail : " + cliMod.email + "\nTéléphone : " + cliMod.telephone, AlertType.CONFIRMATION)) return;
 			Client result = this.cmDialogController.clientInactif(cliMod);
 			if (result != null) {
 				this.oListClients.set(selectedIndice, result);
 			}
 		}
+		this.validateComponentState();
 	}
 
 	private void validateComponentState() {
 		// Non implémenté => désactivé
-		this.btnDesactClient.setDisable(true);
 		int selectedIndice = this.lvClients.getSelectionModel().getSelectedIndex();
 
 		if (selectedIndice >= 0) {
+			this.btnDesactClient.setDisable(true);
+			this.btnComptesClient.setDisable(false);
 			if(ConstantesIHM.estActif(this.oListClients.get(selectedIndice))) {
 				this.btnModifClient.setDisable(false);
-				this.btnComptesClient.setDisable(false);
 				if(ConstantesIHM.isAdmin(this.dailyBankState.getEmployeActuel())) {
 					this.btnDesactClient.setDisable(false);
 				}
