@@ -1,0 +1,11 @@
+**/.metadata/**
+**/.settings/**
+**/target/**
+**/.metadata/**
+**/.vscode/**
+/*.pdf
+*.class
+.classpath
+.project
+.DS_Store
+Thumbs.db
