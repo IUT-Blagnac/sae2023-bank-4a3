@@ -9,7 +9,6 @@ import application.tools.ConstantesIHM;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -20,6 +19,13 @@ import javafx.stage.WindowEvent;
 import model.data.Client;
 import model.data.CompteCourant;
 
+/**
+ * Contrôleur pour la fenêtre de gestion des Comptes.
+ * 
+ * @see ComptesManagement
+ * @author IUT Blagnac
+ * @author LAMOUR Evan
+ */
 public class ComptesManagementController {
 
 	// Etat courant de l'application
@@ -35,6 +41,15 @@ public class ComptesManagementController {
 	private Client clientDesComptes;
 	private ObservableList<CompteCourant> oListCompteCourant;
 
+	/**
+	 * Initialise la fenêtre de gestion des Comptes
+	 * 
+	 * @param _containingStage Le stage contenant la scène
+	 * @param _cm              Le contrôleur de dialogue associé
+	 * @param _dbstate         L'état courant de l'application
+	 * @param client           Le client dont on veut gérer les comptes
+	 * @author IUT Blagnac
+	 */
 	// Manipulation de la fenêtre
 	public void initContext(Stage _containingStage, ComptesManagement _cm, DailyBankState _dbstate, Client client) {
 		this.cmDialogController = _cm;
@@ -44,6 +59,11 @@ public class ComptesManagementController {
 		this.configure();
 	}
 
+	/**
+	 * Configure la fenêtre de gestion des Comptes
+	 * 
+	 * @author IUT Blagnac
+	 */
 	private void configure() {
 		String info;
 
@@ -63,11 +83,22 @@ public class ComptesManagementController {
 		this.validateComponentState();
 	}
 
+	/**
+	 * Affiche la fenêtre de gestion des Comptes
+	 * 
+	 * @author IUT Blagnac
+	 */
 	public void displayDialog() {
 		this.primaryStage.showAndWait();
 	}
 
-	// Gestion du stage
+	/**
+	 * Ferme la fenêtre.
+	 * 
+	 * @param e L'événement de fermeture
+	 * @return Object null
+	 * @author IUT Blagnac
+	 */
 	private Object closeWindow(WindowEvent e) {
 		this.doCancel();
 		e.consume();
@@ -75,7 +106,6 @@ public class ComptesManagementController {
 	}
 
 	// Attributs de la scene + actions
-
 	@FXML
 	private Label lblInfosClient;
 	@FXML
@@ -89,11 +119,21 @@ public class ComptesManagementController {
 	@FXML
 	private Button btnAjouterCompte;
 
+	/**
+	 * Ferme la fenêtre de gestion des Comptes (bouton FXML).
+	 * 
+	 * @author IUT Blagnac
+	 */
 	@FXML
 	private void doCancel() {
 		this.primaryStage.close();
 	}
 
+	/**
+	 * Ouvre la fenêtre d'affichage des opérations du compte (bouton FXML).
+	 * 
+	 * @author IUT Blagnac
+	 */
 	@FXML
 	private void doVoirOperations() {
 		int selectedIndice = this.lvComptes.getSelectionModel().getSelectedIndex();
@@ -105,6 +145,11 @@ public class ComptesManagementController {
 		this.validateComponentState();
 	}
 
+	/**
+	 * Ouvre la fenêtre de création d'un nouveau compte (bouton FXML).
+	 * 
+	 * @author LAMOUR Evan
+	 */
 	@FXML
 	private void doNouveauCompte() {
 		CompteCourant compte;
@@ -116,6 +161,11 @@ public class ComptesManagementController {
 		}
 	}
 
+	/**
+	 * Ouvre la fenêtre de recherche de comptes (bouton FXML).
+	 * 
+	 * @author IUT Blagnac
+	 */
 	@FXML
 	private void doModifierCompte() {
 		int selectedIndice = this.lvComptes.getSelectionModel().getSelectedIndex();
@@ -130,22 +180,38 @@ public class ComptesManagementController {
 		this.validateComponentState();
 	}
 
+	/**
+	 * Ouvre la fenêtre de recherche de comptes (bouton FXML).
+	 * 
+	 * @author IUT Blagnac
+	 */
 	@FXML
 	private void doSupprimerCompte() {
 		int selectedIndice = this.lvComptes.getSelectionModel().getSelectedIndex();
 		if (selectedIndice >= 0) {
 			CompteCourant cpt = this.oListCompteCourant.get(selectedIndice);
 			if (cpt.solde == 0) {
-				if(!AlertUtilities.confirmYesCancel(this.primaryStage, "Clôturer compte", "Êtes-vous sûr de vouloir clôturer ce compte ?", "Il ne sera pas possible de rouvrir ce compte.", AlertType.CONFIRMATION)) return;
+				if (!AlertUtilities.confirmYesCancel(this.primaryStage, "Clôturer compte",
+						"Êtes-vous sûr de vouloir clôturer ce compte ?",
+						"Il ne sera pas possible de rouvrir ce compte.", AlertType.CONFIRMATION))
+					return;
 				this.cmDialogController.cloturerCompte(cpt);
 			} else {
-				AlertUtilities.showAlert(this.primaryStage, "Clôturer compte", "Impossible de clôturer ce compte", "Afin de clôturer ce compte, merci de vous assurer que le solde soit bien égal à 0.\n\nSolde actuel : " + cpt.solde + " €", AlertType.WARNING);
+				AlertUtilities.showAlert(this.primaryStage, "Clôturer compte", "Impossible de clôturer ce compte",
+						"Afin de clôturer ce compte, merci de vous assurer que le solde soit bien égal à 0.\n\nSolde actuel : "
+								+ cpt.solde + " €",
+						AlertType.WARNING);
 			}
 		}
 		this.loadList();
 		this.validateComponentState();
 	}
 
+	/**
+	 * Affiche la liste des comptes du client.
+	 * 
+	 * @author IUT Blagnac
+	 */
 	private void loadList() {
 		ArrayList<CompteCourant> listeCpt;
 		listeCpt = this.cmDialogController.getComptesDunClient();
@@ -153,12 +219,17 @@ public class ComptesManagementController {
 		this.oListCompteCourant.addAll(listeCpt);
 	}
 
+	/**
+	 * Active/Désactie les boutons en fonction de l'état du compte selectionné
+	 * 
+	 * @author IUT Blagnac
+	 */
 	private void validateComponentState() {
 		// Non implémenté => désactivé
 		this.btnVoirOpes.setDisable(true);
 		this.btnModifierCompte.setDisable(true);
 		this.btnSupprCompte.setDisable(true);
-		if(ConstantesIHM.estInactif(clientDesComptes)) {
+		if (ConstantesIHM.estInactif(clientDesComptes)) {
 			this.btnAjouterCompte.setDisable(true);
 		}
 
@@ -167,7 +238,7 @@ public class ComptesManagementController {
 
 		if (selectedIndice >= 0) {
 			this.btnVoirOpes.setDisable(false);
-			if(!ConstantesIHM.estCloture(compte) && !ConstantesIHM.estInactif(clientDesComptes)) {
+			if (!ConstantesIHM.estCloture(compte) && !ConstantesIHM.estInactif(clientDesComptes)) {
 				this.btnModifierCompte.setDisable(false);
 				this.btnSupprCompte.setDisable(false);
 			}

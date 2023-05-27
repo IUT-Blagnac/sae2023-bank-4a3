@@ -13,6 +13,12 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.data.Prelevement;
 
+/**
+ * Contrôleur pour l'édition des informations client dans une fenêtre.
+ * 
+ * @see PrelevementEditor
+ * @author LAMOUR Evan
+ */
 public class PrelevementEditorController {
 	private DailyBankState dailyBankState;
 
@@ -28,55 +34,77 @@ public class PrelevementEditorController {
 	// Manipulation de la fenêtre
 
 	/**
-     * Initialise le contexte du contrôleur.
-     * @param _containingStage le stage contenant la scène
-     * @param _dbstate l'état courant de l'application
-     */
+	 * Initialise le contexte du contrôleur.
+	 * 
+	 * @param _containingStage Le stage contenant la scène
+	 * @param _dbstate         L'état courant de l'application
+	 * @author LAMOUR Evan
+	 */
 	public void initContext(Stage _containingStage, DailyBankState _dbstate) {
 		this.primaryStage = _containingStage;
 		this.dailyBankState = _dbstate;
 		this.configure();
 	}
 
+	/**
+	 * Configure les différents éléments de la fenêtre.
+	 * 
+	 * @author LAMOUR Evan
+	 */
 	private void configure() {
 		this.primaryStage.setOnCloseRequest(e -> this.closeWindow(e));
 	}
 
 	// Gestion du stage
+
+	/**
+	 * Ferme la fenêtre.
+	 * 
+	 * @param e L'événement de fermeture
+	 * @return Object null
+	 * @author LAMOUR Evan
+	 */
 	private Object closeWindow(WindowEvent e) {
 		this.doCancel();
 		e.consume();
 		return null;
 	}
 
+	/**
+	 * Affiche la fenêtre de dialogue d'édition d'un client.
+	 * 
+	 * @param pm   Le prélèvement à éditer
+	 * @param mode Le mode d'édition (ajout ou modification)
+	 * @return Le prélèvement édité ou null si l'opération a été annulée
+	 * @author LAMOUR Evan
+	 */
 	public Prelevement displayDialog(Prelevement pm, EditionMode mode) {
 
 		this.editionMode = mode;
 		if (pm == null) {
-			this.prelevementEdite = new Prelevement(0,0,0,"",0);
+			this.prelevementEdite = new Prelevement(0, 0, 0, "", 0);
 		} else {
 			this.prelevementEdite = new Prelevement(pm);
 		}
 		this.prelevementResultat = null;
 		switch (mode) {
-		case CREATION:
-			this.txtIdpre.setDisable(true);
-			this.txtmontant.setDisable(false);
-			this.txtdate.setDisable(false);
-			this.txtbeneficiaire.setDisable(false);
-			this.txtIdCompte.setDisable(false);
+			case CREATION:
+				this.txtIdpre.setDisable(true);
+				this.txtmontant.setDisable(false);
+				this.txtdate.setDisable(false);
+				this.txtbeneficiaire.setDisable(false);
+				this.txtIdCompte.setDisable(false);
 
-			this.lblMessage.setText("Informations sur le nouveau prélevement");
-			this.butOk.setText("Ajouter");
-			this.butCancel.setText("Annuler");
-			break;
-		case MODIFICATION:
+				this.lblMessage.setText("Informations sur le nouveau prélevement");
+				this.butOk.setText("Ajouter");
+				this.butCancel.setText("Annuler");
+				break;
+			case MODIFICATION:
 
-			break;
-		case SUPPRESSION:
+				break;
+			case SUPPRESSION:
 
-
-			break;
+				break;
 		}
 		// Paramétrages spécifiques pour les chefs d'agences
 		if (ConstantesIHM.isAdmin(this.dailyBankState.getEmployeActuel())) {
@@ -89,12 +117,22 @@ public class PrelevementEditorController {
 		return this.prelevementResultat;
 	}
 
+	/**
+	 * Gestion du clic sur le bouton Annuler (FXML).
+	 * 
+	 * @author LAMOUR Evan
+	 */
 	@FXML
 	private void doCancel() {
 		this.prelevementResultat = null;
 		this.primaryStage.close();
 	}
 
+	/**
+	 * Gestion du clic sur le bouton Ajouter (FXML).
+	 * 
+	 * @author LAMOUR Evan
+	 */
 	@FXML
 	private void doAjouter() {
 		switch (this.editionMode) {
@@ -111,24 +149,36 @@ public class PrelevementEditorController {
 		}
 	}
 
+	/**
+	 * Vérifie que la saisie est valide.
+	 * - Le bénéficiaire n'est pas vide
+	 * - La date est comprise entre 1 et 28
+	 * - Le montant est positif
+	 * 
+	 * @return true si la saisie est valide, false sinon
+	 * @author LAMOUR Evan
+	 */
 	private boolean isSaisieValide() {
 		this.prelevementEdite.montant = Integer.parseInt(this.txtmontant.getText().trim());
 		this.prelevementEdite.date = Integer.parseInt(this.txtdate.getText().trim());
 		this.prelevementEdite.beneficiaire = this.txtbeneficiaire.getText().trim();
 		this.prelevementEdite.idNumCompte = Integer.parseInt(this.txtIdCompte.getText().trim());
-		
-		if(this.txtbeneficiaire.getText().isEmpty() ) {
-			AlertUtilities.showAlert(this.primaryStage, "Erreur saisie", "beneficiaire n'est pas remplis", "Veuillez remplir le champs", AlertType.ERROR);
+
+		if (this.txtbeneficiaire.getText().isEmpty()) {
+			AlertUtilities.showAlert(this.primaryStage, "Erreur saisie", "Bénéficiaire n'est pas rempli",
+					"Veuillez remplir le champ", AlertType.ERROR);
 			this.txtbeneficiaire.requestFocus();
 			return false;
 		}
-		if(this.prelevementEdite.date<1 || this.prelevementEdite.date>28) {
-			AlertUtilities.showAlert(this.primaryStage,"Erreur date" , "La date est non valide", "Veuillez rentrer une date entre 1 et 28", AlertType.ERROR);
+		if (this.prelevementEdite.date < 1 || this.prelevementEdite.date > 28) {
+			AlertUtilities.showAlert(this.primaryStage, "Erreur date", "La date n'est pas valide",
+					"Veuillez rentrer une date entre 1 et 28", AlertType.ERROR);
 			this.txtdate.requestFocus();
 			return false;
 		}
-		if(this.prelevementEdite.montant<1) {
-			AlertUtilities.showAlert(this.primaryStage, "Erreur montant","Le montant n'est pas valide", "Veuillez entrez un montant positif", AlertType.ERROR);
+		if (this.prelevementEdite.montant <= 0) {
+			AlertUtilities.showAlert(this.primaryStage, "Erreur montant", "Le montant n'est pas valide",
+					"Veuillez entrez un montant positif", AlertType.ERROR);
 			this.txtmontant.requestFocus();
 			return false;
 		}

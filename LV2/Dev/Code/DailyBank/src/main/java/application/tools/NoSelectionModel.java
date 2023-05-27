@@ -7,18 +7,27 @@ import javafx.scene.control.MultipleSelectionModel;
 /**
  * Classe modèle de sélection utilisée pour faire que une ListView ne permette
  * pas de sélectionner une ligne.
- *
  * La classe redéfinit les méthodes de MultipleSelectionModel.
  *
  * @param <T> Le type des objets de la ListView.
+ * @author IUT Blagnac
  */
 public class NoSelectionModel<T> extends MultipleSelectionModel<T> {
 
+	/**
+	 * @return ObservableList<Integer> Les indices des éléments sélectionnés.
+	 * @author IUT Blagnac
+	 */
 	@Override
 	public ObservableList<Integer> getSelectedIndices() {
 		return FXCollections.emptyObservableList();
 	}
 
+	
+	/** 
+	 * @return ObservableList<T> Les éléments sélectionnés.
+	 * @author IUT Blagnac
+	 */
 	@Override
 	public ObservableList<T> getSelectedItems() {
 		return FXCollections.emptyObservableList();

@@ -24,6 +24,11 @@ import model.orm.exception.DatabaseConnexionException;
 
 /**
  * Classe de contrôleur pour la gestion des opérations.
+ * 
+ * @see OperationsManagementController
+ * @see Access_BD_CompteCourant
+ * @see Access_BD_Operation
+ * @author IUT Blagnac
  */
 public class OperationsManagement {
 
@@ -34,12 +39,14 @@ public class OperationsManagement {
 	private CompteCourant compteConcerne;
 
 	/**
-     * Constructeur de la classe OperationsManagement.
-     * @param _parentStage le stage parent
-     * @param _dbstate l'état courant de l'application
-     * @param client le client associé au compte
-     * @param compte le compte courant concerné
-     */
+	 * Constructeur de la classe OperationsManagement.
+	 * 
+	 * @param _parentStage Le stage parent
+	 * @param _dbstate     L'état courant de l'application
+	 * @param client       Le client associé au compte
+	 * @param compte       Le compte courant concerné
+	 * @author IUT Blagnac
+	 */
 	public OperationsManagement(Stage _parentStage, DailyBankState _dbstate, Client client, CompteCourant compte) {
 
 		this.clientDuCompte = client;
@@ -69,26 +76,29 @@ public class OperationsManagement {
 		}
 	}
 
-
-
 	/**
-     * Affiche la boîte de dialogue de gestion des opérations.
-     */
+	 * Affiche la boîte de dialogue de gestion des opérations.
+	 * 
+	 * @author IUT Blagnac
+	 */
 	public void doOperationsManagementDialog() {
 		this.omcViewController.displayDialog();
 	}
 
 	/**
-     * Enregistre une opération de débit.
-     * @return l'opération enregistrée, ou null si aucune opération n'a été enregistrée
-     */
+	 * Enregistre une opération de débit.
+	 * 
+	 * @return L'opération enregistrée, ou null si aucune opération n'a été
+	 *         enregistrée
+	 * @author IUT Blagnac
+	 */
 	public Operation enregistrerDebit() {
 		OperationEditorPane oep = new OperationEditorPane(this.primaryStage, this.dailyBankState);
 		Operation op = oep.doOperationEditorDialog(this.compteConcerne, CategorieOperation.DEBIT);
 		if (op != null) {
 			try {
 				Access_BD_Operation ao = new Access_BD_Operation();
-				if(ConstantesIHM.isAdmin(this.dailyBankState.getEmployeActuel())) {
+				if (ConstantesIHM.isAdmin(this.dailyBankState.getEmployeActuel())) {
 					ao.insertDebitExceptionnel(this.compteConcerne.idNumCompte, op.montant, op.idTypeOp);
 				} else {
 					ao.insertDebit(this.compteConcerne.idNumCompte, op.montant, op.idTypeOp);
@@ -107,16 +117,20 @@ public class OperationsManagement {
 		return op;
 	}
 
+	/**
+	 * Enregistre un virement.
+	 * 
+	 * @return L'opération enregistrée, ou null si aucune opération n'a été
+	 *         enregistrée
+	 * @author LAMOUR Evan
+	 */
 	public Operation enregistrerVirement() {
-
 		OperationEditorPane oep = new OperationEditorPane(this.primaryStage, this.dailyBankState);
-		Operation op = oep.doOperationEditorDialog(this.compteConcerne,CategorieOperation.VIREMENT);
-
+		Operation op = oep.doOperationEditorDialog(this.compteConcerne, CategorieOperation.VIREMENT);
 		if (op != null) {
 			try {
 				Access_BD_Operation ao = new Access_BD_Operation();
-
-				ao.virement(this.compteConcerne.idNumCompte,op.idNumCompte, op.montant);
+				ao.virement(this.compteConcerne.idNumCompte, op.idNumCompte, op.montant);
 
 			} catch (DatabaseConnexionException e) {
 				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
@@ -132,8 +146,14 @@ public class OperationsManagement {
 		return op;
 	}
 
+	/**
+	 * Enregistre une opération de crédit.
+	 * 
+	 * @return L'opération enregistrée, ou null si aucune opération n'a été
+	 *         enregistrée
+	 * @author LAMOUR Evan
+	 */
 	public Operation enregistrerCredit() {
-
 		OperationEditorPane oep = new OperationEditorPane(this.primaryStage, this.dailyBankState);
 		Operation op = oep.doOperationEditorDialog(this.compteConcerne, CategorieOperation.CREDIT);
 		if (op != null) {
@@ -156,24 +176,22 @@ public class OperationsManagement {
 		return op;
 	}
 
-
-
 	/**
-     * Récupère les opérations et le solde d'un compte.
-     * @return une paire contenant le compte courant et la liste des opérations associées
-     */
+	 * Récupère les opérations et le solde d'un compte.
+	 * 
+	 * @return Une paire contenant le compte courant et la liste des opérations
+	 *         associées
+	 * @author IUT Blagnac
+	 */
 	public PairsOfValue<CompteCourant, ArrayList<Operation>> operationsEtSoldeDunCompte() {
 		ArrayList<Operation> listeOP = new ArrayList<>();
-
 		try {
 			// Relecture BD du solde du compte
 			Access_BD_CompteCourant acc = new Access_BD_CompteCourant();
 			this.compteConcerne = acc.getCompteCourant(this.compteConcerne.idNumCompte);
-
 			// lecture BD de la liste des opérations du compte de l'utilisateur
 			Access_BD_Operation ao = new Access_BD_Operation();
 			listeOP = ao.getOperations(this.compteConcerne.idNumCompte);
-
 		} catch (DatabaseConnexionException e) {
 			ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
 			ed.doExceptionDialog();

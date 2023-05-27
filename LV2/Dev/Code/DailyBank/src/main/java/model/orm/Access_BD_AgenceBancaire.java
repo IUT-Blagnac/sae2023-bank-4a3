@@ -25,6 +25,7 @@ import model.orm.exception.Table;
 /**
  * Classe d'accès aux AgenceBancaire en BD Oracle.
  *
+ * @author IUT Blagnac
  */
 public class Access_BD_AgenceBancaire {
 
@@ -35,6 +36,7 @@ public class Access_BD_AgenceBancaire {
 	 * @throws DataAccessException        Erreur d'accès aux données (requête mal
 	 *                                    formée ou autre)
 	 * @throws DatabaseConnexionException Erreur de connexion
+	 * @author IUT Blagnac
 	 */
 	public ArrayList<AgenceBancaire> getAgenceBancaires() throws DataAccessException, DatabaseConnexionException {
 
@@ -73,6 +75,7 @@ public class Access_BD_AgenceBancaire {
 	 * @throws DataAccessException               Erreur d'accès aux données (requête
 	 *                                           mal formée ou autre)
 	 * @throws DatabaseConnexionException        Erreur de connexion
+	 * @author IUT Blagnac
 	 */
 	public AgenceBancaire getAgenceBancaire(int idAg)
 			throws DataAccessException, DatabaseConnexionException, RowNotFoundOrTooManyRowsException {

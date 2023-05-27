@@ -15,10 +15,10 @@ import model.orm.exception.ApplicationException;
 import model.orm.exception.DatabaseConnexionException;
 
 /**
- * Classe de contrôleur de Dialogue de la fenêtre de login.
+ * Classe de contrôleur de la fenêtre de login.
  *
+ * @author IUT Blagnac
  */
-
 public class LoginDialog {
 
 	// Stage de la fenêtre construite par LoginDialog
@@ -31,11 +31,12 @@ public class LoginDialog {
 	private LoginDialogController ldcViewController;
 
 	/**
-	 * Création d'une LoginDialog.<BR />
+	 * Création d'une LoginDialog.
 	 *
 	 * @param _parentStage Fenêtre parente de LoginDialog (sur laquelle se centrer
 	 *                     et être modale)
 	 * @param _dbstate     Etat courant de l'application
+	 * @author IUT Blagnac
 	 */
 	public LoginDialog(Stage _parentStage, DailyBankState _dbstate) {
 		this.dailyBankState = _dbstate;
@@ -64,6 +65,8 @@ public class LoginDialog {
 
 	/**
 	 * Méthode principale d'affichage du dialogue.
+	 * 
+	 * @author IUT Blagnac
 	 */
 	public void doLoginDialog() {
 		this.ldcViewController.displayDialog();
@@ -75,6 +78,7 @@ public class LoginDialog {
 	 * @param login    Login recherché
 	 * @param password Mot de passe recherché
 	 * @return Employe trouvé, null si n'existe pas
+	 * @author IUT Blagnac
 	 */
 	public Employe chercherEmployeParLogin(String login, String password) {
 		Employe employe = null;
@@ -107,6 +111,8 @@ public class LoginDialog {
 
 	/**
 	 * Annuler le login en cours (pas d'employé connecté)
+	 * 
+	 * @author IUT Blagnac
 	 */
 	public void annulerLogin() {
 		this.dailyBankState.setEmployeActuel(null);

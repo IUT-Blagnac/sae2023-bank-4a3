@@ -11,8 +11,10 @@ import javafx.stage.WindowEvent;
 import model.data.Employe;
 
 /**
- * Controller JavaFX de la view logindialog.
- *
+ * Controller JavaFX de la view LoginDialog.
+ * 
+ * @see LoginDialog
+ * @author IUT Blagnac
  */
 public class LoginDialogController {
 
@@ -37,6 +39,7 @@ public class LoginDialogController {
 	 * @param _ld              Contrôleur de Dialogue qui réalisera les opérations
 	 *                         de navigation ou calcul
 	 * @param _dbstate         Etat courant de l'application
+	 * @author IUT Blagnac
 	 */
 	public void initContext(Stage _containingStage, LoginDialog _ld, DailyBankState _dbstate) {
 		this.primaryStage = _containingStage;
@@ -47,24 +50,28 @@ public class LoginDialogController {
 
 	/**
 	 * Affichage de la fenêtre.
+	 * 
+	 * @author IUT Blagnac
 	 */
 	public void displayDialog() {
 		this.primaryStage.showAndWait();
 	}
 
-	/*
+	/**
 	 * Configuration de LoginDialogController. Fermeture par la croix.
+	 * 
+	 * @author IUT Blagnac
 	 */
 	private void configure() {
 		this.primaryStage.setOnCloseRequest(e -> this.closeWindow(e));
 	}
 
-	/*
-	 * Méthode de fermeture de la fenêtre par la croix.
+	/**
+	 * Ferme la fenêtre.
 	 *
-	 * @param e Evénement associé (inutilisé pour le moment)
-	 *
-	 * @return null toujours (inutilisé)
+	 * @param e L'événement de fermeture
+	 * @return Object null
+	 * @author IUT Blagnac
 	 */
 	private Object closeWindow(WindowEvent e) {
 		this.doCancel();
@@ -82,8 +89,10 @@ public class LoginDialogController {
 
 	// Actions
 
-	/*
-	 * Action quitter (annuler le login et fermer la fenêtre)
+	/**
+	 * Action quitter. Annuler le login et fermer la fenêtre (bouton FXML).
+	 * 
+	 * @author IUT Blagnac
 	 */
 	@FXML
 	private void doCancel() {
@@ -91,11 +100,12 @@ public class LoginDialogController {
 		this.primaryStage.close();
 	}
 
-	/*
+	/**
 	 * Action login.
-	 *
 	 * Vérifier que login/password non vides. Lancer la recherche par le contrôleur
-	 * de dialogue Si employé trouvé : fermer la fenêtre (sinon continuer)
+	 * de dialogue. Si employé trouvé : fermer la fenêtre (sinon continuer)
+	 * 
+	 * @author IUT Blagnac
 	 */
 	@FXML
 	private void doOK() {
@@ -114,10 +124,11 @@ public class LoginDialogController {
 		}
 	}
 
-	/*
+	/**
 	 * Affichage d'un message d'erreur
 	 *
 	 * @param texte Texte à afficher
+	 * @author IUT Blagnac
 	 */
 	private void afficheErreur(String texte) {
 		this.lblMessage.setText(texte);

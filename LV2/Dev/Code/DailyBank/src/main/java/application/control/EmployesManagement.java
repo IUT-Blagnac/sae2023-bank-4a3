@@ -18,7 +18,12 @@ import model.orm.exception.ApplicationException;
 import model.orm.exception.DatabaseConnexionException;
 
 /**
- * Classe responsable de la gestion de la fenêtre de gestion des employés dans l'application DailyBank.
+ * Classe responsable de la gestion de la fenêtre de gestion des employés dans
+ * l'application DailyBank.
+ * 
+ * @see EmployesManagementController
+ * @see Access_BD_Employe
+ * @author KRILL Maxence
  */
 public class EmployesManagement {
 
@@ -27,15 +32,17 @@ public class EmployesManagement {
 	private EmployesManagementController emcViewController;
 
 	/**
-     * Constructeur de la classe EmployesManagement.
-     *
-     * @param _parentStage Fenêtre parente
-     * @param _dbstate État courant de l'application
-     */
+	 * Constructeur de la classe EmployesManagement.
+	 *
+	 * @param _parentStage Fenêtre parente
+	 * @param _dbstate     État courant de l'application
+	 * @author KRILL Maxence
+	 */
 	public EmployesManagement(Stage _parentStage, DailyBankState _dbstate) {
 		this.dailyBankState = _dbstate;
 		try {
-			FXMLLoader loader = new FXMLLoader(EmployesManagementController.class.getResource("employesmanagement.fxml"));
+			FXMLLoader loader = new FXMLLoader(
+					EmployesManagementController.class.getResource("employesmanagement.fxml"));
 			BorderPane root = loader.load();
 
 			Scene scene = new Scene(root, root.getPrefWidth() + 50, root.getPrefHeight() + 10);
@@ -58,69 +65,20 @@ public class EmployesManagement {
 	}
 
 	/**
-     * Affiche la fenêtre de gestion des employés.
-     */
+	 * Affiche la fenêtre de gestion des employés.
+	 * 
+	 * @author KRILL Maxence
+	 */
 	public void doEmployeManagementDialog() {
 		this.emcViewController.displayDialog();
 	}
 
 	/**
-     * Modifie un employé existant.
-     *
-     * @param c L'employé à modifier
-     * @return L'employé modifié
-     */
-	public Employe modifierEmploye(Employe c) {
-		EmployeEditorPane cep = new EmployeEditorPane(this.primaryStage, this.dailyBankState);
-		Employe result = cep.doEmployeEditorDialog(c, EditionMode.MODIFICATION);
-		if (result != null) {
-			try {
-				Access_BD_Employe ae = new Access_BD_Employe();
-				ae.updateEmploye(result);
-			} catch (DatabaseConnexionException e) {
-				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
-				ed.doExceptionDialog();
-				result = null;
-				this.primaryStage.close();
-			} catch (ApplicationException ae) {
-				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, ae);
-				ed.doExceptionDialog();
-				result = null;
-			}
-		}
-		return result;
-	}
-
-	/**
-     * Supprime un employé existant.
-     *
-     * @param c L'employé à supprimer
-     * @return L'employé modifié
-     */
-	public void supprimerEmploye(Employe e) {
-		if (e != null) {
-			try {
-				Access_BD_Employe ae = new Access_BD_Employe();
-				ae.deleteEmploye(e);
-			} catch (DatabaseConnexionException f) {
-				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, f);
-				ed.doExceptionDialog();
-				e = null;
-				this.primaryStage.close();
-			} catch (ApplicationException ae) {
-				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, ae);
-				ed.doExceptionDialog();
-				e = null;
-			}
-		}
-	}
-
-
-	/**
-     * Crée un nouveau client.
-     *
-     * @return Le nouveau client créé
-     */
+	 * Crée un nouvel employé.
+	 *
+	 * @return Le nouvel employé créé
+	 * @author KRILL Maxence
+	 */
 	public Employe nouveauEmploye() {
 		Employe client;
 		EmployeEditorPane cep = new EmployeEditorPane(this.primaryStage, this.dailyBankState);
@@ -144,23 +102,76 @@ public class EmployesManagement {
 	}
 
 	/**
-     * Obtient la liste des employés en fonction des critères de recherche.
-     *
-     * @param _numCompte Le numéro de compte (ou -1 pour tous les employés)
-     * @param _debutNom Le début du nom du client
-     * @param _debutPrenom Le début du prénom du client
-     * @return La liste des employés correspondant aux critères de recherche
-     */
-	public ArrayList<Employe> getlisteComptes(int _numCompte, String _debutNom, String _debutPrenom) {
+	 * Modifie un employé existant.
+	 *
+	 * @param c L'employé à modifier
+	 * @return L'employé modifié
+	 * @author KRILL Maxence
+	 */
+	public Employe modifierEmploye(Employe c) {
+		EmployeEditorPane cep = new EmployeEditorPane(this.primaryStage, this.dailyBankState);
+		Employe result = cep.doEmployeEditorDialog(c, EditionMode.MODIFICATION);
+		if (result != null) {
+			try {
+				Access_BD_Employe ae = new Access_BD_Employe();
+				ae.updateEmploye(result);
+			} catch (DatabaseConnexionException e) {
+				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
+				ed.doExceptionDialog();
+				result = null;
+				this.primaryStage.close();
+			} catch (ApplicationException ae) {
+				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, ae);
+				ed.doExceptionDialog();
+				result = null;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Supprime un employé existant.
+	 *
+	 * @param e L'employé à supprimer
+	 * @author KRILL Maxence
+	 */
+	public void supprimerEmploye(Employe e) {
+		if (e != null) {
+			try {
+				Access_BD_Employe ae = new Access_BD_Employe();
+				ae.deleteEmploye(e);
+			} catch (DatabaseConnexionException f) {
+				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, f);
+				ed.doExceptionDialog();
+				e = null;
+				this.primaryStage.close();
+			} catch (ApplicationException ae) {
+				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, ae);
+				ed.doExceptionDialog();
+				e = null;
+			}
+		}
+	}
+
+	/**
+	 * Obtient la liste des employés en fonction des critères de recherche.
+	 *
+	 * @param _numEmp      Le numéro de l'employé (ou -1 pour tous les employés)
+	 * @param _debutNom    Le début du nom de l'employé
+	 * @param _debutPrenom Le début du prénom de l'employé
+	 * @return La liste des employés correspondant aux critères de recherche
+	 * @author KRILL Maxence
+	 */
+	public ArrayList<Employe> getlisteComptes(int _numEmp, String _debutNom, String _debutPrenom) {
 		ArrayList<Employe> listeCli = new ArrayList<>();
 		try {
 			// Recherche des employés en BD. cf. AccessClient > getEmployes(.)
-			// numCompte != -1 => recherche sur numCompte
-			// numCompte == -1 et debutNom non vide => recherche nom/prenom
-			// numCompte == -1 et debutNom vide => recherche tous les employés
+			// numEmp != -1 => recherche sur numEmp
+			// numEmp == -1 et debutNom non vide => recherche nom/prenom
+			// numEmp == -1 et debutNom vide => recherche tous les employés
 
 			Access_BD_Employe ac = new Access_BD_Employe();
-			listeCli = ac.getEmploye(this.dailyBankState.getEmployeActuel().idAg, _numCompte, _debutNom, _debutPrenom);
+			listeCli = ac.getEmploye(this.dailyBankState.getEmployeActuel().idAg, _numEmp, _debutNom, _debutPrenom);
 
 		} catch (DatabaseConnexionException e) {
 			ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);

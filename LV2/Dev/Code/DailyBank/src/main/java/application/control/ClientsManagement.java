@@ -19,7 +19,14 @@ import model.orm.exception.ApplicationException;
 import model.orm.exception.DatabaseConnexionException;
 
 /**
- * Classe responsable de la gestion de la fenêtre de gestion des clients dans l'application DailyBank.
+ * Classe responsable de la gestion de la fenêtre de gestion des clients dans
+ * l'application DailyBank.
+ * 
+ * @see ClientsManagementController
+ * @see Access_BD_Client
+ * @author IUT Blagnac
+ * @author KRILL Maxence
+ * @author LAMOUR Evan
  */
 public class ClientsManagement {
 
@@ -28,11 +35,12 @@ public class ClientsManagement {
 	private ClientsManagementController cmcViewController;
 
 	/**
-     * Constructeur de la classe ClientsManagement.
-     *
-     * @param _parentStage Fenêtre parente
-     * @param _dbstate État courant de l'application
-     */
+	 * Constructeur de la classe ClientsManagement.
+	 *
+	 * @param _parentStage Fenêtre parente
+	 * @param _dbstate     État courant de l'application
+	 * @author IUT Blagnac
+	 */
 	public ClientsManagement(Stage _parentStage, DailyBankState _dbstate) {
 		this.dailyBankState = _dbstate;
 		try {
@@ -59,17 +67,20 @@ public class ClientsManagement {
 	}
 
 	/**
-     * Affiche la fenêtre de gestion des clients.
-     */
+	 * Affiche la fenêtre de gestion des clients.
+	 * 
+	 * @author IUT Blagnac
+	 */
 	public void doClientManagementDialog() {
 		this.cmcViewController.displayDialog();
 	}
-	
+
 	/**
-     * Crée un nouveau client.
-     *
-     * @return Le nouveau client créé
-     */
+	 * Crée un nouveau client.
+	 *
+	 * @return Le nouveau client créé
+	 * @author IUT Blagnac
+	 */
 	public Client nouveauClient() {
 		Client client;
 		ClientEditorPane cep = new ClientEditorPane(this.primaryStage, this.dailyBankState);
@@ -94,14 +105,15 @@ public class ClientsManagement {
 	}
 
 	/**
-     * Modifie un client existant.
-     *
-     * @param c Le client à modifier
-     * @return Le client modifié
-     */
-	public Client modifierClient(Client c) {
+	 * Modifie un client existant.
+	 *
+	 * @param cliMod Le client à modifier
+	 * @return Le client modifié
+	 * @author IUT Blagnac
+	 */
+	public Client modifierClient(Client cliMod) {
 		ClientEditorPane cep = new ClientEditorPane(this.primaryStage, this.dailyBankState);
-		Client result = cep.doClientEditorDialog(c, EditionMode.MODIFICATION);
+		Client result = cep.doClientEditorDialog(cliMod, EditionMode.MODIFICATION);
 		if (result != null) {
 			try {
 				Access_BD_Client ac = new Access_BD_Client();
@@ -121,10 +133,12 @@ public class ClientsManagement {
 	}
 
 	/**
-     * Vérifie si les comptes d'un client sont tous clôturés
-     *
-     * @return Le nombre de comptes ouverts du client
-     */
+	 * Vérifie si les comptes d'un client sont tous clôturés
+	 *
+	 * @param cliMod Le client sur lequel effectuer la vérification
+	 * @return Le nombre de comptes ouverts du client, -1 en cas d'erreur
+	 * @author KRILL Maxence
+	 */
 	public int verifierCloturer(Client cliMod) {
 		int comptesOuverts = -1;
 		if (cliMod != null) {
@@ -134,22 +148,23 @@ public class ClientsManagement {
 			} catch (DatabaseConnexionException e) {
 				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
 				ed.doExceptionDialog();
-				cliMod = null;
 				this.primaryStage.close();
 			} catch (ApplicationException ae) {
 				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, ae);
 				ed.doExceptionDialog();
-				cliMod = null;
 			}
 		}
 		return comptesOuverts;
-    }
-	
+	}
+
 	/**
-     * Désactive un client.
-     *
-     * @return Le client à désactiver.
-     */
+	 * Désactive un client.
+	 *
+	 * @param cliMod Le client à désactiver.
+	 * @return Le client désactivé.
+	 * @author KRILL Maxence
+	 * @author LAMOUR Evan
+	 */
 	public Client clientInactif(Client cliMod) {
 		cliMod.estInactif = ConstantesIHM.CLIENT_INACTIF;
 		if (cliMod != null) {
@@ -171,23 +186,23 @@ public class ClientsManagement {
 	}
 
 	/**
-     * Gère les comptes d'un client.
-     *
-     * @param c Le client dont les comptes doivent être gérés
-     */
+	 * Gère les comptes d'un client.
+	 *
+	 * @param c Le client dont les comptes doivent être gérés
+	 */
 	public void gererComptesClient(Client c) {
 		ComptesManagement cm = new ComptesManagement(this.primaryStage, this.dailyBankState, c);
 		cm.doComptesManagementDialog();
 	}
 
 	/**
-     * Obtient la liste des clients en fonction des critères de recherche.
-     *
-     * @param _numCompte Le numéro de compte (ou -1 pour tous les clients)
-     * @param _debutNom Le début du nom du client
-     * @param _debutPrenom Le début du prénom du client
-     * @return La liste des clients correspondant aux critères de recherche
-     */
+	 * Obtient la liste des clients en fonction des critères de recherche.
+	 *
+	 * @param _numCompte   Le numéro de compte (ou -1 pour tous les clients)
+	 * @param _debutNom    Le début du nom du client
+	 * @param _debutPrenom Le début du prénom du client
+	 * @return La liste des clients correspondant aux critères de recherche
+	 */
 	public ArrayList<Client> getlisteComptes(int _numCompte, String _debutNom, String _debutPrenom) {
 		ArrayList<Client> listeCli = new ArrayList<>();
 		try {

@@ -18,6 +18,14 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.data.Employe;
 
+/**
+ * Contrôleur pour la fenêtre de gestion des Employés.
+ * 
+ * @see EmployesManagement
+ * @author DIDENKO Andrii
+ * @author KRILL Maxence
+ * @author SHULSHINA Daria
+ */
 public class EmployesManagementController {
 
 	// Etat courant de l'application
@@ -32,6 +40,14 @@ public class EmployesManagementController {
 	// Données de la fenêtre
 	private ObservableList<Employe> oListEmployes;
 
+	/**
+	 * Initialise le contexte du contrôleur.
+	 * 
+	 * @param _containingStage Le stage contenant la scène
+	 * @param _cm              Le contrôleur de dialogue associé
+	 * @param _dbstate         L'état courant de l'application
+	 * @author KRILL Maxence
+	 */
 	// Manipulation de la fenêtre
 	public void initContext(Stage _containingStage, EmployesManagement _cm, DailyBankState _dbstate) {
 		this.cmDialogController = _cm;
@@ -40,6 +56,11 @@ public class EmployesManagementController {
 		this.configure();
 	}
 
+	/**
+	 * Configure la fenêtre de gestion des Employés
+	 * 
+	 * @author KRILL Maxence
+	 */
 	private void configure() {
 		this.primaryStage.setOnCloseRequest(e -> this.closeWindow(e));
 
@@ -52,11 +73,24 @@ public class EmployesManagementController {
 		this.doRechercher();
 	}
 
+	/**
+	 * Affiche la fenêtre de gestion des Employés
+	 * 
+	 * @author KRILL Maxence
+	 */
 	public void displayDialog() {
 		this.primaryStage.showAndWait();
 	}
 
 	// Gestion du stage
+
+	/**
+	 * Ferme la fenêtre.
+	 * 
+	 * @param e L'événement de fermeture
+	 * @return Object null
+	 * @author KRILL Maxence
+	 */
 	private Object closeWindow(WindowEvent e) {
 		this.doCancel();
 		e.consume();
@@ -78,14 +112,25 @@ public class EmployesManagementController {
 	@FXML
 	private Button btnModifEmploye;
 
+	/**
+	 * Ferme la fenêtre de gestion des Employés (bouton FXML).
+	 * 
+	 * @author KRILL Maxence
+	 */
 	@FXML
 	private void doCancel() {
 		this.primaryStage.close();
 	}
 
+	/**
+	 * Recherche les employés en fonction des critères de recherche (bouton FXML).
+	 * 
+	 * @author KRILL Maxence
+	 */
 	@FXML
 	private void doRechercher() {
-		if(!ConstantesIHM.isAdmin(this.dailyBankState.getEmployeActuel())) return;
+		if (!ConstantesIHM.isAdmin(this.dailyBankState.getEmployeActuel()))
+			return;
 		int numCompte;
 		try {
 			String nc = this.txtNum.getText();
@@ -127,9 +172,16 @@ public class EmployesManagementController {
 		this.validateComponentState();
 	}
 
+	/**
+	 * Crée un nouvel employé (bouton FXML).
+	 * 
+	 * @author DIDENKO Andrii
+	 * @author SHULSHINA Daria
+	 */
 	@FXML
 	private void doNouveauEmploye() {
-		if(!ConstantesIHM.isAdmin(this.dailyBankState.getEmployeActuel())) return;
+		if (!ConstantesIHM.isAdmin(this.dailyBankState.getEmployeActuel()))
+			return;
 		Employe employe;
 		employe = this.cmDialogController.nouveauEmploye();
 		if (employe != null) {
@@ -137,9 +189,15 @@ public class EmployesManagementController {
 		}
 	}
 
+	/**
+	 * Modifie un employé (bouton FXML).
+	 * 
+	 * @author KRILL Maxence
+	 */
 	@FXML
 	private void doModifierEmploye() {
-		if(!ConstantesIHM.isAdmin(this.dailyBankState.getEmployeActuel())) return;
+		if (!ConstantesIHM.isAdmin(this.dailyBankState.getEmployeActuel()))
+			return;
 		int selectedIndice = this.lvEmployes.getSelectionModel().getSelectedIndex();
 		if (selectedIndice >= 0) {
 			Employe cliMod = this.oListEmployes.get(selectedIndice);
@@ -150,19 +208,32 @@ public class EmployesManagementController {
 		}
 	}
 
+	/**
+	 * Supprime un employé (bouton FXML).
+	 * 
+	 * @author DIDENKO Andrii
+	 * @author SHULSHINA Daria
+	 */
 	@FXML
 	private void doSupprimerEmploye() {
-		if(!ConstantesIHM.isAdmin(this.dailyBankState.getEmployeActuel())) return;
+		if (!ConstantesIHM.isAdmin(this.dailyBankState.getEmployeActuel()))
+			return;
 		int selectedIndice = this.lvEmployes.getSelectionModel().getSelectedIndex();
 		if (selectedIndice >= 0) {
 			Employe empMod = this.oListEmployes.get(selectedIndice);
 			String permission;
-			if(empMod.droitsAccess == ConstantesIHM.AGENCE_CHEF) {
+			if (empMod.droitsAccess == ConstantesIHM.AGENCE_CHEF) {
 				permission = "Chef d'agence";
 			} else {
 				permission = "Guichetier";
 			}
-			if(!AlertUtilities.confirmYesCancel(this.primaryStage, "Supprimer employé", "Êtes-vous sûr de vouloir supprimer cet employé ?", "Il ne sera pas possible de restaurer cet employé, cependant, vous pourrez le recréer.\n\nEmployé :\nID : " + empMod.idEmploye + "\nNom : " + empMod.nom + "\nPrénom : " + empMod.prenom + "\nDroits : " + permission, AlertType.CONFIRMATION)) return;
+			if (!AlertUtilities.confirmYesCancel(this.primaryStage, "Supprimer employé",
+					"Êtes-vous sûr de vouloir supprimer cet employé ?",
+					"Il ne sera pas possible de restaurer cet employé, cependant, vous pourrez le recréer.\n\nEmployé :\nID : "
+							+ empMod.idEmploye + "\nNom : " + empMod.nom + "\nPrénom : " + empMod.prenom + "\nDroits : "
+							+ permission,
+					AlertType.CONFIRMATION))
+				return;
 			this.cmDialogController.supprimerEmploye(empMod);
 			this.oListEmployes.remove(selectedIndice);
 		}

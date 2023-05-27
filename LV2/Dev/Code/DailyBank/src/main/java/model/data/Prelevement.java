@@ -1,13 +1,26 @@
 package model.data;
 
+/**
+ * Classe Prelevement
+ * 
+ * @author KRILL Maxence
+ * @author LAMOUR Evan
+ */
 public class Prelevement {
 
-	public int idPrelevement;
-	public int montant;
-	public int date;
+	public int idPrelevement, montant, date, idNumCompte;
 	public String beneficiaire;
-	public int idNumCompte;
 
+	/**
+	 * Constructeur de la classe Prelevement avec tous les paramètres.
+	 * 
+	 * @param idPrelevement L'identifiant du prélèvement
+	 * @param montant       Le montant du prélèvement
+	 * @param date          La date du prélèvement
+	 * @param beneficiaire  Le bénéficiaire du prélèvement
+	 * @param idNumCompte   L'identifiant du numéro de compte du prélèvement
+	 * @author LAMOUR Evan
+	 */
 	public Prelevement(int idPrelevement, int montant, int date, String beneficiaire, int idNumCompte) {
 		this.idPrelevement = idPrelevement;
 		this.montant = montant;
@@ -16,7 +29,29 @@ public class Prelevement {
 		this.idNumCompte = idNumCompte;
 	}
 
+	/**
+	 * Constructeur de la classe Prelevement à partir d'un Prelevement.
+	 * 
+	 * @param pm Le prélèvement à copier
+	 * @author KRILL Maxence
+	 */
 	public Prelevement(Prelevement pm) {
-		// TODO Auto-generated constructor stub
+		this(pm.idPrelevement, pm.montant, pm.date, pm.beneficiaire, pm.idNumCompte);
+	}
+
+	/**
+	 * Constructeur de la classe Prelevement sans paramètres.
+	 * 
+	 * Valeurs par défaut :
+	 * - idPrelevement : -1000
+	 * - montant : -1000
+	 * - date : -1000
+	 * - beneficiaire : null
+	 * - idNumCompte : -1000
+	 * 
+	 * @author KRILL Maxence
+	 */
+	public Prelevement() {
+		this(-1000, -1000, -1000, null, -1000);
 	}
 }

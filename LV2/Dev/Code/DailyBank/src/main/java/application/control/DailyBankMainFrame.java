@@ -14,8 +14,11 @@ import model.orm.exception.DatabaseConnexionException;
 /**
  * Classe de controleur de Dialogue de la fenêtre principale.
  *
+ * @see DailyBankMainFrameController
+ * @author IUT Blagnac
+ * @author KRILL Maxence
+ * @author LAMOUR Evan
  */
-
 public class DailyBankMainFrame extends Application {
 
 	// Etat courant de l'application
@@ -26,14 +29,13 @@ public class DailyBankMainFrame extends Application {
 
 	/**
 	 * Méthode de démarrage (JavaFX).
+	 * 
+	 * @author IUT Blagnac
 	 */
 	@Override
 	public void start(Stage primaryStage) {
-
 		this.primaryStage = primaryStage;
-
 		try {
-
 			// Création de l'état courant de l'application
 			this.dailyBankState = new DailyBankState();
 			this.dailyBankState.setEmployeActuel(null);
@@ -51,8 +53,8 @@ public class DailyBankMainFrame extends Application {
 			primaryStage.setTitle("Fenêtre Principale");
 
 			/*
-			 * // En mise au point : // Forcer une connexion existante pour rentrer dans
-			 * l'appli en mode connecté
+			 * // En mise au point :
+			 * // Forcer une connexion existante pour rentrer dans l'appli en mode connecté
 			 *
 			 * try { Employe e; Access_BD_Employe ae = new Access_BD_Employe();
 			 *
@@ -77,9 +79,7 @@ public class DailyBankMainFrame extends Application {
 			// état courant)
 			DailyBankMainFrameController dbmfcViewController = loader.getController();
 			dbmfcViewController.initContext(primaryStage, this, this.dailyBankState);
-
 			dbmfcViewController.displayDialog();
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(-1);
@@ -88,6 +88,8 @@ public class DailyBankMainFrame extends Application {
 
 	/**
 	 * Méthode principale de lancement de l'application.
+	 * 
+	 * @author IUT Blagnac
 	 */
 	public static void runApp() {
 		Application.launch();
@@ -95,6 +97,8 @@ public class DailyBankMainFrame extends Application {
 
 	/**
 	 * Réaliser la déconnexion de l'application.
+	 * 
+	 * @author IUT Blagnac
 	 */
 	public void deconnexionEmploye() {
 		this.dailyBankState.setEmployeActuel(null);
@@ -108,6 +112,8 @@ public class DailyBankMainFrame extends Application {
 
 	/**
 	 * Lancer la connexion de l'utilisateur (login/mdp employé).
+	 *
+	 * @author IUT Blagnac
 	 */
 	public void loginDunEmploye() {
 		LoginDialog ld = new LoginDialog(this.primaryStage, this.dailyBankState);
@@ -115,21 +121,40 @@ public class DailyBankMainFrame extends Application {
 	}
 
 	/**
-	 * Lancer la gestion des clients (liste des clients).
+	 * Ouvre la fenêtre de gestion des clients.
+	 *
+	 * @author IUT Blagnac
 	 */
 	public void gestionClients() {
 		ClientsManagement cm = new ClientsManagement(this.primaryStage, this.dailyBankState);
 		cm.doClientManagementDialog();
 	}
 
+	/**
+	 * Ouvre la fenêtre de gestion des employés.
+	 *
+	 * @author KRILL Maxence
+	 */
 	public void gestionEmployes() {
 		EmployesManagement em = new EmployesManagement(this.primaryStage, this.dailyBankState);
 		em.doEmployeManagementDialog();
 	}
+
+	/**
+	 * Ouvre la fenêtre de gestion des prélévements automatiques.
+	 *
+	 * @author LAMOUR Evan
+	 */
 	public void gestionPrelevement() {
 		PrelevementManagement pm = new PrelevementManagement(this.primaryStage, this.dailyBankState);
 		pm.doPrelevementManagementDialog();
 	}
+
+	/**
+	 * Ouvre la fenêtre de simulation d'un emprunt.
+	 *
+	 * @author LAMOUR Evan
+	 */
 	public void simulerEmprunt() {
 		SimulationEmprunt se = new SimulationEmprunt(this.primaryStage, this.dailyBankState);
 		se.doSimulationEmpruntDialog();

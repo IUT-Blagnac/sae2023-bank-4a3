@@ -13,6 +13,8 @@ import model.orm.exception.ApplicationException;
 
 /**
  * Classe de contrôleur pour la boîte de dialogue des exceptions.
+ * 
+ * @author IUT Blagnac
  */
 public class ExceptionDialog {
 
@@ -20,11 +22,13 @@ public class ExceptionDialog {
 	private ExceptionDialogController edcViewController;
 
 	/**
-     * Constructeur de la classe ExceptionDialog.
-     * @param _parentStage le stage parent
-     * @param _dbstate l'état courant de l'application
-     * @param ae l'exception applicative
-     */
+	 * Constructeur de la classe ExceptionDialog.
+	 * 
+	 * @param _parentStage Le stage parent
+	 * @param _dbstate     L'état courant de l'application
+	 * @param ae           L'exception applicative
+	 * @author IUT Blagnac
+	 */
 	public ExceptionDialog(Stage _parentStage, DailyBankState _dbstate, ApplicationException ae) {
 
 		try {
@@ -51,8 +55,10 @@ public class ExceptionDialog {
 	}
 
 	/**
-     * Affiche la boîte de dialogue des exceptions.
-     */
+	 * Affiche la boîte de dialogue des exceptions.
+	 * 
+	 * @author IUT Blagnac
+	 */
 	public void doExceptionDialog() {
 		this.edcViewController.displayDialog();
 	}

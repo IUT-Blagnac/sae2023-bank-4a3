@@ -17,11 +17,16 @@ import model.data.CompteCourant;
 import model.orm.Access_BD_CompteCourant;
 import model.orm.exception.ApplicationException;
 import model.orm.exception.DatabaseConnexionException;
-import model.orm.exception.Order;
-import model.orm.exception.Table;
 
 /**
- * Classe responsable de la gestion de la fenêtre de gestion des comptes dans l'application DailyBank.
+ * Classe responsable de la gestion de la fenêtre de gestion des comptes dans
+ * l'application DailyBank.
+ * 
+ * @see ComptesManagementController
+ * @see Access_BD_CompteCourant
+ * @author IUT Blagnac
+ * @author KRILL Maxence
+ * @author LAMOUR Evan
  */
 public class ComptesManagement {
 
@@ -31,12 +36,13 @@ public class ComptesManagement {
 	private Client clientDesComptes;
 
 	/**
-     * Constructeur de la classe ComptesManagement.
-     *
-     * @param _parentStage Fenêtre parente
-     * @param _dbstate État courant de l'application
-     * @param client Client associé aux comptes
-     */
+	 * Constructeur de la classe ComptesManagement.
+	 *
+	 * @param _parentStage Fenêtre parente
+	 * @param _dbstate     État courant de l'application
+	 * @param client       Client associé aux comptes
+	 * @author IUT Blagnac
+	 */
 	public ComptesManagement(Stage _parentStage, DailyBankState _dbstate, Client client) {
 
 		this.clientDesComptes = client;
@@ -64,17 +70,20 @@ public class ComptesManagement {
 	}
 
 	/**
-     * Affiche la fenêtre de gestion des comptes.
-     */
+	 * Affiche la fenêtre de gestion des comptes.
+	 * 
+	 * @author IUT Blagnac
+	 */
 	public void doComptesManagementDialog() {
 		this.cmcViewController.displayDialog();
 	}
 
 	/**
-     * Récupère les comptes d'un client.
-     *
-     * @return La liste des comptes courants du client
-     */
+	 * Récupère les comptes d'un client.
+	 *
+	 * @return La liste des comptes courants du client
+	 * @author IUT Blagnac
+	 */
 	public ArrayList<CompteCourant> getComptesDunClient() {
 		ArrayList<CompteCourant> listeCpt = new ArrayList<>();
 		try {
@@ -94,10 +103,11 @@ public class ComptesManagement {
 	}
 
 	/**
-     * Gère les opérations d'un compte spécifique.
-     *
-     * @param cpt Compte courant à gérer
-     */
+	 * Gère les opérations d'un compte spécifique.
+	 *
+	 * @param cpt Compte courant à gérer
+	 * @author IUT Blagnac
+	 */
 	public void gererOperationsDUnCompte(CompteCourant cpt) {
 		OperationsManagement om = new OperationsManagement(this.primaryStage, this.dailyBankState,
 				this.clientDesComptes, cpt);
@@ -105,10 +115,11 @@ public class ComptesManagement {
 	}
 
 	/**
-     * Crée un nouveau compte.
-     *
-     * @return Le compte courant créé
-     */
+	 * Crée un nouveau compte.
+	 *
+	 * @return Le compte courant créé
+	 * @author IUT Blagnac
+	 */
 	public CompteCourant creerNouveauCompte() {
 		CompteCourant compte;
 		CompteEditorPane cep = new CompteEditorPane(this.primaryStage, this.dailyBankState);
@@ -116,14 +127,7 @@ public class ComptesManagement {
 		if (compte != null) {
 			try {
 				Access_BD_CompteCourant ac = new Access_BD_CompteCourant();
-
 				ac.insertCompte(compte);
-
-				// if JAMAIS vrai
-				// existe pour compiler les catchs dessous
-//				if (Math.random() < -1) {
-//					throw new ApplicationException(Table.CompteCourant, Order.INSERT, "todo : test exceptions", null);
-//				}
 			} catch (DatabaseConnexionException e) {
 				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
 				ed.doExceptionDialog();
@@ -136,9 +140,16 @@ public class ComptesManagement {
 		return compte;
 	}
 
-	public CompteCourant modifierCompte(CompteCourant c) {
+	/**
+	 * Modifie un compte.
+	 *
+	 * @param cpt Le compte à modifier
+	 * @return Le compte modifié
+	 * @author KRILL Maxence
+	 */
+	public CompteCourant modifierCompte(CompteCourant cpt) {
 		CompteEditorPane cep = new CompteEditorPane(this.primaryStage, this.dailyBankState);
-		CompteCourant result = cep.doCompteEditorDialog(clientDesComptes, c, EditionMode.MODIFICATION);
+		CompteCourant result = cep.doCompteEditorDialog(clientDesComptes, cpt, EditionMode.MODIFICATION);
 		if (result != null) {
 			try {
 				Access_BD_CompteCourant ac = new Access_BD_CompteCourant();
@@ -155,16 +166,19 @@ public class ComptesManagement {
 			}
 		}
 		return result;
-    }
+	}
 
-	public void cloturerCompte(CompteCourant compte) {
-		if(compte != null) {
+	/**
+	 * Cloture un compte.
+	 *
+	 * @param cpt Le compte à cloturer
+	 * @author LAMOUR Evan
+	 */
+	public void cloturerCompte(CompteCourant cpt) {
+		if (cpt != null) {
 			try {
 				Access_BD_CompteCourant ac = new Access_BD_CompteCourant();
-				ac.cloturerCompte(compte);
-				if(Math.random()<-1){
-					throw new ApplicationException(Table.CompteCourant, Order.INSERT, "todo : test exceptions", null);
-				}
+				ac.cloturerCompte(cpt);
 			} catch (DatabaseConnexionException e) {
 				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
 				ed.doExceptionDialog();

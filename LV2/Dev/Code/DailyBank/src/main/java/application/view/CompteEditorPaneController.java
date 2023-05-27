@@ -1,7 +1,5 @@
 package application.view;
 
-import java.util.Locale;
-
 import application.DailyBankState;
 import application.tools.AlertUtilities;
 import application.tools.ConstantesIHM;
@@ -17,6 +15,13 @@ import javafx.stage.WindowEvent;
 import model.data.Client;
 import model.data.CompteCourant;
 
+/**
+ * Contrôleur pour l'édition des informations client dans une fenêtre.
+ * 
+ * @see ClientEditorPane
+ * @author IUT Blagnac
+ * @author LAMOUR Evan
+ */
 public class CompteEditorPaneController {
 
 	// Etat courant de l'application
@@ -31,13 +36,23 @@ public class CompteEditorPaneController {
 	private CompteCourant compteEdite;
 	private CompteCourant compteResultat;
 
-	// Manipulation de la fenêtre
+	/**
+	 * Initialise le contrôleur de la fenêtre.
+	 * 
+	 * @param _containingStage
+	 * @param _dbstate
+	 */
 	public void initContext(Stage _containingStage, DailyBankState _dbstate) {
 		this.primaryStage = _containingStage;
 		this.dailyBankState = _dbstate;
 		this.configure();
 	}
 
+	/**
+	 * Configure la fenêtre de gestion des Clients
+	 * 
+	 * @author IUT Blagnac
+	 */
 	private void configure() {
 		this.primaryStage.setOnCloseRequest(e -> this.closeWindow(e));
 
@@ -45,6 +60,15 @@ public class CompteEditorPaneController {
 		this.txtSolde.focusedProperty().addListener((t, o, n) -> this.focusSolde(t, o, n));
 	}
 
+	/**
+	 * Affiche la boîte de dialogue d'édition des informations client.
+	 * 
+	 * @param client Le client à éditer (null pour une création)
+	 * @param mode   Le mode d'édition
+	 * @return Le client créé/modifié
+	 * @author IUT Blagnac
+	 * @author LAMOUR Evan
+	 */
 	public CompteCourant displayDialog(Client client, CompteCourant cpte, EditionMode mode) {
 		this.clientDuCompte = client;
 		this.editionMode = mode;
@@ -58,27 +82,26 @@ public class CompteEditorPaneController {
 		this.txtIdAgence.setDisable(true);
 		this.txtIdNumCompte.setDisable(true);
 		switch (mode) {
-		case CREATION:
-			this.txtDecAutorise.setDisable(false);
-			this.txtSolde.setDisable(false);
-			this.lblMessage.setText("Informations sur le nouveau compte");
-			this.lblSolde.setText("Solde (premier dépôt)");
-			this.btnOk.setText("Ajouter");
-			this.btnCancel.setText("Annuler");
-			break;
-		case MODIFICATION:
-			this.txtDecAutorise.setDisable(false);
-			this.txtSolde.setDisable(false);
-			this.lblMessage.setText("Informations sur le compte à modifier");
-			this.lblSolde.setText("Solde");
-			this.txtSolde.setDisable(true);
-			this.btnOk.setText("Modifier");
-			this.btnCancel.setText("Annuler");
-			break;
-		case SUPPRESSION:
-			AlertUtilities.showAlert(this.primaryStage, "Non implémenté", "Suppression de compte n'est pas implémenté", null, AlertType.ERROR);
-			return null;
-//		   break;
+			case CREATION:
+				this.txtDecAutorise.setDisable(false);
+				this.txtSolde.setDisable(false);
+				this.lblMessage.setText("Informations sur le nouveau compte");
+				this.lblSolde.setText("Solde (premier dépôt)");
+				this.btnOk.setText("Ajouter");
+				this.btnCancel.setText("Annuler");
+				break;
+			case MODIFICATION:
+				this.txtDecAutorise.setDisable(false);
+				this.txtSolde.setDisable(false);
+				this.lblMessage.setText("Informations sur le compte à modifier");
+				this.lblSolde.setText("Solde");
+				this.txtSolde.setDisable(true);
+				this.btnOk.setText("Modifier");
+				this.btnCancel.setText("Annuler");
+				break;
+			default:
+				break;
+
 		}
 
 		// Paramétrages spécifiques pour les chefs d'agences
@@ -89,7 +112,7 @@ public class CompteEditorPaneController {
 		// initialisation du contenu des champs
 		this.txtIdclient.setText("" + this.compteEdite.idNumCli);
 		this.txtIdNumCompte.setText("" + this.compteEdite.idNumCompte);
-		if(mode == EditionMode.CREATION) {
+		if (mode == EditionMode.CREATION) {
 			this.txtIdNumCompte.setText("");
 		}
 		this.txtIdAgence.setText("" + this.dailyBankState.getEmployeActuel().idAg);
@@ -102,14 +125,28 @@ public class CompteEditorPaneController {
 		return this.compteResultat;
 	}
 
-	// Gestion du stage
+	/**
+	 * Ferme la fenêtre.
+	 * 
+	 * @param e L'événement de fermeture
+	 * @return Object null
+	 * @author IUT Blagnac
+	 */
 	private Object closeWindow(WindowEvent e) {
 		this.doCancel();
 		e.consume();
 		return null;
 	}
 
-	private Object focusDecouvert(ObservableValue<? extends Boolean> txtField, boolean oldPropertyValue,
+	/**
+	 * Gestion du focus sur le champ txtDecAutorise.
+	 * 
+	 * @param txtField         Le champ en cours de saisie
+	 * @param oldPropertyValue La valeur précédente du focus
+	 * @param newPropertyValue La nouvelle valeur du focus
+	 * @author IUT Blagnac
+	 */
+	private void focusDecouvert(ObservableValue<? extends Boolean> txtField, boolean oldPropertyValue,
 			boolean newPropertyValue) {
 		if (oldPropertyValue) {
 			try {
@@ -120,10 +157,17 @@ public class CompteEditorPaneController {
 				this.txtDecAutorise.setText("" + this.compteEdite.debitAutorise);
 			}
 		}
-		return null;
 	}
 
-	private Object focusSolde(ObservableValue<? extends Boolean> txtField, boolean oldPropertyValue,
+	/**
+	 * Gestion du focus sur le champ txtSolde.
+	 * 
+	 * @param txtField         Le champ en cours de saisie
+	 * @param oldPropertyValue La valeur précédente du focus
+	 * @param newPropertyValue La nouvelle valeur du focus
+	 * @author IUT Blagnac
+	 */
+	private void focusSolde(ObservableValue<? extends Boolean> txtField, boolean oldPropertyValue,
 			boolean newPropertyValue) {
 		if (oldPropertyValue) {
 			try {
@@ -138,7 +182,6 @@ public class CompteEditorPaneController {
 			}
 		}
 		this.txtSolde.setText("" + this.compteEdite.solde);
-		return null;
 	}
 
 	// Attributs de la scene + actions
@@ -161,6 +204,11 @@ public class CompteEditorPaneController {
 	@FXML
 	private Button btnCancel;
 
+	/**
+	 * Gestion de l'appui sur le bouton Annuler (FXML).
+	 * 
+	 * @author IUT Blagnac
+	 */
 	@FXML
 	private void doCancel() {
 		this.compteResultat = null;
@@ -170,28 +218,41 @@ public class CompteEditorPaneController {
 	@FXML
 	private void doAjouter() {
 		switch (this.editionMode) {
-		case CREATION:
-			if (this.isSaisieValide()) {
+			case CREATION:
+				if (this.isSaisieValide()) {
+					this.compteResultat = this.compteEdite;
+					this.primaryStage.close();
+				}
+				break;
+			case MODIFICATION:
+				if (this.isSaisieValide()) {
+					this.compteResultat = this.compteEdite;
+					this.primaryStage.close();
+				}
+				break;
+			case SUPPRESSION:
 				this.compteResultat = this.compteEdite;
 				this.primaryStage.close();
-			}
-			break;
-		case MODIFICATION:
-			if (this.isSaisieValide()) {
-				this.compteResultat = this.compteEdite;
-				this.primaryStage.close();
-			}
-			break;
-		case SUPPRESSION:
-			this.compteResultat = this.compteEdite;
-			this.primaryStage.close();
-			break;
+				break;
 		}
 	}
-	
+
+	/**
+	 * Vérifie que la saisie est valide.
+	 * - Le solde du compte doit être supérieur au découvert autorisé
+	 * 
+	 * @return true si la saisie est valide, false sinon
+	 * @author IUT Blagnac
+	 */
 	private boolean isSaisieValide() {
-		if(this.compteEdite.solde < this.compteEdite.debitAutorise) {
-			AlertUtilities.showAlert(this.primaryStage, "Erreur de saisie", "Le solde du compte est inférieur au découvert autorisé", "Un compte ne peut pas être créé/édité si le solde est inférieur au découvert.\n\nSolde : " + this.compteEdite.solde + " €\nDécouvert autorisé : -" + this.compteEdite.debitAutorise + " €\n\nDifférence : -" + (0 - this.compteEdite.debitAutorise - this.compteEdite.solde) + " €", AlertType.WARNING);
+		if (this.compteEdite.solde < this.compteEdite.debitAutorise) {
+			AlertUtilities.showAlert(this.primaryStage, "Erreur de saisie",
+					"Le solde du compte est inférieur au découvert autorisé",
+					"Un compte ne peut pas être créé/édité si le solde est inférieur au découvert.\n\nSolde : "
+							+ this.compteEdite.solde + " €\nDécouvert autorisé : -" + this.compteEdite.debitAutorise
+							+ " €\n\nDifférence : -" + (0 - this.compteEdite.debitAutorise - this.compteEdite.solde)
+							+ " €",
+					AlertType.WARNING);
 			return false;
 		}
 		return true;

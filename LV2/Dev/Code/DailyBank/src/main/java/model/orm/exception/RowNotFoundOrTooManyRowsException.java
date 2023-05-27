@@ -3,14 +3,14 @@ package model.orm.exception;
 /**
  * Erreur applicative sur un ordre select/insert/update/delete "monoligne".
  * L'ordre exécuté devait "traiter" une seule ligne et le résultat aboutit à 0
- * ou plusieurs lignes. <BR />
- * Exemple de use case de survenue : <BR />
- * - demande d'un update d'un client à partir de son numéro <BR />
+ * ou plusieurs lignes.
+ * Exemple de use case de survenue :
+ * - demande d'un update d'un client à partir de son numéro
  * - le numéro inexistant en base - => 0 lignes updatées => levée de l'exception
- * <BR />
- * Autre cas : recherche d'un client par son numéro (id) : <BR />
- * - on trouve 0 lignes : normal il n'existe pas (pas d'erreur) <BR />
- * - on trouve plusieurs lignes => anormal => levée exception <BR />
+ *
+ * Autre cas : recherche d'un client par son numéro (id) :
+ * - on trouve 0 lignes : normal il n'existe pas (pas d'erreur)
+ * - on trouve plusieurs lignes => anormal => levée exception
  */
 
 @SuppressWarnings("serial")
@@ -32,6 +32,10 @@ public class RowNotFoundOrTooManyRowsException extends ApplicationException {
 		this.rowsConcerned = rowsConcerned;
 	}
 
+	
+	/** 
+	 * @return String
+	 */
 	@Override
 	public String getMessage() {
 		return super.getMessageAlone() + " (" + this.tablename + " - " + this.order + " - " + "(" + this.rowsConcerned

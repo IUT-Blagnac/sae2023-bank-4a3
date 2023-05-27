@@ -12,19 +12,36 @@ import model.orm.exception.Order;
 import model.orm.exception.RowNotFoundOrTooManyRowsException;
 import model.orm.exception.Table;
 
+/**
+ * Classe d'accès aux Prelevement en BD Oracle.
+ * 
+ * @author KRILL Maxence
+ * @author LAMOUR Evan
+ */
 public class Access_BD_Prelevement {
 
-	public Access_BD_Prelevement(){
+	public Access_BD_Prelevement() {
 
 	}
 
+	/**
+	 * Insertion d'un prelevement dans la base de données.
+	 * 
+	 * @param pre Prelevement à insérer
+	 * @throws RowNotFoundOrTooManyRowsException Erreur d'accès aux données
+	 * @throws DataAccessException               Erreur d'accès aux données (requête
+	 *                                           mal formée ou autre)
+	 * @throws DatabaseConnexionException        Erreur de connexion
+	 * @author LAMOUR Evan
+	 */
 	public void insertPrelevement(Prelevement pre)
 			throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException {
 		try {
 
 			Connection con = LogToDatabase.getConnexion();
 
-			String query = "INSERT INTO PRELEVEMENTAUTOMATIQUE VALUES (" + "seq_id_prelevauto.NEXTVAL" + ", " + "?" + ", " + "?" + ", "
+			String query = "INSERT INTO PRELEVEMENTAUTOMATIQUE VALUES (" + "seq_id_prelevauto.NEXTVAL" + ", " + "?"
+					+ ", " + "?" + ", "
 					+ "?" + ", " + "?" + ")";
 			PreparedStatement pst = con.prepareStatement(query);
 			pst.setInt(1, pre.montant);
@@ -50,13 +67,13 @@ public class Access_BD_Prelevement {
 
 			ResultSet rs = pst2.executeQuery();
 			rs.next();
-			//int numCliBase = rs.getInt(1);
+			// int numCliBase = rs.getInt(1);
 
 			con.commit();
 			rs.close();
 			pst2.close();
 
-			//client.idNumCli = numCliBase;
+			// client.idNumCli = numCliBase;
 		} catch (SQLException e) {
 			throw new DataAccessException(Table.PrelevementAutomatique, Order.INSERT, "Erreur accès", e);
 		}

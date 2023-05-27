@@ -15,6 +15,11 @@ import model.orm.exception.Table;
 
 /**
  * Classe d'accès aux Employe en BD Oracle.
+ * 
+ * @author IUT Blagnac
+ * @author DIDENKO Andrii
+ * @author KRILL Maxence
+ * @author SHULSHINA Daria
  */
 public class Access_BD_Employe {
 
@@ -24,13 +29,14 @@ public class Access_BD_Employe {
 	/**
 	 * Recherche d'un employé par son login / mot de passe.
 	 *
-	 * @param login    login de l'employé recherché
-	 * @param password mot de passe donné
-	 * @return un Employe ou null si non trouvé
+	 * @param login    Login de l'employé recherché
+	 * @param password Mot de passe donné
+	 * @return Un Employe ou null si non trouvé
 	 * @throws RowNotFoundOrTooManyRowsException La requête renvoie plus de 1 ligne
 	 * @throws DataAccessException               Erreur d'accès aux données (requête
 	 *                                           mal formée ou autre)
 	 * @throws DatabaseConnexionException        Erreur de connexion
+	 * @author IUT Blagnac
 	 */
 	public Employe getEmploye(String login, String password)
 			throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException {
@@ -85,20 +91,21 @@ public class Access_BD_Employe {
 	/**
 	 * Recherche des employés paramétrée (tous/un seul par id/par nom-prénom).
 	 *
-	 * On recherche : <BR/>
-	 * - un employé précis si idNumCli <> -1 <BR />
-	 * - des employés par début nom/prénom si debutNom donné <BR />
-	 * - tous les employés de idAg sinon <BR/>
+	 * On recherche :
+	 * - un employé précis si idNumCli <> -1
+	 * - des employés par début nom/prénom si debutNom donné
+	 * - tous les employés de idAg sinon
 	 *
-	 * @param idAg        : id de l'agence dont on cherche les employés
-	 * @param idNumEmp    : vaut -1 si il n'est pas spécifié sinon numéro recherché
-	 * @param debutNom    : vaut "" si il n'est pas spécifié sinon sera le
-	 *                    nom/prenom recherchés
+	 * @param idAg        id de l'agence dont on cherche les employés
+	 * @param idNumEmp    Vaut -1 si il n'est pas spécifié sinon numéro recherché
+	 * @param debutNom    Vaut "" si il n'est pas spécifié sinon sera le nom/prenom
+	 *                    recherchés
 	 * @param debutPrenom cf. @param debutNom
 	 * @return Le ou les employés recherchés, liste vide si non trouvé
 	 * @throws DataAccessException        Erreur d'accès aux données (requête mal
 	 *                                    formée ou autre)
 	 * @throws DatabaseConnexionException Erreur de connexion
+	 * @author KRILL Maxence
 	 */
 	public ArrayList<Employe> getEmploye(int idAg, int idNumEmp, String debutNom, String debutPrenom)
 			throws DataAccessException, DatabaseConnexionException {
@@ -162,12 +169,13 @@ public class Access_BD_Employe {
 	/**
 	 * Recherche de employe par son id.
 	 *
-	 * @return un Employe ou null si non trouvé
+	 * @return Un Employe ou null si non trouvé
 	 * @param idEmp id du employe recherché (clé primaire)
 	 * @throws RowNotFoundOrTooManyRowsException La requête renvoie plus de 1 ligne
 	 * @throws DataAccessException               Erreur d'accès aux données (requête
 	 *                                           mal formée ou autre)
 	 * @throws DatabaseConnexionException        Erreur de connexion
+	 * @author KRILL Maxence
 	 */
 	public Employe getEmploye(int idEmp)
 			throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException {
@@ -176,7 +184,7 @@ public class Access_BD_Employe {
 
 		try {
 			Connection con = LogToDatabase.getConnexion();
-			String query = "SELECT * FROM Employe where" + " idNumEmp = ?";
+			String query = "SELECT * FROM Employe where idNumEmp = ?";
 			PreparedStatement pst = con.prepareStatement(query);
 			pst.setInt(1, idEmp);
 			ResultSet rs = pst.executeQuery();
@@ -223,6 +231,8 @@ public class Access_BD_Employe {
 	 * @throws DataAccessException               Erreur d'accès aux données (requête
 	 *                                           mal formée ou autre)
 	 * @throws DatabaseConnexionException        Erreur de connexion
+	 * @author DIDENKO Andrii
+	 * @author SHULSHINA Daria
 	 */
 	public void insertEmploye(Employe employe)
 			throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException {
@@ -271,6 +281,57 @@ public class Access_BD_Employe {
 	}
 
 	/**
+	 * Permet de vérifier si le login recherché existe déjà dans la base de données.
+	 *
+	 * @param login Le login à vérifier
+	 * @return true si le login n'est associé à aucun employé, false sinon
+	 * @throws RowNotFoundOrTooManyRowsException La requête renvoie plus de 1 ligne
+	 * @throws DataAccessException               Erreur d'accès aux données (requête
+	 *                                           mal formée ou autre)
+	 * @throws DatabaseConnexionException        Erreur de connexion
+	 * @author KRILL Maxence
+	 */
+	public boolean loginExist(String login)
+			throws DataAccessException, DatabaseConnexionException, RowNotFoundOrTooManyRowsException {
+		try {
+			Connection con = LogToDatabase.getConnexion();
+
+			String query = "SELECT COUNT(*) AS login FROM Employe WHERE login = ?";
+			PreparedStatement pst = con.prepareStatement(query);
+			pst.setString(1, login);
+			ResultSet rs = pst.executeQuery();
+
+			int loginExist;
+			if (rs.next()) {
+				loginExist = rs.getInt("login");
+				if (loginExist != 0) {
+					rs.close();
+					pst.close();
+					return false;
+				}
+			} else {
+				// Non trouvé ...
+				rs.close();
+				pst.close();
+				return false;
+			}
+
+			if (rs.next()) {
+				// Plus de 2 ? Bizarre ...
+				rs.close();
+				pst.close();
+				throw new RowNotFoundOrTooManyRowsException(Table.Client, Order.SELECT,
+						"Recherche anormale (en trouve au moins 2)", null, 2);
+			}
+			rs.close();
+			pst.close();
+			return true;
+		} catch (SQLException e) {
+			throw new DataAccessException(Table.Employe, Order.SELECT, "Erreur accès", e);
+		}
+	}
+
+	/**
 	 * Mise à jour d'un employé.
 	 *
 	 * employe.idNumEmp est la clé primaire et doit exister tous les autres champs
@@ -283,6 +344,7 @@ public class Access_BD_Employe {
 	 * @throws DataAccessException               Erreur d'accès aux données (requête
 	 *                                           mal formée ou autre)
 	 * @throws DatabaseConnexionException        Erreur de connexion
+	 * @author KRILL Maxence
 	 */
 	public void updateEmploye(Employe employe)
 			throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException {
@@ -328,6 +390,8 @@ public class Access_BD_Employe {
 	 * @throws DataAccessException               Erreur d'accès aux données (requête
 	 *                                           mal formée ou autre)
 	 * @throws DatabaseConnexionException        Erreur de connexion
+	 * @author DIDENKO Andrii
+	 * @author SHULSHINA Daria
 	 */
 	public void deleteEmploye(Employe employe)
 			throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException {

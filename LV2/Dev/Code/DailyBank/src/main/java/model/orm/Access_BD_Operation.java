@@ -19,6 +19,10 @@ import model.orm.exception.Table;
 
 /**
  * Classe d'accès aux Operation en BD Oracle.
+ * 
+ * @author IUT Blagnac
+ * @author KRILL Maxence
+ * @author LAMOUR Evan
  */
 public class Access_BD_Operation {
 
@@ -33,6 +37,7 @@ public class Access_BD_Operation {
 	 * @throws DataAccessException        Erreur d'accès aux données (requête mal
 	 *                                    formée ou autre)
 	 * @throws DatabaseConnexionException Erreur de connexion
+	 * @author IUT Blagnac
 	 */
 	public ArrayList<Operation> getOperations(int idNumCompte) throws DataAccessException, DatabaseConnexionException {
 
@@ -69,11 +74,12 @@ public class Access_BD_Operation {
 	 * Recherche d'une opération par son id.
 	 *
 	 * @param idOperation id de l'opération recherchée (clé primaire)
-	 * @return une Operation ou null si non trouvé
+	 * @return Une Operation ou null si non trouvé
 	 * @throws RowNotFoundOrTooManyRowsException La requête renvoie plus de 1 ligne
 	 * @throws DataAccessException               Erreur d'accès aux données (requête
 	 *                                           mal formée ou autre)
 	 * @throws DatabaseConnexionException        Erreur de connexion
+	 * @author IUT Blagnac
 	 */
 	public Operation getOperation(int idOperation)
 			throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException {
@@ -123,17 +129,18 @@ public class Access_BD_Operation {
 	 * Enregistrement d'un débit.
 	 *
 	 * Se fait par procédure stockée : - Vérifie que le débitAutorisé n'est pas
-	 * dépassé <BR />
-	 * - Enregistre l'opération <BR />
-	 * - Met à jour le solde du compte. <BR />
+	 * dépassé
+	 * - Enregistre l'opération
+	 * - Met à jour le solde du compte.
 	 *
-	 * @param idNumCompte compte débité
-	 * @param montant     montant débité
-	 * @param typeOp      libellé de l'opération effectuée (cf TypeOperation)
+	 * @param idNumCompte Compte débité
+	 * @param montant     Montant débité
+	 * @param typeOp      Libellé de l'opération effectuée (cf TypeOperation)
 	 * @throws DataAccessException        Erreur d'accès aux données (requête mal
 	 *                                    formée ou autre)
 	 * @throws DatabaseConnexionException Erreur de connexion
 	 * @throws ManagementRuleViolation    Si dépassement découvert autorisé
+	 * @author IUT Blagnac
 	 */
 	public void insertDebit(int idNumCompte, double montant, String typeOp)
 			throws DatabaseConnexionException, ManagementRuleViolation, DataAccessException {
@@ -170,17 +177,18 @@ public class Access_BD_Operation {
 	 * Enregistrement d'un débit exceptionnel.
 	 *
 	 * - Ne vérifie pas que le débitAutorisé n'est pas
-	 * dépassé <BR />
-	 * - Enregistre l'opération <BR />
-	 * - Met à jour le solde du compte. <BR />
+	 * dépassé
+	 * - Enregistre l'opération
+	 * - Met à jour le solde du compte.
 	 *
-	 * @param idNumCompte compte débité
-	 * @param montant     montant débité
-	 * @param typeOp      libellé de l'opération effectuée (cf TypeOperation)
+	 * @param idNumCompte Compte débité
+	 * @param montant     Montant débité
+	 * @param typeOp      Libellé de l'opération effectuée (cf TypeOperation)
 	 * @throws DataAccessException        Erreur d'accès aux données (requête mal
 	 *                                    formée ou autre)
 	 * @throws DatabaseConnexionException Erreur de connexion
 	 * @throws ManagementRuleViolation    Si dépassement découvert autorisé
+	 * @author KRILL Maxence
 	 */
 	public void insertDebitExceptionnel(int idNumCompte, double montant, String typeOp)
 			throws DatabaseConnexionException, ManagementRuleViolation, DataAccessException {
@@ -213,6 +221,18 @@ public class Access_BD_Operation {
 		}
 	}
 
+	/**
+	 * Enregistrement d'un crédit.
+	 * 
+	 * @param idNumCompte Compte crédité
+	 * @param montant     Montant crédité
+	 * @param typeOp      Libellé de l'opération effectuée (@see ConstantesIHM)
+	 * @throws DatabaseConnexionException Erreur de connexion
+	 * @throws ManagementRuleViolation    Si dépassement découvert autorisé
+	 * @throws DataAccessException        Erreur d'accès aux données (requête mal
+	 *                                    formée ou autre)
+	 * @author LAMOUR Evan
+	 */
 	public void insertCredit(int idNumCompte, double montant, String typeOp)
 			throws DatabaseConnexionException, ManagementRuleViolation, DataAccessException {
 		try {
@@ -244,6 +264,18 @@ public class Access_BD_Operation {
 		}
 	}
 
+	/**
+	 * Enregistrement d'un virement.
+	 * 
+	 * @param idCompteDebiteur  id du compte débité.
+	 * @param idCompteCrediteur id du compte crédité.
+	 * @param montant           Montant du virement.
+	 * @throws DatabaseConnexionException Erreur de connexion
+	 * @throws ManagementRuleViolation    Si dépassement découvert autorisé
+	 * @throws DataAccessException        Erreur d'accès aux données (requête mal
+	 *                                    formée ou autre)
+	 * @author LAMOUR Evan
+	 */
 	public void virement(int idCompteDebiteur, int idCompteCrediteur, double montant)
 			throws DatabaseConnexionException, ManagementRuleViolation, DataAccessException {
 		try {
@@ -275,14 +307,15 @@ public class Access_BD_Operation {
 		}
 	}
 
-	/*
+	/**
 	 * Fonction utilitaire qui retourne un ordre sql "to_date" pour mettre une date
 	 * dans une requête sql
 	 *
 	 * @param d Date (java.sql) à transformer
-	 *
-	 * @return Une chaine : TO_DATE ('j/m/a', 'DD/MM/YYYY') 'j/m/a' : jour mois an
-	 * de d ex : TO_DATE ('25/01/2019', 'DD/MM/YYYY')
+	 * @return Une chaine : TO_DATE('j/m/a', 'DD/MM/YYYY') : 'j/m/a' avec
+	 *         "j" = jour, "m" = mois, "a" = an.
+	 *         Exemple : TO_DATE('25/01/2019', 'DD/MM/YYYY')
+	 * @author IUT Blagnac
 	 */
 	private String dateToString(Date d) {
 		String sd;

@@ -12,17 +12,24 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * Classe de contrôleur de la fenêtre de simulation d'emprunt.
+ *
+ * @see SimulerEmpruntController
+ * @author LAMOUR Evan
+ */
 public class SimulationEmprunt {
 	private Stage primaryStage;
 	private DailyBankState dailyBankState;
 	private SimulerEmpruntController secViewController;
 
 	/**
-     * Constructeur de la classe ClientsManagement.
-     *
-     * @param _parentStage Fenêtre parente
-     * @param _dbstate État courant de l'application
-     */
+	 * Constructeur de la classe SimulationEmprunt.
+	 *
+	 * @param _parentStage Fenêtre parente
+	 * @param _dbstate     État courant de l'application
+	 * @author LAMOUR Evan
+	 */
 	public SimulationEmprunt(Stage _parentStage, DailyBankState _dbstate) {
 		this.dailyBankState = _dbstate;
 		try {
@@ -49,14 +56,28 @@ public class SimulationEmprunt {
 	}
 
 	/**
-     * Affiche la fenêtre de gestion des clients.
-     */
+	 * Affiche la fenêtre de simulation d'emprunt.
+	 * 
+	 * @author LAMOUR Evan
+	 */
 	public void doSimulationEmpruntDialog() {
 		this.secViewController.displayDialog();
 	}
 
-	public void simulation(int montant,double taux,double tauxA,int duree,TypeEmprunt te,TypeSimu ts) {
-		TableauAmortissement ta = new TableauAmortissement(this.primaryStage, this.dailyBankState, montant, taux,tauxA, duree,te,ts);
+	/**
+	 * Effectue une simulation d'emprunt.
+	 * 
+	 * @param montant Montant de l'emprunt
+	 * @param taux    Taux de l'emprunt
+	 * @param tauxA   Taux de l'assurance
+	 * @param duree   Durée de l'emprunt
+	 * @param te      Type d'emprunt
+	 * @param ts      Type de simulation
+	 * @author LAMOUR Evan
+	 */
+	public void simulation(int montant, double taux, double tauxA, int duree, TypeEmprunt te, TypeSimu ts) {
+		TableauAmortissement ta = new TableauAmortissement(this.primaryStage, this.dailyBankState, montant, taux, tauxA,
+				duree, te, ts);
 		ta.doTableauDialog();
 	}
 }

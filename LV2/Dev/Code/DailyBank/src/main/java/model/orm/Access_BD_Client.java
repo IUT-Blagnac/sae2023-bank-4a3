@@ -15,6 +15,8 @@ import model.orm.exception.Table;
 
 /**
  * Classe d'accès aux Client en BD Oracle.
+ * 
+ * @author IUT Blagnac
  */
 public class Access_BD_Client {
 
@@ -24,10 +26,10 @@ public class Access_BD_Client {
 	/**
 	 * Recherche des clients paramétrée (tous/un seul par id/par nom-prénom).
 	 *
-	 * On recherche : <BR/>
-	 * - un client précis si idNumCli <> -1 <BR />
-	 * - des clients par début nom/prénom si debutNom donné <BR />
-	 * - tous les clients de idAg sinon <BR/>
+	 * On recherche :
+	 * - un client précis si idNumCli <> -1
+	 * - des clients par début nom/prénom si debutNom donné
+	 * - tous les clients de idAg sinon
 	 *
 	 * @param idAg        : id de l'agence dont on cherche les clients
 	 * @param idNumCli    : vaut -1 si il n'est pas spécifié sinon numéro recherché
@@ -38,6 +40,7 @@ public class Access_BD_Client {
 	 * @throws DataAccessException        Erreur d'accès aux données (requête mal
 	 *                                    formée ou autre)
 	 * @throws DatabaseConnexionException Erreur de connexion
+	 * @author IUT Blagnac
 	 */
 	public ArrayList<Client> getClients(int idAg, int idNumCli, String debutNom, String debutPrenom)
 			throws DataAccessException, DatabaseConnexionException {
@@ -111,6 +114,7 @@ public class Access_BD_Client {
 	 * @throws DataAccessException               Erreur d'accès aux données (requête
 	 *                                           mal formée ou autre)
 	 * @throws DatabaseConnexionException        Erreur de connexion
+	 * @author IUT Blagnac
 	 */
 	public Client getClient(int idCli)
 			throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException {
@@ -170,6 +174,7 @@ public class Access_BD_Client {
 	 * @throws DataAccessException               Erreur d'accès aux données (requête
 	 *                                           mal formée ou autre)
 	 * @throws DatabaseConnexionException        Erreur de connexion
+	 * @author IUT Blagnac
 	 */
 	public void insertClient(Client client)
 			throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException {
@@ -231,6 +236,7 @@ public class Access_BD_Client {
 	 * @throws DataAccessException               Erreur d'accès aux données (requête
 	 *                                           mal formée ou autre)
 	 * @throws DatabaseConnexionException        Erreur de connexion
+	 * @author IUT Blagnac
 	 */
 	public void updateClient(Client client)
 			throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException {
@@ -266,7 +272,8 @@ public class Access_BD_Client {
 	}
 
 	/**
-	 * Permet de vérifier si un client peut être rendu inactif (tout ses comptes sont clotûrés)
+	 * Permet de vérifier si un client peut être rendu inactif (tout ses comptes
+	 * sont clotûrés)
 	 *
 	 * @return true si tout les comptes du client sont clôturés, sinon false
 	 * @param idCli id du client à vérifier (clé primaire)
@@ -274,6 +281,7 @@ public class Access_BD_Client {
 	 * @throws DataAccessException               Erreur d'accès aux données (requête
 	 *                                           mal formée ou autre)
 	 * @throws DatabaseConnexionException        Erreur de connexion
+	 * @author IUT Blagnac
 	 */
 	public int verifierCloturer(int idCli)
 			throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException {

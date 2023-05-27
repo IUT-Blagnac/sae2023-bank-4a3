@@ -11,9 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.data.Client;
@@ -23,6 +21,9 @@ import model.orm.exception.Table;
 
 /**
  * Contrôleur pour l'édition des informations client dans une fenêtre.
+ * 
+ * @see ClientEditorPane
+ * @author IUT Blagnac
  */
 public class ClientEditorPaneController {
 
@@ -41,26 +42,35 @@ public class ClientEditorPaneController {
 	// Manipulation de la fenêtre
 
 	/**
-     * Initialise le contexte du contrôleur.
-     * @param _containingStage le stage contenant la scène
-     * @param _dbstate l'état courant de l'application
-     */
+	 * Initialise le contexte du contrôleur.
+	 * 
+	 * @param _containingStage Le stage contenant la scène
+	 * @param _dbstate         L'état courant de l'application
+	 * @author IUT Blagnac
+	 */
 	public void initContext(Stage _containingStage, DailyBankState _dbstate) {
 		this.primaryStage = _containingStage;
 		this.dailyBankState = _dbstate;
 		this.configure();
 	}
 
+	/**
+	 * Configure les composants de la fenêtre.
+	 * 
+	 * @author IUT Blagnac
+	 */
 	private void configure() {
 		this.primaryStage.setOnCloseRequest(e -> this.closeWindow(e));
 	}
 
 	/**
-     * Affiche la boîte de dialogue d'édition des informations client.
-     * @param client le client à éditer (null pour une création)
-     * @param mode le mode d'édition (création, modification, suppression)
-     * @return le client résultat après l'édition, ou null si aucune édition n'a été effectuée
-     */
+	 * Affiche la boîte de dialogue d'édition des informations client.
+	 * 
+	 * @param client Le client à éditer (null pour une création)
+	 * @param mode   Le mode d'édition (création, modification, suppression)
+	 * @return Le client résultat après l'édition, ou null si aucune édition n'a été
+	 *         effectuée
+	 */
 	public Client displayDialog(Client client, EditionMode mode) {
 
 		this.editionMode = mode;
@@ -71,36 +81,37 @@ public class ClientEditorPaneController {
 		}
 		this.clientResultat = null;
 		switch (mode) {
-		case CREATION:
-			this.txtIdcli.setDisable(true);
-			this.txtNom.setDisable(false);
-			this.txtPrenom.setDisable(false);
-			this.txtTel.setDisable(false);
-			this.txtMail.setDisable(false);
-			this.lblMessage.setText("Informations sur le nouveau client");
-			this.butOk.setText("Ajouter");
-			this.butCancel.setText("Annuler");
-			break;
-		case MODIFICATION:
-			this.txtIdcli.setDisable(true);
-			this.txtNom.setDisable(false);
-			this.txtPrenom.setDisable(false);
-			this.txtTel.setDisable(false);
-			this.txtMail.setDisable(false);
-			this.lblMessage.setText("Informations client");
-			this.butOk.setText("Modifier");
-			this.butCancel.setText("Annuler");
-			break;
-		case SUPPRESSION:
-			// Ce mode n'est pas utilisé pour les Clients :
-			// La suppression d'un client n'existe pas, il faut que le chef d'agence
-			// bascule son état "Actif" à "Inactif"
-			ApplicationException ae = new ApplicationException(Table.NONE, Order.OTHER, "SUPPRESSION CLIENT NON PREVUE",
-					null);
-			ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, ae);
-			ed.doExceptionDialog();
+			case CREATION:
+				this.txtIdcli.setDisable(true);
+				this.txtNom.setDisable(false);
+				this.txtPrenom.setDisable(false);
+				this.txtTel.setDisable(false);
+				this.txtMail.setDisable(false);
+				this.lblMessage.setText("Informations sur le nouveau client");
+				this.butOk.setText("Ajouter");
+				this.butCancel.setText("Annuler");
+				break;
+			case MODIFICATION:
+				this.txtIdcli.setDisable(true);
+				this.txtNom.setDisable(false);
+				this.txtPrenom.setDisable(false);
+				this.txtTel.setDisable(false);
+				this.txtMail.setDisable(false);
+				this.lblMessage.setText("Informations client");
+				this.butOk.setText("Modifier");
+				this.butCancel.setText("Annuler");
+				break;
+			case SUPPRESSION:
+				// Ce mode n'est pas utilisé pour les Clients :
+				// La suppression d'un client n'existe pas, il faut que le chef d'agence
+				// bascule son état "Actif" à "Inactif"
+				ApplicationException ae = new ApplicationException(Table.NONE, Order.OTHER,
+						"SUPPRESSION CLIENT NON PREVUE",
+						null);
+				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, ae);
+				ed.doExceptionDialog();
 
-			break;
+				break;
 		}
 		// Paramétrages spécifiques pour les chefs d'agences
 		if (ConstantesIHM.isAdmin(this.dailyBankState.getEmployeActuel())) {
@@ -108,7 +119,7 @@ public class ClientEditorPaneController {
 		}
 		// initialisation du contenu des champs
 		this.txtIdcli.setText("" + this.clientEdite.idNumCli);
-		if(mode == EditionMode.CREATION) {
+		if (mode == EditionMode.CREATION) {
 			this.txtIdcli.setText("");
 		}
 		this.txtNom.setText(this.clientEdite.nom);
@@ -121,6 +132,13 @@ public class ClientEditorPaneController {
 		return this.clientResultat;
 	}
 
+	/**
+	 * Ferme la fenêtre.
+	 * 
+	 * @param e L'événement de fermeture
+	 * @return Object null
+	 * @author IUT Blagnac
+	 */
 	// Gestion du stage
 	private Object closeWindow(WindowEvent e) {
 		this.doCancel();
@@ -129,7 +147,6 @@ public class ClientEditorPaneController {
 	}
 
 	// Attributs de la scene + actions
-
 	@FXML
 	private Label lblMessage;
 	@FXML
@@ -150,8 +167,10 @@ public class ClientEditorPaneController {
 	private Button butCancel;
 
 	/**
-     * Action associée au bouton Annuler.
-     */
+	 * Action associée au bouton Annuler (FXML).
+	 * 
+	 * @author IUT Blagnac
+	 */
 	@FXML
 	private void doCancel() {
 		this.clientResultat = null;
@@ -159,35 +178,43 @@ public class ClientEditorPaneController {
 	}
 
 	/**
-     * Action associée au bouton Ajouter/Modifier/Supprimer.
-     */
+	 * Action associée au bouton Ajouter/Modifier/Supprimer (FXML).
+	 * 
+	 * @author IUT Blagnac
+	 */
 	@FXML
 	private void doAjouter() {
 		switch (this.editionMode) {
-		case CREATION:
-			if (this.isSaisieValide()) {
+			case CREATION:
+				if (this.isSaisieValide()) {
+					this.clientResultat = this.clientEdite;
+					this.primaryStage.close();
+				}
+				break;
+			case MODIFICATION:
+				if (this.isSaisieValide()) {
+					this.clientResultat = this.clientEdite;
+					this.primaryStage.close();
+				}
+				break;
+			case SUPPRESSION:
 				this.clientResultat = this.clientEdite;
 				this.primaryStage.close();
-			}
-			break;
-		case MODIFICATION:
-			if (this.isSaisieValide()) {
-				this.clientResultat = this.clientEdite;
-				this.primaryStage.close();
-			}
-			break;
-		case SUPPRESSION:
-			this.clientResultat = this.clientEdite;
-			this.primaryStage.close();
-			break;
+				break;
 		}
 
 	}
 
 	/**
-     * Vérifie la validité de la saisie des informations client.
-     * @return true si la saisie est valide, false sinon
-     */
+	 * Vérifie la validité de la saisie des informations client :
+	 * - Le nom ne doit pas être vide
+	 * - Le prénom ne doit pas être vide
+	 * - Le téléphone doit être un numéro de téléphone valide
+	 * - Le mail doit être un mail valide
+	 * 
+	 * @return true si la saisie est valide, false sinon
+	 * @author IUT Blagnac
+	 */
 	private boolean isSaisieValide() {
 		this.clientEdite.nom = this.txtNom.getText().trim();
 		this.clientEdite.prenom = this.txtPrenom.getText().trim();

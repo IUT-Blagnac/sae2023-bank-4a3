@@ -4,20 +4,21 @@ import javafx.stage.Stage;
 
 /**
  * Classe utilitaire pour centrer automatiquement une fenêtre sur une autre (2
- * stage en fait). <BR />
- *
+ * stage en fait).
  * Se fait en fait en calculant à l'ouverture la position de la fenêtre en
  * fonction de la position et de la taille de la fenêtre sur laquelle se
  * centrer.
- *
+ * 
+ * @author IUT Blagnac
  */
 public class StageManagement {
 
 	/**
-	 * Static method for centering primary Stage over its parent Stage.
-	 *
-	 * @param parent  Stage on which primary is centered on
-	 * @param primary Stage to be centered (with regards to parent)
+	 * Méthode statique pour centrer un Stage sur son parent.
+	 * 
+	 * @param parent  Stage sur lequel le "primary" est centré
+	 * @param primary Stage à centrer (par rapport au parent)
+	 * @author IUT Blagnac
 	 */
 	public static void manageCenteringStage(Stage parent, Stage primary) {
 

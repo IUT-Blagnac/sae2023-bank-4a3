@@ -17,7 +17,9 @@ import model.orm.exception.Table;
 /**
  *
  * Classe d'accès aux CompteCourant en BD Oracle.
- *
+ * 
+ * @author IUT Blagnac
+ * @author LAMOUR Evan
  */
 public class Access_BD_CompteCourant {
 
@@ -32,6 +34,7 @@ public class Access_BD_CompteCourant {
 	 * @throws DataAccessException        Erreur d'accès aux données (requête mal
 	 *                                    formée ou autre)
 	 * @throws DatabaseConnexionException Erreur de connexion
+	 * @author IUT Blagnac
 	 */
 	public ArrayList<CompteCourant> getCompteCourants(int idNumCli)
 			throws DataAccessException, DatabaseConnexionException {
@@ -75,6 +78,7 @@ public class Access_BD_CompteCourant {
 	 * @throws DataAccessException               Erreur d'accès aux données (requête
 	 *                                           mal formée ou autre)
 	 * @throws DatabaseConnexionException        Erreur de connexion
+	 * @author IUT Blagnac
 	 */
 	public CompteCourant getCompteCourant(int idNumCompte)
 			throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException {
@@ -134,9 +138,11 @@ public class Access_BD_CompteCourant {
 	 * @throws ManagementRuleViolation           Erreur sur le solde courant par
 	 *                                           rapport au débitAutorisé (solde <
 	 *                                           débitAutorisé)
+	 * @author IUT Blagnac
 	 */
 	public void updateCompteCourant(CompteCourant cc)
-			throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException, ManagementRuleViolation {
+			throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException,
+			ManagementRuleViolation {
 		try {
 
 			CompteCourant cAvant = this.getCompteCourant(cc.idNumCompte);
@@ -170,54 +176,73 @@ public class Access_BD_CompteCourant {
 		}
 	}
 
+	/**
+	 * Clôture d'un CompteCourant.
+	 * 
+	 * @param cc Le compte à clôturer
+	 * @throws RowNotFoundOrTooManyRowsException
+	 * @throws DataAccessException
+	 * @throws DatabaseConnexionException
+	 * @throws ManagementRuleViolation
+	 * @author LAMOUR Evan
+	 */
 	public void cloturerCompte(CompteCourant cc)
-		throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException, ManagementRuleViolation {
+			throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException,
+			ManagementRuleViolation {
 		try {
 
-	CompteCourant cAvant = this.getCompteCourant(cc.idNumCompte);
-	if (cc.debitAutorise > 0) {
-		cc.debitAutorise = -cc.debitAutorise;
+			CompteCourant cAvant = this.getCompteCourant(cc.idNumCompte);
+			if (cc.debitAutorise > 0) {
+				cc.debitAutorise = -cc.debitAutorise;
+			}
+			if (cAvant.solde < cc.debitAutorise) {
+				throw new ManagementRuleViolation(Table.CompteCourant, Order.UPDATE,
+						"Erreur de règle de gestion : solde à découvert", null);
+			}
+			Connection con = LogToDatabase.getConnexion();
+
+			String query = "UPDATE CompteCourant SET ESTCLOTURE = 'O' WHERE idNumCompte = ?";
+
+			PreparedStatement pst = con.prepareStatement(query);
+			pst.setInt(1, cc.idNumCompte);
+
+			System.err.println(query);
+
+			int result = pst.executeUpdate();
+			pst.close();
+			if (result != 1) {
+				con.rollback();
+				throw new RowNotFoundOrTooManyRowsException(Table.CompteCourant, Order.UPDATE,
+						"Update anormal (update de moins ou plus d'une ligne)", null, result);
+			}
+			con.commit();
+		} catch (SQLException e) {
+			throw new DataAccessException(Table.CompteCourant, Order.UPDATE, "Erreur accès", e);
+		}
 	}
-	if (cAvant.solde < cc.debitAutorise) {
-		throw new ManagementRuleViolation(Table.CompteCourant, Order.UPDATE,
-				"Erreur de règle de gestion : solde à découvert", null);
-	}
-	Connection con = LogToDatabase.getConnexion();
 
-	String query = "UPDATE CompteCourant SET ESTCLOTURE = 'O' WHERE idNumCompte = ?";
-
-	PreparedStatement pst = con.prepareStatement(query);
-	pst.setInt(1, cc.idNumCompte);
-
-
-	System.err.println(query);
-
-	int result = pst.executeUpdate();
-	pst.close();
-	if (result != 1) {
-		con.rollback();
-		throw new RowNotFoundOrTooManyRowsException(Table.CompteCourant, Order.UPDATE,
-				"Update anormal (update de moins ou plus d'une ligne)", null, result);
-	}
-	con.commit();
-} catch (SQLException e) {
-	throw new DataAccessException(Table.CompteCourant, Order.UPDATE, "Erreur accès", e);
-}
-}
-
-	public void insertCompte(CompteCourant compte)
+	/**
+	 * Insertion d'un CompteCourant.
+	 * 
+	 * @param cc Le compte à insérer
+	 * @throws RowNotFoundOrTooManyRowsException
+	 * @throws DataAccessException
+	 * @throws DatabaseConnexionException
+	 * @author LAMOUR Evan
+	 */
+	public void insertCompte(CompteCourant cc)
 			throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException {
 		try {
 
 			Connection con = LogToDatabase.getConnexion();
 
-			String query = "INSERT INTO COMPTECOURANT VALUES (" + "seq_id_compte.NEXTVAL" +", "
+			String query = "INSERT INTO COMPTECOURANT VALUES (" + "seq_id_compte.NEXTVAL" + ", "
 					+ "?" + ", " + "?" + ", " + "?" + ", " + "?" + ")";
 			PreparedStatement pst = con.prepareStatement(query);
-			pst.setInt(1, compte.debitAutorise);
-			pst.setDouble(2, compte.solde);
-			pst.setInt(3, compte.idNumCli);
-			pst.setString(4, ""+ compte.estCloture.charAt(0));
+			pst.setInt(1, cc.debitAutorise);
+			pst.setDouble(2, cc.solde);
+			pst.setInt(3, cc.idNumCli);
+			pst.setString(4, "" + cc.estCloture.charAt(0));
 			System.err.println(query);
 			System.err.println(pst.toString());
 			int result = pst.executeUpdate();
@@ -242,7 +267,7 @@ public class Access_BD_CompteCourant {
 			rs.close();
 			pst2.close();
 
-			compte.idNumCompte = numcompteBase;
+			cc.idNumCompte = numcompteBase;
 		} catch (SQLException e) {
 			throw new DataAccessException(Table.CompteCourant, Order.INSERT, "Erreur accès", e);
 		}

@@ -12,6 +12,12 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.orm.exception.ApplicationException;
 
+/**
+ * Contrôleur pour la boîte de dialogue des exceptions.
+ * 
+ * @see ExceptionDialog
+ * @author IUT Blagnac
+ */
 public class ExceptionDialogController {
 
 	// Etat courant de l'application
@@ -25,6 +31,14 @@ public class ExceptionDialogController {
 
 	// Manipulation de la fenêtre
 
+	/**
+	 * Initialise le contexte du contrôleur.
+	 * 
+	 * @param _containingStage Le stage contenant la scène
+	 * @param _dbstate         L'état courant de l'application
+	 * @param _ae              L'exception applicative
+	 * @author IUT Blagnac
+	 */
 	public void initContext(Stage _containingStage, DailyBankState _dbstate, ApplicationException _ae) {
 		this.primaryStage = _containingStage;
 		this.dailyBankState = _dbstate;
@@ -32,6 +46,11 @@ public class ExceptionDialogController {
 		this.configure();
 	}
 
+	/**
+	 * Configure les composants de la fenêtre.
+	 * 
+	 * @author IUT Blagnac
+	 */
 	private void configure() {
 		this.primaryStage.setOnCloseRequest(e -> this.closeWindow(e));
 		this.lblTitre.setText(this.aException.getMessage());
@@ -44,11 +63,24 @@ public class ExceptionDialogController {
 		this.txtDetails.setText(sw.toString());
 	}
 
+	/**
+	 * Affiche la boîte de dialogue des exceptions.
+	 * 
+	 * @author IUT Blagnac
+	 */
 	public void displayDialog() {
 		this.primaryStage.showAndWait();
 	}
 
 	// Gestion du stage
+
+	/**
+	 * Ferme la fenêtre.
+	 * 
+	 * @param e L'événement de fermeture
+	 * @return Object null
+	 * @author IUT Blagnac
+	 */
 	private Object closeWindow(WindowEvent e) {
 		return null;
 	}
@@ -66,6 +98,11 @@ public class ExceptionDialogController {
 	@FXML
 	private TextArea txtDetails;
 
+	/**
+	 * Gère la fermeture de la fenêtre (bouton FXML).
+	 * 
+	 * @author IUT Blagnac
+	 */
 	@FXML
 	private void doOK() {
 		this.primaryStage.close();

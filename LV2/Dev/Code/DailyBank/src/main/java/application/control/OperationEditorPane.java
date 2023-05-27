@@ -15,6 +15,9 @@ import model.data.Operation;
 
 /**
  * Classe de contrôleur pour la boîte de dialogue d'édition des opérations.
+ * 
+ * @see OperationEditorPaneController
+ * @author IUT Blagnac
  */
 public class OperationEditorPane {
 
@@ -22,15 +25,17 @@ public class OperationEditorPane {
 	private OperationEditorPaneController oepcViewController;
 
 	/**
-     * Constructeur de la classe OperationEditorPane.
-     * @param _parentStage le stage parent
-     * @param _dbstate l'état courant de l'application
-     */
+	 * Constructeur de la classe OperationEditorPane.
+	 * 
+	 * @param _parentStage Le stage parent
+	 * @param _dbstate     L'état courant de l'application
+	 * @author IUT Blagnac
+	 */
 	public OperationEditorPane(Stage _parentStage, DailyBankState _dbstate) {
 
 		try {
 			FXMLLoader loader = new FXMLLoader(
-			OperationEditorPaneController.class.getResource("operationeditorpane.fxml"));
+					OperationEditorPaneController.class.getResource("operationeditorpane.fxml"));
 			BorderPane root = loader.load();
 
 			Scene scene = new Scene(root, 500 + 20, 250 + 10);
@@ -52,11 +57,14 @@ public class OperationEditorPane {
 	}
 
 	/**
-     * Affiche la boîte de dialogue d'édition des opérations.
-     * @param cpte le compte courant associé à l'opération
-     * @param cm la catégorie de l'opération
-     * @return l'opération créée ou modifiée, ou null si aucune opération n'a été enregistrée
-     */
+	 * Affiche la boîte de dialogue d'édition des opérations.
+	 * 
+	 * @param cpte Le compte courant associé à l'opération
+	 * @param cm   La catégorie de l'opération
+	 * @return L'opération créée ou modifiée, ou null si aucune opération n'a été
+	 *         enregistrée
+	 * @author IUT Blagnac
+	 */
 	public Operation doOperationEditorDialog(CompteCourant cpte, CategorieOperation cm) {
 		return this.oepcViewController.displayDialog(cpte, cm);
 	}

@@ -15,6 +15,14 @@ import model.orm.Access_BD_Prelevement;
 import model.orm.exception.ApplicationException;
 import model.orm.exception.DatabaseConnexionException;
 
+/**
+ * Classe responsable de la gestion de la fenêtre de gestion des prélèvements
+ * automatiques dans l'application DailyBank.
+ * 
+ * @see PrelevementManagementController
+ * @see Access_BD_Prelevement
+ * @author LAMOUR Evan
+ */
 public class PrelevementManagement {
 
 	private Stage primaryStage;
@@ -22,15 +30,17 @@ public class PrelevementManagement {
 	private PrelevementManagementController pmcViewController;
 
 	/**
-     * Constructeur de la classe ClientsManagement.
-     *
-     * @param _parentStage Fenêtre parente
-     * @param _dbstate État courant de l'application
-     */
+	 * Constructeur de la classe PrelevementsMangement.
+	 *
+	 * @param _parentStage Fenêtre parente
+	 * @param _dbstate     État courant de l'application
+	 * @author LAMOUR Evan
+	 */
 	public PrelevementManagement(Stage _parentStage, DailyBankState _dbstate) {
 		this.dailyBankState = _dbstate;
 		try {
-			FXMLLoader loader = new FXMLLoader(PrelevementManagementController.class.getResource("prelevementManagement.fxml"));
+			FXMLLoader loader = new FXMLLoader(
+					PrelevementManagementController.class.getResource("prelevementManagement.fxml"));
 			BorderPane root = loader.load();
 
 			Scene scene = new Scene(root, root.getPrefWidth() + 50, root.getPrefHeight() + 10);
@@ -52,10 +62,21 @@ public class PrelevementManagement {
 		}
 	}
 
+	/**
+	 * Affiche la fenêtre de gestion des employés.
+	 * 
+	 * @author LAMOUR Evan
+	 */
 	public void doPrelevementManagementDialog() {
 		this.pmcViewController.displayDialog();
 	}
 
+	/**
+	 * Crée un nouveau prélèvement.
+	 *
+	 * @return Le prélèvement créé
+	 * @author LAMOUR Evan
+	 */
 	public Prelevement nouveauPrelevement() {
 		Prelevement pm;
 		PrelevementEditorPane pep = new PrelevementEditorPane(this.primaryStage, this.dailyBankState);
