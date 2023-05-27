@@ -152,7 +152,7 @@ Dans le menu, cliquez sur ``Simuler > Emprunt``.
 
 Une fenêtre va s'ouvrir :
 
-image::["Fenêtre de simulation d'emprunt"]
+image::../img/userDoc/Simulation.png["Fenêtre de simulation d'emprunt"]
 
 Rentrez dans les champs le montant du capital
 
@@ -160,7 +160,7 @@ Le taux choisis est celui ``Annuel``
 
 Après avoir remplis les champs comme ceci par exemple
 
-image::["Fenêtre de simulation d'emprunt complèté"]
+image::../img/userDoc/SimulationRemplis.png["Fenêtre de simulation d'emprunt complèté"]
 
 Pour un taux d'assurance cliquer sur le bouton ``Assurance`` et rentrez votre taux dans la zone de texte.
 
@@ -168,7 +168,7 @@ Vous voulez ne plus avoir d'assurance, pas de problème recliquer sur le bouton 
 
 Validez, le tableau d'amortissement *avec* ou *sans* assurance apparaîtra
 
-=== 9. Contact 
+=== 10. Contact 
 
 Si vous rencontrez des problème veuillez le signaler sur l'adresse mail assistanceDailyBank@gmail.com.
 
