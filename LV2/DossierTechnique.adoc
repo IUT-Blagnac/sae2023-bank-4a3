@@ -51,7 +51,11 @@ la durée de l'emprunt ainsi que la date de début de l'emprunt.
 
 == II. Architecture de l'application
 
-=== 1. Structuration des packages
+=== 1. Schémas de l'architecture del'application
+
+image::../img/docTech/ArchiCode.png["Architecture de l'application"]
+
+=== 2. Structuration des packages
 
 Les packages : dans src/main/java
 
@@ -97,7 +101,7 @@ Les views fxml : dans src/main/resources.
 
   ** Fichier css
 
-=== 2. Rôle de chaque classes dans les packages
+=== 3. Rôle de chaque classes dans les packages
 
 *** application
 
