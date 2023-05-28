@@ -234,9 +234,9 @@ public class ComptesManagementController {
 		}
 
 		int selectedIndice = this.lvComptes.getSelectionModel().getSelectedIndex();
-		CompteCourant compte = this.oListCompteCourant.get(selectedIndice);
-
+		
 		if (selectedIndice >= 0) {
+			CompteCourant compte = this.oListCompteCourant.get(selectedIndice);
 			this.btnVoirOpes.setDisable(false);
 			if (!ConstantesIHM.estCloture(compte) && !ConstantesIHM.estInactif(clientDesComptes)) {
 				this.btnModifierCompte.setDisable(false);

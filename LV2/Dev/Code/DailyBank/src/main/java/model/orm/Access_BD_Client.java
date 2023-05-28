@@ -275,13 +275,13 @@ public class Access_BD_Client {
 	 * Permet de vérifier si un client peut être rendu inactif (tout ses comptes
 	 * sont clotûrés)
 	 *
-	 * @return true si tout les comptes du client sont clôturés, sinon false
+	 * @return -1 en cas d'erreur, sinon le nombre de comptes ouverts
 	 * @param idCli id du client à vérifier (clé primaire)
 	 * @throws RowNotFoundOrTooManyRowsException La requête renvoie plus de 1 ligne
 	 * @throws DataAccessException               Erreur d'accès aux données (requête
 	 *                                           mal formée ou autre)
 	 * @throws DatabaseConnexionException        Erreur de connexion
-	 * @author IUT Blagnac
+	 * @author KRILL Maxence
 	 */
 	public int verifierCloturer(int idCli)
 			throws RowNotFoundOrTooManyRowsException, DataAccessException, DatabaseConnexionException {

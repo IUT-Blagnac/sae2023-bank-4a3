@@ -1,8 +1,18 @@
 package application.view;
 
+import java.util.ArrayList;
+
 import application.DailyBankState;
 import application.control.PrelevementManagement;
+import application.tools.AlertUtilities;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.data.Prelevement;
@@ -23,6 +33,9 @@ public class PrelevementManagementController {
 
 	// Fenêtre physique ou est la scène contenant le fichier xml contrôlé par this
 	private Stage primaryStage;
+
+	// Données de la fenêtre
+	private ObservableList<Prelevement> oListPrelevements;
 
 	/**
 	 * Initialise le contexte du contrôleur.
@@ -46,7 +59,15 @@ public class PrelevementManagementController {
 	 */
 	private void configure() {
 		this.primaryStage.setOnCloseRequest(e -> this.closeWindow(e));
+
+		this.oListPrelevements = FXCollections.observableArrayList();
+
+		this.lvPrelevements.setItems(this.oListPrelevements);
+		this.lvPrelevements.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+		this.lvPrelevements.getFocusModel().focus(-1);
+		this.lvPrelevements.getSelectionModel().selectedItemProperty().addListener(e -> this.validateComponentState());
 		this.validateComponentState();
+		this.doRechercher();
 	}
 
 	/**
@@ -73,6 +94,17 @@ public class PrelevementManagementController {
 		return null;
 	}
 
+	// Attributs de la scène + actions
+
+	@FXML
+	private TextField txtNum;
+	@FXML
+	private ListView<Prelevement> lvPrelevements;
+	@FXML
+	private Button btnSupprPrelevement;
+	@FXML
+	private Button btnModifPrelevement;
+
 	/**
 	 * Ferme la fenêtre (bouton FXML).
 	 * 
@@ -84,13 +116,89 @@ public class PrelevementManagementController {
 	}
 
 	/**
-	 * Ouvre la fenêtre d'édition d'un prélèvement (bouton FXML).
+	 * Recherche les prélévements automatiques en fonction des critères de recherche (bouton FXML).
 	 * 
-	 * @author LAMOUR Evan
+	 * @author KRILL Maxence
+	 */
+	@FXML
+	private void doRechercher() {
+		int numCompte;
+		try {
+			String nc = this.txtNum.getText();
+			if (nc.equals("")) {
+				numCompte = -1;
+			} else {
+				numCompte = Integer.parseInt(nc);
+				if (numCompte < 0) {
+					this.txtNum.setText("");
+					numCompte = -1;
+				}
+			}
+		} catch (NumberFormatException nfe) {
+			this.txtNum.setText("");
+			numCompte = -1;
+		}
+		
+		ArrayList<Prelevement> listePre;
+		listePre = this.pmDialogController.getPrelevements(numCompte);
+
+		this.oListPrelevements.clear();
+		this.oListPrelevements.addAll(listePre);
+		this.validateComponentState();
+	}
+
+	/**
+	 * Ouvre la fenêtre de création d'un prélèvement (bouton FXML).
+	 * 
+	 * @author KRILL Maxence
 	 */
 	@FXML
 	private void doNouveauPrelevement() {
-		Prelevement pm = this.pmDialogController.nouveauPrelevement();
+		Prelevement pm;
+		pm = this.pmDialogController.nouveauPrelevement();
+		if(pm != null) {
+			this.oListPrelevements.add(pm);
+		}
+		this.validateComponentState();
+	}
+
+	/**
+	 * Ouvre la fenêtre d'édition d'un prélèvement (bouton FXML).
+	 * 
+	 * @author KRILL Maxence
+	 */
+	@FXML
+	private void doModifierPrelevement() {
+		int selectedIndice = this.lvPrelevements.getSelectionModel().getSelectedIndex();
+		if (selectedIndice >= 0) {
+			Prelevement preMod = this.oListPrelevements.get(selectedIndice);
+			Prelevement pm;
+			pm = this.pmDialogController.modifierPrelevement(preMod);
+			if(pm != null) {
+				this.oListPrelevements.set(selectedIndice, pm);
+			}
+		}
+		this.validateComponentState();
+	}
+
+	/**
+	 * Supprime le prélévement selectionné (bouton FXML).
+	 * 
+	 * @author KRILL Maxence
+	 */
+	@FXML
+	private void doSupprimerPrelevement() {
+		int selectedIndice = this.lvPrelevements.getSelectionModel().getSelectedIndex();
+		if (selectedIndice >= 0) {
+			Prelevement preMod = this.oListPrelevements.get(selectedIndice);
+			if (!AlertUtilities.confirmYesCancel(this.primaryStage, "Supprimer prélévement automatique",
+					"Êtes-vous sûr de vouloir supprimer ce prélévement automatique ?",
+					"Il ne sera pas possible de restaurer ce prélévement, cependant, vous pourrez le recréer.\n\nPrélévement automatique :\nID : "
+							+ preMod.idPrelevement + "\nMontant : " + preMod.montant + "\nDate : " + preMod.date + "\nBénéficiaire : " + preMod.beneficiaire + "\nCompte : " + preMod.idNumCompte, AlertType.CONFIRMATION)) return;
+			this.pmDialogController.supprimerPrelevement(preMod);
+			this.oListPrelevements.remove(selectedIndice);
+		}
+		this.validateComponentState();
 	}
 
 	/**
@@ -99,6 +207,13 @@ public class PrelevementManagementController {
 	 * @author KRILL Maxence
 	 */
 	private void validateComponentState() {
-
+		int selectedIndice = this.lvPrelevements.getSelectionModel().getSelectedIndex();
+		if (selectedIndice >= 0) {
+			this.btnModifPrelevement.setDisable(false);
+			this.btnSupprPrelevement.setDisable(false);
+		} else {
+			this.btnModifPrelevement.setDisable(true);
+			this.btnSupprPrelevement.setDisable(true);
+		}
 	}
 }

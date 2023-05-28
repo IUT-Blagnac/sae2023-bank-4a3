@@ -13,7 +13,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- * Classe de contrôleur de la fenêtre de simulation d'emprunt.
+ * Classe de contrôleur de la fenêtre du tableau résultat de la simulation d'emprunt.
  *
  * @see TableauAmortissementController
  * @author LAMOUR Evan

@@ -54,4 +54,15 @@ public class Prelevement {
 	public Prelevement() {
 		this(-1000, -1000, -1000, null, -1000);
 	}
+
+	/**
+	 * Méthode toString de la classe Prelevement.
+	 * 
+	 * @return String Le prélévement automatique sous forme de chaîne de caractères
+	 * @author KRILL Maxence
+	 */
+	@Override
+	public String toString() {
+		return "[" + this.idPrelevement + "] Du compte n°" + this.idNumCompte + " à " + this.beneficiaire + " - " + montant + " € le " + this.date;
+	}
 }

@@ -31,9 +31,9 @@ https://github.com/madblurryface[SHULHINA Daria]
 | 2       | Chef d’Agence | Emprunt                   | Simuler assurance     |        |       | F    | 
 | 2       | Guichetier    | Compte                    | Relevé PDF            | F      | F     |      | 
 | 2       | Guichetier    | CRUD Prélèvement          | C                     |        |       | F    | 
-| 2       | Guichetier    | CRUD Prélèvement          | R                     |        |       |      | D
-| 2       | Guichetier    | CRUD Prélèvement          | U                     |        |       |      | D
-| 2       | Guichetier    | CRUD Prélèvement          | D                     |        |       |      | D
+| 2       | Guichetier    | CRUD Prélèvement          | R                     |        |       |      | F
+| 2       | Guichetier    | CRUD Prélèvement          | U                     |        |       |      | F
+| 2       | Guichetier    | CRUD Prélèvement          | D                     |        |       |      | F
 | 2       | Batch         | Prélèvements automatiques |                       |        |       |      |  
 | 2       | Batch         | Reléves mensuels          |                       |        |       |      | 
 |===
@@ -92,11 +92,10 @@ Il manque les tests pour créditer compte.
 Pas de tests pour le CRUD des employers...
 |           | `jar` V1           | link:https://github.com/IUT-Blagnac/sae2023-bank-4a3/releases/tag/v1[Lien] | Pour les virement afficher la liste des comptes sélectionnables plutôt que demander le numéro de compte
 |           | javadoc V1         | link:https://github.com/IUT-Blagnac/sae2023-bank-4a3/tree/master/LV1/Dev/Code/DailyBank/doc[Lien] | 
-| 26/05     | Gantt V2 Réalisé   |                   | 
-|           | Doc User V2        |                   | 
-|           | Doc Tec V2         |                   | 
-|           | Chiffrage projet   |                   | 
-|           | Recette V2         |                   | 
-|           | `jar` V2           |                   | 
-|           | javadoc V2         |                   | 
+| 26/05     | Gantt V2 Réalisé   | link:LV2/GanttV2-R%C3%A9alis%C3%A9.pdf[Lien] | 
+|           | Doc User V2        | link:LV2/DocumentationUtilisateur.adoc[Lien] | 
+|           | Doc Tec V2         | link:LV2/Dossier_Technique.adoc[Lien] | 
+|           | Recette V2         | link:LV2/CahierDeRecette.adoc[Lien] | 
+|           | `jar` V2           | link:https://github.com/IUT-Blagnac/sae2023-bank-4a3/releases/tag/v2[Lien] | 
+|           | javadoc V2         | link:LV2/Dev/Code/JavaDoc.zip[Lien] | 
 |===

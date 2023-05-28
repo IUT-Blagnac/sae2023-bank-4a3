@@ -4,7 +4,6 @@ import java.util.regex.Pattern;
 
 import application.DailyBankState;
 import application.control.EmployeEditorPane;
-import application.control.ExceptionDialog;
 import application.tools.AlertUtilities;
 import application.tools.ConstantesIHM;
 import application.tools.EditionMode;

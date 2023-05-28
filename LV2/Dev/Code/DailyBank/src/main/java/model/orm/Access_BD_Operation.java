@@ -71,9 +71,9 @@ public class Access_BD_Operation {
 	}
 
 	/**
-	 * Recherche d'une opération par son id.
+	 * Recherche d'un prélévement automatique par son id.
 	 *
-	 * @param idOperation id de l'opération recherchée (clé primaire)
+	 * @param idOperation id du prélévement automatique recherchée (clé primaire)
 	 * @return Une Operation ou null si non trouvé
 	 * @throws RowNotFoundOrTooManyRowsException La requête renvoie plus de 1 ligne
 	 * @throws DataAccessException               Erreur d'accès aux données (requête
@@ -88,7 +88,7 @@ public class Access_BD_Operation {
 
 		try {
 			Connection con = LogToDatabase.getConnexion();
-			String query = "SELECT * FROM Operation  where" + " idOperation = ?";
+			String query = "SELECT * FROM PrelevementAutomatique  where" + " idOperation = ?";
 
 			PreparedStatement pst = con.prepareStatement(query);
 			pst.setInt(1, idOperation);

@@ -1,5 +1,7 @@
 package application.control;
 
+import java.util.ArrayList;
+
 import application.DailyBankApp;
 import application.DailyBankState;
 import application.tools.EditionMode;
@@ -84,7 +86,6 @@ public class PrelevementManagement {
 		if (pm != null) {
 			try {
 				Access_BD_Prelevement ap = new Access_BD_Prelevement();
-
 				ap.insertPrelevement(pm);
 			} catch (DatabaseConnexionException e) {
 				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
@@ -98,5 +99,86 @@ public class PrelevementManagement {
 			}
 		}
 		return pm;
+	}
+
+	/**
+	 * Modifie un prélèvement.
+	 *
+	 * @param pr Le prélèvement à modifier
+	 * @return Le prélèvement modifié
+	 * @author KRILL Maxence
+	 */
+	public Prelevement modifierPrelevement(Prelevement pr) {
+		Prelevement pm;
+		PrelevementEditorPane pep = new PrelevementEditorPane(this.primaryStage, this.dailyBankState);
+		pm = pep.doPrelevementEditorDialog(pr, EditionMode.MODIFICATION);
+		if (pm != null) {
+			try {
+				Access_BD_Prelevement ap = new Access_BD_Prelevement();
+				ap.modifierPrelevement(pm);
+			} catch (DatabaseConnexionException e) {
+				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
+				ed.doExceptionDialog();
+				this.primaryStage.close();
+				pm = null;
+			} catch (ApplicationException ae) {
+				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, ae);
+				ed.doExceptionDialog();
+				pm = null;
+			}
+		}
+		return pm;
+	}
+
+	/**
+	 * Supprime un prélèvement.
+	 *
+	 * @param pr Le prélèvement à modifier
+	 * @author KRILL Maxence
+	 */
+	public void supprimerPrelevement(Prelevement pr) {
+		if (pr != null) {
+			try {
+				Access_BD_Prelevement ap = new Access_BD_Prelevement();
+				ap.supprimerPrelevement(pr);
+			} catch (DatabaseConnexionException e) {
+				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
+				ed.doExceptionDialog();
+				this.primaryStage.close();
+			} catch (ApplicationException ae) {
+				ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, ae);
+				ed.doExceptionDialog();
+			}
+		}
+	}
+
+	/**
+	 * Obtient la liste des clients en fonction des critères de recherche.
+	 *
+	 * @param _numCompte   Le numéro de compte (ou -1 pour tous les clients)
+	 * @param _debutNom    Le début du nom du client
+	 * @param _debutPrenom Le début du prénom du client
+	 * @return La liste des clients correspondant aux critères de recherche
+	 */
+	public ArrayList<Prelevement> getPrelevements(int _numCompte) {
+		ArrayList<Prelevement> listePre = new ArrayList<>();
+		try {
+			// numCompte != -1 => recherche sur numCompte
+			// numCompte == -1 => recherche sur l'agence
+
+			Access_BD_Prelevement ac = new Access_BD_Prelevement();
+			listePre = ac.getPrelevements(this.dailyBankState.getEmployeActuel().idAg, _numCompte);
+
+		} catch (DatabaseConnexionException e) {
+			ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
+			ed.doExceptionDialog();
+			this.primaryStage.close();
+			listePre = new ArrayList<>();
+		} catch (ApplicationException ae) {
+			ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, ae);
+			ed.doExceptionDialog();
+			listePre = new ArrayList<>();
+		}
+		return listePre;
 	}
 }

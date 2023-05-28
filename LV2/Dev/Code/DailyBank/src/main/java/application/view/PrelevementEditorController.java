@@ -100,7 +100,21 @@ public class PrelevementEditorController {
 				this.butCancel.setText("Annuler");
 				break;
 			case MODIFICATION:
+				this.txtIdpre.setDisable(true);
+				this.txtIdpre.setText("" + pm.idPrelevement);
+				this.txtmontant.setDisable(false);
+				this.txtmontant.setText("" + pm.montant);
+				this.txtdate.setDisable(false);
+				this.txtdate.setText("" + pm.date);
+				this.txtbeneficiaire.setDisable(false);
+				this.txtbeneficiaire.setText("" + pm.beneficiaire);
+				this.txtIdCompte.setDisable(true);
+				this.txtIdCompte.setText("" + pm.idNumCompte);
 
+
+				this.lblMessage.setText("Informations sur le prélevement");
+				this.butOk.setText("Modifier");
+				this.butCancel.setText("Annuler");
 				break;
 			case SUPPRESSION:
 
@@ -135,17 +149,9 @@ public class PrelevementEditorController {
 	 */
 	@FXML
 	private void doAjouter() {
-		switch (this.editionMode) {
-			case CREATION:
-				if (this.isSaisieValide()) {
-					this.prelevementResultat = this.prelevementEdite;
-					this.primaryStage.close();
-				}
-				break;
-			case MODIFICATION:
-				break;
-			case SUPPRESSION:
-				break;
+		if (this.isSaisieValide()) {
+			this.prelevementResultat = this.prelevementEdite;
+			this.primaryStage.close();
 		}
 	}
 

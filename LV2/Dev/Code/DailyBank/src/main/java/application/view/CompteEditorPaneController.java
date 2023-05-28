@@ -255,6 +255,14 @@ public class CompteEditorPaneController {
 					AlertType.WARNING);
 			return false;
 		}
+
+		if (this.compteEdite.solde < 50) {
+			AlertUtilities.showAlert(this.primaryStage, "Erreur de saisie",
+					"Le solde du compte doit être supérieur à 50 €",
+					"Un compte ne peut pas être créé/édité si le solde est inférieur à 50 €.",
+					AlertType.WARNING);
+			return false;
+		}
 		return true;
 	}
 }
