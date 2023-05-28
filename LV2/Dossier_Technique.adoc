@@ -259,7 +259,7 @@ image::../img/docTech/DC-Client.png["DC Client"]
 
 ==== C. Classes impliquées modifier client
 
-image::../img/docTech/DS-Update_Client[DS modifier client]
+image::../img/docTech/DS-Update_Client.png[DS modifier client]
 
 === 3. Clotûrer client Maxence
 
@@ -286,7 +286,7 @@ image::["DS Consulter un compte"]
 
 ==== A. Use Case
 
-image::../img/docTech/UC-C-Compte
+image::../img/docTech/UC-C-Compte.png[]
 
 Création de la fonctionnalité créer compte pour les guichetier et les chefs d’agence
 
@@ -477,7 +477,7 @@ image::../img/docTech/UC-SimuE.png["UC simulation emprunt"]
 
 ==== C. Classes impliquées...
 
-image::../img/docTech/DS-Emprunt-Assurance["DS- Emprunt"]
+image::../img/docTech/DS-Emprunt-Assurance.png["DS-Emprunt"]
 
 === 19. Simuler une assurance Evan
 
@@ -489,4 +489,4 @@ image::../img/docTech/UC-SimuA.png["UC simulation Assurance"]
 
 ==== C. Classes impliquées...
 
-image::../img/docTech/DS-Emprunt-Assurance["DS- Assurance"]
+image::../img/docTech/DS-Emprunt-Assurance.png["DS- Assurance"]
