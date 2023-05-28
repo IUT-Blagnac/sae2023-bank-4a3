@@ -59,7 +59,7 @@ reprendre les contraintes technique / orga en les ré-organisant par type (techn
 |           | Gantt V1 Réalisé   | link:LV1/GanttV1-R%C3%A9alis%C3%A9.pdf[Lien] | découpage taches semble OK, mais GANTT trop petit, illisible. à reprendre. 
 |           | Gantt V2 Prévu     | link:LV2/GanttV2.pdf[Lien] | idem ci-dessus
 |           | Doc User V1        | link:LV1/DocumentationUtilisateur.adoc[Lien] | erreurs de frappe, manque présentation générale, role de l'application, présentation utilisateurs logiques, crdential de connexion, initiales du developpeur pour chaque fonction. Pas de jeu de données. ajouter ligne dans le readme pour gestion projet V1 avec ces commentaires: issues pas présentées sous la forme d'un board, manque les milestones, la liste ne semble pas correspondre aux GANTTS. readme OK, arbo OK, commits globalement OK
-| 17/05     | Doc Tec V1         | link:LV1/Dossier_Technique.adoc[Lien] | Quelques éléments de structure de la documentation technique :
+| 17/05     | Doc Tec V1         | link:LV1/DossierTechnique.adoc[Lien] | Quelques éléments de structure de la documentation technique :
     • Page de garde 
     • Sommaire 
     • Présentation rapide de l’application 
@@ -94,7 +94,7 @@ Pas de tests pour le CRUD des employers...
 |           | javadoc V1         | link:https://github.com/IUT-Blagnac/sae2023-bank-4a3/tree/master/LV1/Dev/Code/DailyBank/doc[Lien] | 
 | 26/05     | Gantt V2 Réalisé   | link:LV2/GanttV2-R%C3%A9alis%C3%A9.pdf[Lien] | 
 |           | Doc User V2        | link:LV2/DocumentationUtilisateur.adoc[Lien] | 
-|           | Doc Tec V2         | link:LV2/Dossier_Technique.adoc[Lien] | 
+|           | Doc Tec V2         | link:LV2/DossierTechnique.adoc[Lien] | 
 |           | Recette V2         | link:LV2/CahierDeRecette.adoc[Lien] | 
 |           | `jar` V2           | link:https://github.com/IUT-Blagnac/sae2023-bank-4a3/releases/tag/v2[Lien] | 
 |           | javadoc V2         | link:LV2/Dev/Code/JavaDoc.zip[Lien] | 
