@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="model.data.Client"/>
-    <fullyQualifiedTypeName name="javafx.collections.FXCollections"/>
-    <fullyQualifiedTypeName name="application.control.ComptesManagement"/>
-    <fullyQualifiedTypeName name="application.tools.TypeSimu"/>
-    <fullyQualifiedTypeName name="application.tools.AlertUtilities"/>
-    <fullyQualifiedTypeName name="javafx.scene.control.Alert.AlertType"/>
-</qualifiedTypeNameHistroy>
