@@ -1,4 +1,4 @@
-= Documentation utilisateur - BankUtil - Version 1
+= Documentation utilisateur - BankUtil - Version 2
 =
 :toc-title: Sommaire
 :toc: auto
