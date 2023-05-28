@@ -1,6 +1,7 @@
 = Cahier de recette - BankUtil
-:toc-title: Sommaire
 :toc: auto
+:toc-title: Sommaire
+:toclevels: 3
 
 *Date :* 16/05/2023 +
 *Par :* Équipe 4A3 : _DIDENKO Andrii, LAMOUR Evan, KRILL Maxence, SHULHINA Daria_ +
@@ -16,276 +17,602 @@ Ce document a été produit dans le cadre d'un projet d'élaboration d'une appli
 
 L'exécution des tests spécifiés au chapitre suivant requiert :
 
-* Une base de données installée (référence document technique).
-* L'environnement de test tel que spécifié dans la partie "Environnement de test" de ce document.
-* Les fiches de tests. *À vérifier*
+* Une base de données installée (voir link:../LV2/DossierTechnique.adoc[Document technique]).
+* L'environnement de tests tel que spécifié dans la partie `Environnement de test` de ce document.
+* Les fiches de tests.
 
-=== 1. Éléments à tester :
+=== 1. Éléments à tester
 
-Les éléments testés concernent les Use-Cases spécifiés dans la *documentation technique*.
+Les éléments testés concernent les Use-Cases spécifiés dans la link:../LV2/DossierTechnique.adoc[documentation technique].
 
+=== 2. Environnement de test
 
-=== 2. Environnement de test :
+Ordinateur avec link:https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html[Java version 17] d'installé.
 
-Ordinateur sous Windows ou OS équivalent.
+== III. Cas de test
 
-== III. Cas de test :
+=== 1. Cas général
 
-=== 1. Fonctionnalités des guichetiers :
-
-==== 1.1 Gestion des clients :
+==== 1.1 Connexion
 
 |====
 
->|Cas de test 4+|Test-01-01-01
->|Titre 4+|Création d'un nouveau client
->|Objectif 4+| Vérifier qu'il est possible de créer un nouveau client
-
-5+|
-^|ID ^|Action ^|Comportement attendu ^|Pré-conditions ^|Résultat
-^|All_G_C.1 ^|Cliquer sur le bouton "Nouveau client". ^|La fenêtre de création des clients s'ouvre. ^| aucune ^|OK
-^|All_G_C.2 ^|Compléter les champs spécifiés et valider. ^|Un nouveau client est créé. ^|aucune ^|OK
+>.^| *Cas de test* 4+.^| Test-01-01-01
+>.^| *Titre* 4+.^| Connexion d'un employé
+>.^| *Objectif* 4+.^| Vérifier qu'il est possible de se connecter à l'application en tant qu'employé
 
 5+|
 
-5+|Commentaire :
-Compléter et si on ne valide pas, ...
+^.^| *ID* ^.^| *Action* ^.^| *Comportement attendu* ^.^| *Pré-conditions* ^.^| *Résultat*
 
+^.^| All_Co.1 ^.^| Cliquer sur le bouton `Connexion` depuis la page d'accueil de l'application, ou cliquer sur `Utilisateur` puis `Connexion`. ^.^| La page de connexion se lance. ^.^| La page d'accueil est active et aucun employé n'est connecté. ^.^| OK
+
+^.^| All_Co.2 ^.^| Compléter les champs spécifiés correctement et cliquer sur `Valider`. ^.^| L'employé est connecté, Retour à la page d'accueil de l'application. ^.^| La page de connexion est active. ^.^| OK
+
+^.^| All_Co.3 ^.^| Compléter les champs spécifiés correctement et cliquer sur `Annuler`. ^.^| Retour à la page d'accueil de l'application. ^.^| La page de connexion est active. ^.^| OK
+
+^.^| All_Co.4 ^.^| Compléter les champs spécifiés "incorrectement" et cliquer sur `Valider`. ^.^| Un message d'erreur s'affiche en indiquant que les champs sont incorrectements remplis. Une fois fermé, retour à la page de connexion. ^.^| La page de connexion est active. ^.^| Erreur = OK
 
 |====
 
+==== 1.2 Déconnexion
+
 |====
 
->|Cas de test 4+|Test-01-01-02
->|Titre 4+|Modification d'un client
->|Objectif 4+| Vérifier qu'il est possible de modifier un client
+>.^| *Cas de test* 4+.^| Test-01-01-02
+>.^| *Titre* 4+.^| Déconnexion d'un employé
+>.^| *Objectif* 4+.^| Vérifier qu'il est possible de se déconnecter de l'application
 
 5+|
 
-^|ID ^|Action ^|Comportement attendu ^|Pré-conditions ^|Résultat
-^|All_G_C.3 ^|Cliquer sur le bouton "Modifier client". ^|La fenêtre de modification des données du clients s'ouvre. ^|Le client est sélectionné ^|OK
-^|All_G_C.4 ^|Modifier les champs souhaités et confirmer. ^|Retour sur les informations du client. Le client est modifié. ^|La fenêtre modifier client est active ^|OK
-^|All_G_C.5 ^|Modifier les champs souhaités et annuler. ^|Retour sur les informations du client. Le client est inchangé. ^|La fenêtre modifier client est active ^|OK
+^.^| *ID* ^.^| *Action* ^.^| *Comportement attendu* ^.^| *Pré-conditions* ^.^| *Résultat*
+
+^.^| All_Deco.1 ^.^| Cliquer sur le bouton `Déconnexion` depuis la page d'accueil de l'application, ou cliquer sur `Utilisateur` puis `Déconnexion``. ^.^| L'employé est déconnecté, Retour à la page d'accueil de l'application. ^.^| La page d'accueil est active et un employé est connecté. ^.^| OK
 
 |====
 
-==== 1.2 Gestion des comptes bancaires :
+==== 1.3 Aide
 
 |====
 
->|Cas de test 4+|Test-01-02-01
->|Titre 4+|Consultation d'un compte
->|Objectif 4+| Vérifier qu'il est possible de consulter un compte
+>.^| *Cas de test* 4+.^| Test-01-02-01
+>.^| *Titre* 4+.^| Accéder au menu d'aide
+>.^| *Objectif* 4+.^| Ouvrir le menu d'aide de l'application
 
 5+|
 
-^|ID ^|Action ^|Comportement attendu ^|Pré-conditions ^|Résultat
-^|All_G_CB.1 ^|Cliquer sur le bouton "Comptes client". ^|La page des comptes du client s’affiche. ^|Un client actif est sélectionné ^|OK
-^|All_G_CB.2 ^|Sélectionner le bouton "Voir opérations". ^|La page des opérations du compte s’affiche. ^|Un compte actif est sélectionné ^|OK
-...
+^.^| *ID* ^.^| *Action* ^.^| *Comportement attendu* ^.^| *Pré-conditions* ^.^| *Résultat*
+
+^.^| All_A.1 ^.^| Dans le menu en haut de l'application, cliquer sur `?` puis `Aide` ^.^| La fenêtre d'aide s'ouvre. ^.^| La page d'accueil de l'application est active. ^.^| OK
 
 |====
 
+
+=== 2. Fonctionnalités des guichetiers
+
+==== 2.1 Gestion des clients
+
 |====
 
->|Cas de test 4+|Test-01-02-02 EVAN
->|Titre 4+|Créer un compte
->|Objectif 4+| Vérifier qu'il est possible de créer un compte
+>.^| *Cas de test* 4+.^| Test-02-02-01
+>.^| *Titre* 4+.^| Consulation des clients de l'agence
+>.^| *Objectif* 4+.^| Vérifier qu’il est possible de consulter les clients de son agence
 
 5+|
 
-^|ID ^|Action ^|Comportement attendu ^|Pré-conditions ^|Résultat
-^|CC.0 ^|J’appuie sur le bouton "créer compte". ^|La fenêtre de modification du compte s’ouvre. ^|aucune ^|OK
-^|CC.1 ^|Je rentre les données et appuie sur valider. ^|Client créé et redirection sur la gestion de compte. ^|Rentrer des données valide. ^|OK
-^|CC.2 ^|J’appuie sur annuler. ^|Client non créée et redirection sur la gestion des comptes. ^|aucune ^|OK
+^.^| *ID* ^.^| *Action* ^.^| *Comportement attendu* ^.^| *Pré-conditions* ^.^| *Résultat*
 
+^.^| Gui_G_C.1 ^.^| Dans le menu en haut de l'application, cliquer sur `Gestion` puis `Clients` ^.^| La fenêtre de gestion des clients s'ouvre. ^.^| L'employé est connecté et la page d'accueil de l'application est active. ^.^| OK
 
 |====
 
 |====
 
->|Cas de test 4+|Test-01-02-03 EVAN
->|Titre 4+|Clotûter un compte
->|Objectif 4+| Vérifier qu'il est possible de clotûrer un compte
+>.^| *Cas de test* 4+.^| Test-02-02-02
+>.^| *Titre* 4+.^| Recherche d'un client dans l'agence
+>.^| *Objectif* 4+.^| Vérifier qu'il est possible de rechercher un client dans l'agence à partir de son numéro, son nom ou son prénom
 
 5+|
 
-^|ID ^|Action ^|Comportement attendu ^|Pré-conditions ^|Résultat
-^|CLC.0 ^|je clique sur cloturé compte. ^|Pop-up validation + Le compte est cloturé ^|Un compte actif est sélectionné + Solde = 0 ^|OK
+^.^| *ID* ^.^| *Action* ^.^| *Comportement attendu* ^.^| *Pré-conditions* ^.^| *Résultat*
+
+^.^| Gui_G_C.2 ^.^| Ne remplir aucun champ et cliquer sur le bouton `Rechercher`. ^.^| Les clients présents dans l'agence s'affichent. ^.^| La fenêtre de gestion des clients est active. ^.^| OK
+
+^.^| Gui_G_C.3 ^.^| Remplir le champ `Numéro`, `Nom` ou `Prénom` et cliquer sur le bouton `Rechercher`. ^.^| Le client avec le numéro, le nom ou le prénom spécifié s'affiche (si il existe). ^.^| La fenêtre de gestion des clients est active. ^.^| OK
+
+|====
+
+|====
+
+>.^| *Cas de test* 4+.^| Test-02-02-03
+>.^| *Titre* 4+.^| Création d'un nouveau client
+>.^| *Objectif* 4+.^| Vérifier qu'il est possible de créer un nouveau client
 
 5+|
 
-5+|Commentaire : Si le soldes n'est pas égal à 0 alors un message d'alerte vous indiqueras que vous ne pouvez pas clotûter le compte|
+^.^| *ID* ^.^| *Action* ^.^| *Comportement attendu* ^.^| *Pré-conditions* ^.^| *Résultat*
+
+^.^| Gui_G_C.4 ^.^| Cliquer sur le bouton `Nouveau client`. ^.^| La fenêtre de création d'un client s'ouvre. ^.^| La fenêtre de gestion des clients est active. ^.^| OK
+
+^.^| Gui_G_C.5 ^.^| Compléter les champs spécifiés correctement et cliquer sur `Ajouter`. ^.^| Retour sur la fenêtre de gestion des clients. Un nouveau client est créé. ^.^| La fenêtre de création d'un client est active et les champs sont correctements remplis. ^.^| OK
+
+^.^| Gui_G_C.6 ^.^| Compléter les champs spécifiés "incorrectement" et cliquer sur `Valider`. ^.^| Un message d'erreur s'affiche en indiquant les champs incorrects. Une fois fermé, retour sur la fenêtre de création d'un client. Le client n'est pas créé. ^.^| La fenêtre de création d'un client est active et les champs sont incorretements remplis. ^.^| Erreur = OK
+
+^.^| Gui_G_C.7 ^.^| Cliquer sur `Annuler`. ^.^| Retour sur la fenêtre de gestion des clients. Le client n'est pas créé. ^.^| La fenêtre de création d'un client est active. ^.^| OK
 
 |====
 
-==== 1.3 Gestion des opérations :
-
 |====
 
->|Cas de test 4+|Test-01-03-01 EVAN
->|Titre 4+|Gestion des opération
->|Objectif 4+| Vérifier qu'il est possible d'accéder à la gestion des opération
+>.^| *Cas de test* 4+.^| Test-02-02-04
+>.^| *Titre* 4+.^| Modification d'un client
+>.^| *Objectif* 4+.^| Vérifier qu'il est possible de modifier un client
 
 5+|
 
-^|ID ^|Action ^|Comportement attendu ^|Pré-conditions ^|Résultat
-^|GO.0 ^|J’appuie sur "Voir Opération". ^|La fenêtre de gestion des opérations s’ouvre. ^|Sélectionner un compte ^|OK
+^.^| *ID* ^.^| *Action* ^.^| *Comportement attendu* ^.^| *Pré-conditions* ^.^| *Résultat*
+
+^.^| Gui_G_C.8 ^.^| Sélectionner un client existant puis cliquer sur le bouton `Modifier client`. ^.^| La fenêtre d'édition d’un client s’ouvre avec les informations du client sélectionné. ^.^| La fenêtre de gestion des clients est active et un client actif est selectionné. ^.^| OK
+
+^.^| Gui_G_C.9 ^.^| Compléter les champs spécifiés correctement et cliquer sur `Modifier`. ^.^| Retour sur la fenêtre de gestion des clients. Le client sélectionné est modifié. ^.^| La fenêtre de modification d'un client est active et les champs sont correctements remplis. ^.^| OK
+
+^.^| Gui_G_C.10 ^.^| Compléter les champs spécifiés "incorrectement" et cliquer sur `Modifier`. ^.^| Un message d'erreur s'affiche en indiquant les champs incorrects. Une fois fermé, retour sur la fenêtre de modification d'un client. Le client n'est pas modifié. ^.^| La fenêtre de modification d'un client est active et les champs sont incorrectements remplis. ^.^| Erreur = OK
+
+^.^| Gui_G_C.11 ^.^| Cliquer sur `Annuler`. ^.^| Retour sur la fenêtre de gestion des clients. Le client sélectionné n'est pas modifié. ^.^| La fenêtre de modification d'un client est active. ^.^| OK
 
 |====
 
+==== 2.2 Gestion des comptes bancaires
+
 |====
 
->|Cas de test 4+|Test-01-03-02 EVAN
->|Titre 4+|Débiter un compte
->|Objectif 4+| Vérifier qu'il est possible de débiter un compte
+>.^| *Cas de test* 4+.^| Test-02-03-01
+>.^| *Titre* 4+.^| Consultation d'un compte
+>.^| *Objectif* 4+.^| Vérifier qu'il est possible de consulter un compte
 
 5+|
 
-^|ID ^|Action ^|Comportement attendu ^|Pré-conditions ^|Résultat
-^|All_G_COP.1 ^|Cliquer sur le bouton "Enregistrer Débit". ^|La page des débit du compte s’affiche. ^| Un compte actif est sélectionné ^|OK
-^|All_G_COP.2  ^|Rentrer un montant 50 dans le champ "Montant". ^|Le nouveau solde est +50euros. On a créé une nouvelle opération dans la liste des opérations avec le bon montant et la bonne date ^| Le compte sélectionné a un solde de +100 euros
- ^|OK
-^|All_G_COP.3  ^|Rentrer un montant 150 dans le champ "Montant". ^|Le nouveau solde est -50 euros. On a créé une nouvelle opération dans la liste des opérations avec le bon montant et la bonne date ^| Le compte sélectionné a un solde de +100 euros, le découvert
-autorisé est de -100 euros.
- ^|OK
-^|All_G_COP.4  ^|Rentrer un montant 250 dans le champ "Montant". ^|Blocage ! + pop-up ^| Le compte sélectionné a un solde de +100 euros, le découvert
-autorisé est de -100 euros.
- ^|OK
+^.^| *ID* ^.^| *Action* ^.^| *Comportement attendu* ^.^| *Pré-conditions* ^.^| *Résultat*
+
+^.^| Gui_G_CB.1 ^.^| Sélectionner un client et cliquer sur le bouton `Comptes client`. ^.^| La page des comptes du client sélectionné s’affiche. ^.^| La fenêtre de gestion des clients est active et un client est selectionné. ^.^| OK
 
 |====
 
 |====
 
->|Cas de test 4+|Test-01-03-03 EVAN
->|Titre 4+|Créditer un compte
->|Objectif 4+| Vérifier qu'il est possible de créditer un compte
+>.^| *Cas de test* 4+.^| Test-02-03-02 - Evan
+>.^| *Titre* 4+.^| Création un compte
+>.^| *Objectif* 4+.^| Vérifier qu'il est possible de créer un compte
 
 5+|
 
-^|ID ^|Action ^|Comportement attendu ^|Pré-conditions ^|Résultat
-^|GO_C.0 ^|Je clique sur "Enregistrer Crédit" . ^|La fenêtre d’opération crédit s’ouvre. ^|Le compte sélectionné est actif. ^|OK
-^|GO_C.1 ^|Je rentre un montant de 100 ^|le nouveau solde est de +50 par rapport à avant. ^|Aucune ^|OK
-^|GO_C.2 ^|J’appuie sur annuler. ^|L’opération est annulé, retour sur la fenêtre de gestion d’opération. ^|aucune ^|OK
+^.^| *ID* ^.^| *Action* ^.^| *Comportement attendu* ^.^| *Pré-conditions* ^.^| *Résultat*
+
+^.^| Gui_G_CB.2 ^.^| Cliquer sur le bouton `Nouveau compte`. ^.^| La fenêtre de création d'un compte s'affiche. ^.^| La fenêtre de gestion des comptes du client est active et le client selectionné est actif. ^.^| OK
+
+^.^| Gui_G_CB.3 ^.^| Compléter les champs spécifiés correctement et cliquer sur `Ajouter`. ^.^| Retour sur la fenêtre de gestion des comptes d'un client. Un nouveau compte est créé. ^.^| La fenêtre de création d'un compte est active et les champs sont correctements remplis. ^.^| OK
+
+^.^| Gui_G_CB.4 ^.^| Compléter les champs spécifiés "incorrectement" et cliquer sur `Valider`. ^.^| Un message d'erreur s'affiche en indiquant les champs incorrects. Une fois fermé, retour sur la fenêtre de création d'un compte. Le compte n'est pas créé. ^.^| La fenêtre de création d'un compte est active et les champs sont incorretements remplis. ^.^| Erreur = OK
+
+^.^| Gui_G_CB.5 ^.^| Cliquer sur `Annuler`. ^.^| Retour sur la fenêtre de gestion des comptes. Le compte n'est pas créé. ^.^| La fenêtre de création d'un compte est active. ^.^| OK
 
 |====
 
 |====
 
->|Cas de test 4+|Test-01-03-04 EVAN
->|Titre 4+|Virement compte à compte
->|Objectif 4+| Vérifier qu'il est possible de faire un virement
+>.^| *Cas de test* 4+.^| Test-02-03-02 - Maxence
+>.^| *Titre* 4+.^| Modification d'un compte
+>.^| *Objectif* 4+.^| Vérifier qu'il est possible de créer un compte
 
 5+|
 
-^|ID ^|Action ^|Comportement attendu ^|Pré-conditions ^|Résultat
-^|GO_V.0 ^|Je clique sur "Enregistrez Virement" . ^|La fenêtre d’opération virement s’ouvre. ^|Le compte sélectionné est actif. ^|OK
-^|GO_V.1 ^|Je rentre un numéro de compte valide et un montant valide ^|le transfert est effectué et est affiché sur les 2 compte, la fenêtre la fenêtre de gestion d’opération s’ouvre.  ^|aucune ^|OK
+^.^| *ID* ^.^| *Action* ^.^| *Comportement attendu* ^.^| *Pré-conditions* ^.^| *Résultat*
 
-5+|
+^.^| Gui_G_CB.6 ^.^| Sélectionner un compte ouvert puis cliquer sur le bouton `Modifier compte`. ^.^| La fenêtre de modification d'un compte s'affiche. ^.^| La fenêtre de gestion des comptes du client est active et un compte ouvert est selectionné. ^.^| OK
 
-5+|Commentaire : Veuillez rentrez un numéro de compte existant ainsi qu'un montant positif.|
+^.^| Gui_G_CB.7 ^.^| Compléter les champs spécifiés correctement et cliquer sur `Modifier`. ^.^| Retour sur la fenêtre de gestion des comptes d'un client. Le compte selectionné est modifié . ^.^| La fenêtre de modification d'un compte est active et les champs sont correctements remplis. ^.^| OK
 
-|====
+^.^| Gui_G_CB.8 ^.^| Compléter les champs spécifiés "incorrectement" et cliquer sur `Modifier`. ^.^| Un message d'erreur s'affiche en indiquant les champs incorrects. Une fois fermé, retour sur la fenêtre de modification d'un compte. Le compte n'est pas modifié. ^.^| La fenêtre de modification d'un compte est active et les champs sont incorretements remplis. ^.^| Erreur = OK
 
-==== 1.4 Gestion des Prélèvements :
-
-|====
-
->|Cas de test 4+|Test-01-03-01 EVAN
->|Titre 4+|Gestion prélevement
->|Objectif 4+| Vérifier qu'il est possible d'acceder à la gestion des prélèvements
-
-5+|
-
-^|ID ^|Action ^|Comportement attendu ^|Pré-conditions ^|Résultat
-^|GP.0 ^|Cliquer sur "gestion" puis "Prélèvement". ^|Ouverture page gestion des prélèvements ^|être connecté en tant que guichetier ou chef d’agence ^|OK
-
-5+|
-
-5+|Commentaire : Aucun.  |
+^.^| Gui_G_CB.9 ^.^| Cliquer sur `Annuler`. ^.^| Retour sur la fenêtre de gestion des comptes. Le compte n'est pas modifié. ^.^| La fenêtre de modification d'un compte est active. ^.^| OK
 
 |====
 
 |====
 
->|Cas de test 4+|Test-01-03-02 EVAN
->|Titre 4+|Créer un prélèvement
->|Objectif 4+| Vérifier qu'il est possible de créer un prélèvement
+>.^| *Cas de test* 4+.^| Test-02-03-03 - Evan
+>.^| *Titre* 4+.^| Clotûter un compte
+>.^| *Objectif* 4+.^| Vérifier qu'il est possible de clotûrer un compte
 
 5+|
 
-^|ID ^|Action ^|Comportement attendu ^|Pré-conditions ^|Résultat
-^|CP.0 ^|cliquer sur "nouveau Prélèvement". ^|Ouverture page de création de prélèvement ^|aucune ^|OK
-^|CP.1 ^|Remplir tout les champs puis valider. ^|Ajout du prélèvement et retour sur la page de gestion des prélèvements  ^|Champs tous valide ^|OK
-^|CP.2 ^|Cliquer sur "annuler" . ^|Annulation de la création du prelevement + retour sur la page de gestion des prélèvement.  ^|aucune ^|OK
+^.^| *ID* ^.^| *Action* ^.^| *Comportement attendu* ^.^| *Pré-conditions* ^.^| *Résultat*
 
-5+|
+^.^| Gui_G_CB.10 ^.^| Sélectionner un compte ouvert avec un solde de 0€ puis cliquer sur le bouton `Clotûrer compte`. ^.^| Une fenêtre de confirmation s'ouvre avec les informations du compte sélectionné. ^.^| La fenêtre de gestion des comptes est active et un compte ouvert est selectionné. ^.^| OK
 
-5+|Commentaire : Veuillez rentrer un numéro de compte existant, la date est le numéro du jour entre (1 et 28).  |
+^.^| Gui_G_CB.11 ^.^| Sur la fenêtre permettant de clotûrer un compte, cliquer sur `OK`. ^.^| Retour sur la fenêtre de gestion des comptes. Le compte sélectionné est clotûré. ^.^| La fenêtre permettant de clotûrer un compte est active. ^.^| OK
+
+^.^| Gui_G_CB.12 ^.^| Sur la fenêtre permettant de clotûrer un compte, cliquer sur `Annuler`. ^.^| Retour sur la fenêtre de gestion des comptes. Le compte sélectionné n'est pas clotûré. ^.^| La fenêtre permettant de clotûrer un compte est active. ^.^| OK
+
+^.^| Gui_G_CB.13 ^.^| Sélectionner un compte ouvert avec un solde différent de 0€ puis cliquer sur le bouton `Clotûrer compte`. ^.^| Un message d'erreur s'affiche disant que le compte n'est pas clotûrable. Une fois fermé, retour sur la fenêtre de gestion des comptes. Le compte n'est pas clotûré. ^.^| La fenêtre de gestion des comptes est active et un compte ouvert est selectionné. ^.^| Erreur = OK
 
 |====
 
-=== 2. Fonctionnalités des chefs d'agence :
-
-Les chefs d'agence ont accès aux mêmes fonctionnalités que les guichetiers, ainsi que d'autres qui leur sont réservées.
-
-==== 2.1 Gestion des clients :
+==== 2.3 Gestion des opérations
 
 |====
 
->|Cas de test 4+|Test-02-01-01
->|Titre 4+|Rendre inactif un client
->|Objectif 4+| Vérifier qu'il est possible de rendre un client inactif
+>.^| *Cas de test* 4+.^| Test-02-04-01 - Evan
+>.^| *Titre* 4+.^| Gestion des opérations
+>.^| *Objectif* 4+.^| Vérifier qu'il est possible d'accéder à la gestion des opérations d'un compte
 
 5+|
 
-^|ID ^|Action ^|Comportement attendu ^|Pré-conditions ^|Résultat
-^|C_G_C.1    ^|Sélectionner le bouton "Inactif" et confirmer. ^|...  ^|Un client actif est sélectionné ... ^| ...
+^.^| *ID* ^.^| *Action* ^.^| *Comportement attendu* ^.^| *Pré-conditions* ^.^| *Résultat*
 
-5+|
-
-5+|Commentaire : REVOIR AVEC *clôturés*.|
-
-|====
-
-==== 2.2 Simulation Emprunt, Assurance:
-
-|====
-
->|Cas de test 4+|Test-02-02-01 EVAN
->|Titre 4+|Simuler un emprunt
->|Objectif 4+| Vérifier qu'il est possible de simuler un emprunt
-
-5+|
-
-^|ID ^|Action ^|Comportement attendu ^|Pré-conditions ^|Résultat
-^|SE.0 ^|Cliquer sur Simulation puis emprunt. ^|Ouverture de la page de configuration d’emprunt.  ^|être connecté en tant que chef d’agence ^| OK
-^|SE.1 ^|Sélectionner mois et rentrez les chiffres dans les cases puis validez ^|Ouverture d’un tableau d’amortissement d’emprunt en mois. ^|aucune ^| OK
-^|SE.2 ^|Sélectionner année et rentrez les chiffres dans les cases puis validez ^|Ouverture d’un tableau d’amortissement d’emprunt en année. ^|aucune ^| OK
-^|SE.3 ^|Cliquer sur annuler ^|Retour à la page d’accueil. ^|aucune ^| OK
-
-5+|
-
-5+|Commentaire : Le taux est annuel veuillez rentrez que des chiffres et pour le montant des decimaux sont acceptés.|
+^.^| Gui_G_COP.1 ^.^| Sélectionner un compte ouvert puis cliquer sur le bouton `Voir opérations`. ^.^| La fenêtre de gestion des opérations s'ouvre. ^.^| La fenêtre de gestion des comptes du client est active et un compte est selectionné. ^.^| OK
 
 |====
 
 |====
 
->|Cas de test 4+|Test-02-02-01 EVAN
->|Titre 4+|Simuler une Assurance
->|Objectif 4+| Vérifier qu'il est possible de simuler une assurance
+>.^| *Cas de test* 4+.^| Test-02-04-02 - Evan
+>.^| *Titre* 4+.^| Débiter un compte
+>.^| *Objectif* 4+.^| Vérifier qu'il est possible de débiter un compte
 
 5+|
 
-^|ID ^|Action ^|Comportement attendu ^|Pré-conditions ^|Résultat
-^|SA.0 ^|Cliquer sur le bouton assurance ^|affichage d’une zone de texte  ^|Aucune ^| OK
-^|SA.1 ^|Recliquer sur le bouton assurance ^|Suppression de la zone de texte ^|avoir appuyé une fois sur ce bouton ^| OK
-^|SA.2 ^|Rentrez un chiffre et validez ^|Ouverture d’un tableau d’amortissement d’emprunt + prix assurance ^|avoir appuyé sur le bouton ^| OK
+^.^| *ID* ^.^| *Action* ^.^| *Comportement attendu* ^.^| *Pré-conditions* ^.^| *Résultat*
+
+^.^| Gui_G_COP.2 ^.^| Cliquer sur le bouton `Enregistrer Débit`. ^.^| La fenêtre permettant de débiter un compte s’affiche. ^.^| La fenêtre de gestion des opérations est ouverte et le compte selectionné est ouvert. ^.^| OK
+
+^.^| Gui_G_COP.3 ^.^| Rentrer un type d'opération et un montant positif dans le champ `Montant` donnant un résultat supérieur ou égal au découvert autorisé du compte puis cliquer sur `Effectuer Débit`. ^.^| La fenêtre permettant de débiter un compte se ferme, le solde du compte est actualisé avec le montant donné en moins, une nouvelle opération est créée avec le montant et la raison indiquée. ^.^| La fenêtre permettant de débiter un compte est active et les champs sont remplis. ^.^| OK
+
+^.^| Gui_G_COP.4 ^.^| Cliquer sur `Annuler Débit`. ^.^| La fenêtre permettant de débiter un compte se ferme. Aucune opération n'est effectuée. ^.^| La fenêtre permettant de débiter un compte est active. ^.^| OK
+
+^.^| Gui_G_COP.5 ^.^| Rentrer un type d'opération et un montant négatif ou égal à 0 dans le champ `Montant` puis cliquer sur `Effectuer Débit`. ^.^| Un message d'erreur s'affiche disant que le montant doit être positif. Une fois fermé, retour sur la fenêtre permettant de débiter un compte. Aucune opération n'est effectuée. ^.^| La fenêtre permettant de débiter un compte est active et les champs sont incorrectements remplis. ^.^| Erreur = OK
+
+^.^| Gui_G_COP.6 ^.^| Rentrer un type d'opération et un montant positif dans le champ `Montant` donnant un résultat inférieur au découvert autorisé du compte puis cliquer sur `Effectuer Débit`. ^.^| Un message d'erreur s'affiche disant qu'il n'est pas possible de débiter un compte en dessous de son découvert autorisé. ^.^| La fenêtre permettant de débiter un compte est active, le montant donne un résultat inférieur au découvert autorisé du compte et l'employé connecté est un guichetier. ^.^| Erreur = OK
 
 5+|
 
-5+|Commentaire : Le taux d'assurance est annuel|
+5+.^| Voir aussi `Test-03-02-01 - Maxence : Effectuer un débit exceptionnel d'un compte` si l'employé connecté est un chef d'agence.
+
+|====
+
+|====
+
+>.^| *Cas de test* 4+.^| Test-02-04-03 - Evan
+>.^| *Titre* 4+.^| Créditer un compte
+>.^| *Objectif* 4+.^| Vérifier qu'il est possible de créditer un compte
+
+5+|
+
+^.^| *ID* ^.^| *Action* ^.^| *Comportement attendu* ^.^| *Pré-conditions* ^.^| *Résultat*
+
+^.^| Gui_G_COP.11 ^.^| Cliquer sur le bouton `Enregistrer Crédit`. ^.^| La fenêtre permettant de créditer un compte s’affiche. ^.^| La fenêtre de gestion des opérations est ouverte et le compte selectionné est ouvert. ^.^| OK
+
+^.^| Gui_G_COP.12 ^.^| Rentrer un type d'opération et un montant positif dans le champ `Montant` puis cliquer sur `Effectuer Crédit`. ^.^| La fenêtre permettant de créditer un compte se ferme, le solde du compte est actualisé avec le montant donné en plus, une nouvelle opération est créée avec le montant et la raison indiquée. ^.^| La fenêtre permettant de créditer un compte est active et les champs sont correctements remplis. ^.^| OK
+
+^.^| Gui_G_COP.13 ^.^| Cliquer sur `Annuler Crédit`. ^.^| La fenêtre permettant de créditer un compte se ferme. Aucune opération n'est effectuée. ^.^| La fenêtre permettant de créditr un compte est active. ^.^| OK
+
+^.^| Gui_G_COP.14 ^.^| Rentrer un type d'opération et un montant négatif ou égal à 0 dans le champ `Montant` puis cliquer sur `Effectuer Crédit`. ^.^| Un message d'erreur s'affiche disant que le montant doit être positif. Une fois fermé, retour sur la fenêtre permettant de créditer un compte. Aucune opération n'est effectuée. ^.^| La fenêtre permettant de créditer un compte est active. ^.^| Erreur = OK
+
+|====
+
+|====
+
+>.^| *Cas de test* 4+.^| Test-02-04-04 - Evan
+>.^| *Titre* 4+.^| Effetuer un virement de compte à compte
+>.^| *Objectif* 4+.^| Vérifier qu'il est possible de faire un virement de compte à compte
+
+5+|
+
+^.^| *ID* ^.^| *Action* ^.^| *Comportement attendu* ^.^| *Pré-conditions* ^.^| *Résultat*
+
+^.^| Gui_G_COP.15 ^.^| Cliquer sur le bouton `Effectuer Virement`. ^.^| La fenêtre permettant d'effectuer un virement s’affiche. ^.^| La fenêtre de gestion des opérations est ouverte et le compte selectionné est ouvert. ^.^| OK
+
+^.^| Gui_G_COP.16 ^.^| Rentrer le numéro du compte créditeur et un montant positif donnant un résultat supérieur ou égal au découvert autorisé du compte dans le champ `Montant` puis cliquer sur `Effectuer Virement`. ^.^| La fenêtre permettant d'effectuer un virement se ferme, le solde du compte est actualisé avec le montant donné en moins, une nouvelle opération est créée avec le montant et la raison indiquée. Le solde du compte crédité est actualisé avec le montant donné en plus, une nouvelle opération est créée avec le montant et la raison indiquée. ^.^| La fenêtre permettant d'effectuer un virement est active et les champs sont correctements remplis. ^.^| OK
+
+^.^| Gui_G_COP.17 ^.^| Cliquer sur `Annuler Virement`. ^.^| La fenêtre permettant d'effectuer un virement se ferme. Aucune opération n'est effectuée. ^.^| La fenêtre permettant d'effectuer un virement est active. ^.^| OK
+
+^.^| Gui_G_COP.18 ^.^| Rentrer le numéro d'un compte créditeur qui n'existe pas / n'est pas ouvert et un montant puis cliquer sur `Effectuer Virement`. ^.^| Un message d'erreur s'affiche disant que le compte recherché n'existe pas. Une fois fermé, retour à la fenêtre permettant d'effectuer un virement. ^.^| La fenêtre permettant d'effectuer un virement est active, le compte créditeur n'existe pas / est clotûré. ^.^| Erreur = OK
+
+^.^| Gui_G_COP.19 ^.^| Rentrer le numéro du compte créditeur et un montant positif donnant un résultat inférieur au découvert autorisé du compte dans le champ `Montant` puis cliquer sur `Effectuer Virement`. ^.^| Un message d'erreur s'affiche disant qu'il n'est pas possible de débiter un compte en dessous de son découvert autorisé. Une fois fermé, retour à la fenêtre permettant d'effectuer un virement. ^.^| La fenêtre permettant d'effectuer un virement est active, le montant donne un résultat inférieur au découvert autorisé du compte. ^.^| Erreur = OK
+
+|====
+
+|====
+
+>.^| *Cas de test* 4+.^| Test-02-04-05 - Andrii et Daria
+>.^| *Titre* 4+.^| Générer le relevé PDF d'un compte
+>.^| *Objectif* 4+.^| Vérifier qu'il est possible de générer le relevé PDF d'un compte
+
+5+|
+
+^.^| *ID* ^.^| *Action* ^.^| *Comportement attendu* ^.^| *Pré-conditions* ^.^| *Résultat*
+
+^.^| Gui_G_COP.20 ^.^| Cliquer sur le bouton `Générer relevé PDF`. ^.^| Un relevé PDF est créé à l'emplacement où le `.jar` de l'application se situe. Le relevé PDF est ouvert avec votre application par défaut. ^.^| La fenêtre de gestion des opérations est ouverte. ^.^| OK
+
+|====
+
+==== 2.4 Gestion des prélèvements
+
+|====
+
+>.^| *Cas de test* 4+.^| Test-02-05-01 - Maxence
+>.^| *Titre* 4+.^| Consulation des prélévements automatiques des comptes dans l'agence
+>.^| *Objectif* 4+.^| Vérifier qu’il est possible de consulter les prélévements automatiques des comptes des clients dans l'agence
+
+5+|
+
+^.^| *ID* ^.^| *Action* ^.^| *Comportement attendu* ^.^| *Pré-conditions* ^.^| *Résultat*
+
+^.^| Gui_G_P.1 ^.^| Dans le menu en haut de l'application, cliquer sur `Gestion` puis `Prélèvement` ^.^| La fenêtre de gestion des prélèvements s'ouvre. ^.^| L'employé est connecté et la page d'accueil de l'application est active. ^.^| OK
+
+|====
+
+|====
+
+>.^| *Cas de test* 4+.^| Test-02-05-02 - Maxence
+>.^| *Titre* 4+.^| Recherche des prélèvements automatiques d'un compte dans l'agence
+>.^| *Objectif* 4+.^| Vérifier qu'il est possible de rechercher les prélèvements automatiques d'un compte dans l'agence
+
+5+|
+
+^.^| *ID* ^.^| *Action* ^.^| *Comportement attendu* ^.^| *Pré-conditions* ^.^| *Résultat*
+
+^.^| Gui_G_P.2 ^.^| Ne remplir aucun champ et cliquer sur le bouton `Rechercher`. ^.^| Les prélèvements automatiques des comptes présents dans l'agence s'affichent. ^.^| La fenêtre de gestion des prélèvements est active. ^.^| OK
+
+^.^| Gui_G_P.3 ^.^| Remplir le champ `Numéro Compte` et cliquer sur le bouton `Rechercher`. ^.^| Les prélèvements du compte avec le numéro spécifié s'affiche (si il existe). ^.^| La fenêtre de gestion des prélèvements est active. ^.^| OK
+
+|====
+
+|====
+
+>.^| *Cas de test* 4+.^| Test-02-05-03 - Evan
+>.^| *Titre* 4+.^| Création d'un nouveau prélèvement automatique
+>.^| *Objectif* 4+.^| Vérifier qu'il est possible de créer un nouveau prélèvement automatique
+
+5+|
+
+^.^| *ID* ^.^| *Action* ^.^| *Comportement attendu* ^.^| *Pré-conditions* ^.^| *Résultat*
+
+^.^| Gui_G_P.4 ^.^| Cliquer sur le bouton `Nouveau prélèvement`. ^.^| La fenêtre de création d'un prélèvement s'ouvre. ^.^| La fenêtre de gestion des prélèvement est active. ^.^| OK
+
+^.^| Gui_G_P.5 ^.^| Compléter les champs spécifiés correctement et cliquer sur `Ajouter`. ^.^| Retour sur la fenêtre de gestion des prélèvements automatiques. Un nouveau prélèvement est créé. ^.^| La fenêtre de création d'un prélèvement est active et les champs sont correctements remplis. ^.^| OK
+
+^.^| Gui_G_P.6 ^.^| Compléter les champs spécifiés "incorrectement" et cliquer sur `Valider`. ^.^| Un message d'erreur s'affiche en indiquant les champs incorrects. Une fois fermé, retour sur la fenêtre de création d'un prélèvements automatiques. Le prélèvement n'est pas créé. ^.^| La fenêtre de création d'un prélèvement est active et les champs sont incorretements remplis. ^.^| Erreur = OK
+
+^.^| Gui_G_P.7 ^.^| Cliquer sur `Annuler`. ^.^| Retour sur la fenêtre de gestion des prélèvements. Le prélèvement n'est pas créé. ^.^| La fenêtre de création d'un prélèvement est active. ^.^| OK
+
+|====
+
+|====
+
+>.^| *Cas de test* 4+.^| Test-02-05-04 - Maxence
+>.^| *Titre* 4+.^| Modification d'un prélèvement automatique
+>.^| *Objectif* 4+.^| Vérifier qu'il est possible de modifier un prélèvement automatique
+
+5+|
+
+^.^| *ID* ^.^| *Action* ^.^| *Comportement attendu* ^.^| *Pré-conditions* ^.^| *Résultat*
+
+^.^| Gui_G_P.8 ^.^| Sélectionner un prélèvement automatique existant puis cliquer sur le bouton `Modifier prélèvement`. ^.^| La fenêtre d'édition d’un prélèvement s’ouvre avec les informations du prélèvement sélectionné. ^.^| La fenêtre de gestion des prélèvements est active et un prélèvement est selectionné. ^.^| OK
+
+^.^| Gui_G_P.9 ^.^| Compléter les champs spécifiés correctement et cliquer sur `Modifier`. ^.^| Retour sur la fenêtre de gestion des prélèvéments. Le prélèvement sélectionné est modifié. ^.^| La fenêtre de modification d'un prélèvement est active et les champs sont correctements remplis. ^.^| OK
+
+^.^| Gui_G_P.10 ^.^| Compléter les champs spécifiés "incorrectement" et cliquer sur `Modifier`. ^.^| Un message d'erreur s'affiche en indiquant les champs incorrects. Une fois fermé, retour sur la fenêtre de modification d'un prélèvement. Le prélèvement n'est pas modifié. ^.^| La fenêtre de modification d'un prélèvement est active et les champs sont incorrectements remplis. ^.^| Erreur = OK
+
+^.^| Gui_G_P.11 ^.^| Cliquer sur `Annuler`. ^.^| Retour sur la fenêtre de gestion des prélèvements automatiques. Le prélèvement sélectionné n'est pas modifié. ^.^| La fenêtre de modification d'un prélèvement automatique est active. ^.^| OK
+
+|====
+
+|====
+
+>.^| *Cas de test* 4+.^| Test-02-05-05 - Maxence
+>.^| *Titre* 4+.^| Supprimer un prélèvement automatique
+>.^| *Objectif* 4+.^| Vérifier qu'il est possible de supprimer un prélèvement automatique
+
+5+|
+
+^.^| *ID* ^.^| *Action* ^.^| *Comportement attendu* ^.^| *Pré-conditions* ^.^| *Résultat*
+
+^.^| Gui_G_P.12 ^.^| Sélectionner un prélèvement existant puis cliquer sur le bouton `Supprimer prélèvement`. ^.^| Une fenêtre de confirmation s'ouvre avec les informations du prélèvement sélectionné. ^.^| La fenêtre de gestion des prélèvement est active et un prélèvement est selectionné. ^.^| OK
+
+^.^| Gui_G_P.13 ^.^| Sur la fenêtre permettant de supprimer un prélèvement automatique, cliquer sur `OK`. ^.^| Retour sur la fenêtre de gestion des prélèvements. Le prélèvement sélectionné est supprimé. ^.^| La fenêtre permettant de supprimer un prélèvement est active. ^.^| OK
+
+^.^| Gui_G_P.14 ^.^| Sur la fenêtre permettant de supprimer un prélèvement, cliquer sur `Annuler`. ^.^| Retour sur la fenêtre de gestion des prélèvements. Le prélèvement selectionné reste inchangé. ^.^| La fenêtre permettant de supprimer un prélèvement est active. ^.^| OK
+
+|====
+
+=== 3. Fonctionnalités des chefs d'agence
+
+Les chefs d'agence ont accès aux mêmes fonctionnalités que les guichetiers, ainsi que d'autres qui leurs sont réservées.
+
+
+==== 3.1 Gestion des clients
+
+|====
+
+>.^| *Cas de test* 4+.^| Test-03-01-01
+>.^| *Titre* 4+.^| Rendre inactif un client
+>.^| *Objectif* 4+.^| Vérifier qu'il est possible de rendre inactif un client
+
+5+|
+
+^.^| *ID* ^.^| *Action* ^.^| *Comportement attendu* ^.^| *Pré-conditions* ^.^| *Résultat*
+
+^.^| ChAg_G_C.1 ^.^| Sélectionner un client existant puis cliquer sur le bouton `Rendre inactif`. ^.^| Une fenêtre de confirmation s'ouvre avec les informations du compte sélectionné. ^.^| La fenêtre de gestion des clients est active, un client actif ne possédant aucun compte ouvert est selectionné et l'employé est un chef d'agence. ^.^| OK
+
+^.^| ChAg_G_C.13 ^.^| Sur la fenêtre permettant de rendre inactif un client, cliquer sur `OK`. ^.^| Retour sur la fenêtre de gestion des clients. Le client sélectionné est rendu inactif. ^.^| La fenêtre permettant de rendre inactif un client est active. ^.^| OK
+
+^.^| ChAg_G_C.14 ^.^| Sur la fenêtre permettant de rendre inactif un client, cliquer sur `Annuler`. ^.^| Retour sur la fenêtre de gestion des clients. Le client sélectionné n'est pas rendu inactif. ^.^| La fenêtre permettant de rendre inactif un client est active. ^.^| OK
+
+^.^| ChAg_G_C.15 ^.^| Sélectionner un client existant ayant des comptes encore ouverts puis cliquer sur le bouton `Rendre inactif`. ^.^| Un message d'erreur s'affiche disant que le client a encore des comptes ouverts. Une fois fermé, retour sur la fenêtre de gestion des clients. Le client n'est pas rendu inactif. ^.^| La fenêtre de gestion des clients est active et un client possédant au moins un compte ouvert est selectionné. ^.^| Erreur = OK
+
+|====
+
+==== 3.2 Gestion des opérations
+
+|====
+
+>.^| *Cas de test* 4+.^| Test-03-02-01 - Maxence
+>.^| *Titre* 4+.^| Effectuer un débit exceptionnel un compte
+>.^| *Objectif* 4+.^| Vérifier qu'il est possible d'effectuer un débit exceptionnel sur un compte
+
+5+|
+
+^.^| *ID* ^.^| *Action* ^.^| *Comportement attendu* ^.^| *Pré-conditions* ^.^| *Résultat*
+
+^.^| ChAg_G_COP.1 ^.^| Cliquer sur le bouton `Enregistrer Débit`. ^.^| La fenêtre permettant de débiter un compte s’affiche. ^.^| La fenêtre de gestion des opérations est ouverte et le compte selectionné est ouvert. ^.^| OK
+
+^.^| ChAg_G_COP.2 ^.^| Rentrer un montant positif dans le champ `Montant` donnant un résultat inférieur au découvert autorisé du compte. ^.^| Un message de confirmation s'affiche disant que vous vous apprêtez à effectuer un débit exceptionnel. ^.^| La fenêtre permettant de débiter un compte est active, le montant donne un résultat inférieur au découvert autorisé du compte et l'employé connecté est un chef d'agence. ^.^| OK
+
+^.^| ChAg_G_COP.3 ^.^| Cliquer sur `OK`. ^.^| La fenêtre permettant de débiter un compte se ferme, le solde du compte est actualisé avec le montant donné en moins, une nouvelle opération est créée avec le montant et la raison indiquée. ^.^| La fenêtre de confirmation d'un débit exceptionnel est active. ^.^| OK
+
+^.^| ChAg_G_COP.4 ^.^| Cliquer sur `Annuler`. ^.^| La fenêtre de confirmation se ferme, vous pouvez modifier le montant du débit. Aucune opération n'est effectuée. ^.^| La fenêtre de confirmation d'un débit exceptionnel est active. ^.^| OK
+
+5+|
+
+5+.^| Voir aussi `Test-02-04-02 - Evan : Débiter un compte`.
+
+|====
+
+==== 3.3 Gestion des employés
+
+|====
+
+>.^| *Cas de test* 4+.^| Test-03-03-01 - Maxence
+>.^| *Titre* 4+.^| Consulation des employés dans l'agence
+>.^| *Objectif* 4+.^| Vérifier qu’il est possible de consulter les employés dans l'agence
+
+5+|
+
+^.^| *ID* ^.^| *Action* ^.^| *Comportement attendu* ^.^| *Pré-conditions* ^.^| *Résultat*
+
+^.^| ChAg_E.1 ^.^| Dans le menu en haut de l'application, cliquer sur `Gestion` puis `Employés` ^.^| La fenêtre de gestion des employés s'ouvre. ^.^| L'employé est un chef d'agence, il est connecté et la page d'accueil de l'application est active. ^.^| OK
+
+|====
+
+|====
+
+>.^| *Cas de test* 4+.^| Test-03-03-02 - Maxence
+>.^| *Titre* 4+.^| Recherche des employés dans l'agence
+>.^| *Objectif* 4+.^| Vérifier qu'il est possible de rechercher les employés dans l'agence
+
+5+|
+
+^.^| *ID* ^.^| *Action* ^.^| *Comportement attendu* ^.^| *Pré-conditions* ^.^| *Résultat*
+
+^.^| ChAg_E.2 ^.^| Ne remplir aucun champ et cliquer sur le bouton `Rechercher`. ^.^| Les employés dans l'agence s'affichent. ^.^| La fenêtre de gestion des employés est active. ^.^| OK
+
+^.^| ChAg_E.3 ^.^| Remplir le champ `Numéro`, `Nom` ou `Prénom` et cliquer sur le bouton `Rechercher`. ^.^| L'employé de l'agence avec le numéro, le nom ou le prénom correspondant s'affiche (si il existe). ^.^| La fenêtre de gestion des employés est active. ^.^| OK
+
+|====
+
+|====
+
+>.^| *Cas de test* 4+.^| Test-03-03-03 - Maxence
+>.^| *Titre* 4+.^| Création d'un nouvel employé
+>.^| *Objectif* 4+.^| Vérifier qu'il est possible de créer un nouvel employé
+
+5+|
+
+^.^| *ID* ^.^| *Action* ^.^| *Comportement attendu* ^.^| *Pré-conditions* ^.^| *Résultat*
+
+^.^| ChAg_E.4 ^.^| Cliquer sur le bouton `Nouvel employé`. ^.^| La fenêtre de création d'un employé s'ouvre. ^.^| La fenêtre de gestion des employés est active. ^.^| OK
+
+^.^| ChAg_E.5 ^.^| Compléter les champs spécifiés correctement et cliquer sur `Ajouter`. ^.^| Retour sur la fenêtre de gestion des employés. Un nouvel employé est créé. ^.^| La fenêtre de création d'un employé est active et les champs sont correctements remplis. ^.^| OK
+
+^.^| ChAg_E.6 ^.^| Compléter les champs spécifiés "incorrectement" et cliquer sur `Valider`. ^.^| Un message d'erreur s'affiche en indiquant les champs incorrects. Une fois fermé, retour sur la fenêtre de création d'un employé. L'employé n'est pas créé. ^.^| La fenêtre de création d'un employé est active et les champs sont incorretements remplis. ^.^| Erreur = OK
+
+^.^| ChAg_E.7 ^.^| Cliquer sur `Annuler`. ^.^| Retour sur la fenêtre de gestion des employés. L'employé n'est pas créé. ^.^| La fenêtre de création d'un employé est active. ^.^| OK
+
+|====
+
+|====
+
+>.^| *Cas de test* 4+.^| Test-03-03-04 - Maxence
+>.^| *Titre* 4+.^| Modification d'un employé
+>.^| *Objectif* 4+.^| Vérifier qu'il est possible de modifier un employé
+
+5+|
+
+^.^| *ID* ^.^| *Action* ^.^| *Comportement attendu* ^.^| *Pré-conditions* ^.^| *Résultat*
+
+^.^| ChAg_E.8 ^.^| Sélectionner un employé existant puis cliquer sur le bouton `Modifier employé`. ^.^| La fenêtre d'édition d’un employé s’ouvre avec les informations de l'employé sélectionné. ^.^| La fenêtre de gestion des employés est active et un employé est selectionné. ^.^| OK
+
+^.^| ChAg_E.9 ^.^| Compléter les champs spécifiés correctement et cliquer sur `Modifier`. ^.^| Retour sur la fenêtre de gestion des prélèvéments. Le employé sélectionné est modifié. ^.^| La fenêtre de modification d'un employé est active et les champs sont correctements remplis. ^.^| OK
+
+^.^| ChAg_E.10 ^.^| Compléter les champs spécifiés "incorrectement" et cliquer sur `Modifier`. ^.^| Un message d'erreur s'affiche en indiquant les champs incorrects. Une fois fermé, retour sur la fenêtre de modification d'un employé. L'employé n'est pas modifié. ^.^| La fenêtre de modification d'un employé est active et les champs sont incorrectements remplis. ^.^| Erreur = OK
+
+^.^| ChAg_E.11 ^.^| Cliquer sur `Annuler`. ^.^| Retour sur la fenêtre de gestion des employés. L'employé sélectionné n'est pas modifié. ^.^| La fenêtre de modification d'un employé est active. ^.^| OK
+
+|====
+
+|====
+
+>.^| *Cas de test* 4+.^| Test-03-03-05 - Maxence
+>.^| *Titre* 4+.^| Supprimer un employé
+>.^| *Objectif* 4+.^| Vérifier qu'il est possible de supprimer un employé
+
+5+|
+
+^.^| *ID* ^.^| *Action* ^.^| *Comportement attendu* ^.^| *Pré-conditions* ^.^| *Résultat*
+
+^.^| ChAg_E.12 ^.^| Sélectionner un employé existant puis cliquer sur le bouton `Supprimer employé`. ^.^| Une fenêtre de confirmation s'ouvre avec les informations de l'employé sélectionné. ^.^| La fenêtre de gestion des employé est active et un employé est selectionné. ^.^| OK
+
+^.^| ChAg_E.13 ^.^| Sur la fenêtre permettant de supprimer un employé, cliquer sur `OK`. ^.^| Retour sur la fenêtre de gestion des employés. L'employé sélectionné est supprimé. ^.^| La fenêtre permettant de supprimer un employé est active. ^.^| OK
+
+^.^| ChAg_E.14 ^.^| Sur la fenêtre permettant de supprimer un employé, cliquer sur `Annuler`. ^.^| Retour sur la fenêtre de gestion des employés. L'employé selectionné reste inchangé. ^.^| La fenêtre permettant de supprimer un employé est active. ^.^| OK
+
+|====
+
+==== 3.4 Simulation d'emprunt et d'assurance
+
+|====
+
+>.^| *Cas de test* 4+.^| Test-03-04-01 - Evan
+>.^| *Titre* 4+.^| Simuler un emprunt
+>.^| *Objectif* 4+.^| Vérifier qu'il est possible de simuler un emprunt
+
+5+|
+
+^.^| *ID* ^.^| *Action* ^.^| *Comportement attendu* ^.^| *Pré-conditions* ^.^| *Résultat*
+
+^.^| ChAg_SE.1 ^.^| Dans le menu en haut de l'application, cliquer sur `Simulation` puis `Emprunt`. ^.^| La fenêtre de simulation d'un emprunt s'ouvre. ^.^| L'employé est un chef d'agence, il est connecté et la page d'accueil de l'application est active. ^.^| OK
+
+^.^| ChAg_SE.2 ^.^| Compléter les champs spécifiés correctement et cliquer sur `Valider`. ^.^| Le tableau résultat de la simulation de l'emprunt s'ouvre. ^.^| La fenêtre de simulation d'un emprunt est active les champs sont correctements remplis. ^.^| OK
+
+^.^| ChAg_SE.3 ^.^| Compléter les champs spécifiés "incorrectement" et cliquer sur `Valider`. ^.^| Un message d'erreur s'affiche en indiquant les champs incorrects. Une fois fermé, retour sur la fenêtre de simulation d'un emprunt. ^.^| La fenêtre de simulation d'un emprunt est active et les champs sont incorretements remplis. ^.^| Erreur = OK
+
+^.^| ChAg_SE.4 ^.^| Cliquer sur `Annuler`. ^.^| Retour à la page d'accueil de l'application. ^.^| La fenêtre de simulation d'un emprunt est active. ^.^| OK
+
+|====
+
+|====
+
+>.^| *Cas de test* 4+.^| Test-03-04-02 - Evan
+>.^| *Titre* 4+.^| Simuler une assurance
+>.^| *Objectif* 4+.^| Vérifier qu'il est possible de simuler un emprunt
+
+5+|
+
+^.^| *ID* ^.^| *Action* ^.^| *Comportement attendu* ^.^| *Pré-conditions* ^.^| *Résultat*
+
+^.^| ChAg_SA.1 ^.^| Dans le menu en haut de l'application, cliquer sur `Simulation` puis `Emprunt`. ^.^| La fenêtre de simulation d'un emprunt s'ouvre. ^.^| L'employé est un chef d'agence, il est connecté et la page d'accueil de l'application est active. ^.^| OK
+
+^.^| ChAg_SA.2 ^.^| Cliquer sur le bouton `Assurance`. ^.^| Un champ de saisie supplémentaire apparait. ^.^| La fenêtre de simulation d'un emprunt est active. ^.^| OK
+
+^.^| ChAg_SA.3 ^.^| Recliquer sur le bouton `Assurance`. ^.^| Le champ de saisie disparait. ^.^| La fenêtre de simulation d'un emprunt est active. ^.^| OK
+
+^.^| ChAg_SA.4 ^.^| Cliquer une dernière fois sur le bouton `Assurance`. ^.^| Le champ de saisie réapparait. ^.^| La fenêtre de simulation d'un emprunt est active. ^.^| OK
+
+^.^| ChAg_SA.5 ^.^| Compléter les champs spécifiés correctement et cliquer sur `Valider`. ^.^| Le tableau résultat de la simulation de l'assurance s'ouvre. ^.^| La fenêtre de simulation d'un emprunt est active les champs sont correctements remplis. ^.^| OK
+
+^.^| ChAg_SA.6 ^.^| Compléter les champs spécifiés "incorrectement" et cliquer sur `Valider`. ^.^| Un message d'erreur s'affiche en indiquant les champs incorrects. Une fois fermé, retour sur la fenêtre de simulation d'une assurance. ^.^| La fenêtre de simulation d'un emprunt est active et les champs sont incorretements remplis. ^.^| Erreur = OK
+
+^.^| ChAg_SA.7 ^.^| Cliquer sur `Annuler`. ^.^| Retour à la page d'accueil de l'application. ^.^| La fenêtre de simulation d'un emprunt est active. ^.^| OK
 
 |====

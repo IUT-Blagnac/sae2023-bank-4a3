@@ -1,7 +1,7 @@
 = BankUniv
 
 |===
-^.^| ⚠️ | *Message aux professeurs : Nous avons décidé avec l'ensemble du groupe d'avoir un fonctionnement particulier*
+^.^| ⚠️ .^| *Message aux professeurs : Nous avons décidé avec l'ensemble du groupe d'avoir un fonctionnement particulier*
 
 Andrii et Daria travaillent ensemble. Ne comprenant pas tout au français, il est plus simple pour nous de devoir expliquer la même chose aux 2 en même temps plutôt qu'expliquer plusieurs fois la même chose à chacun d'entre eux. De ce fait, ils peuvent s'entraider en Ukrainien, leur langue natale. +
 C'est pour cela que Andrii et Daria ont les mêmes tâches, qu'Andrii fait les tâches de Daria et inversement que Daria fait les tâches d'Andrii.
