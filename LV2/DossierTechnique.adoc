@@ -6,7 +6,7 @@
 :Equipe: 4A03
 
 *Date :* 17/05/2023 +
-*Par :* Équipe 4A3 : _DIDENKO Andrii, LAMOUR Evan, KRILL Maxence, SHULHINA Daria_ler chaques fonctionnalités de la V1 de l'application DailyBank
+*Par :* Équipe 4A3 : _DIDENKO Andrii, LAMOUR Evan, KRILL Maxence, SHULHINA Daria_ler chaques fonctionnalités de la V2 de l'application DailyBank
 
 == I. Présentation de l'application
 
@@ -14,29 +14,38 @@ L’application Daily Bank est l’outil de gestion de la banque . Nous allons a
 
 === 1. Cas d'utilisation global
 
-La V1 de l'application va permettre au *guichetier* de réaliser de nouvelles actions tel que :
+La V2 de l'application va permettre au ``guichetier`` de réaliser de nouvelles actions tel que :
 
-* Créer un compte
-* Créditer un compte
-* Effectuer un virement de compte à compte
-* Clôturer un compte
+* Générer un relevé mensuel d’un compte en PDF
 
-Le *Chef d'Agence* aura la possibilité de réaliser toutes les actions d'un guichetier et aura désormais la possibilité de gérer les employés et les autres chefs d'agence *(CRUD)*.
+* Gérer (faire le « CRUD[2] ») les prélèvements automatiques
 
-image::../img/docTech/UC.png[]
+Et pour les ``chefs d'agence`` :
+
+* Effectuer un Débit exceptionnel
+
+* Simuler un emprunt
+
+* Simuler une assurance d’emprunt
+
+image::../img/docTech/UCV2.png[]
 
 === 2. Diagramme de classe
 
 Voici le diagramme de classe de la base de données de la banque DailyBank
 
-image::../img/docTech/DC.png[]
+image::../img/docTech/DCV2.png[]
 
-* *AgenceBancaire* : represente une agence constitué du nom de l'agence, de son adresse, d'un id et d'un chef d'agence représenté par une ID.
-* *Employé* : représente les employés de la banque, qui ont des login et des droits d'accès différents selon si ils sont chef d'agence ou pas .
-* *Client* : représente le client avec toutes ses information personnelles ainsi que son agence et son statut (*Actif* ou *Innactif*) .
-* *CompteCourant* : représente les comptes avec le numéro du compte, le debit autorisé, la solde, le numéro du client auquel appartient le compte , et son statut ( cloturé ou pas)
-* *Operation*: représente une operation opéré sur un compte, on y retrouve l'id de celle ci, le montant, la date , le numero du compte ainsi que le type d'opération.
-* *TypeOperation* liste les type d'OPERATION (Credit, Debit, Virement)
+* ``AgenceBancaire`` : represente une agence constitué du nom de l'agence, de son adresse, d'un id et d'un chef d'agence représenté par une ID.
+* ``Employé`` : représente les employés de la banque, qui ont des login et des droits d'accès différents selon si ils sont chef d'agence ou pas .
+* ``Client`` : représente le client avec toutes ses information personnelles ainsi que son agence et son statut (*Actif* ou *Innactif*) .
+* ``CompteCourant`` : représente les comptes avec le numéro du compte, le debit autorisé, la solde, le numéro du client auquel appartient le compte , et son statut ( cloturé ou pas)
+* ``Operation``: représente une operation opéré sur un compte, on y retrouve l'id de celle ci, le montant, la date , le numero du compte ainsi que le type d'opération.
+* ``TypeOperation`` : liste les type d'OPERATION (Credit, Debit, Virement)
+* ``PrelevementAutomatique`` : Représente une opération récurrente on y retrouve le *montant*, la *date récurrente* et le *bénéficiaire*
+* ``Emprunt`` : représente une simulation d'un emprunt bancaire, est composé de taux emprunté, capital emprunté,
+la durée de l'emprunt ainsi que la date de début de l'emprunt.
+* ``Assurance``:représente un bonus de l'emprunt, et est composé d'un taux d'assurance et d'un taux couvrant 
 
 
 
@@ -247,7 +256,7 @@ image::../img/docTech/DS-Create_Client.png["DS créer client"]
 
 ==== A. Use Case
 
-image::[Use case Modifier un client]
+image::../img/docTech/US-updateC.png[Use case Modifier un client]
 
 Création de la fonctionalité modifier un compte disponible pour les guichetiers et les chefs d'agence
 
