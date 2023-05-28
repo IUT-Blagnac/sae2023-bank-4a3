@@ -242,7 +242,7 @@ public class DailyBankMainFrameController {
 	/**
 	 * Demande au contrôleur de dialogue de lancer la gestion des employés.
 	 * 
-	 * @author IUT Blagnac
+	 * @author KRILL Maxence
 	 */
 	@FXML
 	private void doEmployeOption() {

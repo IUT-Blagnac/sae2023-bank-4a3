@@ -150,7 +150,7 @@ public class PrelevementManagementController {
 	/**
 	 * Ouvre la fenêtre de création d'un prélèvement (bouton FXML).
 	 * 
-	 * @author KRILL Maxence
+	 * @author KRILL Maxence AND LAMOUR Evan
 	 */
 	@FXML
 	private void doNouveauPrelevement() {

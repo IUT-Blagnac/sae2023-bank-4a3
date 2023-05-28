@@ -183,7 +183,7 @@ public class ComptesManagementController {
 	/**
 	 * Ouvre la fenêtre de recherche de comptes (bouton FXML).
 	 * 
-	 * @author IUT Blagnac
+	 * @author LAMOUR Evan
 	 */
 	@FXML
 	private void doSupprimerCompte() {
