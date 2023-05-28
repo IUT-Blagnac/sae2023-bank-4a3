@@ -417,7 +417,7 @@ image::../img/docTech/DS-C-prelevement.png["DS créer prélèvement]
 
 ==== C. Classes impliquées...
 
-image::../img/docTech/DS-U-prelevement.png["DS modifier prélèvement"]
+image::../img/docTech/DS-U-Prelevement.png["DS modifier prélèvement"]
 
 === 13. Supprimer Prélèvement Maxence
 
@@ -427,7 +427,7 @@ image::../img/docTech/DS-U-prelevement.png["DS modifier prélèvement"]
 
 ==== C. Classes impliquées...
 
-image::../img/docTech/DS-D-prelevement.png["DS supprimer un prélèvement"]
+image::../img/docTech/DS-D-Prelevement.png["DS supprimer un prélèvement"]
 
 === 14. Créer Employés Andrei/Daria
 
