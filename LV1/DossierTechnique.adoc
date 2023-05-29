@@ -23,13 +23,13 @@ La V1 de l'application va permettre au *guichetier* de réaliser de nouvelles ac
 
 Le *Chef d'Agence* aura la possibilité de réaliser toutes les actions d'un guichetier et aura désormais la possibilité de gérer les employés et les autres chefs d'agence *(CRUD)*.
 
-image::../img/docTech/UC.png[]
+image::../img/uc-initialv1.svg[]
 
 === 2. Diagramme de classe
 
 Voici le diagramme de classe de la base de données de la banque DailyBank
 
-image::../img/docTech/DC.png[]
+image::../img/dc-initialv1.svg[]
 
 * *AgenceBancaire* : represente une agence constitué du nom de l'agence, de son adresse, d'un id et d'un chef d'agence représenté par une ID.
 * *Employé* : représente les employés de la banque, qui ont des login et des droits d'accès différents selon si ils sont chef d'agence ou pas .
@@ -37,8 +37,6 @@ image::../img/docTech/DC.png[]
 * *CompteCourant* : représente les comptes avec le numéro du compte, le debit autorisé, la solde, le numéro du client auquel appartient le compte , et son statut ( cloturé ou pas)
 * *Operation*: représente une operation opéré sur un compte, on y retrouve l'id de celle ci, le montant, la date , le numero du compte ainsi que le type d'opération.
 * *TypeOperation* liste les type d'OPERATION (Credit, Debit, Virement)
-
-
 
 == II. Architecture de l'application
 
