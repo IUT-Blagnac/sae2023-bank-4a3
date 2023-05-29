@@ -97,5 +97,5 @@ Pas de tests pour le CRUD des employers...
 |           | Doc Tec V2         | link:LV2/DossierTechnique.adoc[Lien] | 
 |           | Recette V2         | link:LV2/CahierDeRecette.adoc[Lien] | 
 |           | `jar` V2           | link:https://github.com/IUT-Blagnac/sae2023-bank-4a3/releases/tag/v2[Lien] | 
-|           | javadoc V2         | link:LV2/Dev/Code/JavaDoc.zip[Lien] | 
+|           | javadoc V2         | link:LV2/Dev/JavaDoc-4A3.zip[Lien] | 
 |===

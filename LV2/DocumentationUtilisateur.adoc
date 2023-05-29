@@ -98,12 +98,19 @@ image::../img/userDoc/gererCompte.png["Page de gestion comptes"]
 
 Depuis l'écran de gestion des comptes bancaires, cliquez sur `Nouveau compte`.
 
-image::../img/userDoc/creerCompte.png["Page de création de compte"]
+image::../img/userDoc/creerCompte.png["Page de création/modification de compte"]
 
 Renseignez les informations du compte, puis cliquez sur `Ajouter` ou `Annuler`. +
 *A notre que le client doit être actif pour créer un nouveau compte.*
 
 ==== b. Modifier un compte | Maxence
+
+Depuis l'écran de gestion des comptes bancaires, sélectionnez un compte et cliquez sur `Modifier compte`.
+
+Une fenêtre semblable à celle de la création du compte s'ouvre avec les informations du compte sélectionné. +
+Vous pouvez éditer le découvert autorisé du compte.
+
+image::../img/userDoc/creerCompte.png["Page de création/modification de compte"]
 
 ==== c. Clotûrer compte | Evan
 
