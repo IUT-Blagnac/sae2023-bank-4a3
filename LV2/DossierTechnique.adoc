@@ -1,6 +1,7 @@
 = Documentation technique - BankUtil - Version 1
 :toc:
 :toc-title: Sommaire
+:toclevels: 4
 
 :Entreprise: DailyBank
 :Equipe: 4A03
@@ -8,46 +9,57 @@
 *Date :* 17/05/2023 +
 *Par :* Équipe 4A3 : _DIDENKO Andrii, LAMOUR Evan, KRILL Maxence, SHULHINA Daria_ler chaques fonctionnalités de la V2 de l'application DailyBank
 
-== I. Présentation de l'application
+== I. Présentation
+
+=== 1. Contexte
+
+Pour s’adapter aux exigences d’instantanéité de leurs clients, les banques françaises ont accentué leurs efforts de restructuration et leurs investissements dans le digital. Par exemple, la Banque Postale a annoncé que sa banque mobile baptisée Ma French Bank sera disponible dans les bureaux de Poste au printemps 2019. Mais les banques ne se contentent pas de créer des offres alternatives : elles rénovent aussi en profondeur leurs services de banque au quotidien.
+
+Les banques de détail investissent dans la modernisation des outils de bureautique et la robotisation pour automatiser les tâches. BNP Paribas révolutionne son modèle hiérarchique vers une approche transversale basée sur des parcours clients. Des professionnels de différentes disciplines collaborent pour développer les parcours de chaque client en temps réel, nécessitant des changements culturels et organisationnels ainsi qu'une nouvelle architecture IT.
+
+=== 2. Objectifs
+
+La banque DailyBank souhaite donc actualiser son application Java BankUtil, devenue obselète, afin de la déployer dans son réseau de 100 agences dans le cadre du plan de restructuration.
+Elle devra permettre de gérer totalement les comptes des clients (créditer, débiter, virement, ouvrir, clotûrer, ...) et d'autres fonctionnalitées telles que la gestion des employés par le chef d'agence.
 
 L’application Daily Bank est l’outil de gestion de la banque . Nous allons adapter cette application aux besoin de la banque pour developper les versions suivantes.
 
-=== 1. Cas d'utilisation global
+=== 3. Cas d'utilisation global
 
-La V2 de l'application va permettre au ``guichetier`` de réaliser de nouvelles actions tel que :
+La V2 de l'application va permettre au *guichetier* de réaliser de nouvelles actions telles que :
 
 * Générer un relevé mensuel d’un compte en PDF
+* Créer/Consulter/Modifier/Supprimer des prélèvements automatiques
 
-* Gérer (faire le « CRUD[2] ») les prélèvements automatiques
+Le *Chef d'Agence* quant à lui aura la possibilité de réaliser toutes les actions d'un guichetier et pourra désormais :
 
-Et pour les ``chefs d'agence`` :
-
-* Effectuer un Débit exceptionnel
-
+* Effectuer un débit exceptionnel
 * Simuler un emprunt
-
 * Simuler une assurance d’emprunt
 
-image::../img/docTech/UCV2.png[]
+image::../img/uc-initialv2.svg[]
 
-=== 2. Diagramme de classe
+=== 4. Diagramme de classe
 
 Voici le diagramme de classe de la base de données de la banque DailyBank
 
 image::../img/docTech/DCV2.png[]
 
-* ``AgenceBancaire`` : represente une agence constitué du nom de l'agence, de son adresse, d'un id et d'un chef d'agence représenté par une ID.
-* ``Employé`` : représente les employés de la banque, qui ont des login et des droits d'accès différents selon si ils sont chef d'agence ou pas .
-* ``Client`` : représente le client avec toutes ses information personnelles ainsi que son agence et son statut (*Actif* ou *Innactif*) .
-* ``CompteCourant`` : représente les comptes avec le numéro du compte, le debit autorisé, la solde, le numéro du client auquel appartient le compte , et son statut ( cloturé ou pas)
-* ``Operation``: représente une operation opéré sur un compte, on y retrouve l'id de celle ci, le montant, la date , le numero du compte ainsi que le type d'opération.
-* ``TypeOperation`` : liste les type d'OPERATION (Credit, Debit, Virement)
-* ``PrelevementAutomatique`` : Représente une opération récurrente on y retrouve le *montant*, la *date récurrente* et le *bénéficiaire*
-* ``Emprunt`` : représente une simulation d'un emprunt bancaire, est composé de taux emprunté, capital emprunté,
-la durée de l'emprunt ainsi que la date de début de l'emprunt.
-* ``Assurance``:représente un bonus de l'emprunt, et est composé d'un taux d'assurance et d'un taux couvrant 
+* `AgenceBancaire` : Représente une agence avec son nom, son adresse, son identifiant unique et un chef d'agence représenté par son identifiant.
 
+* `Employé` : Représente les employés de la banque grâce à leur identifiant (login), leur mot de passe, leurs informations personnelles (nom, prénom) et leurs droits d'accès (selon leur poste : chef d'agence ou guichetier).
 
+* `Client` : Représente le client avec toutes ces informations personnelles, son agence et son statut (actif ou inactif).
+
+* `CompteCourant` : Représente les comptes des clients avec leur numéro, leur découvert maximal autorisé, leur solde, le numéro de leur propriétaire et son statut (clôturé ou ouvert).
+
+* `Operation`: Représente une opération opérée sur un compte. On y retrouve l'identifiant de cette dernière, le montant, la date, le numero du compte iniateur ainsi que le type d'opération (cf `TypeOperation`).
+
+* `TypeOperation` : Liste les type d' `Operation` (Credit, Debit, Virement).{allow-uri-read}
+* `PrelevementAutomatique` : Représente une opération récurrente on y retrouve le compte débiteur, son montant, sa date de récurrence et son bénéficiaire.
+
+* `Emprunt` : Représente une simulation d'un emprunt bancaire, composée d'un taux d'emprunt, d'un capital emprunté, d'une durée d'emprunt ainsi que sa date de début.
+* `Assurance` : Représente un bonus de l' `Emprunt`. Elle est composée d'un taux d'assurance et d'un taux couvrant.
 
 == II. Architecture de l'application
 
@@ -57,184 +69,181 @@ image::../img/docTech/ArchiCode.png["Architecture de l'application"]
 
 === 2. Structuration des packages
 
-Les packages : dans src/main/java
+Les packages : dans `src/main/java`
 
-*** application
+* `application`
 
-  ** DailyBank : main() de départ
+  ** `DailyBank` : `main()` de départ
 
-*** application.control
+* `application.control`
 
   ** Contrôleurs de dialogue et accès aux données : gestion des fonctions de l’application. Deux rôles majeurs :
 
-    * Réalise les actions concrètes : accès BD, faire un calcul complexe, générer un fichier, …
+    *** Réalise les actions concrètes : accès base de données, faire un calcul complexe, générer un fichier, …
 
-    * Ouvre les autres fenêtres nécessaires : gestion du dialogue.
+    *** Ouvre les autres fenêtres nécessaires : gestion du dialogue.
 
-*** application.view
+* `application.view`
 
-   ** Contrôleurs associés aux vues fxml.
+   ** Contrôleurs associés aux vues FXML.
 
-    * Gestion de la vue affichée : contrôle des saisies réalisées, messages d’erreurs pour les contrôles de surface, appel du contrôleur de dialogue pour réaliser les actions concrètes.
+    *** Gestion de la vue affichée : contrôle des saisies réalisées, messages d’erreurs pour les contrôles de surface, appel du contrôleur de dialogue pour réaliser les actions concrètes.
 
-*** application.tools
+* `application.tools`
 
-  ** Utilitaires pour application.view et application.control
+  ** Utilitaires pour `application.view` et `application.control`
 
-*** model.data
+* `model.data`
 
-  ** Classes java mappant les table de la BD. Une table ⇒ 1 classe. On peut en ajouter (classes pour jointures, …)
+  ** Classes Java mappant les table de la base de données. Une table ⇒ 1 classe. On peut en ajouter (classes pour jointures, …)
 
-*** model.orm
+* `model.orm`
 
-  ** Classes d’accès physiques à la BD. Une table ⇒ 1 classe offrant différentes méthodes pour accéder à la table : select, insert, delete, update, appel de procédure stockée (elles sont données). On peut en ajouter.
+  ** Classes d’accès physiques à la base de données. Une table ⇒ 1 classe offrant différentes méthodes pour accéder à la table : select, insert, delete, update, appel de procédure stockée (elles sont données). On peut en ajouter.
 
-*** model.exception
+* `model.exception`
 
-  ** Classes des exceptions spécifiques d’accès à la BD, levées par les classes de model.orm
+  ** Classes des exceptions spécifiques d’accès à la base de données, levées par les classes de model.orm
 
-Les views fxml : dans src/main/resources.
+Les views FXML : dans `src/main/resources`
 
-*** application.view
+* `application.view`
 
-  ** Vues de l’application : fichiers fxml
+  ** Vues de l’application : fichiers FXML
 
-  ** Fichier css
+  ** Fichier CSS
 
 === 3. Rôle de chaque classes dans les packages
 
-*** application
+* `application`
 
-** DailyBank : main() de l’application, permet de lancer l'application ( "runapp()" ).
+  ** `DailyBank` : `main()` de l’application, permet de lancer l'application (`runapp()`)
 
-** DailyBankState : classe de description du contexte courant de l’application : qui est connecté ? est-il chef d’agence ? à quelle agence bancaire appartient-il ?
+  ** `DailyBankState` : Classe de description du contexte courant de l’application : Qui est connecté ? Est-il chef d’agence ? A quelle agence bancaire appartient-il ?
 
-*** application.control
+* `application.control`
 
-** Une classe par fenêtre dite contrôleur de dialogue. Exemple LoginDialog
+  ** Une classe par fenêtre dite contrôleur de dialogue. Exemple : `LoginDialog`
 
-** Rôles de chaque classe :
+  ** Rôles de chaque classe :
 
-* A la création : i) construit le Stage java FX de la fenêtre, ii) charge le fichier fxml de la vue et son contrôleur
+    *** A la création :
+    
+    **** Construit le Stage Java FX de la fenêtre
+    
+    **** Charge le fichier FXML de la vue et son contrôleur
 
-* Offre une méthode de démarrage du Dialogue, du type doNomClasseControlDialog(...). Exemple doLoginDialog()
+    *** Offre une méthode de démarrage du Dialogue, du type `doNomClasseControlDialog`(...). Exemple : `doLoginDialog()`
 
-* Offre des méthodes d’accès aux données, disponibles pour son contrôleur de vue
+    *** Offre des méthodes d’accès aux données, disponibles pour son contrôleur de vue
 
-* Offre des méthodes d’activation d’autres fenêtres, disponibles pour son contrôleur de vue
+    *** Offre des méthodes d’activation d’autres fenêtres, disponibles pour son contrôleur de vue
 
-* Peut offrir des méthodes de calcul ou autre (accès à des fichiers, …), disponibles pour son contrôleur de vue
+    *** Peut offrir des méthodes de calcul ou autre (accès à des fichiers, …), disponibles pour son contrôleur de vue
 
-*** application.view
+* `application.view`
 
-** Une classe par fenêtre dite contrôleur de vue ET un fichier fxml associé. Exemple LoginDialogController et logindialog.fxml
+  ** Une classe par fenêtre dite contrôleur de vue ET un fichier FXML associé. Exemple : `LoginDialogController` et `logindialog.FXML`
 
-** Un objet d’une telle classe ne connaît de l’application que son contrôleur de dialogue (de application.control)
+  ** Un objet d’une telle classe ne connaît de l’application que son contrôleur de dialogue (de `application.control`)
 
-** Rôles de chaque classe :
+  ** Rôles de chaque classe :
 
-* Offre une méthode initContext(...) pour être initialisée. Appelée par le contrôleur de dialogue
+    *** Offre une méthode `initContext(...)` pour être initialisée. Appelée par le contrôleur de dialogue
 
-* Offre une méthode displayDialog(...) pour afficher la fenêtre. Appelée par le contrôleur de dialogue
+    *** Offre une méthode `displayDialog(...)` pour afficher la fenêtre. Appelée par le contrôleur de dialogue
 
-* Gère toutes les réactions aux interactions : saisies, boutons, …
+    *** Gère toutes les réactions aux interactions : saisies, boutons, …
 
-* Met à jour l’interface lorsque de besoin : griser des boutons, remplir des champs, …
+    *** Met à jour l’interface lorsque de besoin : griser des boutons, remplir des champs, …
 
-* Effectue tous les contrôles de surface au niveau de la saisie : valeurs remplies, nombres < 0, …
+    *** Effectue tous les contrôles de surface au niveau de la saisie : valeurs remplies, nombres < 0, …
 
-* Appelle son contrôleur de vue si besoin d’accéder à des données
+    *** Appelle son contrôleur de vue si besoin d’accéder à des données
 
-* Appelle son contrôleur de vue si besoin de lancer une autre fonction (fenêtre) de l’application
+    *** Appelle son contrôleur de vue si besoin de lancer une autre fonction (fenêtre) de l’application
 
-*** model.data
+* `model.data`
 
-** Classes java mappant les table de la BD.
+  ** Classes java mappant les tables de la base de données.
 
-* Une table ⇒ 1 classe. On peut en ajouter (classes pour jointures, …)
+    *** Une table ⇒ 1 classe. On peut en ajouter (classes pour jointures, …)
 
-** Servent à échanger les donnes entre model.orm et application.control
+  ** Servent à échanger les donnes entre `model.orm` et `application.control`
 
-** Ces classes ne définissent aucune méthode qui "fait quelque chose" (calcul, …). Les attributs sont public et une seule méthode toString (). Chaque attribut est un champ de la table.
+  ** Ces classes ne définissent aucune méthode qui "fait quelque chose" (calcul, …). Les attributs sont public et une seule méthode `toString()`. Chaque attribut est un champ de la table.
 
-** Ces classes ne contiennent que les champs de la BD que l’on souhaite remonter vers l’application.
+  ** Ces classes ne contiennent que les champs de la base de données que l’on souhaite remonter vers l’application.
 
-*** model.orm
+* `model.orm`
 
-** Classes d’accès physiques à la BD.
+  ** Classes d’accès physiques à la base de données.
 
-** Une table ⇒ 1 classe offrant différentes méthodes pour accéder à la table : select, insert, delete, update, appel de procédure stockée (elles sont données). On peut en ajouter.
+  ** Une table ⇒ 1 classe offrant différentes méthodes pour accéder à la table : select, insert, delete, update, appel de procédure stockée (elles sont données). On peut en ajouter.
 
-** Chaque classe : effectue une requête SQL, presque la requête qu’on ferait au clavier envoyée au serveur sous forme de String. Ensuite elle emballe le résultat en java (objets de model.data, ArrayList, …).
+  ** Chaque classe : Effectue une requête SQL, presque la requête qu’on ferait au clavier envoyée au serveur sous forme de `String`. Ensuite elle emballe le résultat en Java (objets de `model.data`, `ArrayList`, …), mise à part certaines classes :
 
-A part :
+  *** `model.exception` : Pour ne pas mélanger classes de code et classes d’exception
 
-** model.exception : pour ne pas mélanger classes de code et classes d’exception
+  **** A voir sur le code lorsque l'on a besoin.
 
-* A voir sur le code lorsque de besoin.
+  ** `application.tools` : Pour isoler des classes utilisées à plusieurs endroits et qui sont utilitaires par rapport aux objectifs de l’application.
 
-** application.tools : pour isoler des classes utilisées à plusieurs endroits et qui sont utilitaires par rapport aux objectifs de l’application.
-
-*  A voir sur le code lorsque de besoin
+    *** A voir sur le code lorsque l'on a besoin.
 
 == III. Installation et mise en place
 
-=== 1. Installer l'application
+=== 1. Configurer la base de données
 
-Pour installer l'application rendez vous sur 
+Connectez vous à votre base depuis Oracle SQL Developer avec les information de ce compte :
 
-https://github.com/IUT-Blagnac/sae2023-bank-4a3/tree/master/LV2/Dev/Code/DailyBank
+* Hôte Oracle : `oracle.iut-blagnac.fr`
 
-Il vous faut un workspace supportant java FX 
+* Port : `1521`
 
-Lancer Eclipse sur ce workspace
+* Nom d’instance de bases de données : `db11g`
 
-Importer le projet
+* Identifiant : `G4A3S2`
 
-File → Import…​ → Général → Existing Projetcs into Workspace → Puis ouvrir le projet
+* Mot de passe : `SAEDAME`
 
-Corriger éventuellement le JDK (Properties → Java Build Path)
+Vous avez dans le code ci-dessus la connection entre la base de données et le programme Java.
 
-Project → Properties → Java Build Path → onglet "Libraries"
+Si vous voulez changer de base de données changer les informations dans cette page.
 
-Enlever le jre/jdk "en rouge" qui pose problème (le sélectionner puis Remove)
+image::../img/docTech/Associationbase de données.png["Image association BD"]
 
-Add Library → JRE System Library →
+=== 2. Installer l'application
 
-Choisir un jdk 17.
+==== A Installer l'application grâce au `.jar`
 
-Penser à faire sur le projet : Maven > Update Project …​
+Pour installer l'application facilement à l'aide du `.jar` rendez-vous sur https://github.com/IUT-Blagnac/sae2023-bank-4a3/releases/tag/v1 puis télécharger le fichier `4A3-DailyBank-V2.jar`.
 
-=== 2. Configurer l'application et BD
+Exécutez-le, l'application s'ouvre.
 
-Connectez vous à votre base depuis sqldeveloper avec les information de ce compte.
+==== B Installer l'application depuis Eclipse
 
-Infos pour créer la connexion sqlserver à Oracle :
+Pour installer l'application depuis Eclipse, rendez-vous sur https://github.com/IUT-Blagnac/sae2023-bank-4a3/tree/master/LV2/Dev/Code/DailyBank.
 
-Hôte Oracle : ``oracle.iut-blagnac.fr``
+Lancer Eclipse sur un workspace JavaFX :
 
-Port : ``1521``
+* Importer le projet
 
-Nom d’instance de bases de données : ``db11g``
+* `File` → `Import` …` → `Général` → `Existing Projetcs into Workspace` → Puis ouvrir le projet
 
-Identifiant : ``G4A3S2``
+* Corriger éventuellement le JDK (`Properties` → `Java Build Path`)
 
-Mdp : ``SAEDAME``
+* `Project` → `Properties` → `Java Build Path` → onglet "`Libraries`"
 
-Vous avez dans le code ci dessous la connection entre la BD et le java
+* Enlever le JRE/JDK "en rouge" qui pose problème (le sélectionner puis `Remove`)
 
-Si vous voulez changer de BD changer les informations dans cette page.
+* `Add Library` → `JRE System Library` → Choisir un JDK 17.
 
-image::../img/docTech/AssociationBD.png["Image association bd"]
+Penser à mettre à jour Maven sur le projet : `Maven` > `Update Project` …​
 
-=== 3. Lancer le projet
+Pour lancer le projet allez sur Eclipse
 
-Pour lancer le projet allez sur Eclipse 
-Puis Clique droit sur le projet > Run As > 3 Maven Build.
-
-Goals : ``clean javafx:run``
-
-Apply > Run.
+Clique droit sur le projet > `Run As` > `3... Maven Build` > `Goals` : `clean install javafx:run` > `Apply` > `Run`
 
 == IV. Fonctionnalités de l'application
 
@@ -244,166 +253,172 @@ Apply > Run.
 
 image::../img/docTech/UC-C-Client.png["Use case créer un client"]
 
-Création de la fonctionalité créer un compte disponible pour les guichetiers et les chefs d'agence
+Création de la fonctionalité `Créer un compte` disponible pour les guichetiers et les chefs d'agence.
 
 ==== B. Diagramme de classe
 
-La classe utilisé est Client, est elle modifié.
+La classe utilisé est `Client`, elle est elle modifiée.
 
 image::../img/docTech/DC-Client.png["DC créer client"]
 
-==== C. Classes impliquées créer client
+==== C. Classes impliquées
 
 image::../img/docTech/DS-Create_Client.png["DS créer client"]
 
-=== 2. Modifier un client Evan
+=== 2. Modifier un client - Evan
 
 ==== A. Use Case
 
 image::../img/docTech/US-updateC.png[Use case Modifier un client]
 
-Création de la fonctionalité modifier un compte disponible pour les guichetiers et les chefs d'agence
+Création de la fonctionalité `Modifier un compte` disponible pour les guichetiers et les chefs d'agence.
 
 ==== B. Diagramme de classe
 
-La classe utilisé est client, elle est utilisé en tant que lecture ainsi que en modification
+La classe utilisé est `Client`, elle est utilisée en lecture ainsi qu'en modification.
 
 image::../img/docTech/DC-Client.png["DC Client"]
 
-==== C. Classes impliquées modifier client
+==== C. Classes impliquées
 
 image::../img/docTech/DS-Update_Client.png[DS modifier client]
 
-=== 3. Clotûrer client Maxence
-
-=== 4. Consulter un compte Evan
+=== 3. Rendre inactif un client - Maxence
 
 ==== A. Use Case
 
-Création de la fonctionalité consulter un compte disponible pour les guichetiers et les chefs d'agence
+==== B. Diagramme de classe
+
+==== C. Classes impliquées
+
+=== 4. Consulter un compte - Evan
+
+==== A. Use Case
+
+Création de la fonctionalité `Consulter un compte` disponible pour les guichetiers et les chefs d'agence
 
 image::../img/docTech/UC-ConsulterCompte.png["Use case consulter un compte]
 
 ==== B. Diagramme de classe
 
-Les deux classe utilisé dans la base de donnée sont Client et CompteCourant , les deux classes sont en lectures.
+Les deux classes utilisées dans la base de donnée sont `Client` et `CompteCourant`, les deux classes sont en lectures.
 
 image::../img/docTech/DC_create_compte.png[]
 image::../img/docTech/DC_create_client.png[]
 
-==== C. Classes impliquées...
+==== C. Classes impliquées
 
 image::["DS Consulter un compte"]
 
-=== 5. Créer compte Evan
+=== 5. Créer un compte - Evan
 
 ==== A. Use Case
 
 image::../img/docTech/UC-C-Compte.png[]
 
-Création de la fonctionnalité créer compte pour les guichetier et les chefs d’agence
+Création de la fonctionnalité `Créer compte` pour les guichetier et les chefs d’agence.
 
 ==== B. Diagramme de classe
 
-Les deux classe utilisé dans la base de donnée sont Client et CompteCourant , Client est utilisé en tant que lecture, CompteCourant est modifié.
+Les deux classes utilisées dans la base de donnée sont `Client` et `CompteCourant`. `Client` est utilisée en lecture, `CompteCourant` est modifiée.
 
 image::../img/docTech/DC_create_compte.png[]
 image::../img/docTech/DC_create_client.png[]
 
-==== C. Classes impliquées créer compte
+==== C. Classes impliquées
 
 image::../img/docTech/DS_Create_Compte.png["DS créer compte"]
 
-=== 5. Modifier un compte Maxence
+=== 5. Modifier un compte - Maxence
 
 ==== A. Use Case
 
 ==== B. Diagramme de classe
 
-==== C. Classes impliquées...
+==== C. Classes impliquées
 
-=== 6. Clotûrer un compte Evan
+=== 6. Clotûrer un compte - Maxence
 
 ==== A. Use Case
 
-Création de la fonctionnalité clotûrer compte pour les guichetiers et les chefs d’agence
+Création de la fonctionnalité `Clotûrer compte` pour les guichetiers et les chefs d’agence.
 
 image::../img/docTech/UC-D-Compte.png["Use case clotûrer compte]
 
 ==== B. Diagramme de classe
 
-Les deux classe utilisé dans la base de donnée sont Client et CompteCourant , Client est utilisé en tant que lecture, CompteCourant est modifié.
+Les deux classes utilisées dans la base de donnée sont `Client` et `CompteCourant`. `Client` est utilisée en lecture, `CompteCourant` est modifiée.
 
 image::../img/docTech/DC_create_compte.png[]
 image::../img/docTech/DC_create_client.png[]
 
-==== C. Classes impliquées...
+==== C. Classes impliquées
 
 image::../img/docTech/DS_delete_Compte.png["DS clotûrer compte]
 
-=== 7.  Effectuer Crédit Evan
+=== 7.  Effectuer un crédit - Evan
 
 ==== A. Use Case
 
-Création de la fonctionnalité créditer compte pour les guichetiers et les chefs d’agence
+Création de la fonctionnalité `Créditer compte` pour les guichetiers et les chefs d’agence.
 
 image::../img/docTech/UC-Credit.png["Use Case Créditer]
 
 ==== B. Diagramme de classe
 
-Les classes utilisées sont TypeOpération(Lecture), Opération(Modification) et CompteCourant(Modification)
+Les classes utilisées sont `TypeOperation` (Lecture), `Operation` (Modification) et `CompteCourant` (Modification)
 
 image::../img/docTech/DC-Operation.png["DC operation"]
 
-==== C. Classes impliquées...
+==== C. Classes impliquées
 
 image::../img/docTech/DS-credit.png["DS créditer"]
 
-=== 8. Effectuer Débit Evan
+=== 8. Effectuer un débit - Evan
 
 ==== A. Use Case
 
-Création de la fonctionnalité debiter compte pour les guichetiers et les chefs d’agence
+Création de la fonctionnalité `Débiter compte` pour les guichetiers et les chefs d’agence.
 
 image::../img/docTech/UC-Debit.png["Use Case Débiter]
 
 ==== B. Diagramme de classe
 
-Les classes utilisées sont TypeOpération(Lecture), Opération(Modification) et CompteCourant(Modification)
+Les classes utilisées sont `TypeOperation` (Lecture), `Operation` (Modification) et `CompteCourant` (Modification).
 
 image::../img/docTech/DC-Operation.png["DC operation"]
 
-==== C. Classes impliquées...
+==== C. Classes impliquées
 
 image::../img/docTech/DS-DEBIT.png["DS Débiter"]
 
-=== 9. Effectuer Virement Evan
+=== 9. Effectuer un virement - Evan
 
 ==== A. Use Case
 
-Création de la fonctionnalité virement pour les guichetiers et les chefs d’agence
+Création de la fonctionnalité `Virement` pour les guichetiers et les chefs d’agence.
 
 image::../img/docTech/UC-Virement.png["Use Case virement]
 
 ==== B. Diagramme de classe
 
-Les classes utilisées sont TypeOpération(Lecture), Opération(Modification) et CompteCourant(Modification)
+Les classes utilisées sont `TypeOperation` (Lecture), `Operation` (Modification) et `CompteCourant` (Modification).
 
 image::../img/docTech/DC-Operation.png["DC operation"]
 
-==== C. Classes impliquées...
+==== C. Classes impliquées
 
 image::../img/docTech/DS-virement.png["DS virement"]
 
-=== 10. Génerer PDF Andrei/Daria
+=== 10. Génerer PDF - Andrii et Daria
 
 ==== A. Use Case
 
 ==== B. Diagramme de classe
 
-==== C. Classes impliquées...
+==== C. Classes impliquées
 
-=== 11. Créer Prélèvement Evan
+=== 11. Créer un prelevement - Evan
 
 ==== A. Use Case
 
@@ -413,93 +428,96 @@ image::../img/docTech/UC-prelevement.png["UC prelevement"]
 
 ==== B. Diagramme de classe
 
-Les classes utilisées sont PrélèvementAutomatique (Modification) et CompteCourant (Lecture)
+Les classes utilisées sont `PrelevementAutomatique` (Modification) et `CompteCourant` (Lecture).
 
 image::../img/docTech/DC-prelevement.png["DC Prélèvement"]
 
-
-==== C. Classes impliquées...
+==== C. Classes impliquées
 
 image::../img/docTech/DS-C-prelevement.png["DS créer prélèvement]
 
-=== 12. Modifier Prélèvement Maxence
+=== 12. Modifier un prélèvement - Maxence
 
 ==== A. Use Case
 
 ==== B. Diagramme de classe
 
-==== C. Classes impliquées...
+==== C. Classes impliquées
 
 image::../img/docTech/DS-U-Prelevement.png["DS modifier prélèvement"]
 
-=== 13. Supprimer Prélèvement Maxence
+=== 13. Supprimer un prélèvement - Maxence
 
 ==== A. Use Case
 
 ==== B. Diagramme de classe
 
-==== C. Classes impliquées...
+==== C. Classes impliquées
 
 image::../img/docTech/DS-D-Prelevement.png["DS supprimer un prélèvement"]
 
-=== 14. Créer Employés Andrei/Daria
+=== 14. Créer un employé - Andrii et Daria
 
 ==== A. Use Case
 
 ==== B. Diagramme de classe
 
-==== C. Classes impliquées...
+==== C. Classes impliquées
 
 image::../img/docTech/DS-C-Employe.png["DS créer employé"]
 
-=== 15. Modifier Employés Maxence
+=== 15. Modifier un employé - Maxence
 
 ==== A. Use Case
 
 ==== B. Diagramme de classe
 
-==== C. Classes impliquées...
+==== C. Classes impliquées
 
 image::../img/docTech/DS-U-Employe.png["DS modifier employé"]
 
-=== 16. Supprimer Employés Andrei/Daria
+=== 16. Supprimer un employé - Andrii et Daria
 
 ==== A. Use Case
 
 ==== B. Diagramme de classe
 
-==== C. Classes impliquées...
+==== C. Classes impliquées
 
 image::../img/docTech/DS-D-Employe.png["DS supprimer employé"]
 
-=== 17. Effectuer un débit exceptionnel Maxence
+=== 17. Effectuer un débit exceptionnel - Maxence
 
 ==== A. Use Case
 
 ==== B. Diagramme de classe
 
-==== C. Classes impliquées...
+==== C. Classes impliquées
 
-=== 18. Simuler un emprunt Evan
+=== 18. Simuler un emprunt - Evan
 
 ==== A. Use Case
 
-Création de la fonctionnalité Emprunt uniquement pour les chefs d’agence
+Création de la fonctionnalité `Emprunt` uniquement pour les chefs d’agence.
 
 image::../img/docTech/UC-SimuE.png["UC simulation emprunt"]
 
-==== C. Classes impliquées...
+==== B. Diagramme de classe
+
+==== C. Classes impliquées
 
 image::../img/docTech/DS-Emprunt-Assurance.png["DS-Emprunt"]
 
-=== 19. Simuler une assurance Evan
+=== 19. Simuler une assurance - Evan
 
 ==== A. Use Case
 
-Création de la fonctionnalité Assurance uniquement pour les chefs d’agence
+Création de la fonctionnalité `Assurance` uniquement pour les chefs d’agence.
 
 image::../img/docTech/UC-SimuA.png["UC simulation Assurance"]
 
-==== C. Classes impliquées...
+==== B. Diagramme de classe
+
+==== C. Classes impliquées
 
 image::../img/docTech/DS-Emprunt-Assurance.png["DS- Assurance"]

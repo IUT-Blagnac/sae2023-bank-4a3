@@ -59,7 +59,7 @@ Ordinateur avec link:https://www.oracle.com/java/technologies/javase/jdk17-archi
 
 |====
 
->.^| *Cas de test* 4+.^| Test-01-01-02
+>.^| *Cas de test* 4+.^| Test-01-02-01
 >.^| *Titre* 4+.^| Déconnexion d'un employé
 >.^| *Objectif* 4+.^| Vérifier qu'il est possible de se déconnecter de l'application
 
@@ -67,7 +67,7 @@ Ordinateur avec link:https://www.oracle.com/java/technologies/javase/jdk17-archi
 
 ^.^| *ID* ^.^| *Action* ^.^| *Comportement attendu* ^.^| *Pré-conditions* ^.^| *Résultat*
 
-^.^| All_Deco.1 ^.^| Cliquer sur le bouton `Déconnexion` depuis la page d'accueil de l'application, ou cliquer sur `Utilisateur` puis `Déconnexion``. ^.^| L'employé est déconnecté, Retour à la page d'accueil de l'application. ^.^| La page d'accueil est active et un employé est connecté. ^.^| OK
+^.^| All_Deco.1 ^.^| Cliquer sur le bouton `Déconnexion` depuis la page d'accueil de l'application, ou cliquer sur `Utilisateur` puis `Déconnexion`. ^.^| L'employé est déconnecté, Retour à la page d'accueil de l'application. ^.^| La page d'accueil est active et un employé est connecté. ^.^| OK
 
 |====
 
@@ -75,7 +75,7 @@ Ordinateur avec link:https://www.oracle.com/java/technologies/javase/jdk17-archi
 
 |====
 
->.^| *Cas de test* 4+.^| Test-01-02-01
+>.^| *Cas de test* 4+.^| Test-01-03-01
 >.^| *Titre* 4+.^| Accéder au menu d'aide
 >.^| *Objectif* 4+.^| Ouvrir le menu d'aide de l'application
 
@@ -94,7 +94,7 @@ Ordinateur avec link:https://www.oracle.com/java/technologies/javase/jdk17-archi
 
 |====
 
->.^| *Cas de test* 4+.^| Test-02-02-01
+>.^| *Cas de test* 4+.^| Test-02-01-01
 >.^| *Titre* 4+.^| Consulation des clients de l'agence
 >.^| *Objectif* 4+.^| Vérifier qu’il est possible de consulter les clients de son agence
 
@@ -108,7 +108,7 @@ Ordinateur avec link:https://www.oracle.com/java/technologies/javase/jdk17-archi
 
 |====
 
->.^| *Cas de test* 4+.^| Test-02-02-02
+>.^| *Cas de test* 4+.^| Test-02-01-02
 >.^| *Titre* 4+.^| Recherche d'un client dans l'agence
 >.^| *Objectif* 4+.^| Vérifier qu'il est possible de rechercher un client dans l'agence à partir de son numéro, son nom ou son prénom
 
@@ -124,7 +124,7 @@ Ordinateur avec link:https://www.oracle.com/java/technologies/javase/jdk17-archi
 
 |====
 
->.^| *Cas de test* 4+.^| Test-02-02-03
+>.^| *Cas de test* 4+.^| Test-02-01-03
 >.^| *Titre* 4+.^| Création d'un nouveau client
 >.^| *Objectif* 4+.^| Vérifier qu'il est possible de créer un nouveau client
 
@@ -144,7 +144,7 @@ Ordinateur avec link:https://www.oracle.com/java/technologies/javase/jdk17-archi
 
 |====
 
->.^| *Cas de test* 4+.^| Test-02-02-04
+>.^| *Cas de test* 4+.^| Test-02-01-04
 >.^| *Titre* 4+.^| Modification d'un client
 >.^| *Objectif* 4+.^| Vérifier qu'il est possible de modifier un client
 
@@ -166,7 +166,7 @@ Ordinateur avec link:https://www.oracle.com/java/technologies/javase/jdk17-archi
 
 |====
 
->.^| *Cas de test* 4+.^| Test-02-03-01
+>.^| *Cas de test* 4+.^| Test-02-02-01
 >.^| *Titre* 4+.^| Consultation d'un compte
 >.^| *Objectif* 4+.^| Vérifier qu'il est possible de consulter un compte
 
@@ -180,7 +180,7 @@ Ordinateur avec link:https://www.oracle.com/java/technologies/javase/jdk17-archi
 
 |====
 
->.^| *Cas de test* 4+.^| Test-02-03-02 - Evan
+>.^| *Cas de test* 4+.^| Test-02-02-02 - Evan
 >.^| *Titre* 4+.^| Création un compte
 >.^| *Objectif* 4+.^| Vérifier qu'il est possible de créer un compte
 
@@ -200,7 +200,7 @@ Ordinateur avec link:https://www.oracle.com/java/technologies/javase/jdk17-archi
 
 |====
 
->.^| *Cas de test* 4+.^| Test-02-03-02 - Maxence
+>.^| *Cas de test* 4+.^| Test-02-02-02 - Maxence
 >.^| *Titre* 4+.^| Modification d'un compte
 >.^| *Objectif* 4+.^| Vérifier qu'il est possible de créer un compte
 
@@ -220,7 +220,7 @@ Ordinateur avec link:https://www.oracle.com/java/technologies/javase/jdk17-archi
 
 |====
 
->.^| *Cas de test* 4+.^| Test-02-03-03 - Evan
+>.^| *Cas de test* 4+.^| Test-02-02-03 - Evan
 >.^| *Titre* 4+.^| Clotûter un compte
 >.^| *Objectif* 4+.^| Vérifier qu'il est possible de clotûrer un compte
 
@@ -242,7 +242,7 @@ Ordinateur avec link:https://www.oracle.com/java/technologies/javase/jdk17-archi
 
 |====
 
->.^| *Cas de test* 4+.^| Test-02-04-01 - Evan
+>.^| *Cas de test* 4+.^| Test-02-03-01 - Evan
 >.^| *Titre* 4+.^| Gestion des opérations
 >.^| *Objectif* 4+.^| Vérifier qu'il est possible d'accéder à la gestion des opérations d'un compte
 
@@ -256,7 +256,7 @@ Ordinateur avec link:https://www.oracle.com/java/technologies/javase/jdk17-archi
 
 |====
 
->.^| *Cas de test* 4+.^| Test-02-04-02 - Evan
+>.^| *Cas de test* 4+.^| Test-02-03-02 - Evan
 >.^| *Titre* 4+.^| Débiter un compte
 >.^| *Objectif* 4+.^| Vérifier qu'il est possible de débiter un compte
 
@@ -282,7 +282,7 @@ Ordinateur avec link:https://www.oracle.com/java/technologies/javase/jdk17-archi
 
 |====
 
->.^| *Cas de test* 4+.^| Test-02-04-03 - Evan
+>.^| *Cas de test* 4+.^| Test-02-03-03 - Evan
 >.^| *Titre* 4+.^| Créditer un compte
 >.^| *Objectif* 4+.^| Vérifier qu'il est possible de créditer un compte
 
@@ -302,7 +302,7 @@ Ordinateur avec link:https://www.oracle.com/java/technologies/javase/jdk17-archi
 
 |====
 
->.^| *Cas de test* 4+.^| Test-02-04-04 - Evan
+>.^| *Cas de test* 4+.^| Test-02-03-04 - Evan
 >.^| *Titre* 4+.^| Effetuer un virement de compte à compte
 >.^| *Objectif* 4+.^| Vérifier qu'il est possible de faire un virement de compte à compte
 
@@ -324,7 +324,7 @@ Ordinateur avec link:https://www.oracle.com/java/technologies/javase/jdk17-archi
 
 |====
 
->.^| *Cas de test* 4+.^| Test-02-04-05 - Andrii et Daria
+>.^| *Cas de test* 4+.^| Test-02-03-05 - Andrii et Daria
 >.^| *Titre* 4+.^| Générer le relevé PDF d'un compte
 >.^| *Objectif* 4+.^| Vérifier qu'il est possible de générer le relevé PDF d'un compte
 
@@ -340,7 +340,7 @@ Ordinateur avec link:https://www.oracle.com/java/technologies/javase/jdk17-archi
 
 |====
 
->.^| *Cas de test* 4+.^| Test-02-05-01 - Maxence
+>.^| *Cas de test* 4+.^| Test-02-04-01 - Maxence
 >.^| *Titre* 4+.^| Consulation des prélévements automatiques des comptes dans l'agence
 >.^| *Objectif* 4+.^| Vérifier qu’il est possible de consulter les prélévements automatiques des comptes des clients dans l'agence
 
@@ -354,7 +354,7 @@ Ordinateur avec link:https://www.oracle.com/java/technologies/javase/jdk17-archi
 
 |====
 
->.^| *Cas de test* 4+.^| Test-02-05-02 - Maxence
+>.^| *Cas de test* 4+.^| Test-02-04-02 - Maxence
 >.^| *Titre* 4+.^| Recherche des prélèvements automatiques d'un compte dans l'agence
 >.^| *Objectif* 4+.^| Vérifier qu'il est possible de rechercher les prélèvements automatiques d'un compte dans l'agence
 
@@ -370,7 +370,7 @@ Ordinateur avec link:https://www.oracle.com/java/technologies/javase/jdk17-archi
 
 |====
 
->.^| *Cas de test* 4+.^| Test-02-05-03 - Evan
+>.^| *Cas de test* 4+.^| Test-02-04-03 - Evan
 >.^| *Titre* 4+.^| Création d'un nouveau prélèvement automatique
 >.^| *Objectif* 4+.^| Vérifier qu'il est possible de créer un nouveau prélèvement automatique
 
@@ -390,7 +390,7 @@ Ordinateur avec link:https://www.oracle.com/java/technologies/javase/jdk17-archi
 
 |====
 
->.^| *Cas de test* 4+.^| Test-02-05-04 - Maxence
+>.^| *Cas de test* 4+.^| Test-02-04-04 - Maxence
 >.^| *Titre* 4+.^| Modification d'un prélèvement automatique
 >.^| *Objectif* 4+.^| Vérifier qu'il est possible de modifier un prélèvement automatique
 
@@ -410,7 +410,7 @@ Ordinateur avec link:https://www.oracle.com/java/technologies/javase/jdk17-archi
 
 |====
 
->.^| *Cas de test* 4+.^| Test-02-05-05 - Maxence
+>.^| *Cas de test* 4+.^| Test-02-04-05 - Maxence
 >.^| *Titre* 4+.^| Supprimer un prélèvement automatique
 >.^| *Objectif* 4+.^| Vérifier qu'il est possible de supprimer un prélèvement automatique
 
@@ -436,7 +436,7 @@ Les chefs d'agence ont accès aux mêmes fonctionnalités que les guichetiers, a
 |====
 
 >.^| *Cas de test* 4+.^| Test-03-01-01
->.^| *Titre* 4+.^| Rendre inactif un client
+>.^| *Titre* 4+.^| Rendre inactif un client - Maxence
 >.^| *Objectif* 4+.^| Vérifier qu'il est possible de rendre inactif un client
 
 5+|
@@ -475,7 +475,7 @@ Les chefs d'agence ont accès aux mêmes fonctionnalités que les guichetiers, a
 
 5+|
 
-5+.^| Voir aussi `Test-02-04-02 - Evan : Débiter un compte`.
+5+.^| Voir aussi `Test-02-03-02 - Evan : Débiter un compte`.
 
 |====
 
@@ -513,7 +513,7 @@ Les chefs d'agence ont accès aux mêmes fonctionnalités que les guichetiers, a
 
 |====
 
->.^| *Cas de test* 4+.^| Test-03-03-03 - Maxence
+>.^| *Cas de test* 4+.^| Test-03-03-03 - Andrii et Daria
 >.^| *Titre* 4+.^| Création d'un nouvel employé
 >.^| *Objectif* 4+.^| Vérifier qu'il est possible de créer un nouvel employé
 
@@ -553,7 +553,7 @@ Les chefs d'agence ont accès aux mêmes fonctionnalités que les guichetiers, a
 
 |====
 
->.^| *Cas de test* 4+.^| Test-03-03-05 - Maxence
+>.^| *Cas de test* 4+.^| Test-03-03-05 - Andrii et Daria
 >.^| *Titre* 4+.^| Supprimer un employé
 >.^| *Objectif* 4+.^| Vérifier qu'il est possible de supprimer un employé
 
