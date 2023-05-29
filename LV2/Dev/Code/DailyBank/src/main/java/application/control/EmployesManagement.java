@@ -162,8 +162,8 @@ public class EmployesManagement {
 	 * @return La liste des employés correspondant aux critères de recherche
 	 * @author KRILL Maxence
 	 */
-	public ArrayList<Employe> getlisteComptes(int _numEmp, String _debutNom, String _debutPrenom) {
-		ArrayList<Employe> listeCli = new ArrayList<>();
+	public ArrayList<Employe> getlisteEmployes(int _numEmp, String _debutNom, String _debutPrenom) {
+		ArrayList<Employe> listeEmp = new ArrayList<>();
 		try {
 			// Recherche des employés en BD. cf. AccessClient > getEmployes(.)
 			// numEmp != -1 => recherche sur numEmp
@@ -171,18 +171,18 @@ public class EmployesManagement {
 			// numEmp == -1 et debutNom vide => recherche tous les employés
 
 			Access_BD_Employe ac = new Access_BD_Employe();
-			listeCli = ac.getEmploye(this.dailyBankState.getEmployeActuel().idAg, _numEmp, _debutNom, _debutPrenom);
+			listeEmp = ac.getEmploye(this.dailyBankState.getEmployeActuel().idAg, _numEmp, _debutNom, _debutPrenom);
 
 		} catch (DatabaseConnexionException e) {
 			ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, e);
 			ed.doExceptionDialog();
 			this.primaryStage.close();
-			listeCli = new ArrayList<>();
+			listeEmp = new ArrayList<>();
 		} catch (ApplicationException ae) {
 			ExceptionDialog ed = new ExceptionDialog(this.primaryStage, this.dailyBankState, ae);
 			ed.doExceptionDialog();
-			listeCli = new ArrayList<>();
+			listeEmp = new ArrayList<>();
 		}
-		return listeCli;
+		return listeEmp;
 	}
 }

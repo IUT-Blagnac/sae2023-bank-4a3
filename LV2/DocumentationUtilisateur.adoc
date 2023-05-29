@@ -3,7 +3,7 @@
 :toc: auto
 :toclevels: 3
 
-*Date :* 16/05/2023 +
+*Date :* 28/05/2023 +
 *Par :* Équipe 4A3 : _DIDENKO Andrii, LAMOUR Evan, KRILL Maxence, SHULHINA Daria_
 
 == I. Présentation
@@ -121,6 +121,9 @@ image::../img/userDoc/gererOperation.png["Gestion des opérations"]
 
 A noter que l'interface de crédit et débit ont la même interface graphique. De ce fait, les procédures pour les deux opérations sont identiques.
 
+*Le chef d'agence à la possibilité d'effectuer un débit exceptionnel.* +
+Un message de confirmation s'affichera indiquant qu'il s'apprête à effectuer un débit exceptionnel.
+
 ==== a. Enregistrer opération | Evan
 
 Vous avez la possibilité de choisir le type d'opération (crédit/débit) et d'indiquer le montant.
@@ -160,14 +163,14 @@ Dans le menu, cliquez sur `Simulation` > `Emprunt`.
 
 Une fenêtre va s'ouvrir :
 
-image::../img/userDoc/Simulation.png["Fenêtre de simulation d'emprunt"]
+image::../img/userDoc/simulation.png["Fenêtre de simulation d'emprunt"]
 
 Renseignez les champs requis, puis cliquez sur `Valider` ou `Annuler`. +
 A noter que le taux choisis est annuel.
 
 Après avoir remplis les champs tel qu'indiqué, cliquez sur `Valider` et vous verrez le tableau d'amortissement.
 
-image::../img/userDoc/SimulationRemplis.png["Fenêtre de simulation d'emprunt complèté"]
+image::../img/userDoc/simulationComplete.png["Fenêtre de simulation d'emprunt complèté"]
 
 Pour un taux d'assurance cliquer sur le bouton `Assurance` et rentrez votre taux dans la zone de texte.
 

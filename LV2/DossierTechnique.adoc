@@ -1,4 +1,4 @@
-= Documentation technique - BankUtil - Version 1
+= Documentation technique - BankUtil - Version 2
 :toc:
 :toc-title: Sommaire
 :toclevels: 4
@@ -6,8 +6,8 @@
 :Entreprise: DailyBank
 :Equipe: 4A03
 
-*Date :* 17/05/2023 +
-*Par :* Équipe 4A3 : _DIDENKO Andrii, LAMOUR Evan, KRILL Maxence, SHULHINA Daria_ler chaques fonctionnalités de la V2 de l'application DailyBank
+*Date :* 28/05/2023 +
+*Par :* Équipe 4A3 : _DIDENKO Andrii, LAMOUR Evan, KRILL Maxence, SHULHINA Daria_
 
 == I. Présentation
 
@@ -43,7 +43,7 @@ image::../img/uc-initialv2.svg[]
 
 Voici le diagramme de classe de la base de données de la banque DailyBank
 
-image::../img/docTech/DCV2.png[]
+image::../img/dc-initialv2.png[]
 
 * `AgenceBancaire` : Représente une agence avec son nom, son adresse, son identifiant unique et un chef d'agence représenté par son identifiant.
 
@@ -211,7 +211,7 @@ Vous avez dans le code ci-dessus la connection entre la base de données et le p
 
 Si vous voulez changer de base de données changer les informations dans cette page.
 
-image::../img/docTech/Associationbase de données.png["Image association BD"]
+image::../img/docTech/AssociationBD.png["Image association BD"]
 
 === 2. Installer l'application
 
@@ -247,277 +247,398 @@ Clique droit sur le projet > `Run As` > `3... Maven Build` > `Goals` : `clean in
 
 == IV. Fonctionnalités de l'application
 
-=== 1. Créer un client Evan
+=== 1. Créer un client - Evan
 
 ==== A. Use Case
 
-image::../img/docTech/UC-C-Client.png["Use case créer un client"]
+Création de la fonctionalité `Créer un client` disponible pour les guichetiers et les chefs d'agence.
 
-Création de la fonctionalité `Créer un compte` disponible pour les guichetiers et les chefs d'agence.
+image::../img/docTech/UC/C_Client.png["UC - Créer un client"]
 
 ==== B. Diagramme de classe
 
-La classe utilisé est `Client`, elle est elle modifiée.
+La classe utilisée est `Client`, elle est elle modifiée.
 
-image::../img/docTech/DC-Client.png["DC créer client"]
+image::../img/docTech/DC/Client.png["DC - Client"]
 
 ==== C. Classes impliquées
 
-image::../img/docTech/DS-Create_Client.png["DS créer client"]
+image::../img/docTech/DS/C_Client.png["DS - Créer un client"]
 
 === 2. Modifier un client - Evan
 
 ==== A. Use Case
 
-image::../img/docTech/US-updateC.png[Use case Modifier un client]
+Création de la fonctionalité `Modifier un client` disponible pour les guichetiers et les chefs d'agence.
 
-Création de la fonctionalité `Modifier un compte` disponible pour les guichetiers et les chefs d'agence.
+image::../img/docTech/UC/U_Client.png["UC - Modifier un client"]
 
 ==== B. Diagramme de classe
 
-La classe utilisé est `Client`, elle est utilisée en lecture ainsi qu'en modification.
+La classe utilisée est `Client`, en lecture ainsi qu'en modification.
 
-image::../img/docTech/DC-Client.png["DC Client"]
+image::../img/docTech/DC/Client.png["DC - Client"]
 
 ==== C. Classes impliquées
 
-image::../img/docTech/DS-Update_Client.png[DS modifier client]
+image::../img/docTech/DS/U_Client.png["DS - Modifier un client"]
 
 === 3. Rendre inactif un client - Maxence
 
 ==== A. Use Case
 
+Création de la fonctionnalité `Rendre inactif un client` disponible pour les chefs d'agence.
+
+image::../img/docTech/UC/D_Client.png["UC - Client inactif"]
+
 ==== B. Diagramme de classe
+
+Les classes utilisées sont `Client` en lecture et en modification ainsi que `CompteCourant` en lecture uniquement.
+
+image::../img/docTech/DC/Client.png["DC - Client"]
+
+image::../img/docTech/DC/CompteCourant.png["DC - CompteCourant"]
 
 ==== C. Classes impliquées
 
-=== 4. Consulter un compte - Evan
+image::../img/docTech/DS/D_Client.png["DS - Client inactif"]
+
+=== 4. Consulter les comptes d'un client - Evan
 
 ==== A. Use Case
 
-Création de la fonctionalité `Consulter un compte` disponible pour les guichetiers et les chefs d'agence
+Création de la fonctionalité `Consulter les comptes d'un client` disponible pour les guichetiers et les chefs d'agence.
 
-image::../img/docTech/UC-ConsulterCompte.png["Use case consulter un compte]
+image::../img/docTech/UC/R_Compte.png["UC - Consulter les comptes d'un client"]
 
 ==== B. Diagramme de classe
 
-Les deux classes utilisées dans la base de donnée sont `Client` et `CompteCourant`, les deux classes sont en lectures.
+Les deux classes utilisées sont `Client` et `CompteCourant`, les deux classes sont en consultation.
 
-image::../img/docTech/DC_create_compte.png[]
-image::../img/docTech/DC_create_client.png[]
+image::../img/docTech/DC/CompteCourant.png["DC - CompteCourant"]
+
+image::../img/docTech/DC/Client.png["DC - Client"]
 
 ==== C. Classes impliquées
 
-image::["DS Consulter un compte"]
+image::../img/docTech/DS/R_Compte.png["DS - Consulter les comptes d'un client"]
 
 === 5. Créer un compte - Evan
 
 ==== A. Use Case
 
-image::../img/docTech/UC-C-Compte.png[]
+Création de la fonctionnalité `Créer un compte` pour les guichetier et les chefs d’agence.
 
-Création de la fonctionnalité `Créer compte` pour les guichetier et les chefs d’agence.
-
-==== B. Diagramme de classe
-
-Les deux classes utilisées dans la base de donnée sont `Client` et `CompteCourant`. `Client` est utilisée en lecture, `CompteCourant` est modifiée.
-
-image::../img/docTech/DC_create_compte.png[]
-image::../img/docTech/DC_create_client.png[]
-
-==== C. Classes impliquées
-
-image::../img/docTech/DS_Create_Compte.png["DS créer compte"]
-
-=== 5. Modifier un compte - Maxence
-
-==== A. Use Case
+image::../img/docTech/UC/C_Compte.png["UC - Créer un compte"]
 
 ==== B. Diagramme de classe
 
+Les deux classes utilisées sont `Client` et `CompteCourant`. `Client` est utilisée en lecture, `CompteCourant` est elle modifiée.
+
+image::../img/docTech/DC/CompteCourant.png["DC - CompteCourant"]
+image::../img/docTech/DC/Client.png["DC - Client"]
+
 ==== C. Classes impliquées
+
+image::../img/docTech/DS/C_Compte.png["DS - Créer un compte"]
 
 === 6. Clotûrer un compte - Maxence
 
 ==== A. Use Case
 
-Création de la fonctionnalité `Clotûrer compte` pour les guichetiers et les chefs d’agence.
+Création de la fonctionnalité `Clotûrer un compte` pour les guichetiers et les chefs d’agence.
 
-image::../img/docTech/UC-D-Compte.png["Use case clotûrer compte]
+image::../img/docTech/UC/D_Compte.png["UC - Clotûrer un compte"]
 
 ==== B. Diagramme de classe
 
-Les deux classes utilisées dans la base de donnée sont `Client` et `CompteCourant`. `Client` est utilisée en lecture, `CompteCourant` est modifiée.
+Les deux classes utilisées sont `Client` et `CompteCourant`. `Client` est utilisée en lecture, `CompteCourant` est modifiée.
 
-image::../img/docTech/DC_create_compte.png[]
-image::../img/docTech/DC_create_client.png[]
+image::../img/docTech/DC/CompteCourant.png[]
+image::../img/docTech/DC/Client.png[]
 
 ==== C. Classes impliquées
 
-image::../img/docTech/DS_delete_Compte.png["DS clotûrer compte]
+image::../img/docTech/DS/D_Compte.png["DS - Clotûrer un compte"]
 
-=== 7.  Effectuer un crédit - Evan
+=== 7. Effectuer un crédit - Evan
 
 ==== A. Use Case
 
-Création de la fonctionnalité `Créditer compte` pour les guichetiers et les chefs d’agence.
+Création de la fonctionnalité `Créditer un compte` pour les guichetiers et les chefs d’agence.
 
-image::../img/docTech/UC-Credit.png["Use Case Créditer]
+image::../img/docTech/UC/Crediter_Compte.png["UC - Créditer un compte"]
 
 ==== B. Diagramme de classe
 
 Les classes utilisées sont `TypeOperation` (Lecture), `Operation` (Modification) et `CompteCourant` (Modification)
 
-image::../img/docTech/DC-Operation.png["DC operation"]
+image::../img/docTech/DC/TypeOperation.png["DC - TypeOperation"]
+
+image::../img/docTech/DC/Operation.png["DC - Operation"]
+
+image::../img/docTech/DC/CompteCourant.png["DC - CompteCourant"]
 
 ==== C. Classes impliquées
 
-image::../img/docTech/DS-credit.png["DS créditer"]
+image::../img/docTech/DS/Crediter_Compte.png["DS - Créditer un compte"]
 
 === 8. Effectuer un débit - Evan
 
 ==== A. Use Case
 
-Création de la fonctionnalité `Débiter compte` pour les guichetiers et les chefs d’agence.
+Création de la fonctionnalité `Débiter un compte` pour les guichetiers et les chefs d’agence.
 
-image::../img/docTech/UC-Debit.png["Use Case Débiter]
+image::../img/docTech/UC/Debiter_Compte.png["UC - Débiter un compte"]
 
 ==== B. Diagramme de classe
 
 Les classes utilisées sont `TypeOperation` (Lecture), `Operation` (Modification) et `CompteCourant` (Modification).
 
-image::../img/docTech/DC-Operation.png["DC operation"]
+image::../img/docTech/DC/TypeOperation.png["DC - TypeOperation"]
+
+image::../img/docTech/DC/Operation.png["DC - Operation"]
+
+image::../img/docTech/DC/CompteCourant.png["DC - CompteCourant"]
 
 ==== C. Classes impliquées
 
-image::../img/docTech/DS-DEBIT.png["DS Débiter"]
+image::../img/docTech/DS/Debiter_Compte.png["DS - Débiter un compte"]
 
 === 9. Effectuer un virement - Evan
 
 ==== A. Use Case
 
-Création de la fonctionnalité `Virement` pour les guichetiers et les chefs d’agence.
+Création de la fonctionnalité `Virement de compte à compte` pour les guichetiers et les chefs d’agence.
 
-image::../img/docTech/UC-Virement.png["Use Case virement]
+image::../img/docTech/UC/Virement_Compte.png["UC - Virement"]
 
 ==== B. Diagramme de classe
 
 Les classes utilisées sont `TypeOperation` (Lecture), `Operation` (Modification) et `CompteCourant` (Modification).
 
-image::../img/docTech/DC-Operation.png["DC operation"]
+image::../img/docTech/DC/Operation.png["DC - Operation"]
 
 ==== C. Classes impliquées
 
-image::../img/docTech/DS-virement.png["DS virement"]
+image::../img/docTech/DS/Virement_Compte.png["DS - Virement"]
 
 === 10. Génerer PDF - Andrii et Daria
 
 ==== A. Use Case
 
+Création de la fonctionnalité `Relevé PDF` pour les guichetiers et les chefs d’agence.
+
+image::../img/docTech/UC/PDF_Compte.png["UC - Relevé PDF"]
+
 ==== B. Diagramme de classe
+
+Les classes utilisées sont `CompteCourant` et `Operation` en lecture uniquement.
+
+image::../img/docTech/DC/CompteCourant.png["DC - CompteCourant"]
+
+image::../img/docTech/DC/Operation.png["DC - Operation"]
 
 ==== C. Classes impliquées
 
-=== 11. Créer un prelevement - Evan
+image::../img/docTech/DS/PDF_Compte.png["DS - Relevé PDF"]
+
+=== 11. Consulter les prélèvements automatiques - Evan
 
 ==== A. Use Case
 
-Création de la fonctionnalité créer prélèvement pour les guichetiers et les chefs d’agence.
+Création de la fonctionnalité `Consulter les prélèvements automatiques` pour les guichetiers et les chefs d’agence.
 
-image::../img/docTech/UC-prelevement.png["UC prelevement"]
+image::../img/docTech/UC/CRUD_Prelevement.png["UC - CRUD prélèvements automatiques"]
+
+==== B. Diagramme de classe
+
+Les classes utilisées sont `PrelevementAutomatique` en lecture uniquement.
+
+image::../img/docTech/DC/PrelevementAutomatique.png["DC - PrelevementAutomatique"]
+
+==== C. Classes impliquées
+
+image::../img/docTech/DS/R_Prelevement.png["DS - Consulter les prélèvements automatiques"]
+
+=== 12. Créer un prélèvement automatique - Evan
+
+==== A. Use Case
+
+Création de la fonctionnalité `Créer un prélèvement automatique` pour les guichetiers et les chefs d’agence.
+
+image::../img/docTech/UC/CRUD_Prelevement.png["UC - CRUD prélèvements automatiques"]
 
 ==== B. Diagramme de classe
 
 Les classes utilisées sont `PrelevementAutomatique` (Modification) et `CompteCourant` (Lecture).
 
-image::../img/docTech/DC-prelevement.png["DC Prélèvement"]
+image::../img/docTech/DC/PrelevementAutomatique.png["DC - PrelevementAutomatique"]
+
+image::../img/docTech/DC/CompteCourant.png["DC - CompteCourant"]
 
 ==== C. Classes impliquées
 
-image::../img/docTech/DS-C-prelevement.png["DS créer prélèvement]
+image::../img/docTech/DS/C_Prelevement.png["DS - Créer un prélèvement automatique"]
 
-=== 12. Modifier un prélèvement - Maxence
+=== 13. Modifier un prélèvement automatique - Maxence
 
 ==== A. Use Case
 
+Création de la fonctionnalité `Modifier un prélèvement automatique` pour les guichetiers et les chefs d’agence.
+
+image::../img/docTech/UC/CRUD_Prelevement.png["UC - CRUD prélèvements automatiques"]
+
 ==== B. Diagramme de classe
+
+La classe utilisée est `PrelevementAutomatique` (Modification).
+
+image::../img/docTech/DC/PrelevementAutomatique.png["DC - PrelevementAutomatique"]
 
 ==== C. Classes impliquées
 
-image::../img/docTech/DS-U-Prelevement.png["DS modifier prélèvement"]
+image::../img/docTech/DS/U_Prelevement.png["DS - Modifier un prélèvement automatique"]
 
-=== 13. Supprimer un prélèvement - Maxence
+=== 14. Supprimer un prélèvement automatique - Maxence
 
 ==== A. Use Case
 
+Création de la fonctionnalité `Supprimer un prélèvement automatique` pour les guichetiers et les chefs d’agence.
+
+image::../img/docTech/UC/CRUD_Prelevement.png["UC - CRUD prélèvements automatiques"]
+
 ==== B. Diagramme de classe
+
+La classe utilisée est `PrelevementAutomatique` (Modification).
+
+image::../img/docTech/DC/PrelevementAutomatique.png["DC - PrelevementAutomatique"]
 
 ==== C. Classes impliquées
 
-image::../img/docTech/DS-D-Prelevement.png["DS supprimer un prélèvement"]
+image::../img/docTech/DS/D_Prelevement.png["DS - Supprimer un prélèvement automatique"]
 
-=== 14. Créer un employé - Andrii et Daria
+=== 15. Consulter les employés de l'agence - Maxence
 
 ==== A. Use Case
 
+Création de la fonctionnalité `Créer un employé` pour les chefs d’agence.
+
+image::../img/docTech/UC/CRUD_Employe.png["UC - CRUD employés"]
+
 ==== B. Diagramme de classe
+
+La classe utilisée est `Employe` (Lecture).
+
+image::../img/docTech/DC/Employe.png["DC - Employe"]
 
 ==== C. Classes impliquées
 
-image::../img/docTech/DS-C-Employe.png["DS créer employé"]
+image::../img/docTech/DS/R_Employe.png["DS - Consulter les employés"]
 
-=== 15. Modifier un employé - Maxence
+=== 16. Créer un employé - Andrii et Daria
 
 ==== A. Use Case
 
+Création de la fonctionnalité `Créer un employé` pour les chefs d’agence.
+
+image::../img/docTech/UC/CRUD_Employe.png["UC - CRUD employés"]
+
 ==== B. Diagramme de classe
+
+La classe utilisée est `Employe` (Modification).
+
+image::../img/docTech/DC/Employe.png["DC - Employe"]
 
 ==== C. Classes impliquées
 
-image::../img/docTech/DS-U-Employe.png["DS modifier employé"]
+image::../img/docTech/DS/C_Employe.png["DS - Créer un employé"]
 
-=== 16. Supprimer un employé - Andrii et Daria
+=== 17. Modifier un employé - Maxence
 
 ==== A. Use Case
 
+Création de la fonctionnalité `Modifier un employé` pour les chefs d’agence.
+
+image::../img/docTech/UC/CRUD_Employe.png["UC - CRUD employés"]
+
 ==== B. Diagramme de classe
+
+La classe utilisée est `Employe` (Modification).
+
+image::../img/docTech/DC/Employe.png["DC - Employe"]
 
 ==== C. Classes impliquées
 
-image::../img/docTech/DS-D-Employe.png["DS supprimer employé"]
+image::../img/docTech/DS/U_Employe.png["DS - Modifier un employé"]
 
-=== 17. Effectuer un débit exceptionnel - Maxence
+=== 18. Supprimer un employé - Andrii et Daria
 
 ==== A. Use Case
 
+Création de la fonctionnalité `Supprimer un employé` pour les chefs d’agence.
+
+image::../img/docTech/UC/CRUD_Employe.png["UC - CRUD employés"]
+
 ==== B. Diagramme de classe
+
+La classe utilisée est `Employe` (Modification).
+
+image::../img/docTech/DC/Employe.png["DC - Employe"]
 
 ==== C. Classes impliquées
 
-=== 18. Simuler un emprunt - Evan
+image::../img/docTech/DS/D_Employe.png["DS - Supprimer un employé"]
+
+=== 19. Effectuer un débit exceptionnel - Maxence
+
+==== A. Use Case
+
+Création de la fonctionnalité `Débit exceptionnel d'un compte` pour les chefs d’agence.
+
+image::../img/docTech/UC/DebitExceptionnel_Compte.png["UC - Débit exceptionnel d'un compte"]
+
+==== B. Diagramme de classe
+
+Les classes utilisées sont `TypeOperation` (Lecture), `Operation` (Modification) et `CompteCourant` (Modification).
+
+image::../img/docTech/DC/TypeOperation.png["DC - TypeOperation"]
+
+image::../img/docTech/DC/Operation.png["DC - Operation"]
+
+image::../img/docTech/DC/CompteCourant.png["DC - CompteCourant"]
+
+==== C. Classes impliquées
+
+image::../img/docTech/DS/Debit_Compte.png["DS - Débit exceptionnel d'un compte"]
+
+=== 20. Simuler un emprunt - Evan
 
 ==== A. Use Case
 
 Création de la fonctionnalité `Emprunt` uniquement pour les chefs d’agence.
 
-image::../img/docTech/UC-SimuE.png["UC simulation emprunt"]
+image::../img/docTech/UC/Emprunt.png["UC - Simuler un emprunt"]
 
 ==== B. Diagramme de classe
 
+image::../img/docTech/DC/Emprunt.png["DC - Emprunt"]
+
 ==== C. Classes impliquées
 
-image::../img/docTech/DS-Emprunt-Assurance.png["DS-Emprunt"]
+image::../img/docTech/DS/Emprunt_Assurance.png["DS - Simuler un emprunt"]
 
-=== 19. Simuler une assurance - Evan
+=== 21. Simuler une assurance - Evan
 
 ==== A. Use Case
 
 Création de la fonctionnalité `Assurance` uniquement pour les chefs d’agence.
 
-image::../img/docTech/UC-SimuA.png["UC simulation Assurance"]
+image::../img/docTech/UC/Assurance.png["UC - Simuler une assurance"]
 
 ==== B. Diagramme de classe
 
+image::../img/docTech/DC/AssuranceEmprunt.png["DC - AssuranceEmprunt"]
+
 ==== C. Classes impliquées
 
-image::../img/docTech/DS-Emprunt-Assurance.png["DS- Assurance"]
+image::../img/docTech/DS/Emprunt_Assurance.png["DS - Simuler une assurance"]

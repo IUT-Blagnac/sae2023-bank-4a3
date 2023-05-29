@@ -181,9 +181,7 @@ public class OperationsManagementController {
 			doc.add(new Paragraph(""));
 
 			// Font a = new Font(FontFamily.HELVETICA, 15.0f, Font.BOLD, BaseColor.BLACK);
-			Paragraph par2 = new Paragraph(
-					"Le relevé de " + this.clientDuCompte.nom + "  " + this.clientDuCompte.prenom + "\n"
-							+ "Le numéro du compte : " + this.compteConcerne.idNumCompte);
+			Paragraph par2 = new Paragraph("Relevé de : " + this.clientDuCompte.nom + " " + this.clientDuCompte.prenom + "\nCompte numéro : " + this.compteConcerne.idNumCompte);
 			doc.add(par2);
 			PairsOfValue<CompteCourant, ArrayList<Operation>> opesEtCompte;
 			opesEtCompte = this.omDialogController.operationsEtSoldeDunCompte();

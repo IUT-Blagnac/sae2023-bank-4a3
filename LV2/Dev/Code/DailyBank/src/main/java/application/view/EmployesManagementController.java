@@ -32,7 +32,7 @@ public class EmployesManagementController {
 	private DailyBankState dailyBankState;
 
 	// Contrôleur de Dialogue associé à EmployesManagementController
-	private EmployesManagement cmDialogController;
+	private EmployesManagement emDialogController;
 
 	// Fenêtre physique ou est la scène contenant le fichier xml contrôlé par this
 	private Stage primaryStage;
@@ -50,7 +50,7 @@ public class EmployesManagementController {
 	 */
 	// Manipulation de la fenêtre
 	public void initContext(Stage _containingStage, EmployesManagement _cm, DailyBankState _dbstate) {
-		this.cmDialogController = _cm;
+		this.emDialogController = _cm;
 		this.primaryStage = _containingStage;
 		this.dailyBankState = _dbstate;
 		this.configure();
@@ -164,11 +164,11 @@ public class EmployesManagementController {
 		// numCompte != -1 => recherche sur numCompte
 		// numCompte != -1 et debutNom non vide => recherche nom/prenom
 		// numCompte != -1 et debutNom vide => recherche tous les employés
-		ArrayList<Employe> listeCli;
-		listeCli = this.cmDialogController.getlisteComptes(numCompte, debutNom, debutPrenom);
+		ArrayList<Employe> listeEmp;
+		listeEmp = this.emDialogController.getlisteEmployes(numCompte, debutNom, debutPrenom);
 
 		this.oListEmployes.clear();
-		this.oListEmployes.addAll(listeCli);
+		this.oListEmployes.addAll(listeEmp);
 		this.validateComponentState();
 	}
 
@@ -183,7 +183,7 @@ public class EmployesManagementController {
 		if (!ConstantesIHM.isAdmin(this.dailyBankState.getEmployeActuel()))
 			return;
 		Employe employe;
-		employe = this.cmDialogController.nouveauEmploye();
+		employe = this.emDialogController.nouveauEmploye();
 		if (employe != null) {
 			this.oListEmployes.add(employe);
 		}
@@ -201,7 +201,7 @@ public class EmployesManagementController {
 		int selectedIndice = this.lvEmployes.getSelectionModel().getSelectedIndex();
 		if (selectedIndice >= 0) {
 			Employe cliMod = this.oListEmployes.get(selectedIndice);
-			Employe result = this.cmDialogController.modifierEmploye(cliMod);
+			Employe result = this.emDialogController.modifierEmploye(cliMod);
 			if (result != null) {
 				this.oListEmployes.set(selectedIndice, result);
 			}
@@ -234,7 +234,7 @@ public class EmployesManagementController {
 							+ permission,
 					AlertType.CONFIRMATION))
 				return;
-			this.cmDialogController.supprimerEmploye(empMod);
+			this.emDialogController.supprimerEmploye(empMod);
 			this.oListEmployes.remove(selectedIndice);
 		}
 		this.validateComponentState();
