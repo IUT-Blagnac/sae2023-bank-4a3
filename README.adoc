@@ -92,8 +92,9 @@ Il manque les tests pour créditer compte.
 Pas de tests pour le CRUD des employers...
 |           | `jar` V1           | link:https://github.com/IUT-Blagnac/sae2023-bank-4a3/releases/tag/v1[Lien] | Pour les virement afficher la liste des comptes sélectionnables plutôt que demander le numéro de compte
 |           | javadoc V1         | link:https://github.com/IUT-Blagnac/sae2023-bank-4a3/tree/master/LV1/Dev/Code/DailyBank/doc[Lien] | 
-| 26/05     | Gantt V2 Réalisé   | link:LV2/GanttV2-R%C3%A9alis%C3%A9.pdf[Lien] | 
-|           | Doc User V2        | link:LV2/DocumentationUtilisateur.adoc[Lien] | 
+| 26/05     | Gantt V2 Réalisé   | link:LV2/GanttV2-R%C3%A9alis%C3%A9.pdf[Lien] | gestion de projet: GANTT illisible, malgré un découpage semblant cohérent. board a jour avec issues à "done", appréciable.arbo propre, commits globalement OK, mais peu de remarques prises en compte. 13,5/20
+|           | Doc User V2        | link:LV2/DocumentationUtilisateur.adoc[Lien] | page de garde OK, présentation un peu légère, installation un peu légère. manque credentials
+Explication des fonctionnalités à compléter. Chaque developpeur est indiqué. OK. 11,5/20
 |           | Doc Tec V2         | link:LV2/DossierTechnique.adoc[Lien] | 
 |           | Recette V2         | link:LV2/CahierDeRecette.adoc[Lien] | 
 |           | `jar` V2           | link:https://github.com/IUT-Blagnac/sae2023-bank-4a3/releases/tag/v2[Lien] | 
